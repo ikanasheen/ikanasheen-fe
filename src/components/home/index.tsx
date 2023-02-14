@@ -15,7 +15,7 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                 <Grid container columns={1} spacing={1.4}>
                     <Grid item xs={1}>
                         <Box className="d-flex justify-content-between">
-                            <BgsTypography className="title-page">Dashboard</BgsTypography>
+                            <BgsTypography className="title-page">Dashboard cihuyyyy</BgsTypography>
                         </Box>
                     </Grid>
                     <Grid item xs={1}>
