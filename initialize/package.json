@@ -1,0 +1,11 @@
+{
+  "name": "initialize",
+  "version": "1.0.0",
+  "description": "initialize project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Andry Bagus Dharmawan",
+  "license": "ISC"
+}

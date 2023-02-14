@@ -1,0 +1,68 @@
+@import "styles/config/all";
+
+.sidebar-secondary {
+    width: 219px;
+    min-width: 219px;
+    max-width: 219px;
+    border-right: 1px solid #dee3e8 !important;
+
+    .MuiList-root {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 10px !important;
+        .MuiButtonBase-root.MuiListItem-root {
+            font-size: 16px !important;
+            margin: 10px 0px !important;
+            min-height: 40px !important;
+            height: 40px !important;
+            padding-left: 14px;
+            padding-right: 14px;
+            border-radius: 3px !important;
+
+            &.Mui-selected,
+            &.active {
+                background-color: #ebeff2 !important;
+            }
+
+            .MuiListItemIcon-root {
+                min-width: 35px !important;
+
+                .material-icons-round {
+                    font-size: 20px !important;
+                }
+            }
+        }
+    }
+
+    .form-sidebar-search {
+        min-height: 70px;
+        padding: 18px 20px;
+        .MuiSkeleton-root{
+            height: 34px !important;
+        }
+        input {
+            padding: 3.5px 15px;
+            font-size: 14.5px;
+        }
+
+        .MuiInputBase-root {
+            height: 34px !important;
+            min-height: 34px !important;
+            border-radius: 3px !important;
+
+            &:hover {
+                background-color: #DEE3E8;
+            }
+
+            &.Mui-focused {
+                background-color: #DEE3E8;
+            }
+        }
+
+        .MuiOutlinedInput-notchedOutline {
+            height: 34px;
+            min-height: 34px !important;
+            border: 0px solid #fff !important;
+        }
+    }
+}

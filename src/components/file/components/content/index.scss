@@ -1,0 +1,16 @@
+.close-modal {
+    background-color: #16161a !important;
+    color: #fff !important;
+    height: 36px;
+    width: 36px;
+    position: absolute;
+    top: 0px;
+    right: -36px;
+    z-index: 99;
+    user-select: none;
+    border-radius:0 50% 50% 0  !important;
+    opacity: .5;
+}
+.bgs-modal.modal-image{
+    border-radius: 3px !important;
+}

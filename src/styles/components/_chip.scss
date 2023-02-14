@@ -1,0 +1,12 @@
+.MuiChip-root.chip-default {
+    border: 0px solid !important;
+    font-weight: normal !important;
+    text-transform: capitalize !important;
+    padding: 3px 8px !important;
+    min-width: none;
+    max-height: 23px !important;
+    .MuiChip-label {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+}

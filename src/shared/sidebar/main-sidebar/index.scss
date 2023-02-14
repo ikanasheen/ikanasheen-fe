@@ -1,0 +1,176 @@
+@import "styles/config/all";
+
+.sidebar-component {
+    // padding: 20px 5px 50px 11px !important;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+    transition: scrollbar-color 0.8s;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-left: 6px !important;
+    padding-top: 25px !important;
+    user-select: none;
+
+    &:hover {
+        scrollbar-color: black transparent;
+    }
+
+    &:not(:hover)::-webkit-scrollbar-thumb {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 2px;
+        background: #c1c1c1;
+    }
+
+    a {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .MuiListItemIcon-root {
+        display: inline-flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .MuiButtonBase-root.MuiListItem-root,
+    .MuiListItemButton-root {
+        color: #fff;
+        font-size: 14px;
+        border-radius: 12px;
+        margin-bottom: 16px;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        height: 45px !important;
+        width: 45px !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .material-icons-round {
+            color: #3f3f46;
+            font-size: 25px !important;
+        }
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #ebeff2 !important;
+        }
+
+        &.Mui-selected {
+            transition: 0.2s;
+            // background: linear-gradient(117deg, #238bbe 0%, #256d90 100%);
+            background-color: #fff !important;
+            border: 2px solid #16161a;
+            color: #fff !important;
+
+            .material-icons-round {
+                color: #16161a;
+            }
+
+            .MuiListItemIcon-root,
+            .font-italic {
+                color: #fff !important;
+            }
+
+            .icon-arrow,
+            .icon-add {
+                border: 2px solid #fff;
+                color: #fff;
+            }
+
+            .icon-add {
+                background-color: white;
+                color: #1c79be;
+                border-color: white !important;
+                box-shadow: none !important;
+            }
+        }
+
+        .icon-arrow {
+            border: 2px solid #fff;
+            border-radius: 6px;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .icon-add {
+            border: 2px solid #1976d2;
+            border-radius: 6px;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            padding: 0px;
+            font-size: 16px;
+            color: #fff;
+            border-color: #1976d2 !important;
+        }
+    }
+
+    .child-menu {
+        background: rgba(255, 255, 255, 0.07); //linear-gradient(117deg, #238bbe 0%, #256d90 100%);
+        border-radius: 10px;
+        padding: 5px;
+        padding-bottom: 20px;
+
+        .MuiListItemButton-root {
+            &.active {
+                transition: 0.2s;
+                background-color: #1886bc !important;
+                color: #fff !important;
+            }
+
+            &:hover {
+                transition: 0.2s;
+                background-color: #0e7bb0 !important;
+            }
+        }
+    }
+}
+
+.sidebar-drawer {
+    .MuiPaper-root.MuiDrawer-paper {
+        border-right: 1px solid #dee3e8 !important;
+
+        .drawer-header {
+            background-color: #fff;
+        }
+
+        background: #fff;
+    }
+}
+
+.new-version-app {
+    position: fixed;
+    bottom: 40px;
+    left: 40px;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 54%);
+    z-index: 9999999;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #fff;
+    width: 340px;
+    .close-button{
+        position: absolute;
+        right: 5px;
+        top: 5px;
+    }
+}
+.modal-account.bgs-modal{
+    border-radius: 3px !important;
+}

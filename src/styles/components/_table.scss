@@ -1,0 +1,242 @@
+.table-cresa {
+    background-color: inherit !important;
+
+    .bgs-toolbar {
+        .no-label-floating {
+            .MuiOutlinedInput-root {
+                background-color: #ebeff2 !important;
+            }
+
+            fieldset.MuiOutlinedInput-notchedOutline {
+                border-color: #dee3e8;
+                border: 1px solid #dee3e8 !important;
+            }
+        }
+
+        .button-group {
+            .MuiButtonBase-root {
+                border: 1px solid #dee3e8 !important;
+                border-radius: 12px !important;
+                background-color: #ebeff2 !important;
+            }
+        }
+
+        >div.row.w-100 {
+            padding: 0px !important;
+            margin: 0px !important;
+            margin-bottom: 7px !important;
+
+            >.col-4 {
+                padding-left: 0px !important;
+                margin-left: 0px !important;
+            }
+        }
+    }
+
+    .title-table {
+        font-weight: 500 !important;
+        font-size: 21px !important;
+        padding-left: 10px !important;
+        color: #757575 !important;
+        font-family: "Source Sans Pro" !important;
+    }
+
+    border-radius: 0px !important;
+
+    .MuiTableContainer-root {
+        width: 100%;
+        position: relative;
+    }
+
+    .MuiTable-root {
+        border-radius: 0px !important;
+        background-color: #f8f9fa !important;
+
+        .MuiCheckbox-root {
+
+            // opacity: .7;
+            .MuiSvgIcon-root {
+                color: #a9b4bc !important;
+            }
+
+            &.MuiCheckbox-indeterminate {
+                .MuiSvgIcon-root {
+                    color: #2cb67d !important;
+                }
+            }
+
+            &.Mui-checked {
+                .MuiSvgIcon-root {
+                    color: #2cb67d !important;
+                }
+            }
+        }
+
+        .MuiTableCell-root {
+            &.sticky-right {
+                background-image: none !important;
+                // box-shadow: -3px 0 5px 0 rgba(0, 0, 0, .06) !important;
+            }
+
+            &.sticky-left {
+                // box-shadow: 3px 0 5px 0 rgba(0, 0, 0, .06) !important;
+                background-image: none !important;
+            }
+
+            color: #16161a !important;
+            height: 50px !important;
+            font-size: 14.5px !important;
+
+            &.MuiTableCell-head {
+                background-color: #f8f9fa !important;
+                font-weight: 600 !important;
+                font-size: 1rem !important;
+                user-select: none !important;
+                border-top: 0px solid #fff !important;
+                border-bottom: 1px solid #dee3e8 !important;
+                color: #666f75 !important;
+                // text-transform: lowercase;
+
+                i {
+                    font-weight: normal !important;
+                }
+
+                &.allow-sorting {
+                    &:hover {
+                        background-color: #ebeff2 !important;
+                    }
+                }
+            }
+
+            &:first-child {
+                padding-left: 33px !important;
+            }
+
+            &:last-child {
+                padding-right: 33px !important;
+            }
+        }
+
+        .MuiTableBody-root {
+            cursor: pointer;
+
+            .MuiTableRow-root {
+
+                background-color: #f8f9fa !important;
+
+                .table-cresa {
+                    .MuiTableContainer-root {
+                        &.main-table {
+                            thead {
+                                z-index: 1;
+                            }
+                        }
+                    }
+                }
+
+                &.odd {
+                    &:hover {
+                        background-color: #ebeff2 !important;
+
+                        .MuiTableCell-root {
+                            background-color: #ebeff2 !important;
+                        }
+                    }
+
+                    background-color: #f8f9fa !important;
+
+                    .sticky-right {
+                        background-color: inherit !important;
+                    }
+
+                    .sticky-left {
+                        background-color: inherit !important;
+                    }
+
+                    .sticky-right-secondary {
+                        background-color: inherit !important;
+                    }
+
+                    .sticky-left-secondary {
+                        background-color: inherit !important;
+                    }
+                }
+
+                &.even {
+                    &:hover {
+                        background-color: #ebeff2 !important;
+
+                        .MuiTableCell-root {
+                            background-color: #ebeff2 !important;
+                        }
+                    }
+
+                    background-color: #f8f9fa !important;
+                    border-top: 0.7px solid #f1f1f1 !important;
+                    border-bottom: 0.7px solid #f1f1f1 !important;
+
+                    .sticky-right {
+                        background-color: inherit !important;
+                    }
+
+                    .sticky-left {
+                        background-color: inherit !important;
+
+                    }
+
+                    .sticky-right-secondary {
+                        background-color: inherit !important;
+                    }
+
+                    .sticky-left-secondary {
+                        background-color: inherit !important;
+
+                    }
+                }
+
+                &.focus {
+                    background-color: #5c95c5 !important;
+                    color: #fff !important;
+
+                    .MuiTableCell-root {
+                        background-color: #5c95c5 !important;
+                        color: #fff !important;
+
+                        .MuiCheckbox-root {
+
+                            // opacity: .7;
+                            .MuiSvgIcon-root {
+                                color: #fff !important;
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        background-color: #5c95c5 !important;
+                        color: #fff !important;
+
+                        .MuiTableCell-root {
+                            background-color: #5c95c5 !important;
+                            color: #fff !important;
+                        }
+
+                        .MuiCheckbox-root {
+
+                            // opacity: .7;
+                            .MuiSvgIcon-root {
+                                color: #fff !important;
+                            }
+                        }
+                    }
+                }
+
+                .MuiTableCell-root {
+                    color: #16161a !important;
+                    border-bottom: 1px solid #dee3e8 !important;
+                    height: 60px !important;
+                    background-color: #f8f9fa !important;
+                }
+            }
+        }
+    }
+}

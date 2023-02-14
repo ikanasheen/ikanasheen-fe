@@ -1,0 +1,71 @@
+
+@import "styles/config/all";
+.bgs-modal{
+    border-radius: 15px !important;
+}
+.bgs-select-modal{
+    background-color: #f8f9fa !important;
+    .scroll.p-3{
+        padding: 5px !important;
+    }
+}
+.bgs-modal.bgs-mainmodal-confirmation {
+    border-radius: 3px !important;
+    width: auto !important;
+    overflow: hidden;
+
+    .bgs-modal-confirmation {
+        width: 460px !important;
+        padding: 0px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-self: flex-end !important;
+
+        .bgs-modal-confirmation-title {
+            padding: 23px 30px 0px !important;
+            margin: 0px !important;
+            font-size: 21px !important;
+            font-weight: 600 !important;
+        }
+
+        .bgs-modal-confirmation-content {
+            padding: 10px 30px 23px !important;
+            margin: 0px !important;
+            font-size: 18px !important;
+
+            .mb-1 {
+                margin: 0px !important;
+            }
+        }
+
+        .bgs-modal-confirmation-footer {
+            background-color: #f8f9fa !important;
+            padding: 23px 30px !important;
+            border-top: 1px solid #dee3e8 !important;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            column-gap: 20px;
+
+            .bgs-modal-confirmation-btn-no {
+                min-width: 81px !important;
+                border-radius: 3px !important;
+                box-shadow: none !important;
+                height: 40px !important;
+                color: #16161a !important;
+                font-weight: 600 !important;
+                font-size: 14.5px !important;
+            }
+
+            .bgs-modal-confirmation-btn-yes {
+                min-width: 140px !important;
+                background-color: #ef4565 !important;
+                border-radius: 3px !important;
+                box-shadow: none !important;
+                height: 40px !important;
+                font-weight: 600 !important;
+                font-size: 14.5px !important;
+            }
+        }
+    }
+}

@@ -1,0 +1,32 @@
+.MuiBreadcrumbs-root.bgs-breadcrumb {
+    .MuiBreadcrumbs-separator {
+        margin-left: 12px !important;
+        margin-right: 12px !important;
+        font-size: 17px !important;
+        color: #adb3b8 !important;
+        opacity: .4;
+    }
+
+    .MuiBreadcrumbs-li {
+        font-weight: normal !important;
+
+        &:first-child {
+            font-size: 15px;
+        }
+
+        &:last-child {
+            .MuiTypography-root {
+                color: #16161a !important;
+            }
+        }
+
+        .MuiTypography-root {
+            font-size: 17px;
+            color: #adb3b8;
+        }
+
+        a {
+            color: #adb3b8 !important;
+        }
+    }
+}

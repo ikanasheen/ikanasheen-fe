@@ -1,0 +1,288 @@
+{
+    "token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..pOPVoINJYb0tKM3KB4HNWw.H5-Sy6c_45cn3GoxV-R9NSMP14Km8ceTzos4FnNv9IRFHycQQJIAa2-cOCEk2VeEF87ztCJM5H_tR9KbX5GFmALoJLs8RuT0OaqOee0WgVY.xAuk6_s7-HuiI38anUx2OA",
+    "sessionDetail": {
+        "timeout": 86400,
+        "id": "2a2e6b51-21b6-468c-9be7-540a336a22f7",
+        "roles": [
+            "admin"
+        ],
+        "menuPermissionWrapper": [
+            {
+                "menuParent": "master-data",
+                "menuCode": "territory",
+                "menuName": "Territory",
+                "menuPath": "/master-data/territory",
+                "details": [
+                    {
+                        "functionCode": "view",
+                        "functionName": "View",
+                        "functionMethod": "view"
+                    },
+                    {
+                        "functionCode": "create",
+                        "functionMethod": "Create"
+                    },
+                    {
+                        "functionCode": "edit",
+                        "functionMethod": "Edit"
+                    },
+                    {
+                        "functionCode": "delete",
+                        "functionMethod": "Delete"
+                    },
+                    {
+                        "functionCode": "detail",
+                        "functionMethod": "Detail"
+                    }
+                ],
+                "menuSort": 1,
+                "titlePage": "Event Type",
+                "titleContent": "Event Type"
+            },
+            {
+                "menuParent": "user-management",
+                "menuCode": "user",
+                "menuName": "User",
+                "menuPath": "/user-management/user",
+                "details": [
+                    {
+                        "functionCode": "view",
+                        "functionName": "View",
+                        "functionMethod": "view"
+                    },
+                    {
+                        "functionCode": "create",
+                        "functionMethod": "Create"
+                    },
+                    {
+                        "functionCode": "edit",
+                        "functionMethod": "Edit"
+                    },
+                    {
+                        "functionCode": "detail",
+                        "functionMethod": "Detail"
+                    },
+                    {
+                        "functionCode": "delete",
+                        "functionMethod": "Delete"
+                    }
+                ],
+                "menuSort": 1,
+                "menuIcon": "people",
+                "titlePage": "User",
+                "titleContent": "User"
+            },
+            {
+                "menuCode": "dashboard",
+                "menuName": "Dashboard",
+                "menuPath": "/",
+                "details": [
+                    {
+                        "functionCode": "view",
+                        "functionName": "View",
+                        "functionMethod": "view"
+                    }
+                ],
+                "menuSort": 1,
+                "menuIcon": "dashboard",
+                "titlePage": "Dashboard",
+                "titleContent": "Dashboard Overview"
+            },
+            {
+                "menuParent": "master-data",
+                "menuCode": "city",
+                "menuName": "City",
+                "menuPath": "/master-data/city",
+                "details": [
+                    {
+                        "functionCode": "view",
+                        "functionName": "View",
+                        "functionMethod": "view"
+                    },
+                    {
+                        "functionCode": "create",
+                        "functionMethod": "Create"
+                    },
+                    {
+                        "functionCode": "edit",
+                        "functionMethod": "Edit"
+                    },
+                    {
+                        "functionCode": "detail",
+                        "functionMethod": "Detail"
+                    },
+                    {
+                        "functionCode": "delete",
+                        "functionMethod": "Delete"
+                    }
+                ],
+                "menuSort": 2,
+                "titlePage": "Event Category",
+                "titleContent": "Event Category"
+            },
+            {
+                "menuParent": "user-management",
+                "menuCode": "menu",
+                "menuName": "Menu",
+                "menuPath": "/user-management/menu",
+                "details": [
+                    {
+                        "functionCode": "view",
+                        "functionName": "View",
+                        "functionMethod": "view"
+                    },
+                    {
+                        "functionCode": "create",
+                        "functionMethod": "Create"
+                    },
+                    {
+                        "functionCode": "edit",
+                        "functionMethod": "Edit"
+                    },
+                    {
+                        "functionCode": "detail",
+                        "functionMethod": "Detail"
+                    },
+                    {
+                        "functionCode": "delete",
+                        "functionMethod": "Delete"
+                    }
+                ],
+                "menuSort": 2,
+                "menuIcon": "folder_open",
+                "titlePage": "Menu",
+                "titleContent": "Menu"
+            },
+            {
+                "menuParent": "master-data",
+                "menuCode": "partner",
+                "menuName": "Partner",
+                "menuPath": "/master-data/partner",
+                "details": [
+                    {
+                        "functionCode": "view",
+                        "functionName": "View",
+                        "functionMethod": "view"
+                    },
+                    {
+                        "functionCode": "create",
+                        "functionMethod": "Create"
+                    },
+                    {
+                        "functionCode": "edit",
+                        "functionMethod": "Edit"
+                    },
+                    {
+                        "functionCode": "detail",
+                        "functionMethod": "Detail"
+                    },
+                    {
+                        "functionCode": "delete",
+                        "functionMethod": "Delete"
+                    }
+                ],
+                "menuSort": 3,
+                "titlePage": "Event Topics",
+                "titleContent": "Event Topics"
+            },
+            {
+                "menuParent": "user-management",
+                "menuCode": "role",
+                "menuName": "Role",
+                "menuPath": "/user-management/role",
+                "details": [
+                    {
+                        "functionCode": "view",
+                        "functionName": "View",
+                        "functionMethod": "view"
+                    },
+                    {
+                        "functionCode": "create",
+                        "functionMethod": "Create"
+                    },
+                    {
+                        "functionCode": "edit",
+                        "functionMethod": "Edit"
+                    },
+                    {
+                        "functionCode": "detail",
+                        "functionMethod": "Detail"
+                    },
+                    {
+                        "functionCode": "delete",
+                        "functionMethod": "Delete"
+                    }
+                ],
+                "menuSort": 3,
+                "menuIcon": "folder_open",
+                "titlePage": "Role",
+                "titleContent": "Role"
+            },
+            {
+                "menuCode": "master-data",
+                "menuName": "Master Data",
+                "menuPath": "/master-data",
+                "details": [],
+                "menuSort": 4,
+                "menuIcon": "storage",
+                "titlePage": "Master Data",
+                "titleContent": "Master Data"
+            },
+            {
+                "menuParent": "master-data",
+                "menuCode": "sales-category",
+                "menuName": "Sales Category",
+                "menuPath": "/master-data/sales-category",
+                "details": [
+                    {
+                        "functionCode": "view",
+                        "functionName": "View",
+                        "functionMethod": "view"
+                    },
+                    {
+                        "functionCode": "create",
+                        "functionMethod": "Create"
+                    },
+                    {
+                        "functionCode": "edit",
+                        "functionMethod": "Edit"
+                    },
+                    {
+                        "functionCode": "detail",
+                        "functionMethod": "Detail"
+                    },
+                    {
+                        "functionCode": "delete",
+                        "functionMethod": "Delete"
+                    }
+                ],
+                "menuSort": 4,
+                "titlePage": "Event Organizer",
+                "titleContent": "Event Organizer"
+            },
+            {
+                "menuCode": "user-management",
+                "menuName": "User Management",
+                "details": [],
+                "menuSort": 5,
+                "menuIcon": "account_tree",
+                "titlePage": "User Management",
+                "titleContent": "User Management"
+            }
+        ],
+        "token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..pOPVoINJYb0tKM3KB4HNWw.H5-Sy6c_45cn3GoxV-R9NSMP14Km8ceTzos4FnNv9IRFHycQQJIAa2-cOCEk2VeEF87ztCJM5H_tR9KbX5GFmALoJLs8RuT0OaqOee0WgVY.xAuk6_s7-HuiI38anUx2OA",
+        "username": "andry.dharmawan@asyst.co.id",
+        "createdDate": "2023-01-04T20:21:56.443",
+        "userAccount": {
+            "id": 83,
+            "username": "andry.dharmawan@asyst.co.id",
+            "isActive": true,
+            "fullName": "Andry Dharmawan",
+            "email": "andry.dharmawan@asyst.co.id",
+            "roleCodes": [
+                "admin"
+            ]
+        },
+        "lastLogin": "2023-01-04 20:21:56"
+    }
+}
