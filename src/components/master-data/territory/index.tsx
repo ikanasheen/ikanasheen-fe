@@ -48,7 +48,7 @@ export default function TerritoryList(props: MainLayoutProps) {
     }
 
     return <BreadcrumbLayout
-        action={<BgsButton className="hg-40 br-3 min-wt-140 bg-black" onClick={() => form()} actionCode="create"><AddIcon /> Tambah Baru</BgsButton>}
+        action={<BgsButton className="hg-40 br-3 min-wt-140 bg-black" onClick={() => form()} actionCode="create"><AddIcon /> Tambah Baru agakny</BgsButton>}
         {...props}
     >
         <BgsTable ref={tableRef} {...table} />
