@@ -4,6 +4,7 @@ export default interface MenuModel {
     menuCode: string;
     menuName: string;
     menuPath?: string;
+    menuParent?: string;
     menuIcon?: string;
     children?: MenuModel[];
     keyCode?: string | number;
@@ -16,12 +17,8 @@ export interface MenuPermissionWrapper {
     menuIcon?: string;
     menuParent?: string;
     menuPath?: string;
-    menuSort: number;
-    details: Details[];
-    keyCode: string | number;
-    combination?: CombinationTypeModel | CombinationTypeModel[];
-    titleContent?: string;
-    titlePage?: string;
+    details: string[];
+    role: string[];
 }
 
 interface Details {
