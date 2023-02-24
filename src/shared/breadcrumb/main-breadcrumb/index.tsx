@@ -6,7 +6,7 @@ import { BgsButton } from "@andrydharmawan/bgs-component";
 import { MenuModel } from "models/index";
 import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
 import { MenuPermissionWrapper } from "models/menu.model";
-import { credential, isArray } from "lib";
+import { isArray } from "lib";
 import MenuConst from "consts/menu.const";
 
 export default function MainBreadcrumb() {

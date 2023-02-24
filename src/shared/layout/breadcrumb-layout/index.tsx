@@ -9,7 +9,7 @@ import ArrowDropDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRound
 import { BgsButton, useRouter } from "@andrydharmawan/bgs-component";
 import { Children, PropsWithChildren, useEffect, useState } from "react";
 import { MenuModel } from "models";
-import { credential, isArray } from "lib";
+import { isArray } from "lib";
 import { MenuPermissionWrapper } from "models/menu.model";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -25,10 +25,10 @@ export default function BreadcrumbLayout({
     action,
     children,
     menuCode,
-    actionCode
+    // actionCode
 }: PropsWithChildren<BreadcrumbLayoutProps>) {
     const [breadcrumb, setBreadcrumb] = useState<MenuModel[]>([]);
-    const [active, setActive] = useState<string>("");
+    const [active] = useState<string>("");
     const router = useRouter();
 
     const findBreadcrumb = (x: MenuModel): any => {
