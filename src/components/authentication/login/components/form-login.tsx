@@ -14,6 +14,7 @@ import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import UserHelper from "helper/UserHelper";
+import menuPermissionWrapper from "json/menu.json";
 
 interface LoginFormProps extends MainLayoutProps {
     accessFrom?: "default" | "session-expired";
@@ -34,8 +35,8 @@ export default function FormLoginComponent({ data, accessFrom = "default", onSuc
             UserHelper.login(values, ({ status, data }) => {
                 setLoading(false)
                 if (status) {
-                    const { token, sessionDetail, userAccount } = data;
-                    const { menuPermissionWrapper = [] } = sessionDetail || {}
+                    const { token, userAccount } = data;
+                    // const { menuPermissionWrapper = [] } = sessionDetail || {}
                     credential.storage.set("token", token);
                     credential.storage.set("user", userAccount);
                     credential.storage.set("menu", menuPermissionWrapper);

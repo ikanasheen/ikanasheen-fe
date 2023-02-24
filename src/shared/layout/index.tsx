@@ -4,11 +4,11 @@ import HeadTitle from "../head-title";
 import React, { useEffect, useState } from "react";
 import configureStore, { ConfigureStore, storeDispatch } from "store";
 import { MenuPermissionWrapper } from "models/menu.model";
-import { credential } from "lib";
 import { ConfigurationPermissionsModel } from "models/configuration-roles.model";
 import { useRouter } from "@andrydharmawan/bgs-component";
 import { v4 } from "uuid";
 import LoadingLayout from "./loading-layout";
+import MenuConst from "consts/menu.const";
 
 export interface BgsLayoutProps {
     title: string;
@@ -43,9 +43,9 @@ const BgsLayout = ({ title, menuCode, actionCode, render }: BgsLayoutProps) => {
         clearMenu();
 
         if (menuCode && actionCode) {
-            const menu: MenuPermissionWrapper[] = credential.storage.get("menu") || [];
-            const data = menu.find(x => x.menuCode === menuCode && x.details.map(y => y.functionCode).includes(actionCode));
-            bgsStoreDispatch({ accessRoles: data?.details.map(x => x.functionCode), menu })
+            const menu: MenuPermissionWrapper[] = MenuConst || [];
+            const data = menu.find(x => x.menuCode === menuCode && x.details.includes(actionCode));
+            bgsStoreDispatch({ accessRoles: data?.details })
 
             if (menu.length) setIsAuthorize(!!data)
             else setIsAuthorize(false)

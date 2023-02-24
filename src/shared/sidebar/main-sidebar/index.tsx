@@ -27,6 +27,7 @@ import Avatar from "@mui/material/Avatar";
 import Divider from "@mui/material/Divider";
 import UserHelper from "helper/UserHelper";
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import MenuConst from "consts/menu.const";
 const drawerWidth = 270;
 const MyAccountComponent = lazy(() => import("components/account"))
 
@@ -96,7 +97,7 @@ function MainSidebar({ menuCode: menuCodeActive }: MainSidebarProps) {
 
     useEffect(() => {
         let menuTemp: MenuModel[] = [];
-        const menuStorage: MenuPermissionWrapper[] = credential.storage.get("menu") || [];
+        const menuStorage: MenuPermissionWrapper[] = MenuConst || [];
         if (isArray(menuStorage, 0) && menuStorage) {
             const recursiveMenu = (menuCode: string): MenuModel[] => {
                 return menuStorage.filter(y => y.menuParent === menuCode).map(({ menuCode, menuName, menuPath, menuIcon }) => ({ menuCode, menuName, menuPath, menuIcon, children: recursiveMenu(menuCode) }))

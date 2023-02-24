@@ -1,7 +1,10 @@
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Fab from '@mui/material/Fab';
+import Popover from '@mui/material/Popover';
+import TextField from '@mui/material/TextField';
 import CssBaseline from '@mui/material/CssBaseline';
-import { PropsWithChildren, useEffect } from "react";
+import { PropsWithChildren, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import MainNaviation from "shared/navigation/main-naviation";
 import MainSidebar from "shared/sidebar/main-sidebar";
@@ -15,6 +18,7 @@ import store, { storeDispatch } from "store";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChildSidebar from "shared/sidebar/child-sidebar";
+import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 
 export interface MainLayoutProps extends BgsLayoutProps {
     onScroll?: (event: React.SyntheticEvent) => any;
@@ -32,7 +36,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 function MainLayout({ children, title, menuCode, actionCode, usingContainer = true }: PropsWithChildren<MainLayoutProps>) {
     const router = useRouter();
-    const { sidebarOpen: open = true } = store.getState();
+    const { sidebarOpen = true } = store.getState();
+    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
     useEffect(() => {
         if (!credential.storage.get("token")) router.push("/login")
@@ -43,6 +48,17 @@ function MainLayout({ children, title, menuCode, actionCode, usingContainer = tr
             sidebarOpen: !sidebarOpen
         }))
     };
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const open = Boolean(anchorEl);
+    const id = open ? 'simple-popover' : undefined;
 
     return <BgsLayout
         title={title}
@@ -56,10 +72,10 @@ function MainLayout({ children, title, menuCode, actionCode, usingContainer = tr
                 {false && <BgsButton className="btn-hide" sx={{
                     position: "absolute",
                     bottom: 10,
-                    left: open ? 259 : 60,
+                    left: sidebarOpen ? 259 : 60,
                     zIndex: 1200,
                     transition: ".3s"
-                }} onClick={handleDrawerClose}>{open ? <ChevronLeftIcon /> : <ChevronRightIcon />}</BgsButton>}
+                }} onClick={handleDrawerClose}>{sidebarOpen ? <ChevronLeftIcon /> : <ChevronRightIcon />}</BgsButton>}
                 <ChildSidebar menuCode={menuCode} />
                 <Box component="main" sx={{ flexGrow: 1, height: "100vh" }}>
                     {false && <DrawerHeader />}
@@ -71,6 +87,22 @@ function MainLayout({ children, title, menuCode, actionCode, usingContainer = tr
                         </Suspense>
                     </Box>
                 </Box>
+                <Popover
+                    id={id}
+                    open={open}
+                    anchorEl={anchorEl}
+                    onClose={handleClose}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'right',
+                    }}
+                    sx={{p: 20}}
+                >   
+                    <TextField fullWidth />
+                </Popover>
+                <Fab sx={{ position: "fixed", bottom: 10, right: 10 }} onClick={handleClick}>
+                    <ForumRoundedIcon />
+                </Fab>
             </Box>
         </>}
     />

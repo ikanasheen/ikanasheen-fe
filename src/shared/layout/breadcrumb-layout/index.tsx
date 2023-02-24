@@ -15,6 +15,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Icon from "@mui/material/Icon";
+import MenuConst from "consts/menu.const";
 
 interface BreadcrumbLayoutProps extends MainLayoutProps {
     action?: JSX.Element;
@@ -42,7 +43,7 @@ export default function BreadcrumbLayout({
     useEffect(() => {
         let breadcrumbTemp: MenuModel[] = [];
         let menuTemp: MenuModel[] = [];
-        const menuStorage: MenuPermissionWrapper[] = credential.storage.get("menu") || [];
+        const menuStorage: MenuPermissionWrapper[] = MenuConst || [];
         if (isArray(menuStorage, 0) && menuStorage) {
             const recursiveMenu = (menuCode: string): MenuModel[] => {
                 return menuStorage.filter(y => y.menuParent === menuCode).map(({ menuCode, menuName, menuPath, menuIcon, ...others }) => ({ ...others, menuCode, menuName, menuPath, menuIcon, children: recursiveMenu(menuCode) }))
@@ -59,13 +60,6 @@ export default function BreadcrumbLayout({
                     if (findChild) breadcrumbTemp.push(findChild)
                 }
             }
-
-            const findData = menuStorage.find(x => x.menuCode === menuCode)
-            if (findData) {
-                const { functionName = "" } = findData.details.find(x => x.functionCode === actionCode) || {}
-                setActive(functionName)
-            }
-            else setActive("")
 
             setBreadcrumb(breadcrumbTemp)
         }

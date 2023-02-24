@@ -7,6 +7,7 @@ import { MenuModel } from "models/index";
 import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
 import { MenuPermissionWrapper } from "models/menu.model";
 import { credential, isArray } from "lib";
+import MenuConst from "consts/menu.const";
 
 export default function MainBreadcrumb() {
     const router = useRouter();
@@ -24,13 +25,12 @@ export default function MainBreadcrumb() {
     useEffect(() => {
         let breadcrumbTemp: MenuModel[] = [];
         let menuTemp: MenuModel[] = [];
-        const menuStorage: MenuPermissionWrapper[] = credential.storage.get("menu") || [];
+        const menuStorage: MenuPermissionWrapper[] = MenuConst;
+        // const menuStorage: MenuPermissionWrapper[] = credential.storage.get("menu") || [];
         if (isArray(menuStorage, 0) && menuStorage) {
             const recursiveMenu = (menuCode: string): MenuModel[] => {
                 return menuStorage.filter(y => y.menuParent === menuCode).map(({ menuCode, menuName, menuPath, menuIcon, ...others }) => ({ ...others, menuCode, menuName, menuPath, menuIcon, children: recursiveMenu(menuCode) }))
             }
-
-            menuStorage.filter(x => !x.menuParent && x.menuCode.includes("bo-")).forEach(({ menuCode, menuName, menuPath, menuIcon, ...others }) => menuTemp.push({ ...others, menuCode, menuName, menuPath, menuIcon, children: recursiveMenu(menuCode) }))
 
             const find = menuTemp.find(findBreadcrumb)
 

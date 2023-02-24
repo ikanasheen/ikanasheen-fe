@@ -15,6 +15,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "./index.scss";
 import Slide from '@mui/material/Slide';
+import MenuConst from "consts/menu.const";
 
 interface ChildSidebarProps {
     menuCode?: string;
@@ -27,7 +28,7 @@ function ChildSidebar({ menuCode: menuCodeActive }: ChildSidebarProps) {
 
     useEffect(() => {
         let menuTemp: MenuModel[] = [];
-        const menuStorage: MenuPermissionWrapper[] = credential.storage.get("menu") || [];
+        const menuStorage: MenuPermissionWrapper[] = MenuConst;
         if (isArray(menuStorage, 0) && menuStorage) {
             const find = menuStorage.find(x => x.menuCode === menuCodeActive);
             if (find) {
