@@ -1,0 +1,293 @@
+[
+    {
+      "menuParent": "user-management",
+      "menuCode": "user",
+      "menuName": "User",
+      "menuPath": "/user-management/user",
+      "details": [
+        {
+          "functionCode": "list",
+          "functionName": "List",
+          "functionMethod": "view"
+        },
+        {
+          "functionCode": "create",
+          "functionMethod": "Create"
+        },
+        {
+          "functionCode": "update",
+          "functionMethod": "Update"
+        },
+        {
+          "functionCode": "delete",
+          "functionMethod": "Delete"
+        }
+      ],
+      "menuSort": 1,
+      "menuIcon": "material-icons-round|people",
+      "titlePage": "User",
+      "titleContent": "User"
+    },
+    {
+      "menuCode": "dashboard",
+      "menuName": "Dashboard",
+      "menuPath": "/",
+      "details": [
+        {
+          "functionCode": "view",
+          "functionName": "View",
+          "functionMethod": "view"
+        }
+      ],
+      "menuSort": 1,
+      "menuIcon": "material-icons-round|dashboard",
+      "titlePage": "Dashboard",
+      "titleContent": "Dashboard"
+    },
+    {
+      "menuParent": "master-data",
+      "menuCode": "territory",
+      "menuName": "Territory aaaaaaaaaaaaaa",
+      "menuPath": "/master-data/territory",
+      "details": [
+        {
+          "functionCode": "list",
+          "functionName": "List",
+          "functionMethod": "view"
+        },
+        {
+          "functionCode": "create",
+          "functionMethod": "Create"
+        },
+        {
+          "functionCode": "update",
+          "functionMethod": "Update"
+        },
+        {
+          "functionCode": "delete",
+          "functionMethod": "Delete"
+        }
+      ],
+      "menuSort": 1,
+      "titlePage": "Territory",
+      "titleContent": "Territory"
+    },
+    {
+      "menuCode": "master-data",
+      "menuName": "Master Data",
+      "details": [],
+      "menuSort": 2,
+      "menuIcon": "material-icons-round|storage",
+      "titlePage": "Master Data",
+      "titleContent": "Master Data"
+    },
+    {
+      "menuParent": "master-data",
+      "menuCode": "city",
+      "menuName": "City",
+      "menuPath": "/master-data/city",
+      "details": [
+        {
+          "functionCode": "list",
+          "functionName": "List",
+          "functionMethod": "view"
+        },
+        {
+          "functionCode": "create",
+          "functionMethod": "Create"
+        },
+        {
+          "functionCode": "update",
+          "functionMethod": "Update"
+        },
+        {
+          "functionCode": "delete",
+          "functionMethod": "Delete"
+        }
+      ],
+      "menuSort": 2,
+      "titlePage": "City",
+      "titleContent": "City"
+    },
+    {
+      "menuParent": "user-management",
+      "menuCode": "menu",
+      "menuName": "Menu",
+      "menuPath": "/user-management/menu",
+      "details": [
+        {
+          "functionCode": "list",
+          "functionName": "List",
+          "functionMethod": "view"
+        },
+        {
+          "functionCode": "create",
+          "functionMethod": "Create"
+        },
+        {
+          "functionCode": "update",
+          "functionMethod": "Update"
+        },
+        {
+          "functionCode": "delete",
+          "functionMethod": "Delete"
+        }
+      ],
+      "menuSort": 2,
+      "titlePage": "Menu",
+      "titleContent": "Menu"
+    },
+    {
+      "menuParent": "user-management",
+      "menuCode": "role",
+      "menuName": "Role",
+      "menuPath": "/user-management/role",
+      "details": [
+        {
+          "functionCode": "list",
+          "functionName": "List",
+          "functionMethod": "view"
+        },
+        {
+          "functionCode": "create",
+          "functionMethod": "Create"
+        },
+        {
+          "functionCode": "update",
+          "functionMethod": "Update"
+        },
+        {
+          "functionCode": "delete",
+          "functionMethod": "Delete"
+        }
+      ],
+      "menuSort": 3,
+      "titlePage": "Role",
+      "titleContent": "Role"
+    },
+    {
+      "menuParent": "master-data",
+      "menuCode": "sales-category",
+      "menuName": "Sales Category",
+      "menuPath": "/master-data/sales-category",
+      "details": [
+        {
+          "functionCode": "list",
+          "functionName": "List",
+          "functionMethod": "view"
+        },
+        {
+          "functionCode": "create",
+          "functionMethod": "Create"
+        },
+        {
+          "functionCode": "update",
+          "functionMethod": "Update"
+        },
+        {
+          "functionCode": "delete",
+          "functionMethod": "Delete"
+        }
+      ],
+      "menuSort": 3,
+      "titlePage": "Sales Category",
+      "titleContent": "Sales Category"
+    },
+    {
+      "menuCode": "partner",
+      "menuName": "Partner Profile",
+      "menuPath": "/partner",
+      "details": [
+        {
+          "functionCode": "list",
+          "functionName": "List",
+          "functionMethod": "view"
+        },
+        {
+          "functionCode": "create",
+          "functionMethod": "Create"
+        },
+        {
+          "functionCode": "update",
+          "functionMethod": "Update"
+        },
+        {
+          "functionCode": "delete",
+          "functionMethod": "Delete"
+        },
+        {
+          "functionCode": "upload",
+          "functionMethod": "Upload"
+        }
+      ],
+      "menuSort": 3,
+      "menuIcon": "material-icons-round|handshake",
+      "titlePage": "Partner",
+      "titleContent": "Partner"
+    },
+    {
+      "menuCode": "sales-profile",
+      "menuName": "Sales Agent Profile",
+      "menuPath": "/sales-profile",
+      "details": [
+        {
+          "functionCode": "list",
+          "functionName": "List",
+          "functionMethod": "view"
+        },
+        {
+          "functionCode": "update",
+          "functionMethod": "Update"
+        }
+      ],
+      "menuSort": 4,
+      "menuIcon": "material-icons-round|contacts",
+      "titlePage": "Sales Agent Profile",
+      "titleContent": "Sales Agent Profile"
+    },
+    {
+      "menuCode": "agent-journey-plan",
+      "menuName": "Rencana Kunjungan Sales",
+      "menuPath": "/agent-journey-plan",
+      "details": [
+        {
+          "functionCode": "list",
+          "functionName": "List",
+          "functionMethod": "view"
+        },
+        {
+          "functionCode": "create",
+          "functionMethod": "Create"
+        },
+        {
+          "functionCode": "update",
+          "functionMethod": "Update"
+        },
+        {
+          "functionCode": "delete",
+          "functionMethod": "Delete"
+        },
+        {
+          "functionCode": "detail",
+          "functionMethod": "Detail"
+        },
+        {
+          "functionCode": "upload",
+          "functionMethod": "Upload"
+        }
+      ],
+      "menuSort": 5,
+      "menuIcon": "material-icons-round|library_add_check",
+      "titlePage": "Rencana Kunjungan Sales",
+      "titleContent": "Rencana Kunjungan Sales"
+    },
+    {
+      "menuCode": "user-management",
+      "menuName": "User Management",
+      "details": [],
+      "menuSort": 6,
+      "menuIcon": "material-icons-round|account_tree",
+      "titlePage": "User Management",
+      "titleContent": "User Management"
+    }
+  ]
