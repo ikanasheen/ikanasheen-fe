@@ -13,4 +13,6 @@ export const api = {
     partner                     : `${baseUrl}partner/`,
     city                        : `${baseUrl}city/`,
     dashboard                   : `${baseUrl}dashboard/`,
+
+    distribusi                  : `${baseUrl}xxx/`
 }
