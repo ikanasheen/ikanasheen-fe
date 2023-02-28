@@ -13,7 +13,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
     {
         menuCode: "harga-ikan",
         menuName: "Daftar Harga Ikan",
-        details: ["list"],
+        details: ["list"], //list aja
         menuPath: "/harga-ikan",
         menuIcon: "material-icons-round|price_change",
         idRole: [1, 3, 2, 4]

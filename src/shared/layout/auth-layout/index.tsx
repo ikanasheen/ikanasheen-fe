@@ -9,7 +9,15 @@ import store from "store";
 import { connect } from "react-redux";
 import Box from "@mui/material/Box";
 
-const AuthLayout = ({ title, menuCode, children }: PropsWithChildren<BgsLayoutProps>) => {
+interface AuthLayoutProps extends BgsLayoutProps {
+    md?:number;
+    lg?:number;
+    xs?:number;
+    xl?:number;
+    showLogo?:boolean;
+}
+
+const AuthLayout = ({ title, menuCode, children, md=6, lg=3.6, xl=4, xs=10, showLogo=true }: PropsWithChildren<AuthLayoutProps>) => {
     const { isNewVersion = false } = store.getState();
 
     useInterval(
@@ -28,10 +36,10 @@ const AuthLayout = ({ title, menuCode, children }: PropsWithChildren<BgsLayoutPr
         menuCode={menuCode}
         render={() => <>
             <Grid container className="auth-layout context" alignItems="center" justifyContent="center">
-                <Grid item md={6} lg={3.6} xl={4} xs={10}>
-                    <Box className="text-center">
+                <Grid item md={md} lg={lg} xl={xl} xs={xs}>
+                    {showLogo && <Box className="text-center">
                         <img src={`/assets/img/logo/${process.env.REACT_APP_LOGO}`} alt={process.env.REACT_APP_NAME} className="logo-login" />
-                    </Box>
+                    </Box>}
                     <Suspense fallback={<LoadingPage height="calc(100vh - 60px)" />}>
                         {children}
                     </Suspense>

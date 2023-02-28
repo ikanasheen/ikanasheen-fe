@@ -19,7 +19,7 @@ export default function FormRegisterPages() {
         if (credential.storage.get("user")) router.push("/")
     }, [])
 
-    return <AuthLayout {...props}>
+    return <AuthLayout showLogo={false} {...props} md={12} lg={12} xs={12} xl={12}>
         <RegisterComponent />
     </AuthLayout >
 }

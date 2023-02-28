@@ -1,5 +1,4 @@
 import { BgsButton, BgsForm, BgsGroupForm, BgsTypography, FormGroupModel, FormRef } from "@andrydharmawan/bgs-component";
-import { Paper } from "@mui/material";
 import RegisterHelper from "helper/RegisterHelper";
 import { useRef, useState } from "react";
 
@@ -23,26 +22,18 @@ export default function ChangePasswordComponent() {
         item: {
             main: {
                 spacing: 2,
+                colCount:2,
                 items: [
-                    {
-                        dataField: "idRole",
-                        label: {
-                            text: "Role Code"
-                        },
-                        editorOptions: {
-                            disabled: true
-                        },
-                        validationRules: ["required"]
-                    },
-                    `namaLengkap|label.text=Nama Lengkap|validationRules=required`,
-                    `alamat|label.text=Alamat|editorType=textarea|validationRules=required`,
+                    `namaLengkap|colSpan=2|label.text=Nama Lengkap|validationRules=required`,
+                    `alamat|label.text=Alamat|colSpan=2|editorType=textarea|validationRules=required`,
                     `noTelepon|label.text=No Telepon|validationRules=required`,
                     `email|label.text=Email`,
-                    `username|label.text=Username|validationRules=required`,
+                    `username|colSpan=2|label.text=Username|validationRules=required`,
 
                     {
                         itemType: "group",
                         colCount: 2,
+                        colSpan:2,
                         items: [
                             {
                                 dataField: "password",
@@ -93,11 +84,10 @@ export default function ChangePasswordComponent() {
         ref={formRef}
         {...form}
         render={group => <>
-            <Paper className="p-3 mt-3">
-                <BgsTypography className="title-account mb-3">Daftar Sebagai Pembeli </BgsTypography>
-                <BgsForm name="main" {...group} />
-                <BgsButton loading={loading} type="submit" visibleLoading={false} className="btn-sign mgt-30 d-flex align-items-center justify-content-center">Daftar</BgsButton>
-            </Paper></>}
+            <BgsTypography className="title-account mb-3">Daftar Sebagai Pembeli </BgsTypography>
+            <BgsForm name="main" {...group} />
+            <BgsButton loading={loading} type="submit" visibleLoading={false} className="btn-sign mgt-30 d-flex align-items-center justify-content-center">Daftar</BgsButton>
+        </>}
 
     />
 }

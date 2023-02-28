@@ -1,5 +1,5 @@
 import { BgsButton, BgsForm, BgsGroupForm, BgsTypography, FormGroupModel, FormRef } from "@andrydharmawan/bgs-component";
-import { Grid, Paper } from "@mui/material";
+import Grid from "@mui/material/Grid";
 import GenderConst from "consts/gender.consts";
 import RegisterHelper from "helper/RegisterHelper";
 import { useRef, useState } from "react";
@@ -25,18 +25,10 @@ export default function FormRegisterComponent() {
         item: {
             main: {
                 spacing: 2,
+                colCount: 2,
                 items: [
-                    {
-                        dataField: "idRole",
-                        label: {
-                            text: "Role Code"
-                        },
-                        editorOptions: {
-                            disabled: true
-                        },
-                        validationRules: ["required"]
-                    },
-                    `namaLengkap|label.text=Nama Lengkap|validationRules=required`,
+                    `namaLengkap|colSpan=2|label.text=Nama Lengkap|validationRules=required`,
+                    `tanggalLahir|label.text=Tanggal Lahir|editorType=date|validationRules=required`,
                     {
                         dataField: "gender",
                         label: {
@@ -50,7 +42,6 @@ export default function FormRegisterComponent() {
                         editorType: "radiobutton",
                         validationRules: ["required"]
                     },
-                    `tanggalLahir|label.text=Tanggal Lahir|editorType=date|validationRules=required`,
                     {
                         dataField: "kecamatan",
                         label: {
@@ -73,13 +64,14 @@ export default function FormRegisterComponent() {
 
                         }
                     },
-                    `alamat|label.text=Alamat|editorType=textarea|validationRules=required`,
+                    `alamat|colSpan=2|label.text=Alamat|editorType=textarea|validationRules=required`,
                     `noTelepon|label.text=No Telepon|validationRules=required`,
                     `email|label.text=Email`,
-                    `username|label.text=Username|validationRules=required`,
+                    `username|colSpan=2|label.text=Username|validationRules=required`,
                     {
                         itemType: "group",
                         colCount: 2,
+                        colSpan: 2,
                         items: [
                             {
                                 dataField: "password",
@@ -130,13 +122,11 @@ export default function FormRegisterComponent() {
         ref={formRef}
         {...form}
         render={group => <>
-            <Paper className="p-3 mt-3">
-                <Grid className="ms-4" item xs={12}  >
-                    <BgsTypography className="title-account mb-3">Daftar Sebagai Nelayan</BgsTypography>
-                    <BgsForm name="main" {...group} />
-                </Grid>
-                <BgsButton loading={loading} type="submit" visibleLoading={false} className="btn-sign mgt-30 d-flex align-items-center justify-content-center">Daftar</BgsButton>
-            </Paper>
+            <Grid className="ms-4" item xs={12}  >
+                <BgsTypography className="title-account mb-3">Daftar Sebagai Nelayan</BgsTypography>
+                <BgsForm name="main" {...group} />
+            </Grid>
+            <BgsButton loading={loading} type="submit" visibleLoading={false} className="btn-sign mgt-30 d-flex align-items-center justify-content-center">Daftar</BgsButton>
         </>}
     />
 }

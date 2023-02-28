@@ -4,6 +4,8 @@
         line-height: 24px !important;
         text-align: center;
     }
+    height: 100vh;
+    // overflow-x: scroll;
 }
 
 .sidebard-account-menu {
@@ -37,6 +39,8 @@
         line-height: 24px !important;
         margin-bottom: 20px !important;
     }
+    height: 100vh;
+    overflow-x: scroll;
 }
 .btn-save-data {
     min-width: 140px !important;
