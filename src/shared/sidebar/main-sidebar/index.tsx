@@ -25,7 +25,7 @@ import Slide from "@mui/material/Slide";
 import Tooltip from "@mui/material/Tooltip";
 import Avatar from "@mui/material/Avatar";
 import Divider from "@mui/material/Divider";
-import UserHelper from "helper/UserHelper";
+// import UserHelper from "helper/UserHelper";
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import MenuConst from "consts/menu.const";
 const drawerWidth = 270;
@@ -96,8 +96,10 @@ function MainSidebar({ menuCode: menuCodeActive }: MainSidebarProps) {
     );
 
     useEffect(() => {
+        const { idRole } = credential.storage.get("user") || {};
+
         let menuTemp: MenuModel[] = [];
-        const menuStorage: MenuPermissionWrapper[] = MenuConst || [];
+        const menuStorage: MenuPermissionWrapper[] = MenuConst.filter(x => x.idRole.includes(idRole)) || [];
         if (isArray(menuStorage, 0) && menuStorage) {
             const recursiveMenu = (menuCode: string): MenuModel[] => {
                 return menuStorage.filter(y => y.menuParent === menuCode).map(({ menuCode, menuName, menuPath, menuIcon }) => ({ menuCode, menuName, menuPath, menuIcon, children: recursiveMenu(menuCode) }))
@@ -128,14 +130,8 @@ function MainSidebar({ menuCode: menuCodeActive }: MainSidebarProps) {
         setAnchorElUser(null);
         bgsModalConfirmation({
             message: "Are you sure want to logout?",
-            onClick: ({ loading, modalRef }) => {
-                modalRef.closeOnOutsideDisabled(true)
-                loading(true)
-                UserHelper.logout(() => {
-                    loading(false)
-                    modalRef.closeOnOutsideDisabled(false)
-                    credential.storage.delete(), router.push("/login")
-                })
+            onClick: ({ }) => {
+                credential.storage.delete(), router.push("/login")
             }
         })
     }

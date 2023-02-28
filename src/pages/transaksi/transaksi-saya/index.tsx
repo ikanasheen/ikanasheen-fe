@@ -2,17 +2,17 @@ import { MainLayoutProps } from "shared/layout/main-layout";
 import { lazy } from "react";
 
 import MainLayout from "shared/layout/main-layout";
-const MainComponent = lazy(() => import("components/master-data/territory"));
+const MainComponent = lazy(() => import("components/nelayan"));
 
 const props: MainLayoutProps = {
-    title: "Daftar Transaksi",
+    title: "Daftar Nelayan",
     mode: "index",
-    menuCode: "address",
+    menuCode: "transaksi-saya",
     actionCode: "list",
     usingContainer: false
 }
 
-export default function MasterDataTerritoryView() {
+export default function NelayanView() {
     return <MainLayout {...props}>
         <MainComponent {...props} />
     </MainLayout>

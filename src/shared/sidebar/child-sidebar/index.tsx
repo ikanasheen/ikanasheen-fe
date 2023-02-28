@@ -7,7 +7,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Tooltip from "@mui/material/Tooltip";
-import { isArray } from "lib";
+import { credential, isArray } from "lib";
 import { MenuModel } from "models";
 import { MenuPermissionWrapper } from "models/menu.model";
 import { useEffect, useState } from "react";
@@ -27,8 +27,10 @@ function ChildSidebar({ menuCode: menuCodeActive }: ChildSidebarProps) {
     const [search, setSearch] = useState<string>("");
 
     useEffect(() => {
+        const { idRole } = credential.storage.get("user") || {};
+        
         let menuTemp: MenuModel[] = [];
-        const menuStorage: MenuPermissionWrapper[] = MenuConst;
+        const menuStorage: MenuPermissionWrapper[] = MenuConst.filter(x => x.idRole.includes(idRole));
         if (isArray(menuStorage, 0) && menuStorage) {
             const find = menuStorage.find(x => x.menuCode === menuCodeActive);
             if (find) {

@@ -9,6 +9,7 @@ import { useRouter } from "@andrydharmawan/bgs-component";
 import { v4 } from "uuid";
 import LoadingLayout from "./loading-layout";
 import MenuConst from "consts/menu.const";
+import { credential } from "lib";
 
 export interface BgsLayoutProps {
     title: string;
@@ -42,8 +43,10 @@ const BgsLayout = ({ title, menuCode, actionCode, render }: BgsLayoutProps) => {
         clearDrawer();
         clearMenu();
 
+        const { idRole } = credential.storage.get("user") || {};
+
         if (menuCode && actionCode) {
-            const menu: MenuPermissionWrapper[] = MenuConst || [];
+            const menu: MenuPermissionWrapper[] = MenuConst.filter(x => x.idRole.includes(idRole)) || [];
             const data = menu.find(x => x.menuCode === menuCode && x.details.includes(actionCode));
             bgsStoreDispatch({ accessRoles: data?.details })
 

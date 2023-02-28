@@ -3,9 +3,10 @@ import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andr
 import { isArray, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
-import DistribusiHelper from "helper/DistribusiHelper";
+import TransaksiPembeliHelper from "helper/transaksi/TransaksiPembeliHelper";
+import { SatuanBeratConst } from "consts";
 
-export default function DistribusiForm({ title, mode, id, hide, onSuccess = () => {} }: DrawerRenderProps) {
+export default function TransaksiForm({ title, mode, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -15,21 +16,44 @@ export default function DistribusiForm({ title, mode, id, hide, onSuccess = () =
         showLabelShrink: true,
         onSubmit: (values) => {
             setLoading(true);
-            DistribusiHelper.createupdate(values, values.id, ({ status }) => {
+            TransaksiPembeliHelper.createupdate(values, values.id, ({ status }) => {
                 setLoading(false);
                 if (status) onSuccess();
             })
-        },
-        formData: {
-            isActive: true
         },
         item: {
             main: {
                 spacing: 3,
                 items: [
-                    `date|label.text=Tanggal|editorType=date|validationRules=required`,
-                    `nama|label.text=Nelayan|validationRules=required`,
-                    `tujuan|label.text=Tujuan|validationRules=required`,
+                    `namaIkan|label.text=Nama Ikan|validationRules=required`,
+                    `jumlah|label.text=Jumlah|validationRules=required`,
+                    {
+                        dataField: "satuan",
+                        editorType: "select",
+                        label: {
+                            text: ""
+                        },
+                        editorOptions: {
+                            dataSource: SatuanBeratConst,
+                            displayExpr: "display",
+                            valueExpr: "value"
+                        },
+                    },
+                    `namaIkan|label.text=Nama Pembeli|editoryType=textarea|validationRules=required`,
+                    {
+                        dataField: "ekspedisi",
+                        editorType: "select",
+                        label: {
+                            text: "Ekspedisi"
+                        },
+                        editorOptions: {
+                            dataSource: SatuanBeratConst,
+                            displayExpr: "display",
+                            valueExpr: "value"
+                        },
+                    },
+                    `tanggal|label.text=Tanggal Pembelian|editoryType=date`,
+                    `catatan|label.text=Catatan|editoryType=textarea`,
                 ]
             },
         }
@@ -38,7 +62,7 @@ export default function DistribusiForm({ title, mode, id, hide, onSuccess = () =
     mounted(() => {
         if (id) {
             setLoading(true)
-            DistribusiHelper.detail(id, ({ status, data }) => {
+            TransaksiPembeliHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
                 if (mode === "detail") formRef.current?.disabled(true)
                 if (status) {
@@ -68,7 +92,7 @@ export default function DistribusiForm({ title, mode, id, hide, onSuccess = () =
                         actionType: "modal",
                         onClick: ({ loading, modalRef }) => {
                             loading(true)
-                            DistribusiHelper.delete(id, ({ status }) => {
+                            TransaksiPembeliHelper.delete(id, ({ status }) => {
                                 loading(false)
                                 status && (modalRef.hide(), onSuccess())
                             })
@@ -79,7 +103,13 @@ export default function DistribusiForm({ title, mode, id, hide, onSuccess = () =
                 <MoreHorizRoundedIcon />
             </BgsButton>}</>}
             footer={<>
-                <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Batal</BgsButton>
+                {id != null ? // && status diajukan
+                    <BgsButton variant="contained" className="btn-batalkan" loading={loading} visibleLoading={false} >Batalkan Pemesanan</BgsButton>
+                    : id != null ? // && status dalam proses
+                        <BgsButton variant="contained" className="btn-terima" color="primary" loading={loading} visibleLoading={false} >Terima Pemesanan</BgsButton>
+                        : null
+                }
+                <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
                 <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Simpan {id && " Perubahan"}</BgsButton>
             </>}
         >

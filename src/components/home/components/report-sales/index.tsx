@@ -18,7 +18,7 @@ const ReportSalesComponent = () => {
         setLoading(true)
         DashboardHelper.salesAgentStatus(({ status, data }) => {
             setLoading(false)
-            setData(status ? data : [])
+            false && setData(status ? data : [])
         })
     }, [])
 

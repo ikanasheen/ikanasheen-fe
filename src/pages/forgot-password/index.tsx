@@ -16,7 +16,7 @@ export default function ForgotPasswordPages() {
     const router = useRouter();
 
     useEffect(() => {
-        if (credential.storage.get("token")) router.push("/")
+        if (credential.storage.get("user")) router.push("/")
     }, [])
 
     return <AuthLayout {...props}>

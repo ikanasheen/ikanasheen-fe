@@ -1,7 +1,7 @@
 import axios from "axios";
-import { credential, jsonCopy } from "lib";
+import { credential } from "lib";
 import { ResponseModel } from "models";
-import modalLogin from "components/authentication/login/components/modal";
+// import modalLogin from "components/authentication/login/components/modal";
 import RequestModel from "models/request.model";
 import { bgsSnackbar } from "@andrydharmawan/bgs-component";
 import Alert from "@mui/material/Alert";
@@ -62,9 +62,9 @@ class BaseHelper {
         }
 
         if (([401, 9911].includes(status) || ["9912", "9900", "9911"].includes(responseData.code)) && config?.usingToken && !window.location.pathname.includes("login")) {
-            const data = jsonCopy(credential.storage.get("user"));
+            // const data = jsonCopy(credential.storage.get("user"));
             credential.storage.delete();
-            modalLogin({ data })
+            // modalLogin({ data })
         }
 
         if (config?.showSuccess && responseData.status) bgsSnackbar({
@@ -101,7 +101,7 @@ class BaseHelper {
             ...config
         }
 
-        if (config.usingToken && credential.storage.get("token")) headers.Authorization = `Bearer ${credential.storage.get("token")}`;
+        // if (config.usingToken && credential.storage.get("token")) headers.Authorization = `Bearer ${credential.storage.get("token")}`;
 
         const client = axios.create({ baseURL: url, onUploadProgress: (e: any) => onUploadProgress(e) });
 
@@ -173,6 +173,9 @@ class BaseHelper {
             paging: { page: 1, limit: 10, ...reqBody?.paging }
         }
         return this.postBase(url, reqBody, callback, { showSuccess: false, showError: false, ...config })
+    }
+    static createRegister(data: any, callback?: ((response: ResponseModel) => (any | ResponseModel)), config?: Config) {
+        return this.putBase("", { parameter: { data } }, callback, config)
     }
 }
 

@@ -24,16 +24,16 @@ const initValue = {
 }
 
 const CurrentStatsComponents = () => {
-    const [statistic, setStatistic] = useState<StatisticProps>(initValue);
-    const [loading, setLoading] = useState<boolean>(true);
+    const [statistic] = useState<StatisticProps>(initValue);
+    const [loading] = useState<boolean>(true);
 
-    useEffect(() => {
-        setLoading(true)
-        DashboardHelper.salesAgentStatistic(({ status, data }) => {
-            setLoading(false)
-            setStatistic(status ? data : initValue)
-        })
-    }, [])
+    // useEffect(() => {
+    //     setLoading(true)
+    //     DashboardHelper.salesAgentStatistic(({ status, data }) => {
+    //         setLoading(false)
+    //         setStatistic(status ? data : initValue)
+    //     })
+    // }, [])
 
     return <Paper className="position-relative">
         <Box className="d-flex justify-content-between align-items-center p-2 pdl-20">

@@ -18,7 +18,7 @@ export interface MenuPermissionWrapper {
     menuParent?: string;
     menuPath?: string;
     details: string[];
-    role: string[];
+    idRole: any[];
 }
 
 interface Details {

@@ -2,7 +2,7 @@ import { BgsButton, BgsForm, bgsSnackbar, BgsSpinner, ModalFunc } from "@andrydh
 import { useEffect, useState } from "react";
 import CloudDownloadIcon from "@mui/icons-material/Download";
 import { api } from "config";
-import { credential } from "lib";
+// import { credential } from "lib";
 import CloseIcon from '@mui/icons-material/Close';
 import "./index.scss";
 import moment from "moment";
@@ -31,7 +31,7 @@ export default function ContentFile({ data, modalOptions }: ContentFileProps) {
         if (typeof id === "number") {
             fetch(`${api.file}${fileName}`, {
                 headers: {
-                    Authorization: `Bearer ${credential.storage.get("token")}`
+                    // Authorization: `Bearer ${credential.storage.get("token")}`
                 }
             }).then(async image => {
                 const imageBlog = await image.blob()
@@ -101,7 +101,7 @@ export default function ContentFile({ data, modalOptions }: ContentFileProps) {
                                 Loading
                             </div>
                             : (url
-                                ? <img src={url} alt={fileName} style={{
+                                ? <iframe src={url} style={{
                                     position: "absolute",
                                     inset: 0,
                                     boxSizing: "border-box",

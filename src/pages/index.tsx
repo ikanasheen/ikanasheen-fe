@@ -7,7 +7,7 @@ const props: MainLayoutProps = {
     title: "Dashboard",
     mode: "index",
     menuCode: "dashboard",
-    actionCode: "view",
+    actionCode: "list",
     usingContainer: false
 }
 

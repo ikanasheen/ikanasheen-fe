@@ -1,20 +1,19 @@
 import AddIcon from "@mui/icons-material/Add";
 import { BgsButton, TableModel, BgsTable, TableRef } from "@andrydharmawan/bgs-component";
 import { MainLayoutProps } from "shared/layout/main-layout";
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import BreadcrumbLayout from "shared/layout/breadcrumb-layout";
 import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
-import TerritoryHelper from "helper/TerritoryHelper";
-const Form = lazy(() => import("./form"));
+import NelayanHelper from "helper/nelayan/NelayanHelper";
+const Form = lazy(() => import("../nelayan/form"));
 
-export default function TerritoryList(props: MainLayoutProps) {
+export default function NelayanList(props: MainLayoutProps) {
     const tableRef = useRef<TableRef>(null);
 
     const form = (id?: string) => {
         drawerLayout({
             render: (props) => <Form
-                title="Territory"
+                title="Nelayan"
                 id={id}
                 {...props}
             />,
@@ -23,7 +22,7 @@ export default function TerritoryList(props: MainLayoutProps) {
     }
 
     const table: TableModel = {
-        helper: (data) => TerritoryHelper.retrieve(data),
+        helper: (data) => NelayanHelper.retrieve(data),
         allowSearching: {
             fullWidth: true
         },
@@ -36,14 +35,13 @@ export default function TerritoryList(props: MainLayoutProps) {
         },
         onRowClick: ({ rowData }) => form(rowData.id),
         columns: [
-            `territoryName|caption=Nama Territory|allowFiltering|width=250`,
-            `description|caption=Deskripsi|allowFiltering|width=250`,
-            {
-                sticky: "right",
-                icon: false,
-                width: 60,
-                template: () => <ArrowForwardIcon className="fs-18" />
-            }
+            `nelayan|caption=ID|allowFiltering|width=200`,
+            `nama|caption=Nama Lengkap|allowFiltering|width=250`,
+            `jenisKelamin|caption=Jenis Kelamin|allowFiltering|width=200`,
+            `date|caption=Tanggal Lahir|allowFiltering|dataType=date|width=200`,
+            `alamat|caption=Alamat|allowFiltering|width=250`,
+            `email|caption=Email|allowFiltering|width=200`,
+            `status|caption=Status|allowFiltering|width=180`,
         ]
     }
 

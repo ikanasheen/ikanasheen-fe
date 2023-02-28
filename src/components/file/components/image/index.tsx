@@ -1,6 +1,6 @@
 import Skeleton from "@mui/material/Skeleton";
 import { api } from "config";
-import { credential } from "lib";
+// import { credential } from "lib";
 import { ForwardedRef, forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import showFile from "components/file";
 import "./index.scss";
@@ -34,7 +34,7 @@ const Image = forwardRef(({ fileName, sx, showFull, size = "sm", ...others }: Im
 
         fetch(`${api.file}${fileName}`, {
             headers: {
-                Authorization: `Bearer ${credential.storage.get("token")}`
+                // Authorization: `Bearer ${credential.storage.get("token")}`
             }
         }).then(async image => {
             const imageBlog = await image.blob()

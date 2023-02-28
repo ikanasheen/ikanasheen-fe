@@ -1,4 +1,4 @@
-import { BgsForm, BgsTypography, FormModel } from "@andrydharmawan/bgs-component";
+import { BgsButton, BgsForm, BgsTypography, FormModel } from "@andrydharmawan/bgs-component";
 import Box from "@mui/material/Box";
 import { credential } from "lib";
 import Image from "components/file/components/image";
@@ -40,5 +40,7 @@ export default function AccountProfileComponent() {
     return <>
         <BgsTypography className="title-account">My Profile</BgsTypography>
         <BgsForm {...form} />
+        <BgsButton className="text-end float-end mt-3">Update</BgsButton>
+
     </>
 }

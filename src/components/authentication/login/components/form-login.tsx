@@ -10,11 +10,11 @@ import Avatar from "@mui/material/Avatar";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import { storeDispatch } from "store";
 import { MainLayoutProps } from "shared/layout/main-layout";
-import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import UserHelper from "helper/UserHelper";
-import menuPermissionWrapper from "json/menu.json";
+
+// import menuPermissionWrapper from "json/menu.json";
 
 interface LoginFormProps extends MainLayoutProps {
     accessFrom?: "default" | "session-expired";
@@ -35,23 +35,18 @@ export default function FormLoginComponent({ data, accessFrom = "default", onSuc
             UserHelper.login(values, ({ status, data }) => {
                 setLoading(false)
                 if (status) {
-                    const { token, userAccount } = data;
-                    // const { menuPermissionWrapper = [] } = sessionDetail || {}
-                    credential.storage.set("token", token);
-                    credential.storage.set("user", userAccount);
-                    credential.storage.set("menu", menuPermissionWrapper);
+                    credential.storage.set("user", data);
 
                     storeDispatch({ reLogin: false })
-                    if (accessFrom !== "session-expired") router.push("/")
-
                     onSuccess()
+                    router.push("/")
                 }
                 else false && reset("password")
             })
         },
-        formData: {
-            ...accessFrom === "session-expired" && data?.username ? { username: data?.username } : null
-        },
+        // formData: {
+        //     ...accessFrom === "session-expired" && data?.username ? { username: data?.username } : null
+        // },
         item: {
             main: {
                 spacing: 2,
@@ -71,7 +66,7 @@ export default function FormLoginComponent({ data, accessFrom = "default", onSuc
                             </div>
                         }
                     }] : [],
-                    `username|visible=${!(accessFrom === "session-expired" && data?.username)}|validationRules`,
+                    `username|validationRules`, //|visible=${!(accessFrom === "session-expired" && data?.username)}
                     {
                         dataField: "password",
                         editorOptions: {
@@ -105,7 +100,10 @@ export default function FormLoginComponent({ data, accessFrom = "default", onSuc
                 <Box className="mgt-5">
                     <Link to="/forgot-password">Lupa password?</Link>
                 </Box>
-                <BgsButton loading={loading} type="submit" visibleLoading={false} className="btn-sign mgt-30 d-flex align-items-center justify-content-center">Masuk <ArrowForwardRoundedIcon className="fs-20 mgl-6" /></BgsButton>
+                <BgsButton loading={loading} type="submit" visibleLoading={false} className="btn-sign mgt-30 d-flex align-items-center justify-content-center">Masuk</BgsButton>
+                <Box className="mgt-5">
+                    <Link  to="/form-register" className="btn-register mgt-30 d-flex align-items-center justify-content-center">Buat Akun</Link>
+                </Box>
             </>}
         />
     </>

@@ -3,8 +3,8 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import { BgsTypography } from "@andrydharmawan/bgs-component";
 import moment from "moment";
-import { useEffect, useState } from "react";
-import DashboardHelper from "helper/DashboardHelper";
+import {  useState } from "react";
+// import DashboardHelper from "helper/DashboardHelper";
 
 interface PartnerProps {
     territoryName: string;
@@ -19,29 +19,29 @@ interface ColumnDataProps {
 }
 
 const PartnerComponent = () => {
-    const [data, setData] = useState<ColumnDataProps[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
+    const [data] = useState<ColumnDataProps[]>([]);
+    const [loading] = useState<boolean>(true);
 
-    useEffect(() => {
-        setLoading(true)
-        DashboardHelper.salesAgentPartner(({ status, data }) => {
-            setLoading(false)
-            let partnerData: ColumnDataProps[] = [];
-            if (status) (data as PartnerProps[]).forEach(({ territoryName, branch, hq }) => {
-                partnerData.push({
-                    type: "BRANCH",
-                    city: territoryName,
-                    value: branch
-                })
-                partnerData.push({
-                    type: "HQ",
-                    city: territoryName,
-                    value: hq
-                })
-            })
-            setData(partnerData)
-        })
-    }, [])
+    // useEffect(() => {
+    //     setLoading(true)
+    //     DashboardHelper.salesAgentPartner(({ status, data }) => {
+    //         setLoading(false)
+    //         let partnerData: ColumnDataProps[] = [];
+    //         if (status) (data as PartnerProps[]).forEach(({ territoryName, branch, hq }) => {
+    //             partnerData.push({
+    //                 type: "BRANCH",
+    //                 city: territoryName,
+    //                 value: branch
+    //             })
+    //             partnerData.push({
+    //                 type: "HQ",
+    //                 city: territoryName,
+    //                 value: hq
+    //             })
+    //         })
+    //         setData(partnerData)
+    //     })
+    // }, [])
 
     const config: ColumnConfig = {
         data,

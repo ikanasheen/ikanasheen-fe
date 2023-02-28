@@ -3,7 +3,7 @@ import { Pie, PieConfig } from '@ant-design/plots';
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { useEffect, useState } from "react";
-import DashboardHelper from "helper/DashboardHelper";
+// import DashboardHelper from "helper/DashboardHelper";
 
 interface AttendanceProps {
     attendance: number;
@@ -11,15 +11,15 @@ interface AttendanceProps {
 }
 
 const AttendanceComponent = () => {
-    const [data, setData] = useState<AttendanceProps[]>([]);
+    const [data] = useState<AttendanceProps[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         setLoading(true)
-        DashboardHelper.salesAgentAttendance(({ status, data }) => {
-            setLoading(false)
-            setData(status ? data : [])
-        })
+        // DashboardHelper.salesAgentAttendance(({ status, data }) => {
+        //     setLoading(false)
+        //     setData(status ? data : [])
+        // })
     }, [])
 
     const config: PieConfig = {

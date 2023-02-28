@@ -1,7 +1,7 @@
 const baseUrl                   = `${process.env.REACT_APP_API_URL}`;
 //
 export const api = {
-    user                        : `${baseUrl}user/`,
+    user                        : `${baseUrl}fishery/`,
     menu                        : `${baseUrl}menu/`,
     permission                  : `${baseUrl}permission/`,
     role                        : `${baseUrl}role/`,
@@ -14,5 +14,12 @@ export const api = {
     city                        : `${baseUrl}city/`,
     dashboard                   : `${baseUrl}dashboard/`,
 
-    distribusi                  : `${baseUrl}xxx/`
+    register                    : `${baseUrl}fishery/register/`,
+
+    pengembanganDiri            : `${baseUrl}xxx/`,
+    pengajuanBantuan            : `${baseUrl}xxx/`,
+
+    hargaIkan                  : `${baseUrl}xxx/`,
+    nelayan                    : `${baseUrl}xxx/`,
+    transaksi                  : `${baseUrl}xxx/`,
 }

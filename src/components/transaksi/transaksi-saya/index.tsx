@@ -1,20 +1,21 @@
 import AddIcon from "@mui/icons-material/Add";
 import { BgsButton, TableModel, BgsTable, TableRef } from "@andrydharmawan/bgs-component";
 import { MainLayoutProps } from "shared/layout/main-layout";
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import BreadcrumbLayout from "shared/layout/breadcrumb-layout";
 import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
-import DistribusiHelper from "helper/DistribusiHelper";
-const Form = lazy(() => import("../distribusi/form"));
+// import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import TransaksiNelayanHelper from "helper/transaksi/TransaksiNelayanHelper";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+const Form = lazy(() => import("../transaksi-saya/form"));
 
-export default function DistribusiList(props: MainLayoutProps) {
+export default function TransaksiList(props: MainLayoutProps) {
     const tableRef = useRef<TableRef>(null);
 
     const form = (id?: string) => {
         drawerLayout({
             render: (props) => <Form
-                title="Distribusi"
+                title="Transaksi"
                 id={id}
                 {...props}
             />,
@@ -23,27 +24,32 @@ export default function DistribusiList(props: MainLayoutProps) {
     }
 
     const table: TableModel = {
-        helper: (data) => DistribusiHelper.retrieve(data),
+        helper: (data) => TransaksiNelayanHelper.retrieve(data),
         allowSearching: {
             fullWidth: true
         },
         showIcon: true,
         allowRefreshing: true,
         allowSearchingOptions: true,
-        allowSortingOptions: true,
         showIndexing: {
             sticky: "left"
         },
         onRowClick: ({ rowData }) => form(rowData.id),
         columns: [
-            `date|caption=Tanggal|allowFiltering|dataType=date|width=250`,
-            `nama|caption=Nelayan|allowFiltering|width=250`,
-            `tujuan|caption=Tujuan|allowFiltering|width=250`,
+            `nama|caption=Nama Ikan|allowFiltering|width=200`,
+            `jumlah|caption=Jumlah|allowFiltering|width=250`,
+            `alamatPembeli|caption=Alamat Pembeli|allowFiltering|width=250`,
+            `namaPembeli|caption=Nama Pembeli|allowFiltering|width=200`,
+            `ekspedisi|caption=Ekspedisi|allowFiltering|width=200`,
+            `date|caption=Tanggal Pembelian|allowFiltering|dataType=date|width=200`,
+            `catatan|caption=Catatan|allowFiltering|width=250`,
             {
                 sticky: "right",
                 icon: false,
                 width: 60,
-                template: () => <ArrowForwardIcon className="fs-18" />
+                template: () => <CheckCircleIcon className="fs-18" />
+                // visible: ({ data }) => data.requestStatus == "Requested" || data.requestStatus == "Approved" //hide when status 
+
             }
         ]
     }

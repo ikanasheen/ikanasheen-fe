@@ -40,7 +40,7 @@ function MainLayout({ children, title, menuCode, actionCode, usingContainer = tr
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
     useEffect(() => {
-        if (!credential.storage.get("token")) router.push("/login")
+        if (!credential.storage.get("user")) router.push("/login")
     }, [])
 
     const handleDrawerClose = () => {

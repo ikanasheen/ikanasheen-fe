@@ -9,7 +9,7 @@ import ArrowDropDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRound
 import { BgsButton, useRouter } from "@andrydharmawan/bgs-component";
 import { Children, PropsWithChildren, useEffect, useState } from "react";
 import { MenuModel } from "models";
-import { isArray } from "lib";
+import { credential, isArray } from "lib";
 import { MenuPermissionWrapper } from "models/menu.model";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -41,9 +41,11 @@ export default function BreadcrumbLayout({
     }
 
     useEffect(() => {
+        const { idRole } = credential.storage.get("user") || {};
+
         let breadcrumbTemp: MenuModel[] = [];
         let menuTemp: MenuModel[] = [];
-        const menuStorage: MenuPermissionWrapper[] = MenuConst || [];
+        const menuStorage: MenuPermissionWrapper[] = MenuConst.filter(x => x.idRole.includes(idRole)) || [];
         if (isArray(menuStorage, 0) && menuStorage) {
             const recursiveMenu = (menuCode: string): MenuModel[] => {
                 return menuStorage.filter(y => y.menuParent === menuCode).map(({ menuCode, menuName, menuPath, menuIcon, ...others }) => ({ ...others, menuCode, menuName, menuPath, menuIcon, children: recursiveMenu(menuCode) }))

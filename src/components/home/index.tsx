@@ -4,9 +4,9 @@ import Grid from "@mui/material/Grid";
 import { MainLayoutProps } from "shared/layout/main-layout";
 import "./index.scss"
 import ReportSalesComponent from "./components/report-sales";
-import PartnerComponent from "./components/partner";
-import CurrentStatsComponents from "./components/current-stats";
-import AttendanceComponent from "./components/attendance";
+// import PartnerComponent from "./components/partner";
+// import CurrentStatsComponents from "./components/current-stats";
+// import AttendanceComponent from "./components/attendance";
 
 const HomeComponent = ({ }: MainLayoutProps) => {
     return <Box className="home-component">
@@ -18,7 +18,13 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                             <BgsTypography className="title-page">Dashboard cihuyyyy</BgsTypography>
                         </Box>
                     </Grid>
-                    <Grid item xs={1}>
+                    <Grid>
+                        <BgsTypography className="text-secondary">Hello World!</BgsTypography>
+                    </Grid>
+                    <Grid item md={1} xs={2}>
+                        <ReportSalesComponent />
+                    </Grid>
+                    {/* <Grid item xs={1}>
                         <CurrentStatsComponents />
                     </Grid>
                     <Grid item xs={1}>
@@ -33,7 +39,7 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                     </Grid>
                     <Grid item xs={1}>
                         <PartnerComponent />
-                    </Grid>
+                    </Grid> */}
                 </Grid>
             </Grid>
         </Grid>

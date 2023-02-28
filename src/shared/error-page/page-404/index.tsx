@@ -32,7 +32,7 @@ export default function Error404({ height = "calc(100vh - 165px)" }: Error404Pro
 }
 
 export function Page404() {
-    const isLogin = !!credential.storage.get("token");
+    const isLogin = !!credential.storage.get("user");
     return isLogin
         ? <MainLayout title="Error 404" menuCode="">
             <Paper className="shadow-none p-4 pb-3 br-19">

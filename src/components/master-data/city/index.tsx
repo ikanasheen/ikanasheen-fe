@@ -29,8 +29,8 @@ export default function TerritoryList(props: MainLayoutProps) {
         },
         showIcon: true,
         allowRefreshing: true,
-        allowSearchingOptions: true,
-        allowSortingOptions: true,
+        // allowSearchingOptions: true,
+        // allowSortingOptions: true,
         showIndexing: {
             sticky: "left"
         },
@@ -43,7 +43,15 @@ export default function TerritoryList(props: MainLayoutProps) {
                 sticky: "right",
                 icon: false,
                 width: 60,
-                template: () => <ArrowForwardIcon className="fs-18" />
+                template: () =>  <ArrowForwardIcon className="fs-18" /> ,
+                // template: (data) => data.status==="approve" ? <ArrowForwardIcon className="fs-18" /> :  <AddIcon className="fs-18"/>,
+                // template: (data) => {
+                //     if (data.status === "approve") return <ArrowForwardIcon className="fs-18" />
+                //     else if (data.status === "reject") return <AddIcon className="fs-18" />
+                //     else return <AddIcon className="fs-18" />
+                // },
+                // onClick: ({ rowData }) => alert(JSON.stringify(rowData))
+
             }
         ]
     }

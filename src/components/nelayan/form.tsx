@@ -3,9 +3,9 @@ import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andr
 import { isArray, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
-import TerritoryHelper from "helper/TerritoryHelper";
+import NelayanHelper from "helper/nelayan/NelayanHelper";
 
-export default function TerritoryForm({ title, mode, id, hide, onSuccess = () => {} }: DrawerRenderProps) {
+export default function NelayanForm({ title, mode, id, hide, onSuccess = () => {} }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -15,7 +15,7 @@ export default function TerritoryForm({ title, mode, id, hide, onSuccess = () =>
         showLabelShrink: true,
         onSubmit: (values) => {
             setLoading(true);
-            TerritoryHelper.createupdate(values, values.id, ({ status }) => {
+            NelayanHelper.createupdate(values, values.id, ({ status }) => {
                 setLoading(false);
                 if (status) onSuccess();
             })
@@ -27,7 +27,7 @@ export default function TerritoryForm({ title, mode, id, hide, onSuccess = () =>
             main: {
                 spacing: 3,
                 items: [
-                    `territoryName|label.text=Nama Territory|validationRules=required,minLength.3,maxLength.50`,
+                    `territoryName|label.text=Nama Nelayan|validationRules=required,minLength.3,maxLength.50`,
                     `description|label.text=Deskripsi|editorType=textarea|validationRules=maxLength.50`,
                 ]
             },
@@ -37,7 +37,7 @@ export default function TerritoryForm({ title, mode, id, hide, onSuccess = () =>
     mounted(() => {
         if (id) {
             setLoading(true)
-            TerritoryHelper.detail(id, ({ status, data }) => {
+            NelayanHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
                 if (mode === "detail") formRef.current?.disabled(true)
                 if (status) {
@@ -67,7 +67,7 @@ export default function TerritoryForm({ title, mode, id, hide, onSuccess = () =>
                         actionType: "modal",
                         onClick: ({ loading, modalRef }) => {
                             loading(true)
-                            TerritoryHelper.delete(id, ({ status }) => {
+                            NelayanHelper.delete(id, ({ status }) => {
                                 loading(false)
                                 status && (modalRef.hide(), onSuccess())
                             })
@@ -78,7 +78,7 @@ export default function TerritoryForm({ title, mode, id, hide, onSuccess = () =>
                 <MoreHorizRoundedIcon />
             </BgsButton>}</>}
             footer={<>
-                <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Batal</BgsButton>
+                <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
                 <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Simpan {id && " Perubahan"}</BgsButton>
             </>}
         >
