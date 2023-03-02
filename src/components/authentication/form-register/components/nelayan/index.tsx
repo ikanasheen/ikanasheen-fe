@@ -1,11 +1,16 @@
-import { BgsButton, BgsForm, BgsGroupForm, BgsTypography, FormGroupModel, FormRef } from "@andrydharmawan/bgs-component";
+import { BgsButton, BgsForm, BgsGroupForm, BgsTypography, FormGroupModel, FormRef, useRouter } from "@andrydharmawan/bgs-component";
 import Grid from "@mui/material/Grid";
 import GenderConst from "consts/gender.consts";
-import RegisterHelper from "helper/RegisterHelper";
+import RegisterNelayanHelper from "helper/register/RegisterNelayanHelper";
+// import KecamatanHelper from "helper/register/KecamatanHelper";
+// import KelurahanDesaHelper from "helper/register/KelurahanDesaHelper";
 import { useRef, useState } from "react";
+import KecamatanConst from "consts/kecamatan.consts";
+import KelurahanDesaConst from "consts/kelurahan.consts";
 
 export default function FormRegisterComponent() {
     const [loading, setLoading] = useState<boolean>(false);
+    const router = useRouter();
     let showPassword: boolean = false;
     const formRef = useRef<FormRef>(null);
     const form: FormGroupModel = {
@@ -13,14 +18,15 @@ export default function FormRegisterComponent() {
         apperance: "filled",
         onSubmit: (values, { reset }) => {
             setLoading(true)
-            RegisterHelper.create(values, ({ status }) => {
+            RegisterNelayanHelper.create(values, ({ status }) => {
                 setLoading(false)
                 if (status) reset()
+                router.push("/login")
             })
         },
         formData: {
             gender: GenderConst[0].value,
-            idRole: "nelayan"
+            idRole: 3
         },
         item: {
             main: {
@@ -49,9 +55,16 @@ export default function FormRegisterComponent() {
                         },
                         validationRules: ["required"],
                         editorType: "select",
+                        // editorOptions: {
+                        //     helper: data => KecamatanHelper.getKecamatan(data),
+                        //     displayExpr: ({ name }) => `${name}`,
+                        //     valueExpr: "id",
+                        // },
                         editorOptions: {
-
-                        }
+                            dataSource: KecamatanConst,
+                            displayExpr: "text",
+                            valueExpr: "value"
+                        },
                     },
                     {
                         dataField: "kelurahanDesa",
@@ -60,9 +73,16 @@ export default function FormRegisterComponent() {
                         },
                         validationRules: ["required"],
                         editorType: "select",
+                        // editorOptions: {
+                        //     helper: (data) => KelurahanDesaHelper.getKelurahan(data),
+                        //     displayExpr: ({ name }) => `${name}`,
+                        //     valueExpr: "id",
+                        // },
                         editorOptions: {
-
-                        }
+                            dataSource: KelurahanDesaConst,
+                            displayExpr: "text",
+                            valueExpr: "value"
+                        },
                     },
                     `alamat|colSpan=2|label.text=Alamat|editorType=textarea|validationRules=required`,
                     `noTelepon|label.text=No Telepon|validationRules=required`,
@@ -99,7 +119,8 @@ export default function FormRegisterComponent() {
                             }, {
                                 colSpan: 2,
                                 template: () => <div style={{ marginTop: -10 }} className="fs-12 text-secondary d-flex align-items-center"><i className="ri-information-line mgr-5"></i> Password setidaknya memiliki 8 karakter kombinasi angka, huruf kecil, huruf besar and satu spesial karakter</div>
-                            }, {
+                            },
+                            {
                                 dataField: "showPassword",
                                 colSpan: 2,
                                 editorOptions: {

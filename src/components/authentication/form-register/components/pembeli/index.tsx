@@ -1,5 +1,5 @@
 import { BgsButton, BgsForm, BgsGroupForm, BgsTypography, FormGroupModel, FormRef } from "@andrydharmawan/bgs-component";
-import RegisterHelper from "helper/RegisterHelper";
+import RegisterPembeliHelper from "helper/register/RegisterPembeliHelper";
 import { useRef, useState } from "react";
 
 export default function ChangePasswordComponent() {
@@ -11,13 +11,13 @@ export default function ChangePasswordComponent() {
         apperance: "filled",
         onSubmit: (values, { reset }) => {
             setLoading(true)
-            RegisterHelper.create(values, ({ status }) => {
+            RegisterPembeliHelper.create(values, ({ status }) => {
                 setLoading(false)
                 if (status) reset()
             })
         },
         formData: {
-            idRole: "pembeli"
+            idRole: 4
         },
         item: {
             main: {
