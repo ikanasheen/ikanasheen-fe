@@ -4,16 +4,18 @@ import { MainLayoutProps } from "shared/layout/main-layout";
 import BreadcrumbLayout from "shared/layout/breadcrumb-layout";
 import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
-import HargaIkanHelper from "helper/harga-ikan/HargaIkanHelper";
-const Form = lazy(() => import("../harga-ikan/form"));
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import IkanHelper from "helper/daftar-ikan/IkanHelper";
+// import EditIcon from '@mui/icons-material/Edit';
+const Form = lazy(() => import("./form"));
 
-export default function HargaIkanList(props: MainLayoutProps) {
+export default function DaftarIkanList(props: MainLayoutProps) {
     const tableRef = useRef<TableRef>(null);
 
     const form = (id?: string) => {
         drawerLayout({
             render: (props) => <Form
-                title="Harga Ikan"
+                title="Daftar Ikan"
                 id={id}
                 {...props}
             />,
@@ -22,29 +24,28 @@ export default function HargaIkanList(props: MainLayoutProps) {
     }
 
     const table: TableModel = {
-        helper: (data) => HargaIkanHelper.retrieve(data),
+        helper: (data) => IkanHelper.retrieve(data),
         allowSearching: {
             fullWidth: true
         },
         showIcon: true,
         allowRefreshing: true,
-        allowSearchingOptions: true,
+        allowFiltering: true,
         showIndexing: {
             sticky: "left"
         },
-        onRowClick: ({ rowData }) => form(rowData.id),
+        onRowClick: ({ rowData }) => form(rowData.idIkan),
         columns: [
-            `nama|caption=Nama|allowFiltering|width=200`,
-            `nama|caption=Aru Selatan|allowFiltering|width=200`,
-            `nama|caption=Aru Selatan Timur|allowFiltering|width=250`,
-            `nama|caption=Aru Selatan Utara|allowFiltering|width=250`,
-            `nama|caption=Aru Tengah|allowFiltering|width=200`,
-            `nama|caption=Aru Tengah Timur|allowFiltering|width=250`,
-            `nama|caption=Aru Tengah Selatan|allowFiltering|width=250`,
-            `nama|caption=Pulau-Pulau Aru|allowFiltering|width=250`,
-            `nama|caption=Aru Utara|allowFiltering|width=200`,
-            `nama|caption=Aru Utara Timur Batu Ley|allowFiltering|width=270`,
-            `nama|caption=Sir-Sir|allowFiltering|width=200`
+            `idIkan|caption=Kode Ikan|width=200`,
+            `namaIkan|caption=Nama Ikan|width=200`,
+            `deskripsi|caption=Dekripsi|width=250`,
+            {
+                sticky: "right",
+                icon: false,
+                width: 60,
+                template: () => <ArrowForwardIcon className="fs-18" />
+
+            }
         ]
     }
 

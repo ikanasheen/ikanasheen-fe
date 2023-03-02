@@ -10,14 +10,26 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuIcon: "material-icons-round|dashboard",
         idRole: [1, 2, 3, 4]
     },
+
+    //DAFTAR IKAN
     {
-        menuCode: "harga-ikan",
-        menuName: "Daftar Harga Ikan",
-        details: ["list"], //list aja
-        menuPath: "/harga-ikan",
+        menuCode: "daftar-ikan",
+        menuName: "Daftar Ikan",
+        details: ["list", "create", "update", "delete"],
+        menuPath: "/daftar-ikan",
         menuIcon: "material-icons-round|price_change",
-        idRole: [1, 3, 2, 4]
+        idRole: [1]
     },
+    {
+        menuCode: "daftar-ikan",
+        menuName: "Daftar Ikan",
+        details: ["list"], //list aja
+        menuPath: "/daftar-ikan",
+        menuIcon: "material-icons-round|price_change",
+        idRole: [3]
+    },
+
+    //DAFTAR NELAYAN
     {
         menuCode: "nelayan",
         menuName: "Daftar Nelayan",
@@ -26,6 +38,8 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuIcon: "material-icons-round|contacts",
         idRole: [1, 2]
     },
+
+    //TRANSAKSI
     //transaksi admin, gov
     {
         menuCode: "transaksi",
@@ -83,34 +97,37 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuPath: "/transaksi/transaksi-saya",
         idRole: [3]
     },
-    //end of transaksi
+    
+    //SOSIALISASI
     {
-        menuCode: "pengembangan",
-        menuName: "Pengembangan Diri",
-        details: ["list", "create", "update", "delete"],
+        menuCode: "sosialisasi",
+        menuName: "Sosialisasi",
+        details: ["list", "create", "update"],
         menuIcon: "material-icons-round|tips_and_updates",
-        menuPath: "/master-data/transaksi",
+        menuPath: "/sosialisasi",
         idRole: [1]
     },
     {
-        menuCode: "pengembangan",
-        menuName: "Pengembangan Diri",
-        details: ["list"],
+        menuCode: "sosialisasi",
+        menuName: "Sosialisasi",
+        details: ["list", "detail"],
         menuIcon: "material-icons-round|tips_and_updates",
-        menuPath: "/master-data/transaksi",
+        menuPath: "/sosialisasi",
         idRole: [3, 2]
     },
+
+    //BANTUAN
     {
-        menuCode: "pengajuan",
-        menuName: "Pengajuan Proposal",
-        details: ["list", "create", "update", "delete"],
+        menuCode: "bantuan",
+        menuName: "Bantuan",
+        details: [""],
         menuIcon: "material-icons-round|sticky_note_2",
-        menuPath: "/master-data/transaksi",
+        menuPath: "/bantuan",
         idRole: [1, 3]
     },
     {
-        menuCode: "pengajuan",
-        menuName: "Pengajuan Proposal",
+        menuCode: "bantuan-tersedia",
+        menuName: "Bantuan Tersedia",
         details: ["list", "update"],
         menuIcon: "material-icons-round|sticky_note_2",
         menuPath: "/master-data/transaksi",

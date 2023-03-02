@@ -1,7 +1,7 @@
 const baseUrl                   = `${process.env.REACT_APP_API_URL}`;
 //
 export const api = {
-    user                        : `${baseUrl}fishery/`,
+    
     menu                        : `${baseUrl}menu/`,
     permission                  : `${baseUrl}permission/`,
     role                        : `${baseUrl}role/`,
@@ -12,14 +12,29 @@ export const api = {
     salesAgent                  : `${baseUrl}sales/agent/`,
     partner                     : `${baseUrl}partner/`,
     city                        : `${baseUrl}city/`,
+
+
+    user                        : `${baseUrl}fishery/`,
     dashboard                   : `${baseUrl}dashboard/`,
 
-    register                    : `${baseUrl}fishery/register/`,
 
-    pengembanganDiri            : `${baseUrl}xxx/`,
-    pengajuanBantuan            : `${baseUrl}xxx/`,
+    register :{
+        registerNelayan             : `${baseUrl}fishery/register/nelayan/`,
+        registerPembeli             : `${baseUrl}fishery/register/pembeli/`,
+        kecamatan                   : `https://ikanasheen.github.io/api-wilayah-indonesia/api/districts/`, // + 8105.json
+        kelurahanDesa               : `https://ikanasheen.github.io/api-wilayah-indonesia/api/villages/`, //+ 8105012.json
+    },
+    master :{
+        ikan                       : `${baseUrl}fishery/ikan/`,
+        nelayan                    : `${baseUrl}xxx/`,
+        sosialisasi                : `${baseUrl}xxx/`,
+    },
+    userManagement:{
+        userList                   : `${baseUrl}fishery/user/`,
+    },
+    transaksi:{
+        transaksi                  : `${baseUrl}xxx/`,
 
-    hargaIkan                  : `${baseUrl}xxx/`,
-    nelayan                    : `${baseUrl}xxx/`,
-    transaksi                  : `${baseUrl}xxx/`,
+    }
+    
 }

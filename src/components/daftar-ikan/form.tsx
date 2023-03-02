@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
-import { isArray, mounted } from "lib";
+import {  mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
-import HargaIkanHelper from "helper/harga-ikan/HargaIkanHelper";
+import IkanHelper from "helper/daftar-ikan/IkanHelper";
 
 export default function HargaIkanForm({ title, mode, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
@@ -15,7 +15,7 @@ export default function HargaIkanForm({ title, mode, id, hide, onSuccess = () =>
         showLabelShrink: true,
         onSubmit: (values) => {
             setLoading(true);
-            HargaIkanHelper.createupdate(values, values.id, ({ status }) => {
+            IkanHelper.createupdate(values, values.idIkan, ({ status }) => {
                 setLoading(false);
                 if (status) onSuccess();
             })
@@ -27,17 +27,8 @@ export default function HargaIkanForm({ title, mode, id, hide, onSuccess = () =>
             main: {
                 spacing: 3,
                 items: [
-                    `nama|label.text=Nama Ikan|validationRules=required`,
-                    `harga|label.text=Harga di Aru Selatan|editorType=number`,
-                    `harga|label.text=Harga di Aru Selatan Timur|editorType=number`,
-                    `harga|label.text=Harga di Aru Selatan Utara|editorType=number`,
-                    `harga|label.text=Harga di Aru Tengah|editorType=number`,
-                    `harga|label.text=Harga di Aru Tengah Timur|editorType=number`,
-                    `harga|label.text=Harga di Aru Tengah Selatan|editorType=number`,
-                    `harga|label.text=Harga di Pulau-Pulau Aru|editorType=number`,
-                    `harga|label.text=Harga di Aru Utara|editorType=number`,
-                    `harga|label.text=Harga di Aru Utara Timur Batu Ley|editorType=number`,
-                    `harga|label.text=Harga di Sir-Sir|editorType=number`,
+                    `namaIkan|label.text=Nama Ikan|validationRules=required`,
+                    `deskripsi|label.text=Deskripsi|editorType=textarea`,                    
                 ]
             },
         }
@@ -46,12 +37,10 @@ export default function HargaIkanForm({ title, mode, id, hide, onSuccess = () =>
     mounted(() => {
         if (id) {
             setLoading(true)
-            HargaIkanHelper.detail(id, ({ status, data }) => {
+            IkanHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
                 if (mode === "detail") formRef.current?.disabled(true)
                 if (status) {
-                    if (isArray(data.roles, 0)) data.roles = data.roles[0].code;
-
                     formRef.current?.updateData(data);
                 }
             })
@@ -76,7 +65,7 @@ export default function HargaIkanForm({ title, mode, id, hide, onSuccess = () =>
                         actionType: "modal",
                         onClick: ({ loading, modalRef }) => {
                             loading(true)
-                            HargaIkanHelper.delete(id, ({ status }) => {
+                            IkanHelper.delete(id, ({ status }) => {
                                 loading(false)
                                 status && (modalRef.hide(), onSuccess())
                             })
