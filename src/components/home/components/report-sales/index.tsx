@@ -45,7 +45,7 @@ const ReportSalesComponent = () => {
     
     return <Paper className="pdt-15 pdb-15 pdl-25 pdr-25 position-relative">
         <Box className="d-flex align-items-center justify-content-between mgb-20">
-            <BgsTypography className="fs-18">Status Report Sales</BgsTypography>
+            <BgsTypography className="fs-18">Jumlah Nelayan</BgsTypography>
         </Box>
         <Column {...config} data={data} loading={loading} />
     </Paper>

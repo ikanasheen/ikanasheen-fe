@@ -18,9 +18,6 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                             <BgsTypography className="title-page">Dashboard cihuyyyy</BgsTypography>
                         </Box>
                     </Grid>
-                    <Grid>
-                        <BgsTypography className="text-secondary">Hello World!</BgsTypography>
-                    </Grid>
                     <Grid item md={1} xs={2}>
                         <ReportSalesComponent />
                     </Grid>
