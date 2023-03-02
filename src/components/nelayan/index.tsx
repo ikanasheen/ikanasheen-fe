@@ -28,20 +28,20 @@ export default function NelayanList(props: MainLayoutProps) {
         },
         showIcon: true,
         allowRefreshing: true,
-        allowSearchingOptions: true,
-        allowSortingOptions: true,
+        allowFiltering: true,
         showIndexing: {
             sticky: "left"
         },
         onRowClick: ({ rowData }) => form(rowData.id),
         columns: [
-            `nelayan|caption=ID|allowFiltering|width=200`,
-            `nama|caption=Nama Lengkap|allowFiltering|width=250`,
-            `jenisKelamin|caption=Jenis Kelamin|allowFiltering|width=200`,
-            `date|caption=Tanggal Lahir|allowFiltering|dataType=date|width=200`,
-            `alamat|caption=Alamat|allowFiltering|width=250`,
-            `email|caption=Email|allowFiltering|width=200`,
-            `status|caption=Status|allowFiltering|width=180`,
+            `id|caption=ID|width=200`,
+            `nama|caption=Nama Lengkap|width=250`,
+            `jenisKelamin|caption=Jenis Kelamin|width=200`,
+            `date|caption=Tanggal Lahir|dataType=date|width=200`,
+            `alamat|caption=Alamat|width=250`,
+            `alamat|caption=No Telepon|width=250`,
+            `email|caption=Email|width=200`,
+            `status|caption=Status|width=180`,
         ]
     }
 
