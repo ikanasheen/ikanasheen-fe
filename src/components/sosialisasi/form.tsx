@@ -6,7 +6,7 @@ import SosialisasiHelper from "helper/sosialisasi/SosialisasiHelper";
 import JenisKontenConst from "consts/jenisKontent.const";
 import StatusConst from "consts/status.const";
 
-export default function SosialisasiForm({ title, id, mode, hide, onSuccess = () => { } }: DrawerRenderProps) {
+export default function SosialisasiForm({ title, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const roleId = credential.storage.get("user")?.idRole;
@@ -43,7 +43,7 @@ export default function SosialisasiForm({ title, id, mode, hide, onSuccess = () 
                             valueExpr: "value",
                         },
                     },
-                    `konten|label.text=Konten|editorType=textarea`,
+                    `konten|minRows=6|label.text=Konten|editorType=textarea|validationRules=required`,
                     {
                         dataField: "status",
                         label: {
@@ -67,8 +67,8 @@ export default function SosialisasiForm({ title, id, mode, hide, onSuccess = () 
             setLoading(true)
             SosialisasiHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
-                if (data.idRole !== 1) formRef.current?.disabled(true)
-                if (mode === "detail") formRef.current?.disabled(true)
+                if (roleId !== 1) formRef.current?.disabled(true)
+                // if (mode === "detail") formRef.current?.disabled(true)
                 if (status) {
                     formRef.current?.updateData(data);
                 }
@@ -80,7 +80,7 @@ export default function SosialisasiForm({ title, id, mode, hide, onSuccess = () 
         {...form}
         ref={formRef}
         render={group => <DrawerLayout
-            title={<>{id ? "Ubah" : "Tambah"} <b>{title}</b></>}
+            title={<>{id ? "Ubah" : "Tambah" } <b>{title}</b></>}
             action={<>{id && <BgsButton
                 actionType="menu"
                 variant="icon"

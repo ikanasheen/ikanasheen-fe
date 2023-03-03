@@ -4,8 +4,8 @@ export const JenisKontenConst: DisplayValueStandardModel[] = [{
     display: "Berita",
     value: "BERITA"
 }, {
-    display: "Infromasi",
-    value: "INFROMASI"
+    display: "Informasi",
+    value: "INFORMASI"
 }, {
     display: "Pengembangan Diri",
     value: "PENGEMBANGAN_DIRI"
