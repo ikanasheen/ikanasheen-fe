@@ -1,9 +1,10 @@
-import { BgsButton, BgsForm, BgsGroupForm, BgsTypography, FormGroupModel, FormRef } from "@andrydharmawan/bgs-component";
+import { BgsButton, BgsForm, BgsGroupForm, BgsTypography, FormGroupModel, FormRef, useRouter } from "@andrydharmawan/bgs-component";
 import RegisterPembeliHelper from "helper/register/RegisterPembeliHelper";
 import { useRef, useState } from "react";
 
 export default function ChangePasswordComponent() {
     const [loading, setLoading] = useState<boolean>(false);
+    const router = useRouter();
     let showPassword: boolean = false;
     const formRef = useRef<FormRef>(null);
     const form: FormGroupModel = {
@@ -14,6 +15,7 @@ export default function ChangePasswordComponent() {
             RegisterPembeliHelper.create(values, ({ status }) => {
                 setLoading(false)
                 if (status) reset()
+                router.push("/login")
             })
         },
         formData: {
