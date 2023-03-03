@@ -2,11 +2,8 @@ import { BgsButton, BgsForm, BgsGroupForm, BgsTypography, FormGroupModel, FormRe
 import Grid from "@mui/material/Grid";
 import GenderConst from "consts/gender.consts";
 import RegisterNelayanHelper from "helper/register/RegisterNelayanHelper";
-// import KecamatanHelper from "helper/register/KecamatanHelper";
-// import KelurahanDesaHelper from "helper/register/KelurahanDesaHelper";
 import { useRef, useState } from "react";
-import KecamatanConst from "consts/kecamatan.consts";
-import KelurahanDesaConst from "consts/kelurahan.consts";
+import KecamatanHelper from "helper/register/KecamatanHelper";
 
 export default function FormRegisterComponent() {
     const [loading, setLoading] = useState<boolean>(false);
@@ -55,15 +52,21 @@ export default function FormRegisterComponent() {
                         },
                         validationRules: ["required"],
                         editorType: "select",
-                        // editorOptions: {
-                        //     helper: data => KecamatanHelper.getKecamatan(data),
-                        //     displayExpr: ({ name }) => `${name}`,
-                        //     valueExpr: "id",
-                        // },
                         editorOptions: {
-                            dataSource: KecamatanConst,
-                            displayExpr: "text",
-                            valueExpr: "value"
+                            helper: data => KecamatanHelper.retrieveDistrict(data),
+                            displayExpr: "name",
+                            valueExpr: "name",
+                            afterChange: {
+                                clearItems: ["kelurahanDesa"],
+                                reloadItems: ["kelurahanDesa"]
+                            },
+
+                            onChange: ({ formRef, data }) => {
+                                formRef.updateData({
+                                    kecamatanId: data?.id || ""
+                                })
+                            }
+
                         },
                     },
                     {
@@ -73,15 +76,16 @@ export default function FormRegisterComponent() {
                         },
                         validationRules: ["required"],
                         editorType: "select",
-                        // editorOptions: {
-                        //     helper: (data) => KelurahanDesaHelper.getKelurahan(data),
-                        //     displayExpr: ({ name }) => `${name}`,
-                        //     valueExpr: "id",
-                        // },
                         editorOptions: {
-                            dataSource: KelurahanDesaConst,
-                            displayExpr: "text",
-                            valueExpr: "value"
+                            helper: data => KecamatanHelper.retrieveVillages(data),
+                            displayExpr: "name",
+                            valueExpr: "name",
+                            parameterFromField: [{
+                                opt: "filter",
+                                fromField: "kecamatanId",
+                                propReq: "id"
+                            }]
+
                         },
                     },
                     `alamat|colSpan=2|label.text=Alamat|editorType=textarea|validationRules=required`,

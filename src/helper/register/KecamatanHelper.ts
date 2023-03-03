@@ -1,14 +1,35 @@
 import BaseHelper from "helper/BaseHelper";
-import { api } from "config/index";
 import { Callback } from "models/response.model";
-// import ResponseModel, { Callback } from "models/response.model";
+import axios from "axios";
 
-class UserHelper extends BaseHelper {
-    static url = api.register.kecamatan;
+class KecamatanHelper extends BaseHelper {
+    static async retrieveDistrict(param: any, callback?: Callback) {
+        param;
+        const { data } = await axios.get(`https://www.emsifa.com/api-wilayah-indonesia/api/districts/8105.json`)
+        const res = {
+            status: true,
+            data,
+            message: "",
+            description: "",
+            code: "200"
+        }
+        if (callback) callback(res)
+        else return res
+    }
 
-    static getKecamatan(callback?: Callback) {
-        return super.getBase(`8105.json`, callback, { showSuccess: false, showError: true, usingToken: true })
+    static async retrieveVillages({ parameter }: any = {}, callback?: Callback) {
+        const { id } = parameter.filter
+        const { data } = await axios.get(`https://www.emsifa.com/api-wilayah-indonesia/api/villages/${id}.json`)
+        const res = {
+            status: true,
+            data,
+            message: "",
+            description: "",
+            code: "200"
+        }
+        if (callback) callback(res)
+        else return res
     }
 }
 
-export default UserHelper;
+export default KecamatanHelper;
