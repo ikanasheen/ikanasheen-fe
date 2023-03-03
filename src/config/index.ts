@@ -21,13 +21,11 @@ export const api = {
     register :{
         registerNelayan             : `${baseUrl}fishery/register/nelayan/`,
         registerPembeli             : `${baseUrl}fishery/register/pembeli/`,
-        kecamatan                   : `https://ikanasheen.github.io/api-wilayah-indonesia/api/districts/`, // + 8105.json
-        kelurahanDesa               : `https://ikanasheen.github.io/api-wilayah-indonesia/api/villages/`, //+ 8105012.json
     },
     master :{
         ikan                       : `${baseUrl}fishery/ikan/`,
         nelayan                    : `${baseUrl}xxx/`,
-        sosialisasi                : `${baseUrl}xxx/`,
+        sosialisasi                : `${baseUrl}fishery/sosialisasi/`,
     },
     userManagement:{
         userList                   : `${baseUrl}fishery/user/`,

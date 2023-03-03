@@ -4,6 +4,7 @@ import { MainLayoutProps } from "shared/layout/main-layout";
 import BreadcrumbLayout from "shared/layout/breadcrumb-layout";
 import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SosialisasiHelper from "helper/sosialisasi/SosialisasiHelper";
 const Form = lazy(() => import("../sosialisasi/form"));
 
@@ -31,13 +32,33 @@ export default function SosialisasiList(props: MainLayoutProps) {
         allowFiltering: true,
         showIndexing: {
             sticky: "left"
-        },
-        onRowClick: ({ rowData }) => form(rowData.id),
+        },        
+        temporaryParameter: [{
+            propReq: "status",
+            value: 'ACTIVE',
+            opt: "filter"
+        }],
+        onRowClick: ({ rowData }) => form(rowData.idSosialisasi),
         columns: [
             `judul|caption=Judul|width=160`,
             `jenisKonten|caption=Jenis Konten|width=160`,
             `konten|caption=Konten|width=300`,
-            `statusSosialisasi|caption=Status|width=130`,
+            {
+                dataField:"status",
+                caption: "Status",
+                width:130,
+                template: (data) => {
+                    return data.status == "ACTIVE" ? "Aktif" : "Tidak Aktif"
+                }
+            },
+            // `deskripsi|width=160`,
+            {
+                sticky: "right",
+                icon: false,
+                width: 60,
+                template: () => <ArrowForwardIcon className="fs-18" />
+
+            }
         ]
     }
 

@@ -1,15 +1,15 @@
 import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
-import { mounted } from "lib";
+import { credential, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
-import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import SosialisasiHelper from "helper/sosialisasi/SosialisasiHelper";
 import JenisKontenConst from "consts/jenisKontent.const";
 import StatusConst from "consts/status.const";
 
-export default function SosialisasiForm({ title, mode, id, hide, onSuccess = () => {} }: DrawerRenderProps) {
+export default function SosialisasiForm({ title, id, mode, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
+    const roleId = credential.storage.get("user")?.idRole;
 
     const form: FormGroupModel = {
         apperance: "filled",
@@ -17,13 +17,13 @@ export default function SosialisasiForm({ title, mode, id, hide, onSuccess = () 
         showLabelShrink: true,
         onSubmit: (values) => {
             setLoading(true);
-            SosialisasiHelper.createupdate(values, values.id, ({ status }) => {
+            SosialisasiHelper.createupdate(values, values.idSosialisasi, ({ status }) => {
                 setLoading(false);
                 if (status) onSuccess();
             })
         },
         formData: {
-            statusSosialisasi : StatusConst[0].value,
+            status: StatusConst[0].value,
         },
         item: {
             main: {
@@ -35,7 +35,7 @@ export default function SosialisasiForm({ title, mode, id, hide, onSuccess = () 
                         label: {
                             text: "Jenis Konten"
                         },
-                        validationRules:["required"],
+                        validationRules: ["required"],
                         editorType: "select",
                         editorOptions: {
                             dataSource: JenisKontenConst,
@@ -43,9 +43,9 @@ export default function SosialisasiForm({ title, mode, id, hide, onSuccess = () 
                             valueExpr: "value",
                         },
                     },
-                    `konten|label.text=Konten|editorType=textarea|height=200`,
+                    `konten|label.text=Konten|editorType=textarea`,
                     {
-                        dataField: "statusSosialisasi ",
+                        dataField: "status",
                         label: {
                             text: "Status"
                         },
@@ -56,6 +56,7 @@ export default function SosialisasiForm({ title, mode, id, hide, onSuccess = () 
                             valueExpr: "value",
                         },
                     },
+                    // `deskripsi|label.text=Deskripsi`
                 ]
             },
         }
@@ -66,9 +67,9 @@ export default function SosialisasiForm({ title, mode, id, hide, onSuccess = () 
             setLoading(true)
             SosialisasiHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
+                if (data.idRole !== 1) formRef.current?.disabled(true)
                 if (mode === "detail") formRef.current?.disabled(true)
                 if (status) {
-                    // if (isArray(data.roles, 0)) data.roles = data.roles[0].code;
                     formRef.current?.updateData(data);
                 }
             })
@@ -101,11 +102,16 @@ export default function SosialisasiForm({ title, mode, id, hide, onSuccess = () 
                     }]
                 }}
             >
-                <MoreHorizRoundedIcon />
+                {/* <MoreHorizRoundedIcon /> */}
             </BgsButton>}</>}
+
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
-                <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Simpan {id && " Perubahan"}</BgsButton>
+                {
+                    roleId === 1 ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Simpan {id && " Perubahan"}</BgsButton>
+                        : null
+                }
+
             </>}
         >
             <BgsForm name="main" {...group} />
