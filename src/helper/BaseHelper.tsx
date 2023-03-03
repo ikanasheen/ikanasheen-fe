@@ -52,8 +52,8 @@ class BaseHelper {
             code: status?.responseCode || (error ? status : "400"),
             status: status?.responseCode === "200",
             data: result,
-            message: status?.responseDesc || (error || err?.message),
-            description: status?.responseDesc || (error || err?.message),
+            message: status?.responseMessage || (error || err?.message),
+            description: status?.responseMessage || (error || err?.message),
             paging: {
                 ...paging,
                 totalpage: paging?.totalPage,

@@ -98,7 +98,7 @@ export default function FormLoginComponent({ data, accessFrom = "default", onSuc
             render={group => <>
                 <BgsForm name="main" {...group} />
                 <Box className="mgt-5">
-                    <Link to="/forgot-password">Lupa password?</Link>
+                    {/* <Link to="/forgot-password">Lupa password?</Link> */}
                 </Box>
                 <BgsButton loading={loading} type="submit" visibleLoading={false} className="btn-sign mgt-30 d-flex align-items-center justify-content-center">Masuk</BgsButton>
                 <Box className="mgt-5">
