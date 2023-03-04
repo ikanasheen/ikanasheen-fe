@@ -10,7 +10,7 @@ interface RegisterFormProps extends MainLayoutProps {
     onSuccess?: Function;
 }
 
-export default function FormRegisterComponent({onSuccess = () => { }}:RegisterFormProps) {
+export default function FormRegisterComponent({ onSuccess = () => { } }: RegisterFormProps) {
     const [loading, setLoading] = useState<boolean>(false);
     const router = useRouter();
     let showPassword: boolean = false;
@@ -26,7 +26,7 @@ export default function FormRegisterComponent({onSuccess = () => { }}:RegisterFo
                     // reset()
                     onSuccess()
                     router.push("/login")
-                }else{
+                } else {
                     router.push("/form-register")
                 }
             })
@@ -99,7 +99,16 @@ export default function FormRegisterComponent({onSuccess = () => { }}:RegisterFo
                         },
                     },
                     `alamat|colSpan=2|label.text=Alamat|editorType=textarea|validationRules=required`,
-                    `noTelepon|label.text=No Telepon|validationRules=required,pattern.number`,
+                    {
+                        dataField: "noTelepon",
+                        label: {
+                            text: "No Telepon"
+                        },
+                        validationRules: ["required"],
+                        editorOptions:{
+                            placeholder: "08...",
+                        }
+                    },
                     `email|label.text=Email|validationRules=email`,
                     `username|colSpan=2|label.text=Username|validationRules=required`,
                     {
