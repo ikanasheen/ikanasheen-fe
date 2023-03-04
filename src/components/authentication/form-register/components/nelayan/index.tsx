@@ -4,8 +4,13 @@ import GenderConst from "consts/gender.consts";
 import RegisterNelayanHelper from "helper/register/RegisterNelayanHelper";
 import { useRef, useState } from "react";
 import KecamatanHelper from "helper/register/KecamatanHelper";
+import { MainLayoutProps } from "shared/layout/main-layout";
 
-export default function FormRegisterComponent() {
+interface RegisterFormProps extends MainLayoutProps {
+    onSuccess?: Function;
+}
+
+export default function FormRegisterComponent({onSuccess = () => { }}:RegisterFormProps) {
     const [loading, setLoading] = useState<boolean>(false);
     const router = useRouter();
     let showPassword: boolean = false;
@@ -13,12 +18,17 @@ export default function FormRegisterComponent() {
     const form: FormGroupModel = {
         showLabelShrink: true,
         apperance: "filled",
-        onSubmit: (values, { reset }) => {
+        onSubmit: (values) => {
             setLoading(true)
             RegisterNelayanHelper.create(values, ({ status }) => {
                 setLoading(false)
-                if (status) reset()
-                router.push("/login")
+                if (status) {
+                    // reset()
+                    onSuccess()
+                    router.push("/login")
+                }else{
+                    router.push("/form-register")
+                }
             })
         },
         formData: {

@@ -1,8 +1,13 @@
 import { BgsButton, BgsForm, BgsGroupForm, BgsTypography, FormGroupModel, FormRef, useRouter } from "@andrydharmawan/bgs-component";
 import RegisterPembeliHelper from "helper/register/RegisterPembeliHelper";
 import { useRef, useState } from "react";
+import { MainLayoutProps } from "shared/layout/main-layout";
 
-export default function ChangePasswordComponent() {
+interface RegisterFormProps extends MainLayoutProps {
+    onSuccess?: Function;
+}
+
+export default function ChangePasswordComponent({ onSuccess = () => { } }: RegisterFormProps) {
     const [loading, setLoading] = useState<boolean>(false);
     const router = useRouter();
     let showPassword: boolean = false;
@@ -10,12 +15,17 @@ export default function ChangePasswordComponent() {
     const form: FormGroupModel = {
         showLabelShrink: true,
         apperance: "filled",
-        onSubmit: (values, { reset }) => {
+        onSubmit: (values) => {
             setLoading(true)
             RegisterPembeliHelper.create(values, ({ status }) => {
                 setLoading(false)
-                if (status) reset()
-                router.push("/login")
+                if (status) {
+                    // reset()
+                    onSuccess()
+                    router.push("/login")
+                }else{
+                    router.push("/form-register")
+                }
             })
         },
         formData: {
@@ -24,7 +34,7 @@ export default function ChangePasswordComponent() {
         item: {
             main: {
                 spacing: 2,
-                colCount:2,
+                colCount: 2,
                 items: [
                     `namaLengkap|colSpan=2|label.text=Nama Lengkap|validationRules=required`,
                     `alamat|label.text=Alamat|colSpan=2|editorType=textarea|validationRules=required`,
@@ -35,7 +45,7 @@ export default function ChangePasswordComponent() {
                     {
                         itemType: "group",
                         colCount: 2,
-                        colSpan:2,
+                        colSpan: 2,
                         items: [
                             {
                                 dataField: "password",
