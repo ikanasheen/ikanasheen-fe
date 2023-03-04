@@ -1,13 +1,14 @@
 import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
-import {  mounted } from "lib";
+import { credential, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import IkanHelper from "helper/daftar-ikan/IkanHelper";
 
-export default function HargaIkanForm({ title, mode, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
+export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
+    const roleId = credential.storage.get("user")?.idRole;
 
     const form: FormGroupModel = {
         apperance: "filled",
@@ -28,7 +29,7 @@ export default function HargaIkanForm({ title, mode, id, hide, onSuccess = () =>
                 spacing: 3,
                 items: [
                     `namaIkan|label.text=Nama Ikan|validationRules=required`,
-                    `deskripsi|label.text=Deskripsi|editorType=textarea`,                    
+                    `deskripsi|label.text=Deskripsi|editorType=textarea`,
                 ]
             },
         }
@@ -39,7 +40,7 @@ export default function HargaIkanForm({ title, mode, id, hide, onSuccess = () =>
             setLoading(true)
             IkanHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
-                if (mode === "detail") formRef.current?.disabled(true)
+                if (roleId !== 1) formRef.current?.disabled(true)
                 if (status) {
                     formRef.current?.updateData(data);
                 }
@@ -51,7 +52,10 @@ export default function HargaIkanForm({ title, mode, id, hide, onSuccess = () =>
         {...form}
         ref={formRef}
         render={group => <DrawerLayout
-            title={<>{id ? "Ubah" : "Tambah"} <b>{title}</b></>}
+            title={<>{roleId == 1 ?
+                id ? "Ubah" : "Tambah"
+                : "Detail"
+            } <b>{title}</b></>}
             action={<>{id && <BgsButton
                 actionType="menu"
                 variant="icon"
@@ -77,7 +81,11 @@ export default function HargaIkanForm({ title, mode, id, hide, onSuccess = () =>
             </BgsButton>}</>}
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
-                <BgsButton className="btn-save" color="info" loading={loading} visibleLoading={false} type="submit">Simpan {id && " Perubahan"}</BgsButton>
+                {
+                    roleId === 1 ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Simpan {id && " Perubahan"}</BgsButton>
+                        : null
+                }
+
             </>}
         >
             <BgsForm name="main" {...group} />
