@@ -14,7 +14,7 @@ export default function SosialisasiList(props: MainLayoutProps) {
     const form = (id?: string) => {
         drawerLayout({
             render: (props) => <Form
-                title="Daftar Sosialisasi"
+                title="Daftar Sosialisasi - Berita"
                 id={id}
                 {...props}
             />,
@@ -36,6 +36,10 @@ export default function SosialisasiList(props: MainLayoutProps) {
         temporaryParameter: [{
             propReq: "status",
             value: 'ACTIVE',
+            opt: "filter"
+        },{
+            propReq: "jenisKonten",
+            value: 'BERITA',
             opt: "filter"
         }],
         onRowClick: ({ rowData }) => form(rowData.idSosialisasi),

@@ -110,9 +110,36 @@ export const MenuConst: MenuPermissionWrapper[] = [
     {
         menuCode: "sosialisasi",
         menuName: "Sosialisasi",
-        details: ["list", "detail"],
+        details: [],
         menuIcon: "material-icons-round|tips_and_updates",
-        menuPath: "/sosialisasi",
+        menuPath: "/sosialisasi/berita",
+        idRole: [3, 2]
+    },
+    {
+        menuCode: "sosialisasi-berita",
+        menuName: "Berita",
+        menuParent:"sosialiasi",
+        details: ["list", "detail"],
+        menuIcon: "material-icons-round|minimize",
+        menuPath: "/sosialisasi/berita",
+        idRole: [3, 2]
+    },
+    {
+        menuCode: "sosialisasi-informasi",
+        menuName: "Informasi",
+        menuParent:"sosialiasi",
+        details: ["list", "detail"],
+        menuIcon: "material-icons-round|minimize",
+        menuPath: "/sosialisasi/informasi",
+        idRole: [3, 2]
+    },
+    {
+        menuCode: "sosialisasi-pengembangan-diri",
+        menuName: "Pengembangan Diri",
+        menuParent:"sosialiasi",
+        details: ["list", "detail"],
+        menuIcon: "material-icons-round|minimize",
+        menuPath: "/sosialisasi/pengembangan-diri",
         idRole: [3, 2]
     },
 
