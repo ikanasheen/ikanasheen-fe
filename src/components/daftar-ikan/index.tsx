@@ -38,7 +38,7 @@ export default function DaftarIkanList(props: MainLayoutProps) {
         columns: [
             `idIkan|caption=Kode Ikan|width=200`,
             `namaIkan|caption=Nama Ikan|width=200`,
-            `deskripsi|caption=Dekripsi|width=250`,
+            `deskripsi|caption=Deskripsi|width=250`,
             {
                 sticky: "right",
                 icon: false,

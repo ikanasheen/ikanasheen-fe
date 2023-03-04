@@ -99,8 +99,8 @@ export default function FormRegisterComponent({onSuccess = () => { }}:RegisterFo
                         },
                     },
                     `alamat|colSpan=2|label.text=Alamat|editorType=textarea|validationRules=required`,
-                    `noTelepon|label.text=No Telepon|validationRules=required`,
-                    `email|label.text=Email`,
+                    `noTelepon|label.text=No Telepon|validationRules=required,pattern.number`,
+                    `email|label.text=Email|validationRules=email`,
                     `username|colSpan=2|label.text=Username|validationRules=required`,
                     {
                         itemType: "group",

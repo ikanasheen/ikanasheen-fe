@@ -38,8 +38,8 @@ export default function ChangePasswordComponent({ onSuccess = () => { } }: Regis
                 items: [
                     `namaLengkap|colSpan=2|label.text=Nama Lengkap|validationRules=required`,
                     `alamat|label.text=Alamat|colSpan=2|editorType=textarea|validationRules=required`,
-                    `noTelepon|label.text=No Telepon|validationRules=required`,
-                    `email|label.text=Email`,
+                    `noTelepon|label.text=No Telepon|validationRules=required,pattern.number`,
+                    `email|label.text=Email|validationRules=email`,
                     `username|colSpan=2|label.text=Username|validationRules=required`,
 
                     {
