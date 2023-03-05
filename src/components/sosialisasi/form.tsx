@@ -56,7 +56,8 @@ export default function SosialisasiForm({ title, id, hide, onSuccess = () => { }
                             valueExpr: "value",
                         },
                     },
-                    // `deskripsi|label.text=Deskripsi`
+                    `penulis|label.text=Penulis|validationRules=required`,
+                    // `tanggalDibuat|label.text=Tanggal Dibuat|editorType=date`
                 ]
             },
         }
