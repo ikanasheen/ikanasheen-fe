@@ -27,21 +27,38 @@ export default function NelayanList(props: MainLayoutProps) {
             fullWidth: true
         },
         showIcon: true,
-        allowRefreshing: true,
         allowFiltering: true,
         showIndexing: {
             sticky: "left"
         },
-        onRowClick: ({ rowData }) => form(rowData.id),
+        // onRowClick: ({ rowData }) => form(rowData.idNelayan),
         columns: [
-            `id|caption=ID|width=200`,
-            `nama|caption=Nama Lengkap|width=250`,
-            `jenisKelamin|caption=Jenis Kelamin|width=200`,
-            `date|caption=Tanggal Lahir|dataType=date|width=200`,
-            `alamat|caption=Alamat|width=250`,
-            `alamat|caption=No Telepon|width=250`,
-            `email|caption=Email|width=200`,
-            `status|caption=Status|width=180`,
+            `idNelayan|caption=ID|width=160`,
+            `namaLengkap|caption=Nama Lengkap|width=180`,
+            {
+                dataField: "gender",
+                caption: "Jenis Kelamin",
+                width: 130,
+                template: (data) => {
+                    return data.gender == "PEREMPUAN" ? "Perempuan" : "Laki-laki"
+                },
+                allowSorting: true,
+            },
+            `tanggalLahir|caption=Tanggal Lahir|dataType=date|width=160`,
+            `kecamatan|caption=Kecamatan|width=200`,
+            `kelurahanDesa|caption=Kelurahan|width=200`,
+            `alamat|caption=Alamat|width=300`,
+            `noTelepon|caption=No Telepon|width=180`,
+            `email|caption=Email|width=180`,
+            {
+                dataField: "status",
+                caption: "Status",
+                width: 130,
+                template: (data) => {
+                    return data.user.status == "ACTIVE" ? "Aktif" : "Tidak Aktif"
+                },
+                allowSorting: true,
+            },
         ]
     }
 

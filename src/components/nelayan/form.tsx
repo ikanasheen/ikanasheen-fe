@@ -1,13 +1,15 @@
 import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
-import { isArray, mounted } from "lib";
+import { credential, isArray, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
-import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import NelayanHelper from "helper/nelayan/NelayanHelper";
+import StatusConst from "consts/status.const";
+import GenderConst from "consts/gender.consts";
 
-export default function NelayanForm({ title, mode, id, hide, onSuccess = () => {} }: DrawerRenderProps) {
+export default function NelayanForm({ title, id, hide, onSuccess = () => {} }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
+    const roleId = credential.storage.get("user")?.idRole;
 
     const form: FormGroupModel = {
         apperance: "filled",
@@ -15,7 +17,7 @@ export default function NelayanForm({ title, mode, id, hide, onSuccess = () => {
         showLabelShrink: true,
         onSubmit: (values) => {
             setLoading(true);
-            NelayanHelper.createupdate(values, values.id, ({ status }) => {
+            NelayanHelper.createupdate(values, values.idNelayan, ({ status }) => {
                 setLoading(false);
                 if (status) onSuccess();
             })
@@ -27,8 +29,37 @@ export default function NelayanForm({ title, mode, id, hide, onSuccess = () => {
             main: {
                 spacing: 3,
                 items: [
-                    `territoryName|label.text=Nama Nelayan|validationRules=required,minLength.3,maxLength.50`,
-                    `description|label.text=Deskripsi|editorType=textarea|validationRules=maxLength.50`,
+                    `namaLengkap|label.text=Nama Nelayan`,
+                    {
+                        dataField: "gender",
+                        label: {
+                            text: "Jenis Kelamin"
+                        },
+                        editorOptions: {
+                            dataSource: GenderConst,
+                            displayExpr: "text",
+                            valueExpr: "value"
+                        },
+                        editorType: "radiobutton",
+                    },
+                    `tanggalLahir|label.text=Tanggal Lahir`,
+                    `kecamatan|label.text=Kecamatan`,
+                    `kelurahan|label.text=Kelurahan`,
+                    `alamat|label.text=Alamat|editorType=textarea`,
+                    `noTelepon|label.text=No Telepon`,
+                    `email|label.text=Email`,
+                    {
+                        dataField: "user.status",
+                        label: {
+                            text: "Status"
+                        },
+                        editorType: "radiobutton",
+                        editorOptions: {
+                            dataSource: StatusConst,
+                            displayExpr: "display",
+                            valueExpr: "value",
+                        },
+                    }
                 ]
             },
         }
@@ -39,7 +70,7 @@ export default function NelayanForm({ title, mode, id, hide, onSuccess = () => {
             setLoading(true)
             NelayanHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
-                if (mode === "detail") formRef.current?.disabled(true)
+                formRef.current?.disabled(true)
                 if (status) {
                     if (isArray(data.roles, 0)) data.roles = data.roles[0].code;
 
@@ -53,7 +84,7 @@ export default function NelayanForm({ title, mode, id, hide, onSuccess = () => {
         {...form}
         ref={formRef}
         render={group => <DrawerLayout
-            title={<>{id ? "Ubah" : "Tambah"} <b>{title}</b></>}
+            title={<>{id ? "Detail" : "Tambah"} <b>{title}</b></>}
             action={<>{id && <BgsButton
                 actionType="menu"
                 variant="icon"
@@ -75,11 +106,15 @@ export default function NelayanForm({ title, mode, id, hide, onSuccess = () => {
                     }]
                 }}
             >
-                <MoreHorizRoundedIcon />
+                {/* <MoreHorizRoundedIcon /> */}
             </BgsButton>}</>}
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
-                <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Simpan {id && " Perubahan"}</BgsButton>
+                
+                {
+                    roleId === 3 ||roleId ===4 ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Simpan {id && " Perubahan"}</BgsButton>
+                        : null
+                }
             </>}
         >
             <BgsForm name="main" {...group} />

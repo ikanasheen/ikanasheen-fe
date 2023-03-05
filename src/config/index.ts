@@ -24,7 +24,7 @@ export const api = {
     },
     master :{
         ikan                       : `${baseUrl}fishery/ikan/`,
-        nelayan                    : `${baseUrl}xxx/`,
+        nelayan                    : `${baseUrl}fishery/nelayan/`,
         sosialisasi                : `${baseUrl}fishery/sosialisasi/`,
     },
     userManagement:{
