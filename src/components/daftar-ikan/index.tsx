@@ -29,7 +29,6 @@ export default function DaftarIkanList(props: MainLayoutProps) {
             fullWidth: true
         },
         showIcon: true,
-        allowRefreshing: true,
         allowFiltering: true,
         showIndexing: {
             sticky: "left"

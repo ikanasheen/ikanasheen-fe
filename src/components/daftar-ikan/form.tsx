@@ -77,7 +77,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                     }]
                 }}
             >
-                <MoreHorizRoundedIcon />
+                {roleId === 1 ? <MoreHorizRoundedIcon /> : null}
             </BgsButton>}</>}
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
