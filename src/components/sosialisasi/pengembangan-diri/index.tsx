@@ -58,7 +58,8 @@ export default function SosialisasiList(props: MainLayoutProps) {
                         return "Pengembangan Diri"
                     }
                     
-                }
+                },
+                allowSorting: true,
             },
             `konten|caption=Konten|width=300`,
             `penulis|width=160`,
@@ -70,7 +71,8 @@ export default function SosialisasiList(props: MainLayoutProps) {
                 width: 130,
                 template: (data) => {
                     return data.status == "ACTIVE" ? "Aktif" : "Tidak Aktif"
-                }
+                },
+                allowSorting: true,
             },
             // `deskripsi|width=160`,
             {

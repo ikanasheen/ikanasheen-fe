@@ -29,6 +29,7 @@ export default function SosialisasiList(props: MainLayoutProps) {
         },
         showIcon: true,
         allowFiltering: true,
+        allowSorting: true,
         showIndexing: {
             sticky: "left"
         },
@@ -58,7 +59,8 @@ export default function SosialisasiList(props: MainLayoutProps) {
                 width: 130,
                 template: (data) => {
                     return data.status == "ACTIVE" ? "Aktif" : "Tidak Aktif"
-                }
+                },
+                allowSorting: true,
             },
             `penulis|width=160`,
             `tanggalDibuat|dataType=date|width=160`,
