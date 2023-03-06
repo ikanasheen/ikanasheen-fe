@@ -5,6 +5,7 @@ import BreadcrumbLayout from "shared/layout/breadcrumb-layout";
 import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
 import NelayanHelper from "helper/nelayan/NelayanHelper";
+import Chip from "@mui/material/Chip";
 const Form = lazy(() => import("../nelayan/form"));
 
 export default function NelayanList(props: MainLayoutProps) {
@@ -53,9 +54,9 @@ export default function NelayanList(props: MainLayoutProps) {
                 dataField: "status",
                 caption: "Status",
                 width: 130,
-                template: (data) => {
-                    return data.user.status == "ACTIVE" ? "Aktif" : "Tidak Aktif"
-                },
+                template: ( data ) => {
+                return <Chip className="chip-default" variant="outlined" color={data.user.status == "ACTIVE" ? "success" : "error"} 
+                label={data.user.status == "ACTIVE" ? "Aktif" : "Tidak Aktif"} />},
                 allowSorting: true,
             },
         ]

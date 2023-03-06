@@ -6,6 +6,7 @@ import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SosialisasiHelper from "helper/sosialisasi/SosialisasiHelper";
+import Chip from "@mui/material/Chip";
 const Form = lazy(() => import("./form"));
 
 export default function SosialisasiList(props: MainLayoutProps) {
@@ -60,10 +61,11 @@ export default function SosialisasiList(props: MainLayoutProps) {
                 dataField: "status",
                 caption: "Status",
                 width: 130,
-                template: (data) => {
-                    return data.status == "ACTIVE" ? "Aktif" : "Tidak Aktif"
-                },
                 allowSorting: true,
+                template: (data) => {
+                    return <Chip className="chip-default" variant="outlined" color={data.status == "ACTIVE" ? "success" : "error"}
+                        label={data.status == "ACTIVE" ? "Aktif" : "Tidak Aktif"} />
+                },
             },
             {
                 sticky: "right",
