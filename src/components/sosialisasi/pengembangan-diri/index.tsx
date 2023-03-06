@@ -27,7 +27,6 @@ export default function SosialisasiList(props: MainLayoutProps) {
         allowSearching: {
             fullWidth: true
         },
-        showIcon: true,
         allowFiltering: true,
         showIndexing: {
             sticky: "left"

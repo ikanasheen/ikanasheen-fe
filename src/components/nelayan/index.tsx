@@ -26,7 +26,6 @@ export default function NelayanList(props: MainLayoutProps) {
         allowSearching: {
             fullWidth: true
         },
-        showIcon: true,
         allowFiltering: true,
         showIndexing: {
             sticky: "left"
