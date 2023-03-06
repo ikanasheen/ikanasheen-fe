@@ -74,7 +74,6 @@ export default function SosialisasiList(props: MainLayoutProps) {
                 },
                 allowSorting: true,
             },
-            // `deskripsi|width=160`,
             {
                 sticky: "right",
                 icon: false,

@@ -34,17 +34,17 @@ export default function NelayanList(props: MainLayoutProps) {
         // onRowClick: ({ rowData }) => form(rowData.idNelayan),
         columns: [
             `idNelayan|caption=ID|width=160`,
-            `namaLengkap|caption=Nama Lengkap|width=180`,
+            `namaLengkap|caption=Nama Lengkap|width=250`,
             {
                 dataField: "gender",
                 caption: "Jenis Kelamin",
-                width: 130,
+                width: 180,
                 template: (data) => {
                     return data.gender == "PEREMPUAN" ? "Perempuan" : "Laki-laki"
                 },
                 allowSorting: true,
             },
-            `tanggalLahir|caption=Tanggal Lahir|dataType=date|width=160`,
+            `tanggalLahir|caption=Tanggal Lahir|dataType=date|width=180`,
             `kecamatan|caption=Kecamatan|width=200`,
             `kelurahanDesa|caption=Kelurahan|width=200`,
             `alamat|caption=Alamat|width=300`,

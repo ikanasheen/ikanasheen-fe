@@ -61,7 +61,10 @@ export default function SosialisasiList(props: MainLayoutProps) {
                 },
                 allowSorting: true,
             },
-            `konten|caption=Konten|width=300`,
+            `konten|caption=Konten|width=300`,           
+            `penulis|width=160`,
+            `tanggalDibuat|dataType=date|width=160`,
+            `tanggalDiubah|dataType=date|width=160`,
             {
                 dataField: "status",
                 caption: "Status",
@@ -70,10 +73,7 @@ export default function SosialisasiList(props: MainLayoutProps) {
                     return data.status == "ACTIVE" ? "Aktif" : "Tidak Aktif"
                 },
                 allowSorting: true,
-            },            
-            `penulis|width=160`,
-            `tanggalDibuat|dataType=date|width=160`,
-            `tanggalDiubah|dataType=date|width=160`,
+            }, 
             {
                 sticky: "right",
                 icon: false,
