@@ -105,11 +105,21 @@ export default function FormRegisterComponent({ onSuccess = () => { } }: Registe
                             text: "No Telepon"
                         },
                         validationRules: ["required"],
-                        editorOptions:{
+                        editorOptions: {
                             placeholder: "08...",
                         }
                     },
-                    `email|label.text=Email|validationRules=email`,
+                    // `email|label.text=Email|validationRules=email`,
+                    {
+                        dataField: "email",
+                        label: {
+                            text: "Email"
+                        },
+                        validationRules: [{
+                            message: "Format email tidak valid",
+                            validation: (value) => value ? /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value) : true
+                        }]
+                    },
                     `username|colSpan=2|label.text=Username|validationRules=required`,
                     {
                         itemType: "group",
