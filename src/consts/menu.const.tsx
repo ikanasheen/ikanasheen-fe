@@ -111,6 +111,16 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuCode: "sosialisasi",
         menuName: "Sosialisasi",
         details: [],
+        // children:[{
+        //     name :"Berita",
+        //     to :"sosialisasi-berita"
+        // },{
+        //     name :"Informasi",
+        //     to :"sosialisasi-infromasi"
+        // },{
+        //     name :"Berita",
+        //     to :"sosialisasi-pengembangan-diri"
+        // }],
         menuIcon: "material-icons-round|tips_and_updates",
         menuPath: "/sosialisasi/berita",
         idRole: [3, 2]
@@ -159,6 +169,34 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuIcon: "material-icons-round|sticky_note_2",
         menuPath: "/master-data/transaksi",
         idRole: [2]
+    },
+
+    //USER MANAGEMENT
+    {
+        menuCode: "user-management",
+        menuName: "User Management",
+        details: [""],
+        menuIcon: "material-icons-round|account_tree",
+        menuPath: "/user-management/user",
+        idRole: [1]
+    },
+    //children user management
+    {
+        menuCode: "user-list",
+        menuName: "User",
+        menuParent:"user-management",
+        details: ["list", "update"],
+        menuIcon: "material-icons-round|minimize",
+        menuPath: "/user-management/user",
+        idRole: [1]
+    },{
+        menuCode: "role-list",
+        menuName: "Role",
+        menuParent:"user-management",
+        details: ["list"],
+        menuIcon: "material-icons-round|minimize",
+        menuPath: "/user-management/role",
+        idRole: [1]
     }
 ]
 

@@ -6,7 +6,7 @@ const MainComponent = lazy(() => import("components/user-management/user"));
 const props: MainLayoutProps = {
     title: "User List",
     mode: "index",
-    menuCode: "user",
+    menuCode: "user-list",
     actionCode: "list",
     usingContainer: false
 }

@@ -28,7 +28,6 @@ export default function UserManagementRoleList(props: MainLayoutProps) {
         allowSearching: {
             fullWidth: true
         },
-        showIcon: true,
         allowRefreshing: true,
         allowSearchingOptions: true,
         allowSortingOptions: true,

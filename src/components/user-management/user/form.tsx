@@ -35,7 +35,7 @@ export default function UserManagementUserForm({ title, mode, id, hide, onSucces
             delete values.showPassword;
 
 
-            UserHelper.createupdate(values, values.id, ({ status }) => {
+            UserHelper.createupdate(values, values.idUser, ({ status }) => {
                 setLoading(false);
                 if (status) onSuccess();
             })
