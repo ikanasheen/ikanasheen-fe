@@ -85,7 +85,7 @@ function MainSidebar({ menuCode: menuCodeActive }: MainSidebarProps) {
     const [menuOpen, setMenuOpen] = useState<number[]>([]);
     const [menu, setMenu] = useState<MenuModel[]>([]);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
-    const { fullName, email } = credential.storage.get("user") || {};
+    const { username } = credential.storage.get("user") || {};
     const { sidebarOpen: open = true, isNewVersion = false } = store.getState();
 
     useInterval(
@@ -199,8 +199,8 @@ function MainSidebar({ menuCode: menuCodeActive }: MainSidebarProps) {
                 >
                     <Box className="d-flex flex-column justify-content-center align-items-center p-3 ps-4 pe-4 min-wt-250">
                         <Avatar className="p-0 m-0 mb-2" sx={{ width: 45, height: 45 }} variant="rounded" src="/assets/img/avatar/avatar.svg" />
-                        <BgsTypography className="fw-bold">{fullName}</BgsTypography>
-                        <BgsTypography className="text-secondary">{email}</BgsTypography>
+                        <BgsTypography className="fw-bold">{username}</BgsTypography>
+                        {/* <BgsTypography className="text-secondary">{email}</BgsTypography> */}
                     </Box>
                     <Divider />
                     <MenuItem onClick={myAccount}>
