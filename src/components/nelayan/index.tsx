@@ -47,7 +47,7 @@ export default function NelayanList(props: MainLayoutProps) {
             `tanggalLahir|caption=Tanggal Lahir|dataType=date|width=180`,
             `kecamatan|caption=Kecamatan|width=200`,
             `kelurahanDesa|caption=Kelurahan|width=200`,
-            `alamat|caption=Alamat|width=300`,
+            `alamat|caption=Alamat|className=text-break|width=300`,
             `noTelepon|caption=No Telepon|width=180`,
             `email|caption=Email|width=180`,
             {

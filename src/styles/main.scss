@@ -302,3 +302,7 @@ hr {
         column-gap: 10px;
     }
 }
+
+.text-break .truncate-text {
+    white-space: break-spaces !important;
+}
