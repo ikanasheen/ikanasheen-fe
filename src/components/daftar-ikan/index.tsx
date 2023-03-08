@@ -6,7 +6,6 @@ import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import IkanHelper from "helper/daftar-ikan/IkanHelper";
-// import EditIcon from '@mui/icons-material/Edit';
 const Form = lazy(() => import("./form"));
 
 export default function DaftarIkanList(props: MainLayoutProps) {
@@ -47,10 +46,14 @@ export default function DaftarIkanList(props: MainLayoutProps) {
         ]
     }
 
-    return <BreadcrumbLayout
-        action={<BgsButton className="hg-40 br-3 min-wt-140 bg-black" onClick={() => form()} actionCode="create"><AddIcon /> Tambah Baru</BgsButton>}
-        {...props}
-    >
-        <BgsTable ref={tableRef} {...table} />
-    </BreadcrumbLayout>
+    return <>
+        <div className="mb-3">
+            <BreadcrumbLayout
+                action={<BgsButton className="hg-40 br-3 min-wt-140 bg-black" onClick={() => form()} actionCode="create"><AddIcon /> Tambah Baru</BgsButton>}
+                {...props}
+            >
+                <BgsTable ref={tableRef} {...table} />
+            </BreadcrumbLayout>
+        </div>
+    </>
 }

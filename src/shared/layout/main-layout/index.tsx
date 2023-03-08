@@ -19,6 +19,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChildSidebar from "shared/sidebar/child-sidebar";
 import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
+import Footer from "shared/footer";
 
 export interface MainLayoutProps extends BgsLayoutProps {
     onScroll?: (event: React.SyntheticEvent) => any;
@@ -85,6 +86,7 @@ function MainLayout({ children, title, menuCode, actionCode, usingContainer = tr
                                 {isAuthorize ? children : <Error403 />}
                             </div>
                         </Suspense>
+                        <Footer />
                     </Box>
                 </Box>
                 <Popover

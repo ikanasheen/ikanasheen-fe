@@ -59,10 +59,14 @@ export default function UserManagementRoleList(props: MainLayoutProps) {
         ]
     }
 
-    return <BreadcrumbLayout
-        action={<BgsButton className="hg-40 br-3 min-wt-140 bg-black" onClick={() => form()} actionCode="create"><AddIcon /> Tambah Baru</BgsButton>}
-        {...props}
-    >
-        <BgsTable {...table} />
-    </BreadcrumbLayout>
+    return <>
+        <div className="mb-3">
+            <BreadcrumbLayout
+                action={<BgsButton className="hg-40 br-3 min-wt-140 bg-black" onClick={() => form()} actionCode="create"><AddIcon /> Tambah Baru</BgsButton>}
+                {...props}
+            >
+                <BgsTable ref={tableRef} {...table} />
+            </BreadcrumbLayout>
+        </div>
+    </>
 }
