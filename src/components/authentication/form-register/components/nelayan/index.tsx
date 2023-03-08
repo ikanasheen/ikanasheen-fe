@@ -98,7 +98,7 @@ export default function FormRegisterComponent({ onSuccess = () => { } }: Registe
 
                         },
                     },
-                    `alamat|colSpan=2|label.text=Alamat|editorType=textarea|validationRules=required`,
+                    `alamat|colSpan=2|label.text=Alamat|editorType=textarea,maxLength.255|validationRules=required`,
                     {
                         dataField: "noTelepon",
                         label: {

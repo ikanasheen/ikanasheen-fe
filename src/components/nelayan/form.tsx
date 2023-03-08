@@ -45,7 +45,7 @@ export default function NelayanForm({ title, id, hide, onSuccess = () => {} }: D
                     `tanggalLahir|label.text=Tanggal Lahir`,
                     `kecamatan|label.text=Kecamatan`,
                     `kelurahan|label.text=Kelurahan`,
-                    `alamat|label.text=Alamat|editorType=textarea`,
+                    `alamat|label.text=Alamat|editorType=textarea|validationRules=maxLength.255`,
                     `noTelepon|label.text=No Telepon`,
                     `email|label.text=Email`,
                     {

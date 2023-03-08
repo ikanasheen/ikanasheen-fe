@@ -37,7 +37,7 @@ export default function ChangePasswordComponent({ onSuccess = () => { } }: Regis
                 colCount: 2,
                 items: [
                     `namaLengkap|colSpan=2|label.text=Nama Lengkap|validationRules=required`,
-                    `alamat|label.text=Alamat|colSpan=2|editorType=textarea|validationRules=required`,
+                    `alamat|label.text=Alamat|colSpan=2|editorType=textarea,maxLength.255|validationRules=required`,
                     {
                         dataField: "noTelepon",
                         label: {
