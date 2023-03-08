@@ -44,6 +44,7 @@ export default function ChangePasswordComponent({ onSuccess = () => { } }: Regis
                             text: "No Telepon"
                         },
                         validationRules: ["required","maxLength.255"],
+                        editorType:"number",
                         editorOptions:{
                             placeholder: "08...",
                         }

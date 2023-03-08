@@ -105,6 +105,7 @@ export default function FormRegisterComponent({ onSuccess = () => { } }: Registe
                             text: "No Telepon"
                         },
                         validationRules: ["required"],
+                        editorType:"number",
                         editorOptions: {
                             placeholder: "08...",
                         }
