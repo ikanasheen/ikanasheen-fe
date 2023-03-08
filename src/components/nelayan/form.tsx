@@ -29,7 +29,7 @@ export default function NelayanForm({ title, id, hide, onSuccess = () => {} }: D
             main: {
                 spacing: 3,
                 items: [
-                    `namaLengkap|label.text=Nama Nelayan`,
+                    `namaLengkap|label.text=Nama Nelayan|validationRules=maxLength.255`,
                     {
                         dataField: "gender",
                         label: {

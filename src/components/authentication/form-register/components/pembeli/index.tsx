@@ -36,14 +36,14 @@ export default function ChangePasswordComponent({ onSuccess = () => { } }: Regis
                 spacing: 2,
                 colCount: 2,
                 items: [
-                    `namaLengkap|colSpan=2|label.text=Nama Lengkap|validationRules=required`,
-                    `alamat|label.text=Alamat|colSpan=2|editorType=textarea,maxLength.255|validationRules=required`,
+                    `namaLengkap|colSpan=2|label.text=Nama Lengkap|validationRules=required,maxLength.255`,
+                    `alamat|label.text=Alamat|colSpan=2|editorType=textarea|validationRules=required,maxLength.255`,
                     {
                         dataField: "noTelepon",
                         label: {
                             text: "No Telepon"
                         },
-                        validationRules: ["required"],
+                        validationRules: ["required","maxLength.255"],
                         editorOptions:{
                             placeholder: "08...",
                         }
@@ -53,12 +53,12 @@ export default function ChangePasswordComponent({ onSuccess = () => { } }: Regis
                         label: {
                             text: "Email"
                         },
-                        validationRules: [{
+                        validationRules: ["maxLength.255",{
                             message: "Format email tidak valid",
                             validation: (value) => value ? /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value) : true
                         }]
                     },
-                    `username|colSpan=2|label.text=Username|validationRules=required`,
+                    `username|colSpan=2|label.text=Username|validationRules=required,maxLength.255`,
 
                     {
                         itemType: "group",
@@ -74,7 +74,7 @@ export default function ChangePasswordComponent({ onSuccess = () => { } }: Regis
                                     autoComplete: "new-user-street-address",
                                     type: "password"
                                 },
-                                validationRules: ["required", "minLength.8", {
+                                validationRules: ["required", "minLength.8","maxLength.255", {
                                     message: "Password setidaknya memiliki 8 karakter kombinasi angka, huruf kecil, huruf besar and satu spesial karakter",
                                     validation: value => /^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/.test(value)
                                 }]
@@ -87,7 +87,7 @@ export default function ChangePasswordComponent({ onSuccess = () => { } }: Regis
                                     autoComplete: "new-password",
                                     type: "password"
                                 },
-                                validationRules: ["required", "match.password"]
+                                validationRules: ["required", "match.password","maxLength.255"]
                             }, {
                                 colSpan: 2,
                                 template: () => <div style={{ marginTop: -10 }} className="fs-12 text-secondary d-flex align-items-center"><i className="ri-information-line mgr-5"></i> Password setidaknya memiliki 8 karakter kombinasi angka, huruf kecil, huruf besar and satu spesial karakter</div>

@@ -29,7 +29,7 @@ export default function SosialisasiForm({ title, id, hide, onSuccess = () => { }
             main: {
                 spacing: 3,
                 items: [
-                    `judul|label.text=Judul|validationRules=required`,
+                    `judul|label.text=Judul|validationRules=required,maxLength.255`,
                     {
                         dataField: "jenisKonten",
                         label: {
@@ -56,7 +56,7 @@ export default function SosialisasiForm({ title, id, hide, onSuccess = () => { }
                             valueExpr: "value",
                         },
                     },
-                    `penulis|label.text=Penulis|validationRules=required`,
+                    `penulis|label.text=Penulis|validationRules=required,maxLength.255`,
                     // `tanggalDibuat|label.text=Tanggal Dibuat|editorType=date`
                 ]
             },

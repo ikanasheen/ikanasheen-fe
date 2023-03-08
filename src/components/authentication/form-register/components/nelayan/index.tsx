@@ -40,7 +40,7 @@ export default function FormRegisterComponent({ onSuccess = () => { } }: Registe
                 spacing: 2,
                 colCount: 2,
                 items: [
-                    `namaLengkap|colSpan=2|label.text=Nama Lengkap|validationRules=required`,
+                    `namaLengkap|colSpan=2|label.text=Nama Lengkap|validationRules=required,maxLength.255`,
                     `tanggalLahir|label.text=Tanggal Lahir|editorType=date|validationRules=required`,
                     {
                         dataField: "gender",
@@ -120,7 +120,7 @@ export default function FormRegisterComponent({ onSuccess = () => { } }: Registe
                             validation: (value) => value ? /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value) : true
                         }]
                     },
-                    `username|colSpan=2|label.text=Username|validationRules=required`,
+                    `username|colSpan=2|label.text=Username|validationRules=required,maxLength.255`,
                     {
                         itemType: "group",
                         colCount: 2,
@@ -135,7 +135,7 @@ export default function FormRegisterComponent({ onSuccess = () => { } }: Registe
                                     autoComplete: "new-user-street-address",
                                     type: "password"
                                 },
-                                validationRules: ["required", "minLength.8", {
+                                validationRules: ["required", "minLength.8", "maxLength.255",{
                                     message: "Password setidaknya memiliki 8 karakter kombinasi angka, huruf kecil, huruf besar and satu spesial karakter",
                                     validation: value => /^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/.test(value)
                                 }]
@@ -148,7 +148,7 @@ export default function FormRegisterComponent({ onSuccess = () => { } }: Registe
                                     autoComplete: "new-password",
                                     type: "password"
                                 },
-                                validationRules: ["required", "match.password"]
+                                validationRules: ["required", "match.password","maxLength.255"]
                             }, {
                                 colSpan: 2,
                                 template: () => <div style={{ marginTop: -10 }} className="fs-12 text-secondary d-flex align-items-center"><i className="ri-information-line mgr-5"></i> Password setidaknya memiliki 8 karakter kombinasi angka, huruf kecil, huruf besar and satu spesial karakter</div>

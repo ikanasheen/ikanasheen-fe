@@ -28,7 +28,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
             main: {
                 spacing: 3,
                 items: [
-                    `namaIkan|label.text=Nama Ikan|validationRules=required`,
+                    `namaIkan|label.text=Nama Ikan|validationRules=required,maxLength.255`,
                     `deskripsi|label.text=Deskripsi|validationRules=required,maxLength.255|editorType=textarea`,
                 ]
             },

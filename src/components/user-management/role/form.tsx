@@ -44,7 +44,7 @@ export default function UserManagementMenuForm({ title, mode, id, hide, onSucces
                         validationRules: ["required"]
                     },
                     `roleOrder|validationRules|editorType=number`,
-                    `description|validationRules|editorType=textarea`
+                    `description|validationRules=maxLength.255|editorType=textarea`
                 ]
             }
         }
