@@ -1,7 +1,7 @@
 import { BgsButton, BgsTypography } from "@andrydharmawan/bgs-component";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import { Children, lazy, Suspense, useState } from "react";
+import { Children, lazy, useState } from "react";
 import "./index.scss";
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -47,9 +47,9 @@ export default function MyAccountComponent({ hide }: MyAccountComponentProps) {
                 {Children.toArray(menu.map(({ value, label, icon }) => <BgsButton onClick={() => setActive(value)} className={active === value ? "active" : ""} variant="text"><i className={`${icon} me-2`}></i> {label}</BgsButton>))}
             </Grid>
             <Grid xs={8} className="account-content">
-                <Suspense>
+                {/* <Suspense> */}
                     <Component />
-                </Suspense>
+                {/* </Suspense> */}
             </Grid>
         </Grid>
         <BgsButton className="close-modal" variant="icon" onClick={() => hide()}><CloseIcon /></BgsButton>
