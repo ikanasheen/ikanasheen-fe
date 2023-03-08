@@ -104,8 +104,7 @@ export default function FormRegisterComponent({ onSuccess = () => { } }: Registe
                         label: {
                             text: "No Telepon"
                         },
-                        validationRules: ["required"],
-                        editorType:"number",
+                        validationRules: ["required","pattern.phonenumber","maxLength.15"],
                         editorOptions: {
                             placeholder: "08...",
                         }

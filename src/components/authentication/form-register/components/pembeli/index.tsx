@@ -43,8 +43,7 @@ export default function ChangePasswordComponent({ onSuccess = () => { } }: Regis
                         label: {
                             text: "No Telepon"
                         },
-                        validationRules: ["required","maxLength.255"],
-                        editorType:"number",
+                        validationRules: ["required","maxLength.15","pattern.phonenumber"],
                         editorOptions:{
                             placeholder: "08...",
                         }
