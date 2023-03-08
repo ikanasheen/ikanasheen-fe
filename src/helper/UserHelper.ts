@@ -22,7 +22,7 @@ class UserHelper extends BaseHelper {
     }
 
     static changePassword(data: any, callback?: Callback) {
-        return super.postBase(`changepassword`, data, callback)
+        return super.postBase(`user/changepassword`,  { parameter: { data } }, callback)
     }
 }
 
