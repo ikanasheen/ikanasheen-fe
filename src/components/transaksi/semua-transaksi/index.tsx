@@ -4,19 +4,18 @@ import { MainLayoutProps } from "shared/layout/main-layout";
 import BreadcrumbLayout from "shared/layout/breadcrumb-layout";
 import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
-import TransaksiHelper from "helper/transaksi/TransaksiHelper";
-import { credential } from "lib";
-
-const Form = lazy(() => import("../transaksi-saya/form"));
+// import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import TransaksiNelayanHelper from "helper/transaksi/TransaksiNelayanHelper";
+// import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+const Form = lazy(() => import("./form"));
 
 export default function TransaksiList(props: MainLayoutProps) {
     const tableRef = useRef<TableRef>(null);
-    const userId = credential.storage.get("user")?.idUser;
 
     const form = (id?: string) => {
         drawerLayout({
             render: (props) => <Form
-                title="Transaksi Saya"
+                title="Semua Transaksi"
                 id={id}
                 {...props}
             />,
@@ -25,18 +24,13 @@ export default function TransaksiList(props: MainLayoutProps) {
     }
 
     const table: TableModel = {
-        helper: (data) => TransaksiHelper.retrieve(data),
+        helper: (data) => TransaksiNelayanHelper.retrieve(data),
         allowSearching: {
             fullWidth: true
         },
         showIndexing: {
             sticky: "left"
         },
-        temporaryParameter: [{
-            propReq: "idUser",
-            value: userId,
-            opt: "filter"
-        }],
         // onRowClick: ({ rowData }) => form(rowData.id),
         columns: [
             `nama|caption=Nama Ikan|width=180`,
@@ -52,22 +46,29 @@ export default function TransaksiList(props: MainLayoutProps) {
                 dataField: "status",
                 caption: "Status",
                 width: 160,
-                template: (data) => {                      
-                    if (data.status=="DIAJUKAN"){
+                template: (data) => {
+                    if (data.status == "DIAJUKAN") {
                         return "Diajukan"
-                    }else if (data.status=="DIPROSES"){
+                    } else if (data.status == "DIPROSES") {
                         return "Diproses"
-                    }else if(data.status=="DIBATALKAN"){
+                    } else if (data.status == "DIBATALKAN") {
                         return "Dibatalkan"
-                    }else if(data.status=="NEGO"){
+                    } else if (data.status == "NEGO") {
                         return "Nego"
-                    }else{
+                    } else {
                         return "Selesai"
                     }
 
                 },
                 allowSorting: true,
-            }
+            },
+            // {
+            //     sticky: "right",
+            //     icon: false,
+            //     width: 60,
+            //     template: () => <CheckCircleIcon className="fs-18" />
+            //     // visible: ({ data }) => data.requestStatus == "Requested" || data.requestStatus == "Approved" //hide when status 
+            // }
         ]
     }
 

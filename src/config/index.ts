@@ -31,7 +31,7 @@ export const api = {
         userList                   : `${baseUrl}fishery/user/`,
     },
     transaksi:{
-        transaksi                  : `${baseUrl}xxx/`,
+        transaksi                  : `${baseUrl}fishery/transaksi/`,
 
     }
     

@@ -1,15 +1,13 @@
 import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
-import {  mounted } from "lib";
-import UserManagementHelper from "helper/user-management/UserManagementHelper";
+import { isArray, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
-import StatusConst from "consts/status.const";
+import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
+import TransaksiNelayanHelper from "helper/transaksi/TransaksiNelayanHelper";
 
-export default function UserManagementUserForm({ title, mode, id, hide, onSuccess = () => {} }: DrawerRenderProps) {
+export default function TransaksiForm({ title, mode, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
-    // const idRole = useState<string>("");
-    const [idRole, setIdRole] = useState();
 
     const form: FormGroupModel = {
         apperance: "filled",
@@ -17,7 +15,7 @@ export default function UserManagementUserForm({ title, mode, id, hide, onSucces
         showLabelShrink: true,
         onSubmit: (values) => {
             setLoading(true);
-            UserManagementHelper.createupdate(values, values.idUser, ({ status }) => {
+            TransaksiNelayanHelper.createupdate(values, values.id, ({ status }) => {
                 setLoading(false);
                 if (status) onSuccess();
             })
@@ -26,27 +24,13 @@ export default function UserManagementUserForm({ title, mode, id, hide, onSucces
             main: {
                 spacing: 3,
                 items: [
-                    {
-                        dataField: "idUser",
-                        editorOptions: {
-                            disabled: true
-                        },
-                        label: {
-                            text: "ID User"
-                        },
-                    },
-                    {
-                        dataField: "status",
-                        label: {
-                            text: "Status"
-                        },
-                        editorType: "select",
-                        editorOptions: {
-                            dataSource: StatusConst,
-                            displayExpr: "display",
-                            valueExpr: "value",
-                        },
-                    },
+                    `namaIkan|label.text=Nama Komoditi|validationRules=required`,
+                    `jumlah|label.text=Jumlah (Kg)|validationRules=required`,
+                    `hargaDiajukan|label.text=Harga Diajukan`,
+                    `hargaNego|label.text=Harga Nego`,
+                    `hargaAkhir|label.text=Harga Akhir`,
+                    `tanggalDibutuhkan|label.text=Tanggal Dibutuhkan|editoryType=date`,
+                    `catatan|label.text=Catatan|editoryType=textarea`,
                 ]
             },
         }
@@ -55,13 +39,13 @@ export default function UserManagementUserForm({ title, mode, id, hide, onSucces
     mounted(() => {
         if (id) {
             setLoading(true)
-            UserManagementHelper.detail(id, ({ status, data }) => {
+            TransaksiNelayanHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
                 if (mode === "detail") formRef.current?.disabled(true)
                 if (status) {
-                    setIdRole(data.idRole)
+                    if (isArray(data.roles, 0)) data.roles = data.roles[0].code;
+
                     formRef.current?.updateData(data);
-                    
                 }
             })
         }
@@ -82,22 +66,22 @@ export default function UserManagementUserForm({ title, mode, id, hide, onSucces
                         className: "text-danger",
                         prefix: () => <i className="ri-delete-bin-line me-2"></i>,
                         text: "Delete",
-                        onClick: ({ loading }) => {
+                        actionType: "modal",
+                        onClick: ({ loading, modalRef }) => {
                             loading(true)
-                            UserManagementHelper.delete(id, ({ status }) => {
+                            TransaksiNelayanHelper.delete(id, ({ status }) => {
                                 loading(false)
-                                status && onSuccess()
+                                status && (modalRef.hide(), onSuccess())
                             })
                         }
                     }]
                 }}
             >
-                {/* <MoreHorizRoundedIcon /> */}
+                <MoreHorizRoundedIcon />
             </BgsButton>}</>}
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
-                {idRole !== 1 ? <BgsButton className="btn-save" loading={loading} visibleLoading type="submit">Simpan {id && " Perubahan"}</BgsButton> :null}
-                
+                <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Ajukan {id && " Perubahan"}</BgsButton>
             </>}
         >
             <BgsForm name="main" {...group} />

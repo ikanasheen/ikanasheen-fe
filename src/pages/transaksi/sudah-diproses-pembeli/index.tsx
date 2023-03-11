@@ -2,16 +2,16 @@ import { MainLayoutProps } from "shared/layout/main-layout";
 import { lazy } from "react";
 
 import MainLayout from "shared/layout/main-layout";
-const MainComponent = lazy(() => import("components/user-management/menu"));
-
+const MainComponent = lazy(() => import("components/transaksi/sudah-diproses-pembeli"));
 const props: MainLayoutProps = {
-    title: "Menu List",
+    title: "Daftar Transaksi",
     mode: "index",
-    menuCode: "menu",
-    actionCode: "list"
+    menuCode: "transaksi-sudah-diproses-pembeli",
+    actionCode: "list",
+    usingContainer: false
 }
 
-export default function UserManagementMenuView() {
+export default function TransaksiView() {
     return <MainLayout {...props}>
         <MainComponent {...props} />
     </MainLayout>

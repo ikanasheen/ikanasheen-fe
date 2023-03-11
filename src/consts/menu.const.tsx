@@ -40,52 +40,70 @@ export const MenuConst: MenuPermissionWrapper[] = [
     },
 
     //TRANSAKSI
-    //transaksi admin, gov
+    //main menu
     {
-        menuCode: "transaksi",
+        //admin, gov
+        menuCode: "transaksi", //admin gov
         menuName: "Transaksi",
-        details: ["list"],
+        details: [],
         menuIcon: "material-icons-round|receipt_long",
-        menuPath: "/transaksi/daftar-transaksi-nelayan",
-        idRole: [2, 1]
+        menuPath: "/transaksi/semua-transaksi",
+        idRole: [1,2]
     },
-    //transaksi pembeli
     {
+        //pembeli
         menuCode: "transaksi-pembeli",
         menuName: "Transaksi",
         details: [],
         menuIcon: "material-icons-round|receipt_long",
-        menuPath: "/transaksi/daftar-transaksi-pembeli",
+        menuPath: "/transaksi/transaksi-pembeli",
         idRole: [4]
     },
-    //children transaksi pembeli   
     {
-        menuCode: "daftar-transaksi-pembeli",
-        menuName: "Daftar Transaksi",
-        menuParent: "transaksi-pembeli",
-        details: ["list", "create"],
-        menuIcon: "material-icons-round|minimize",
-        menuPath: "/transaksi/daftar-transaksi-pembeli",
-        idRole: [4]
-    },
-
-    //transaksi nelayan
-    {
+        //nelayan
         menuCode: "transaksi-nelayan",
         menuName: "Transaksi",
         details: [],
         menuIcon: "material-icons-round|receipt_long",
-        menuPath: "/transaksi/daftar-transaksi-nelayan",
+        menuPath: "/transaksi/transaksi-nelayan",
         idRole: [3]
+    },
+    //children admin, gov
+    {
+        menuCode: "semua-transaksi",
+        menuName: "Semua Transaksi",
+        menuParent: "transaksi",
+        details: ["list"],
+        menuIcon: "material-icons-round|minimize",
+        menuPath: "/transaksi/semua-transaksi",
+        idRole: [2, 1] 
+    },
+    {
+        menuCode: "transaksi-belum-diproses",
+        menuName: "Transaksi Belum Diproses",
+        menuParent: "transaksi",
+        details: ["list"],
+        menuIcon: "material-icons-round|minimize",
+        menuPath: "/transaksi/belum-diproses",
+        idRole: [2, 1]
+    },
+    {
+        menuCode: "transaksi-sudah-diproses",
+        menuName: "Transaksi Sudah Diproses",
+        menuParent: "transaksi",
+        details: ["list"],
+        menuIcon: "material-icons-round|minimize",
+        menuPath: "/transaksi/sudah-diproses",
+        idRole: [2, 1]
     },
     //children transaksi nelayan
     {
-        menuCode: "daftar-transaksi-nelayan",
-        menuName: "Daftar Transaksi",
+        menuCode: "transaksi-belum-diproses-nelayan",
+        menuName: "Semua Transaksi",
         menuParent: "transaksi-nelayan",
         details: ["list", "update"],
         menuIcon: "material-icons-round|minimize",
-        menuPath: "/transaksi/daftar-transaksi-nelayan",
+        menuPath: "/transaksi/belum-diproses-nelayan",
         idRole: [3]
     },
     {
@@ -97,6 +115,26 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuPath: "/transaksi/transaksi-saya",
         idRole: [3]
     },
+    //transaksi pembeli
+    {
+        menuCode: "transaksi-belum-diproses-pembeli",
+        menuName: "Transaksi Belum Diproses",
+        menuParent: "transaksi-pembeli",
+        details: ["list", "create", "update", "delete"],
+        menuIcon: "material-icons-round|minimize",
+        menuPath: "/transaksi/belum-diproses-pembeli",
+        idRole: [4]
+    },
+    {
+        menuCode: "transaksi-sudah-diproses-pembeli",
+        menuName: "Transaksi Sudah Diproses",
+        menuParent: "transaksi-pembeli",
+        details: ["list"],
+        menuIcon: "material-icons-round|minimize",
+        menuPath: "/transaksi/sudah-diproses-pembeli",
+        idRole: [4]
+    },
+
     
     //SOSIALISASI
     {

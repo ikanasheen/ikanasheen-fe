@@ -1,15 +1,14 @@
 import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
-import {  mounted } from "lib";
-import UserManagementHelper from "helper/user-management/UserManagementHelper";
+import { isArray, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
-import StatusConst from "consts/status.const";
+import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
+import TransaksiNelayanHelper from "helper/transaksi/TransaksiNelayanHelper";
+import { SatuanBeratConst } from "consts";
 
-export default function UserManagementUserForm({ title, mode, id, hide, onSuccess = () => {} }: DrawerRenderProps) {
+export default function TransaksiForm({ title, mode, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
-    // const idRole = useState<string>("");
-    const [idRole, setIdRole] = useState();
 
     const form: FormGroupModel = {
         apperance: "filled",
@@ -17,7 +16,7 @@ export default function UserManagementUserForm({ title, mode, id, hide, onSucces
         showLabelShrink: true,
         onSubmit: (values) => {
             setLoading(true);
-            UserManagementHelper.createupdate(values, values.idUser, ({ status }) => {
+            TransaksiNelayanHelper.createupdate(values, values.id, ({ status }) => {
                 setLoading(false);
                 if (status) onSuccess();
             })
@@ -26,27 +25,37 @@ export default function UserManagementUserForm({ title, mode, id, hide, onSucces
             main: {
                 spacing: 3,
                 items: [
+                    `namaIkan|label.text=Nama Ikan|editorOptions.disabled=true|validationRules=required`,
+                    `jumlah|label.text=Jumlah|editorOptions.disabled=true|validationRules=required`,
                     {
-                        dataField: "idUser",
-                        editorOptions: {
-                            disabled: true
-                        },
-                        label: {
-                            text: "ID User"
-                        },
-                    },
-                    {
-                        dataField: "status",
-                        label: {
-                            text: "Status"
-                        },
+                        dataField: "satuan",
                         editorType: "select",
+                        label: {
+                            text: ""
+                        },
                         editorOptions: {
-                            dataSource: StatusConst,
+                            dataSource: SatuanBeratConst,
                             displayExpr: "display",
                             valueExpr: "value",
+                            disabled: true
                         },
                     },
+                    `namaIkan|label.text=Nama Pembeli|editoryType=textarea|editorOptions.disabled=true|validationRules=required`,
+                    {
+                        dataField: "ekspedisi",
+                        editorType: "select",
+                        label: {
+                            text: "Ekspedisi"
+                        },
+                        editorOptions: {
+                            dataSource: SatuanBeratConst,
+                            displayExpr: "display",
+                            valueExpr: "value",
+                            disabled: true
+                        },
+                    },
+                    `tanggal|label.text=Tanggal Pembelian|editoryType=date|editorOptions.disabled=true`,
+                    `catatan|label.text=Nama Pembeli|editoryType=textarea|editorOptions.disabled=true`,
                 ]
             },
         }
@@ -55,13 +64,13 @@ export default function UserManagementUserForm({ title, mode, id, hide, onSucces
     mounted(() => {
         if (id) {
             setLoading(true)
-            UserManagementHelper.detail(id, ({ status, data }) => {
+            TransaksiNelayanHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
                 if (mode === "detail") formRef.current?.disabled(true)
                 if (status) {
-                    setIdRole(data.idRole)
+                    if (isArray(data.roles, 0)) data.roles = data.roles[0].code;
+
                     formRef.current?.updateData(data);
-                    
                 }
             })
         }
@@ -82,22 +91,26 @@ export default function UserManagementUserForm({ title, mode, id, hide, onSucces
                         className: "text-danger",
                         prefix: () => <i className="ri-delete-bin-line me-2"></i>,
                         text: "Delete",
-                        onClick: ({ loading }) => {
+                        actionType: "modal",
+                        onClick: ({ loading, modalRef }) => {
                             loading(true)
-                            UserManagementHelper.delete(id, ({ status }) => {
+                            TransaksiNelayanHelper.delete(id, ({ status }) => {
                                 loading(false)
-                                status && onSuccess()
+                                status && (modalRef.hide(), onSuccess())
                             })
                         }
                     }]
                 }}
             >
-                {/* <MoreHorizRoundedIcon /> */}
+                <MoreHorizRoundedIcon />
             </BgsButton>}</>}
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
-                {idRole !== 1 ? <BgsButton className="btn-save" loading={loading} visibleLoading type="submit">Simpan {id && " Perubahan"}</BgsButton> :null}
-                
+                <BgsButton className="btn-save" loading={loading} actionType="modal"
+                    modalOptions={{
+                        message: "Apakah Anda yakin untuk memproses transaksi ini?",
+                        width: 350
+                    }} type="submit">Proses</BgsButton>
             </>}
         >
             <BgsForm name="main" {...group} />

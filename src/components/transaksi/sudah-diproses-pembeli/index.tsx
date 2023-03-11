@@ -4,10 +4,11 @@ import { MainLayoutProps } from "shared/layout/main-layout";
 import BreadcrumbLayout from "shared/layout/breadcrumb-layout";
 import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
-import TransaksiHelper from "helper/transaksi/TransaksiHelper";
+// import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import TransaksiPembeliHelper from "helper/transaksi/TransaksiPembeliHelper";
+// import EditIcon from '@mui/icons-material/Edit';
 import { credential } from "lib";
-
-const Form = lazy(() => import("../transaksi-saya/form"));
+const Form = lazy(() => import("./form"))
 
 export default function TransaksiList(props: MainLayoutProps) {
     const tableRef = useRef<TableRef>(null);
@@ -16,7 +17,7 @@ export default function TransaksiList(props: MainLayoutProps) {
     const form = (id?: string) => {
         drawerLayout({
             render: (props) => <Form
-                title="Transaksi Saya"
+                title="Transaksi Sudah Diproses"
                 id={id}
                 {...props}
             />,
@@ -25,7 +26,7 @@ export default function TransaksiList(props: MainLayoutProps) {
     }
 
     const table: TableModel = {
-        helper: (data) => TransaksiHelper.retrieve(data),
+        helper: (data) => TransaksiPembeliHelper.retrieve(data),
         allowSearching: {
             fullWidth: true
         },

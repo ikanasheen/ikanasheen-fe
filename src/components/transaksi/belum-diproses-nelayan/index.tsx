@@ -4,19 +4,18 @@ import { MainLayoutProps } from "shared/layout/main-layout";
 import BreadcrumbLayout from "shared/layout/breadcrumb-layout";
 import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
+// import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import TransaksiHelper from "helper/transaksi/TransaksiHelper";
-import { credential } from "lib";
-
-const Form = lazy(() => import("../transaksi-saya/form"));
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+const Form = lazy(() => import("./form"));
 
 export default function TransaksiList(props: MainLayoutProps) {
     const tableRef = useRef<TableRef>(null);
-    const userId = credential.storage.get("user")?.idUser;
-
+    
     const form = (id?: string) => {
         drawerLayout({
             render: (props) => <Form
-                title="Transaksi Saya"
+                title="Transaksi"
                 id={id}
                 {...props}
             />,
@@ -33,11 +32,11 @@ export default function TransaksiList(props: MainLayoutProps) {
             sticky: "left"
         },
         temporaryParameter: [{
-            propReq: "idUser",
-            value: userId,
+            propReq: "status",
+            value: 'DIAJUKAN',
             opt: "filter"
         }],
-        // onRowClick: ({ rowData }) => form(rowData.id),
+        onRowClick: ({ rowData }) => form(rowData.idTransaksi),
         columns: [
             `nama|caption=Nama Ikan|width=180`,
             `jumlah|caption=Jumlah (Kg)|width=160`,
@@ -67,6 +66,14 @@ export default function TransaksiList(props: MainLayoutProps) {
 
                 },
                 allowSorting: true,
+            },
+            {
+                sticky: "right",
+                icon: false,
+                width: 60,
+                template: () => <CheckCircleIcon className="fs-18" />
+                // visible: ({ data }) => data.requestStatus == "Requested" || data.requestStatus == "Approved" //hide when status 
+
             }
         ]
     }
