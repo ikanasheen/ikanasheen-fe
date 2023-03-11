@@ -7,7 +7,7 @@ import { drawerLayout } from "shared/layout/drawer-layout";
 import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 import { credential } from "lib";
 
-const Form = lazy(() => import("../transaksi-saya/form"));
+const Form = lazy(() => import("./form"));
 
 export default function TransaksiList(props: MainLayoutProps) {
     const tableRef = useRef<TableRef>(null);
