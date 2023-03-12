@@ -1,14 +1,14 @@
 import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
-import { isArray, mounted } from "lib";
+import { credential,  mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
-import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
-import TransaksiNelayanHelper from "helper/transaksi/TransaksiNelayanHelper";
+import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 import NegoConst from "consts/isNego.const";
 
-export default function TransaksiForm({ title, mode, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
+export default function TransaksiForm({ title, mode,id, idUserNelayan, hargaAwal, isNego,hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
+    const userId = credential.storage.get("user")?.idUser;
 
     const form: FormGroupModel = {
         apperance: "filled",
@@ -16,18 +16,28 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
         showLabelShrink: true,
         onSubmit: (values) => {
             setLoading(true);
-            TransaksiNelayanHelper.createupdate(values, values.idTransaksi, ({ status }) => {
+            TransaksiHelper.createupdate(values, values.idTransaksi, ({ status }) => {
                 setLoading(false);
                 if (status) onSuccess();
             })
         },
         formData: {
             isNego: NegoConst[1].value,
+            idUserNelayan: userId,
         },
         item: {
             main: {
                 spacing: 3,
                 items: [
+                    {
+                        dataField: "hargaAwal",
+                        label: {
+                            text: "Harga Awal"
+                        },
+                        editorOptions: {
+                            disabled: true,
+                        }
+                    },
                     {
                         dataField: "isNego",
                         editorType: "radiobutton",
@@ -40,15 +50,15 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                             valueExpr: "value",
                             onChange: ({ data }) => {
                                 if (data && NegoConst[0].value) {
-                                    formRef.current?.itemOption("hargaDitawarkan").option("editorOptions.disabled", false)
+                                    formRef.current?.itemOption("hargaNego").option("editorOptions.disabled", false)
                                 }
                             }
                         },
                     },
                     {
-                        dataField: "hargaDitawarkan",
+                        dataField: "hargaNego",
                         label: {
-                            text: "Harga Yang Ditawarkan"
+                            text: "Harga Nego"
                         },
                         editorOptions: {
                             disabled: true,
@@ -62,17 +72,26 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
     mounted(() => {
         if (id) {
             setLoading(true)
-            TransaksiNelayanHelper.detail(id, ({ status, data }) => {
+            TransaksiHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
                 if (mode === "detail") formRef.current?.disabled(true)
                 if (status) {
-                    if (isArray(data.roles, 0)) data.roles = data.roles[0].code;
-
                     formRef.current?.updateData(data);
                 }
             })
         }
     })
+
+    const prosesTransaksi = ({ loading }: { loading: Function }) => {
+        loading(true);
+        // const { idTransaksi };
+        if (id) {
+            loading(true)
+            TransaksiHelper.proses(id, idUserNelayan, hargaAwal, isNego, ({ data }) => {
+                formRef.current?.updateData(data);
+            })
+        }
+    }
 
     return <BgsGroupForm
         {...form}
@@ -92,7 +111,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         actionType: "modal",
                         onClick: ({ loading, modalRef }) => {
                             loading(true)
-                            TransaksiNelayanHelper.delete(id, ({ status }) => {
+                            TransaksiHelper.delete(id, ({ status }) => {
                                 loading(false)
                                 status && (modalRef.hide(), onSuccess())
                             })
@@ -100,15 +119,14 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                     }]
                 }}
             >
-                <MoreHorizRoundedIcon />
             </BgsButton>}</>}
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
-                <BgsButton className="btn-save" loading={loading} actionType="modal"
+                <BgsButton className="btn-save" actionType="modal" loading={loading}
                     modalOptions={{
                         message: "Apakah Anda yakin untuk memproses transaksi ini?",
                         width: 350
-                    }} type="submit">Proses</BgsButton>
+                    }} onClick={e => prosesTransaksi(e)}>Proses</BgsButton>
             </>}
         >
             <BgsForm name="main" {...group} />

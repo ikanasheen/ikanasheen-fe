@@ -25,7 +25,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
             main: {
                 spacing: 3,
                 items: [
-                    `namaIkan|label.text=Nama Ikan|validationRules=required`,
+                    `namaIkan|label.text=Nama Komoditi|validationRules=required`,
                     `jumlah|label.text=Jumlah|validationRules=required`,
                     {
                         dataField: "satuan",

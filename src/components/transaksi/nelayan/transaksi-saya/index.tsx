@@ -33,41 +33,55 @@ export default function TransaksiList(props: MainLayoutProps) {
             sticky: "left"
         },
         temporaryParameter: [{
-            propReq: "idUser",
+            propReq: "idUserNelayan",
             value: userId,
+            opt: "filter"
+        },{
+            propReq: "status",
+            value: ['DIPROSES','DIBATALKAN','NEGO','SELESAI'],
             opt: "filter"
         }],
         // onRowClick: ({ rowData }) => form(rowData.id),
         columns: [
-            `nama|caption=Nama Ikan|width=180`,
+            `idTransaksi|caption=ID Transaksi|width=180`,
+            `namaIkan|caption=Nama Komoditi|width=180`,
+            `ukuran|caption=Ukuran|width=180`,
             `jumlah|caption=Jumlah (Kg)|width=160`,
-            `hargaDiajukan|caption=Harga Diajukan (per Kg)|width=230`,
-            `hargaNego|caption=Harga Nego (per Kg)|width=200`,
-            `hargaAkhir|caption=Harga Akhir (per Kg)|width=200`,
+            `hargaAwal|caption=Harga Awal (per Kg)|dataType=number|width=230`,
+            `hargaNego|caption=Harga Nego (per Kg)|dataType=number|width=200`,
+            `hargaAkhir|caption=Harga Akhir|dataType=number|width=200`,
             `alamatPembeli|caption=Alamat Pembeli|width=250|className=text-break`,
-            `alamatNelayan|caption=Alamat Nelayan|width=250|className=text-break`,
+            `namaPembeli|caption=Nama Pembeli|width=250`,
+            `namaNelayan|caption=Nama Nelayan|width=250`,
             `tanggalDibutuhkan|caption=Tanggal Dibutuhkan|dataType=date|width=200`,
             `catatan|caption=Catatan|width=250|className=text-break`,
             {
                 dataField: "status",
                 caption: "Status",
                 width: 160,
-                template: (data) => {                      
-                    if (data.status=="DIAJUKAN"){
+                template: (data) => {
+                    if (data.status == "DIAJUKAN") {
                         return "Diajukan"
-                    }else if (data.status=="DIPROSES"){
+                    } else if (data.status == "DIPROSES") {
                         return "Diproses"
-                    }else if(data.status=="DIBATALKAN"){
+                    } else if (data.status == "DIBATALKAN") {
                         return "Dibatalkan"
-                    }else if(data.status=="NEGO"){
+                    } else if (data.status == "NEGO") {
                         return "Nego"
-                    }else{
+                    } else {
                         return "Selesai"
                     }
 
                 },
                 allowSorting: true,
-            }
+            },
+            // {
+            //     sticky: "right",
+            //     icon: false,
+            //     width: 60,
+            //     template: () => <CheckCircleIcon className="fs-18" />
+            //     // visible: ({ data }) => data.requestStatus == "Requested" || data.requestStatus == "Approved" //hide when status 
+            // }
         ]
     }
 

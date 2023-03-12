@@ -4,9 +4,7 @@ import { MainLayoutProps } from "shared/layout/main-layout";
 import BreadcrumbLayout from "shared/layout/breadcrumb-layout";
 import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
-// import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import TransaksiNelayanHelper from "helper/transaksi/TransaksiNelayanHelper";
-// import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 const Form = lazy(() => import("./form"));
 
 export default function TransaksiList(props: MainLayoutProps) {
@@ -24,7 +22,7 @@ export default function TransaksiList(props: MainLayoutProps) {
     }
 
     const table: TableModel = {
-        helper: (data) => TransaksiNelayanHelper.retrieve(data),
+        helper: (data) => TransaksiHelper.retrieve(data),
         allowSearching: {
             fullWidth: true
         },
@@ -33,13 +31,16 @@ export default function TransaksiList(props: MainLayoutProps) {
         },
         // onRowClick: ({ rowData }) => form(rowData.id),
         columns: [
-            `nama|caption=Nama Ikan|width=180`,
+            `idTransaksi|caption=ID Transaksi|width=180`,
+            `namaIkan|caption=Nama Komoditi|width=180`,
+            `ukuran|caption=Ukuran|width=180`,
             `jumlah|caption=Jumlah (Kg)|width=160`,
-            `hargaDiajukan|caption=Harga Diajukan (per Kg)|width=230`,
-            `hargaNego|caption=Harga Nego (per Kg)|width=200`,
-            `hargaAkhir|caption=Harga Akhir (per Kg)|width=200`,
+            `hargaAwal|caption=Harga Awal (per Kg)|dataType=number|width=230`,
+            `hargaNego|caption=Harga Nego (per Kg)|dataType=number|width=200`,
+            `hargaAkhir|caption=Harga Akhir (per Kg)|dataType=number|width=200`,
             `alamatPembeli|caption=Alamat Pembeli|width=250|className=text-break`,
-            `alamatNelayan|caption=Alamat Nelayan|width=250|className=text-break`,
+            `namaPembeli|caption=Nama Pembeli|width=250`,
+            `namaNelayan|caption=Nama Nelayan|width=250`,
             `tanggalDibutuhkan|caption=Tanggal Dibutuhkan|dataType=date|width=200`,
             `catatan|caption=Catatan|width=250|className=text-break`,
             {

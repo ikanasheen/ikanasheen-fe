@@ -21,6 +21,9 @@ export interface DrawerRenderProps extends MainLayoutProps {
     hide: Function;
     params?: any;
     id?: any;
+    idUserNelayan?:any,
+    hargaAwal?:any,
+    isNego?:any,
     closeOnOutsideDisabled: Function;
 }
 
