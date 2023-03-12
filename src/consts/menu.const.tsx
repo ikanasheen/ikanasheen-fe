@@ -2,6 +2,7 @@ import { MenuPermissionWrapper } from "models/menu.model";
 
 export const MenuConst: MenuPermissionWrapper[] = [
     //1 admin, 2 gov, 3 nelayan, 4 pembeli
+    //DASHBOARD
     {
         menuCode: "dashboard",
         menuName: "Dashboard",
@@ -11,20 +12,20 @@ export const MenuConst: MenuPermissionWrapper[] = [
         idRole: [1, 2, 3, 4]
     },
 
-    //DAFTAR IKAN
+    //DAFTAR KOMODITI
     {
-        menuCode: "daftar-ikan",
-        menuName: "Daftar Ikan",
+        menuCode: "daftar-komoditi",
+        menuName: "Daftar Komoditi",
         details: ["list", "create", "update", "delete"],
-        menuPath: "/daftar-ikan",
+        menuPath: "/daftar-komoditi",
         menuIcon: "material-icons-round|price_change",
         idRole: [1]
     },
     {
-        menuCode: "daftar-ikan",
-        menuName: "Daftar Ikan",
+        menuCode: "daftar-komoditi",
+        menuName: "Daftar Komoditi",
         details: ["list"], //list aja
-        menuPath: "/daftar-ikan",
+        menuPath: "/daftar-komoditi",
         menuIcon: "material-icons-round|price_change",
         idRole: [3]
     },

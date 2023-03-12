@@ -5,14 +5,14 @@ import MainLayout from "shared/layout/main-layout";
 const MainComponent = lazy(() => import("components/daftar-ikan"));
 
 const props: MainLayoutProps = {
-    title: "Daftar Ikan",
+    title: "Daftar Komoditi",
     mode: "index",
-    menuCode: "daftar-ikan",
+    menuCode: "daftar-komoditi",
     actionCode: "list",
     usingContainer: false
 }
 
-export default function HargaIkanView() {
+export default function HargaKomoditiView() {
     return <MainLayout {...props}>
         <MainComponent {...props} />
     </MainLayout>

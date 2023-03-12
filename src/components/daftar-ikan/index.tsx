@@ -14,7 +14,7 @@ export default function DaftarIkanList(props: MainLayoutProps) {
     const form = (id?: string) => {
         drawerLayout({
             render: (props) => <Form
-                title="Daftar Ikan"
+                title="Daftar Komoditi"
                 id={id}
                 {...props}
             />,
@@ -33,8 +33,10 @@ export default function DaftarIkanList(props: MainLayoutProps) {
         },
         onRowClick: ({ rowData }) => form(rowData.idIkan),
         columns: [
-            `idIkan|caption=Kode Ikan|width=200`,
-            `namaIkan|caption=Nama Ikan|width=200`,
+            `idIkan|caption=Kode Komoditi|width=200`,
+            `namaIkan|caption=Nama Komoditi|width=200`,
+            `ukuran|caption=Ukuran|width=180`,
+            `hargaDasar|caption=Harga Dasar|width=180`,
             `deskripsi|caption=Deskripsi|width=250`,
             {
                 sticky: "right",
