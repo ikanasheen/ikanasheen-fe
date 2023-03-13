@@ -36,7 +36,7 @@ export default function TransaksiForm({ title,  id, hide, onSuccess = () => { } 
                         label: {
                             text: "Nama Komoditi"
                         },
-                        validationRules: ["required"],
+                        validationRules: ["required","maxLength.255"],
                         editorType: "select",
                         editorOptions: {
                             mode: "popup",
@@ -59,7 +59,7 @@ export default function TransaksiForm({ title,  id, hide, onSuccess = () => { } 
                             },
                         }
                     },
-                    `jumlah|label.text=Jumlah (Kg)|validationRules=required, min.1`,
+                    `jumlah|label.text=Jumlah (Kg)|validationRules=required,pattern.number,min.1,maxLength.10`,
                     {
                         dataField: "tanggalDibutuhkan",
                         label: {
@@ -71,8 +71,8 @@ export default function TransaksiForm({ title,  id, hide, onSuccess = () => { } 
                         },
                         validationRules:['required']
                     },
-                    `alamat|label.text=Alamat Lengkap|editoryType=textarea|validationRules=required`,
-                    `catatan|label.text=Catatan|editoryType=textarea|validationRules=required`,
+                    `alamat|label.text=Alamat Lengkap|editoryType=textarea|validationRules=required,maxLength.255`,
+                    `catatan|label.text=Catatan|editoryType=textarea|validationRules=required,maxLength.255`,
 
                 ]
             },
