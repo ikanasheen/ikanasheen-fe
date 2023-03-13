@@ -1,14 +1,14 @@
 import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
-import {  mounted } from "lib";
+import { mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
-import TransaksiPembeliHelper from "helper/transaksi/TransaksiPembeliHelper";
+import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 
-export default function TransaksiForm({ title, mode, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
+export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
-    const [status, setStatus] = useState();
+    // const [status, setStatus] = useState();
 
     const form: FormGroupModel = {
         apperance: "filled",
@@ -16,7 +16,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
         showLabelShrink: true,
         onSubmit: (values) => {
             setLoading(true);
-            TransaksiPembeliHelper.createupdate(values, values.id, ({ status }) => {
+            TransaksiHelper.createupdate(values, values.id, ({ status }) => {
                 setLoading(false);
                 if (status) onSuccess();
             })
@@ -30,8 +30,8 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         label: {
                             text: "Nama Nelayan"
                         },
-                        editorOptions:{
-                            disabled:true
+                        editorOptions: {
+                            disabled: true
                         }
                     },
                     {
@@ -39,8 +39,8 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         label: {
                             text: "Harga yang Ditawarkan"
                         },
-                        editorOptions:{
-                            disabled:true
+                        editorOptions: {
+                            disabled: true
                         }
                     },
 
@@ -52,22 +52,45 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
     mounted(() => {
         if (id) {
             setLoading(true)
-            TransaksiPembeliHelper.detail(id, ({ status, data }) => {
+            TransaksiHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
-                if (mode === "detail") formRef.current?.disabled(true)
+                if (data.status == "NEGO") formRef.current?.disabled(true)
                 if (status) {
-                    setStatus(data.status);
+                    // setStatus(data.status);
                     formRef.current?.updateData(data);
                 }
             })
         }
     })
 
+    const terimaNego = ({ loading }: { loading: Function }) => {
+        loading(true);
+        if (id) {
+            loading(true)
+            TransaksiHelper.terimaNego(id, ({ status }) => {
+                if (status) {
+                    onSuccess();
+                }
+            })
+        }
+    }
+    const tolakNego = ({ loading }: { loading: Function }) => {
+        loading(true);
+        if (id) {
+            loading(true)
+            TransaksiHelper.tolakNego(id, ({ status }) => {
+                if (status) {
+                    onSuccess();
+                }
+            })
+        }
+    }
+
     return <BgsGroupForm
         {...form}
         ref={formRef}
         render={group => <DrawerLayout
-            title={<>{id ? "Ubah" : "Tambah"} <b>{title}</b></>}
+            title={<>{id ? "Approval" : "Tambah"} <b>{title}</b></>}
             action={<>{id && <BgsButton
                 actionType="menu"
                 variant="icon"
@@ -81,7 +104,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         actionType: "modal",
                         onClick: ({ loading, modalRef }) => {
                             loading(true)
-                            TransaksiPembeliHelper.delete(id, ({ status }) => {
+                            TransaksiHelper.delete(id, ({ status }) => {
                                 loading(false)
                                 status && (modalRef.hide(), onSuccess())
                             })
@@ -93,13 +116,17 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
             </BgsButton>}</>}
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
-                {id != null && status == "NEGO" ? // && status nego
-                    <BgsButton variant="contained" className="btn-batalkan" loading={loading} visibleLoading={false} >Tolak Tawaran</BgsButton>
-                    : id != null && status == "DIPROSES" ? // && status dalam proses
-                        <BgsButton variant="contained" className="btn-terima" color="primary" loading={loading} visibleLoading={false} >Terima Pemesanan</BgsButton>
-                        : null
-                }
-                
+                <BgsButton variant="contained" className="btn-batalkan" loading={loading}
+                    modalOptions={{
+                        message: "Apakah Anda yakin untuk menolak negosiasi ini?",
+                        width: 350
+                    }} onClick={e => tolakNego(e)}>Tolak Tawaran</BgsButton>
+                <BgsButton variant="contained" className="btn-terima" color="primary" loading={loading}
+                    modalOptions={{
+                        message: "Apakah Anda yakin untuk menerima negosiasi ini?",
+                        width: 350
+                    }} onClick={e => terimaNego(e)} >Terima Tawaran</BgsButton>
+
             </>}
         >
             <BgsForm name="main" {...group} />

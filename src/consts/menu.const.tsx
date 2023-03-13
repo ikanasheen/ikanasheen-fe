@@ -106,15 +106,6 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuIcon: "material-icons-round|minimize",
         menuPath: "/transaksi/nelayan/belum-diproses-nelayan",
         idRole: [3]
-    },
-    {
-        menuCode: "transaksi-nelayan-diproses",
-        menuName: "Transaksi Diproses",
-        menuParent: "transaksi-nelayan",
-        details: ["list"],
-        menuIcon: "material-icons-round|minimize",
-        menuPath: "/transaksi/nelayan/diproses",
-        idRole: [3]
     },    
     {
         menuCode: "transaksi-nelayan-nego",
@@ -123,6 +114,15 @@ export const MenuConst: MenuPermissionWrapper[] = [
         details: ["list"],
         menuIcon: "material-icons-round|minimize",
         menuPath: "/transaksi/nelayan/nego",
+        idRole: [3]
+    },
+    {
+        menuCode: "transaksi-nelayan-diproses",
+        menuName: "Transaksi Diproses",
+        menuParent: "transaksi-nelayan",
+        details: ["list"],
+        menuIcon: "material-icons-round|minimize",
+        menuPath: "/transaksi/nelayan/diproses",
         idRole: [3]
     },
     {
@@ -145,21 +145,21 @@ export const MenuConst: MenuPermissionWrapper[] = [
         idRole: [4]
     },
     {
-        menuCode: "transaksi-sudah-diproses-pembeli",
-        menuName: "Transaksi Diproses",
-        menuParent: "transaksi-pembeli",
-        details: ["list"],
-        menuIcon: "material-icons-round|minimize",
-        menuPath: "/transaksi/pembeli/sudah-diproses-pembeli",
-        idRole: [4]
-    },
-    {
         menuCode: "transaksi-pembeli-nego",
         menuName: "Transaksi Nego",
         menuParent: "transaksi-pembeli",
         details: ["list"],
         menuIcon: "material-icons-round|minimize",
         menuPath: "/transaksi/pembeli/nego",
+        idRole: [4]
+    },
+    {
+        menuCode: "transaksi-sudah-diproses-pembeli",
+        menuName: "Transaksi Diproses",
+        menuParent: "transaksi-pembeli",
+        details: ["list"],
+        menuIcon: "material-icons-round|minimize",
+        menuPath: "/transaksi/pembeli/sudah-diproses-pembeli",
         idRole: [4]
     },
     {

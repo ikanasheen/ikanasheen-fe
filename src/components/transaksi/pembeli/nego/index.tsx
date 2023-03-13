@@ -4,8 +4,9 @@ import { MainLayoutProps } from "shared/layout/main-layout";
 import BreadcrumbLayout from "shared/layout/breadcrumb-layout";
 import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
-import TransaksiPembeliHelper from "helper/transaksi/TransaksiPembeliHelper";
+import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 import { credential } from "lib";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const Form = lazy(() => import("./form"))
 
@@ -25,7 +26,7 @@ export default function TransaksiList(props: MainLayoutProps) {
     }
 
     const table: TableModel = {
-        helper: (data) => TransaksiPembeliHelper.retrieve(data),
+        helper: (data) => TransaksiHelper.retrieve(data),
         allowSearching: {
             fullWidth: true
         },
@@ -41,7 +42,7 @@ export default function TransaksiList(props: MainLayoutProps) {
             value: ['NEGO'],
             opt: "filter"
         }],
-        // onRowClick: ({ rowData }) => form(rowData.idTransaksi),
+        onRowClick: ({ rowData }) => form(rowData.idTransaksi),
         columns: [
             `idTransaksi|caption=ID Transaksi|width=180`,
             `namaIkan|caption=Nama Komoditi|width=180`,
@@ -75,6 +76,12 @@ export default function TransaksiList(props: MainLayoutProps) {
                 },
                 allowSorting: true,
             },
+            {
+                sticky: "right",
+                icon: false,
+                width: 60,
+                template: () => <CheckCircleIcon className="fs-18" />
+            }
             
         ]
     }
