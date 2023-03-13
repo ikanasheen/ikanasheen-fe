@@ -31,7 +31,7 @@ export default function TransaksiList(props: MainLayoutProps) {
         },
         temporaryParameter: [{
             propReq: "status",
-            value: 'DIAJUKAN',
+            value: ['DIAJUKAN'],
             opt: "filter"
         }],
         // onRowClick: ({ rowData }) => form(rowData.id),
