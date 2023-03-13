@@ -33,7 +33,7 @@ export default function TransaksiForm({ title, mode,id, idUserNelayan, hargaNego
                     {
                         dataField: "hargaAwal",
                         label: {
-                            text: "Harga Awal"
+                            text: "Harga Awal (Per Kg)"
                         },
                         editorType: "number",
                         validationRules:["maxLength.10"],
@@ -45,7 +45,7 @@ export default function TransaksiForm({ title, mode,id, idUserNelayan, hargaNego
                         dataField: "isNego",
                         editorType: "radiobutton",
                         label: {
-                            text: "Tawar Harga"
+                            text: "Tawar Harga (Per Kg)"
                         },
                         editorOptions: {
                             dataSource: NegoConst,
@@ -61,7 +61,7 @@ export default function TransaksiForm({ title, mode,id, idUserNelayan, hargaNego
                     {
                         dataField: "hargaNego",
                         label: {
-                            text: "Harga Nego"
+                            text: "Harga Nego (Per Kg)"
                         },
                         validationRules:["maxLength.10"],
                         editorOptions: {

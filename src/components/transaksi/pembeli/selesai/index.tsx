@@ -49,7 +49,7 @@ export default function TransaksiList(props: MainLayoutProps) {
             `jumlah|caption=Jumlah (Kg)|width=160`,
             `hargaAwal|caption=Harga Awal (per Kg)|dataType=number|width=230`,
             `hargaNego|caption=Harga Nego (per Kg)|dataType=number|width=200`,
-            `hargaAkhir|caption=Harga Akhir (per Kg)|dataType=number|width=200`,
+            `hargaAkhir|caption=Harga Akhir |dataType=number|width=200`,
             `alamatPembeli|caption=Alamat Pembeli|width=250|className=text-break`,
             `namaPembeli|caption=Nama Pembeli|width=250`,
             `namaNelayan|caption=Nama Nelayan|width=250`,
