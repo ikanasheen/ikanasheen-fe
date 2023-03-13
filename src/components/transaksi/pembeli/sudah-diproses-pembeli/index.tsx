@@ -4,7 +4,7 @@ import { MainLayoutProps } from "shared/layout/main-layout";
 import BreadcrumbLayout from "shared/layout/breadcrumb-layout";
 import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
-import TransaksiPembeliHelper from "helper/transaksi/TransaksiPembeliHelper";
+import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 import { credential } from "lib";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
@@ -26,7 +26,7 @@ export default function TransaksiList(props: MainLayoutProps) {
     }
 
     const table: TableModel = {
-        helper: (data) => TransaksiPembeliHelper.retrieve(data),
+        helper: (data) => TransaksiHelper.retrieve(data),
         allowSearching: {
             fullWidth: true
         },

@@ -4,7 +4,7 @@ import { MainLayoutProps } from "shared/layout/main-layout";
 import BreadcrumbLayout from "shared/layout/breadcrumb-layout";
 import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
-import TransaksiPembeliHelper from "helper/transaksi/TransaksiPembeliHelper";
+import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 const Form = lazy(() => import("./form"))
 
 export default function TransaksiList(props: MainLayoutProps) {
@@ -22,7 +22,7 @@ export default function TransaksiList(props: MainLayoutProps) {
     }
 
     const table: TableModel = {
-        helper: (data) => TransaksiPembeliHelper.retrieve(data),
+        helper: (data) => TransaksiHelper.retrieve(data),
         allowSearching: {
             fullWidth: true
         },

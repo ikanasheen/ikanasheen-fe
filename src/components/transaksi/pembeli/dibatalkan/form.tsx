@@ -3,7 +3,7 @@ import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andr
 import {  mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
-import TransaksiPembeliHelper from "helper/transaksi/TransaksiPembeliHelper";
+import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 
 export default function TransaksiForm({ title, mode, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
@@ -16,7 +16,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
         showLabelShrink: true,
         onSubmit: (values) => {
             setLoading(true);
-            TransaksiPembeliHelper.createupdate(values, values.id, ({ status }) => {
+            TransaksiHelper.createupdate(values, values.id, ({ status }) => {
                 setLoading(false);
                 if (status) onSuccess();
             })
@@ -52,7 +52,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
     mounted(() => {
         if (id) {
             setLoading(true)
-            TransaksiPembeliHelper.detail(id, ({ status, data }) => {
+            TransaksiHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
                 if (mode === "detail") formRef.current?.disabled(true)
                 if (status) {
@@ -81,7 +81,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         actionType: "modal",
                         onClick: ({ loading, modalRef }) => {
                             loading(true)
-                            TransaksiPembeliHelper.delete(id, ({ status }) => {
+                            TransaksiHelper.delete(id, ({ status }) => {
                                 loading(false)
                                 status && (modalRef.hide(), onSuccess())
                             })
