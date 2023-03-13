@@ -59,7 +59,14 @@ export default function TransaksiForm({ title,  id, hide, onSuccess = () => { } 
                             },
                         }
                     },
-                    `jumlah|label.text=Jumlah (Kg)|validationRules=required,pattern.number,min.1,maxLength.10`,
+                    // `|label.text=|validationRules=required,pattern.number,min.1,maxLength.10`,
+                    {
+                        dataField: "jumlah",
+                        label: {
+                            text: "Jumlah (Kg)"
+                        },
+                        validationRules:['required','pattern.number','min.1','maxLength.10']
+                    },
                     {
                         dataField: "tanggalDibutuhkan",
                         label: {
