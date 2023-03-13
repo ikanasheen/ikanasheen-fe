@@ -39,7 +39,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         label: {
                             text: "Harga yang Ditawarkan (Per Kg)"
                         },
-                        validationRules:["maxLength.10"],
+                        validationRules:["maxLength.10", "pattern.number"],
                         editorOptions:{
                             disabled:true
                         }

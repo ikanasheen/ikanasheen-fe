@@ -4,12 +4,14 @@ import { credential, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 import IkanHelper from "helper/daftar-ikan/IkanHelper"
+import moment from "moment";
 
 export default function TransaksiForm({ title,  id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const userId = credential.storage.get("user")?.idUser;
     const [statusTransaksi, setStatusTransaksi] = useState();
+    const [date] = useState<string>(moment().format("YYYY-MM-DD"));
 
     const form: FormGroupModel = {
         apperance: "filled",
@@ -57,13 +59,17 @@ export default function TransaksiForm({ title,  id, hide, onSuccess = () => { } 
                             },
                         }
                     },
-                    `jumlah|label.text=Jumlah (Kg)|validationRules=required`,
+                    `jumlah|label.text=Jumlah (Kg)|validationRules=required, min.1`,
                     {
                         dataField: "tanggalDibutuhkan",
                         label: {
                             text: "Tanggal Dibutuhkan"
                         },
-                        editorType: "date"
+                        editorType: "date",
+                        editorOptions:{
+                            minDate: date,
+                        },
+                        validationRules:['required']
                     },
                     `alamat|label.text=Alamat Lengkap|editoryType=textarea|validationRules=required`,
                     `catatan|label.text=Catatan|editoryType=textarea|validationRules=required`,

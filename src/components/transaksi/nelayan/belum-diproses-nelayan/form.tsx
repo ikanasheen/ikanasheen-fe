@@ -4,7 +4,6 @@ import { credential,  mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 import NegoConst from "consts/isNego.const";
-import { kMaxLength } from "buffer";
 
 export default function TransaksiForm({ title, mode,id, idUserNelayan, hargaNego, isNego,hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
@@ -36,7 +35,7 @@ export default function TransaksiForm({ title, mode,id, idUserNelayan, hargaNego
                             text: "Harga Awal (Per Kg)"
                         },
                         editorType: "number",
-                        validationRules:["maxLength.10"],
+                        validationRules:["maxLength.10", "pattern.number"],
                         editorOptions: {
                             disabled: true,
                         }
@@ -63,7 +62,7 @@ export default function TransaksiForm({ title, mode,id, idUserNelayan, hargaNego
                         label: {
                             text: "Harga Nego (Per Kg)"
                         },
-                        validationRules:["maxLength.10"],
+                        validationRules:["maxLength.10", "pattern.number"],
                         editorOptions: {
                             disabled: true,
                         }
