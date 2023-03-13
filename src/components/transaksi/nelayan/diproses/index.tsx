@@ -4,18 +4,19 @@ import { MainLayoutProps } from "shared/layout/main-layout";
 import BreadcrumbLayout from "shared/layout/breadcrumb-layout";
 import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
-// import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import TransaksiHelper from "helper/transaksi/TransaksiHelper";
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { credential } from "lib";
+
 const Form = lazy(() => import("./form"));
 
 export default function TransaksiList(props: MainLayoutProps) {
     const tableRef = useRef<TableRef>(null);
-    
+    const userId = credential.storage.get("user")?.idUser;
+
     const form = (id?: string) => {
         drawerLayout({
             render: (props) => <Form
-                title="Transaksi yang Diajukan Pembeli"
+                title="Transaksi Diproses"
                 id={id}
                 {...props}
             />,
@@ -25,7 +26,6 @@ export default function TransaksiList(props: MainLayoutProps) {
 
     const table: TableModel = {
         helper: (data) => TransaksiHelper.retrieve(data),
-        // title:"Transaksi yang Diajukan Pembeli",
         allowSearching: {
             fullWidth: true
         },
@@ -33,11 +33,15 @@ export default function TransaksiList(props: MainLayoutProps) {
             sticky: "left"
         },
         temporaryParameter: [{
+            propReq: "idUserNelayan",
+            value: userId,
+            opt: "filter"
+        },{
             propReq: "status",
-            value: ['DIAJUKAN'],
+            value: ['DIPROSES'],
             opt: "filter"
         }],
-        onRowClick: ({ rowData }) => form(rowData.idTransaksi),
+        // onRowClick: ({ rowData }) => form(rowData.id),
         columns: [
             `idTransaksi|caption=ID Transaksi|width=180`,
             `namaIkan|caption=Nama Komoditi|width=180`,
@@ -71,12 +75,13 @@ export default function TransaksiList(props: MainLayoutProps) {
                 },
                 allowSorting: true,
             },
-            {
-                sticky: "right",
-                icon: false,
-                width: 60,
-                template: () => <CheckCircleIcon className="fs-18" />
-            }
+            // {
+            //     sticky: "right",
+            //     icon: false,
+            //     width: 60,
+            //     template: () => <CheckCircleIcon className="fs-18" />
+            //     // visible: ({ data }) => data.requestStatus == "Requested" || data.requestStatus == "Approved" //hide when status 
+            // }
         ]
     }
 

@@ -2,12 +2,12 @@ import { MainLayoutProps } from "shared/layout/main-layout";
 import { lazy } from "react";
 
 import MainLayout from "shared/layout/main-layout";
-const MainComponent = lazy(() => import("components/transaksi/nelayan/transaksi-saya"));
+const MainComponent = lazy(() => import("components/transaksi/nelayan/selesai"));
 
 const props: MainLayoutProps = {
-    title: "Transaksi saya",
+    title: "Transaksi",
     mode: "index",
-    menuCode: "transaksi-saya",
+    menuCode: "transaksi-nelayan-selesai",
     actionCode: "list",
     usingContainer: false
 }

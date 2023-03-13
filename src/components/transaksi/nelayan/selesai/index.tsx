@@ -16,7 +16,7 @@ export default function TransaksiList(props: MainLayoutProps) {
     const form = (id?: string) => {
         drawerLayout({
             render: (props) => <Form
-                title="Transaksi Saya"
+                title="Transaksi Selesai"
                 id={id}
                 {...props}
             />,
@@ -38,7 +38,7 @@ export default function TransaksiList(props: MainLayoutProps) {
             opt: "filter"
         },{
             propReq: "status",
-            value: ['DIPROSES','DIBATALKAN','NEGO','SELESAI'],
+            value: ['SELESAI'],
             opt: "filter"
         }],
         // onRowClick: ({ rowData }) => form(rowData.id),
@@ -75,13 +75,6 @@ export default function TransaksiList(props: MainLayoutProps) {
                 },
                 allowSorting: true,
             },
-            // {
-            //     sticky: "right",
-            //     icon: false,
-            //     width: 60,
-            //     template: () => <CheckCircleIcon className="fs-18" />
-            //     // visible: ({ data }) => data.requestStatus == "Requested" || data.requestStatus == "Approved" //hide when status 
-            // }
         ]
     }
 

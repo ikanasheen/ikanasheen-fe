@@ -100,7 +100,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
     //children transaksi nelayan
     {
         menuCode: "transaksi-belum-diproses-nelayan",
-        menuName: "Semua Transaksi",
+        menuName: "Transaksi Diajukan",
         menuParent: "transaksi-nelayan",
         details: ["list", "update"],
         menuIcon: "material-icons-round|minimize",
@@ -108,15 +108,33 @@ export const MenuConst: MenuPermissionWrapper[] = [
         idRole: [3]
     },
     {
-        menuCode: "transaksi-saya",
-        menuName: "Transaksi Saya",
+        menuCode: "transaksi-nelayan-diproses",
+        menuName: "Transaksi Diproses",
         menuParent: "transaksi-nelayan",
         details: ["list"],
         menuIcon: "material-icons-round|minimize",
-        menuPath: "/transaksi/nelayan/transaksi-saya",
+        menuPath: "/transaksi/nelayan/diproses",
+        idRole: [3]
+    },    
+    {
+        menuCode: "transaksi-nelayan-nego",
+        menuName: "Transaksi Nego",
+        menuParent: "transaksi-nelayan",
+        details: ["list"],
+        menuIcon: "material-icons-round|minimize",
+        menuPath: "/transaksi/nelayan/nego",
         idRole: [3]
     },
-    //transaksi pembeli
+    {
+        menuCode: "transaksi-nelayan-selesai",
+        menuName: "Transaksi Selesai",
+        menuParent: "transaksi-nelayan",
+        details: ["list"],
+        menuIcon: "material-icons-round|minimize",
+        menuPath: "/transaksi/nelayan/selesai",
+        idRole: [3]
+    },
+    //children transaksi pembeli
     {
         menuCode: "transaksi-belum-diproses-pembeli",
         menuName: "Transaksi Belum Diproses",

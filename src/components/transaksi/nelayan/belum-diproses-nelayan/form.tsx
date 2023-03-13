@@ -34,7 +34,7 @@ export default function TransaksiForm({ title, mode,id, idUserNelayan, hargaNego
                         label: {
                             text: "Harga Awal"
                         },
-                        editorType: "label",
+                        editorType: "number",
                         editorOptions: {
                             disabled: true,
                         }
