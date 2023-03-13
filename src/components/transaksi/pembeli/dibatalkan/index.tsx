@@ -6,7 +6,6 @@ import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
 import TransaksiPembeliHelper from "helper/transaksi/TransaksiPembeliHelper";
 import { credential } from "lib";
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const Form = lazy(() => import("./form"))
 
@@ -17,7 +16,7 @@ export default function TransaksiList(props: MainLayoutProps) {
     const form = (id?: string) => {
         drawerLayout({
             render: (props) => <Form
-                title="Transaksi Diproses"
+                title="Transaksi Dibatalkan"
                 id={id}
                 {...props}
             />,
@@ -39,10 +38,10 @@ export default function TransaksiList(props: MainLayoutProps) {
             opt: "filter"
         },{
             propReq: "status",
-            value: ['DIPROSES'],
+            value: ['DIBATALKAN'],
             opt: "filter"
         }],
-        onRowClick: ({ rowData }) => form(rowData.idTransaksi),
+        // onRowClick: ({ rowData }) => form(rowData.idTransaksi),
         columns: [
             `idTransaksi|caption=ID Transaksi|width=180`,
             `namaIkan|caption=Nama Komoditi|width=180`,
@@ -76,12 +75,6 @@ export default function TransaksiList(props: MainLayoutProps) {
                 },
                 allowSorting: true,
             },
-            {
-                sticky: "right",
-                icon: false,
-                width: 60,
-                template: () => <ArrowForwardIcon className="fs-18" />
-            }
         ]
     }
 

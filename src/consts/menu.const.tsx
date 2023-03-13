@@ -121,18 +121,45 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuCode: "transaksi-belum-diproses-pembeli",
         menuName: "Transaksi Belum Diproses",
         menuParent: "transaksi-pembeli",
-        details: ["list", "create", "update", "delete"],
+        details: ["list", "create", "update"],
         menuIcon: "material-icons-round|minimize",
         menuPath: "/transaksi/pembeli/belum-diproses-pembeli",
         idRole: [4]
     },
     {
         menuCode: "transaksi-sudah-diproses-pembeli",
-        menuName: "Transaksi Sudah Diproses",
+        menuName: "Transaksi Diproses",
         menuParent: "transaksi-pembeli",
         details: ["list"],
         menuIcon: "material-icons-round|minimize",
         menuPath: "/transaksi/pembeli/sudah-diproses-pembeli",
+        idRole: [4]
+    },
+    {
+        menuCode: "transaksi-pembeli-nego",
+        menuName: "Transaksi Nego",
+        menuParent: "transaksi-pembeli",
+        details: ["list"],
+        menuIcon: "material-icons-round|minimize",
+        menuPath: "/transaksi/pembeli/nego",
+        idRole: [4]
+    },
+    {
+        menuCode: "transaksi-pembeli-dibatalkan",
+        menuName: "Transaksi Dibatalkan",
+        menuParent: "transaksi-pembeli",
+        details: ["list"],
+        menuIcon: "material-icons-round|minimize",
+        menuPath: "/transaksi/pembeli/dibatalkan",
+        idRole: [4]
+    },
+    {
+        menuCode: "transaksi-pembeli-selesai",
+        menuName: "Transaksi Selesai",
+        menuParent: "transaksi-pembeli",
+        details: ["list"],
+        menuIcon: "material-icons-round|minimize",
+        menuPath: "/transaksi/pembeli/selesai",
         idRole: [4]
     },
 

@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
-import { mounted } from "lib";
+import {  mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
-import TransaksiHelper from "helper/transaksi/TransaksiHelper";
+import TransaksiPembeliHelper from "helper/transaksi/TransaksiPembeliHelper";
 
 export default function TransaksiForm({ title, mode, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
@@ -16,7 +16,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
         showLabelShrink: true,
         onSubmit: (values) => {
             setLoading(true);
-            TransaksiHelper.createupdate(values, values.id, ({ status }) => {
+            TransaksiPembeliHelper.createupdate(values, values.id, ({ status }) => {
                 setLoading(false);
                 if (status) onSuccess();
             })
@@ -30,8 +30,8 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         label: {
                             text: "Nama Nelayan"
                         },
-                        editorOptions: {
-                            disabled: true
+                        editorOptions:{
+                            disabled:true
                         }
                     },
                     {
@@ -39,8 +39,8 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         label: {
                             text: "Harga yang Ditawarkan"
                         },
-                        editorOptions: {
-                            disabled: true
+                        editorOptions:{
+                            disabled:true
                         }
                     },
 
@@ -52,7 +52,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
     mounted(() => {
         if (id) {
             setLoading(true)
-            TransaksiHelper.detail(id, ({ status, data }) => {
+            TransaksiPembeliHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
                 if (mode === "detail") formRef.current?.disabled(true)
                 if (status) {
@@ -62,19 +62,6 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
             })
         }
     })
-    const terimaTransaksi = ({ loading }: { loading: Function }) => {
-        loading(true);
-        // const { idTransaksi };
-        if (id) {
-            loading(true)
-            TransaksiHelper.terima(id, ({ status }) => {
-                if (status) {
-                    // formRef.current?.updateData(data);
-                    onSuccess();
-                }
-            })
-        }
-    }
 
     return <BgsGroupForm
         {...form}
@@ -94,7 +81,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         actionType: "modal",
                         onClick: ({ loading, modalRef }) => {
                             loading(true)
-                            TransaksiHelper.delete(id, ({ status }) => {
+                            TransaksiPembeliHelper.delete(id, ({ status }) => {
                                 loading(false)
                                 status && (modalRef.hide(), onSuccess())
                             })
@@ -106,13 +93,11 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
             </BgsButton>}</>}
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
-                {id != null && status == "DIPROSES" ? // && status dalam proses
-                    <BgsButton variant="contained" className="btn-terima" color="primary" loading={loading}
-                        modalOptions={{
-                            message: "Apakah Anda yakin untuk memproses transaksi ini?",
-                            width: 350
-                        }} onClick={e => terimaTransaksi(e)} >Terima Pemesanan</BgsButton>
-                    : null
+                {id != null && status == "NEGO" ? // && status nego
+                    <BgsButton variant="contained" className="btn-batalkan" loading={loading} visibleLoading={false} >Tolak Tawaran</BgsButton>
+                    : id != null && status == "DIPROSES" ? // && status dalam proses
+                        <BgsButton variant="contained" className="btn-terima" color="primary" loading={loading} visibleLoading={false} >Terima Pemesanan</BgsButton>
+                        : null
                 }
             </>}
         >

@@ -2,15 +2,14 @@ import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
 import { credential, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
-import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 import IkanHelper from "helper/daftar-ikan/IkanHelper"
 
-export default function TransaksiForm({ title, mode, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
+export default function TransaksiForm({ title,  id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const userId = credential.storage.get("user")?.idUser;
-    const [status, setStatus] = useState();
+    const [statusTransaksi, setStatusTransaksi] = useState();
 
     const form: FormGroupModel = {
         apperance: "filled",
@@ -18,7 +17,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
         showLabelShrink: true,
         onSubmit: (values) => {
             setLoading(true);
-            TransaksiHelper.createupdate(values, values.id, ({ status }) => {
+            TransaksiHelper.createupdate(values, values.idTransaksi, ({ status }) => {
                 setLoading(false);
                 if (status) onSuccess();
             })
@@ -56,25 +55,8 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                                     `deskripsi|caption=Deskripsi|width=200|className=text-break`,
                                 ]
                             },
-                            // onChange: ({ data }) => {
-                            //     if (data) {
-                            //         formRef.current?.updateData({
-                            //             hargaDasar: data.hargaDasar
-                            //         })
-                            //         formRef.current?.itemOption("hargaDasar").option("editorOptions.disabled", true);
-                            //     }
-                            // }
                         }
                     },
-                    // {
-                    //     dataField: "hargaDasar",
-                    //     label: {
-                    //         text: "Harga Normal"
-                    //     },
-                    //     editorOptions:{
-                    //         disabled:true
-                    //     }
-                    // },
                     `jumlah|label.text=Jumlah (Kg)|validationRules=required`,
                     {
                         dataField: "tanggalDibutuhkan",
@@ -96,14 +78,27 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
             setLoading(true)
             TransaksiHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
-                if (mode === "detail") formRef.current?.disabled(true)
+                if (data.status == "DIAJUKAN") formRef.current?.disabled(true)
                 if (status) {
-                    setStatus(data.status);
+                    setStatusTransaksi(data.status);
                     formRef.current?.updateData(data);
                 }
             })
         }
     })
+
+    const batalkanTransaksi = ({ loading }: { loading: Function }) => {
+        loading(true);
+        // const { idTransaksi };
+        if (id) {
+            loading(true)
+            TransaksiHelper.batalkan(id, ({ status }) => {
+                if (status) {
+                    onSuccess();
+                }
+            })
+        }
+    }
 
     return <BgsGroupForm
         {...form}
@@ -131,14 +126,18 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                     }]
                 }}
             >
-                <MoreHorizRoundedIcon />
             </BgsButton>}</>}
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
-                {id != null && status == "DIAJUKAN"? // && status diajukan
-                    <BgsButton variant="contained" className="btn-batalkan" loading={loading} visibleLoading={false} >Batalkan Pemesanan</BgsButton>
-                    : null
+                {id != null && statusTransaksi == "DIAJUKAN" ? // && status diajukan
+                    <BgsButton variant="contained" className="btn-batalkan"
+                        modalOptions={{
+                            message: "Apakah Anda yakin untuk memproses transaksi ini?",
+                            width: 350
+                        }} onClick={e => batalkanTransaksi(e)} >Batalkan Pemesanan</BgsButton>
+                    : <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Ajukan</BgsButton>
                 }
+
             </>}
         >
             <BgsForm name="main" {...group} />
