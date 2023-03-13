@@ -1,13 +1,16 @@
 import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
-import { isArray, mounted } from "lib";
+import { credential, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
-import TransaksiNelayanHelper from "helper/transaksi/TransaksiNelayanHelper";
+import TransaksiHelper from "helper/transaksi/TransaksiHelper";
+import IkanHelper from "helper/daftar-ikan/IkanHelper"
 
 export default function TransaksiForm({ title, mode, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
+    const userId = credential.storage.get("user")?.idUser;
+    const [status, setStatus] = useState();
 
     const form: FormGroupModel = {
         apperance: "filled",
@@ -15,22 +18,74 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
         showLabelShrink: true,
         onSubmit: (values) => {
             setLoading(true);
-            TransaksiNelayanHelper.createupdate(values, values.id, ({ status }) => {
+            TransaksiHelper.createupdate(values, values.id, ({ status }) => {
                 setLoading(false);
                 if (status) onSuccess();
             })
+        },
+        formData: {
+            idUserPembeli: userId
         },
         item: {
             main: {
                 spacing: 3,
                 items: [
-                    `namaIkan|label.text=Nama Komoditi|validationRules=required`,
+                    {
+                        dataField: "idIkan",
+                        label: {
+                            text: "Nama Komoditi"
+                        },
+                        validationRules: ["required"],
+                        editorType: "select",
+                        editorOptions: {
+                            mode: "popup",
+                            helper: data => IkanHelper.retrieve(data),
+                            displayExpr: ({ namaIkan, hargaDasar }) => `${namaIkan} - Rp ${hargaDasar} /Kg`,
+                            valueExpr: "idIkan",
+                            tableOptions: {
+                                mode: "popup",
+                                showIndexing: true,
+                                allowSearching: {
+                                    fullWidth: true
+                                },
+                                columns: [
+                                    "idIkan|caption=Id Ikan|width=150",
+                                    "namaIkan|caption=Nama Ikan|width=150",
+                                    "ukuran|caption=Ukuran|width=150",
+                                    `hargaDasar|caption=Harga Dasar|dataType=number|width=150`,
+                                    `deskripsi|caption=Deskripsi|width=200|className=text-break`,
+                                ]
+                            },
+                            // onChange: ({ data }) => {
+                            //     if (data) {
+                            //         formRef.current?.updateData({
+                            //             hargaDasar: data.hargaDasar
+                            //         })
+                            //         formRef.current?.itemOption("hargaDasar").option("editorOptions.disabled", true);
+                            //     }
+                            // }
+                        }
+                    },
+                    // {
+                    //     dataField: "hargaDasar",
+                    //     label: {
+                    //         text: "Harga Normal"
+                    //     },
+                    //     editorOptions:{
+                    //         disabled:true
+                    //     }
+                    // },
                     `jumlah|label.text=Jumlah (Kg)|validationRules=required`,
-                    `hargaDiajukan|label.text=Harga Diajukan`,
-                    `hargaNego|label.text=Harga Nego`,
-                    `hargaAkhir|label.text=Harga Akhir`,
-                    `tanggalDibutuhkan|label.text=Tanggal Dibutuhkan|editoryType=date`,
-                    `catatan|label.text=Catatan|editoryType=textarea`,
+                    {
+                        dataField: "tanggalDibutuhkan",
+                        label: {
+                            text: "Tanggal Dibutuhkan"
+                        },
+                        editorType: "date"
+                    },
+                    `alamat|label.text=Alamat Lengkap|editoryType=textarea|validationRules=required`,
+                    `catatan|label.text=Catatan|editoryType=textarea|validationRules=required`,
+
                 ]
             },
         }
@@ -39,12 +94,11 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
     mounted(() => {
         if (id) {
             setLoading(true)
-            TransaksiNelayanHelper.detail(id, ({ status, data }) => {
+            TransaksiHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
                 if (mode === "detail") formRef.current?.disabled(true)
                 if (status) {
-                    if (isArray(data.roles, 0)) data.roles = data.roles[0].code;
-
+                    setStatus(data.status);
                     formRef.current?.updateData(data);
                 }
             })
@@ -69,7 +123,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         actionType: "modal",
                         onClick: ({ loading, modalRef }) => {
                             loading(true)
-                            TransaksiNelayanHelper.delete(id, ({ status }) => {
+                            TransaksiHelper.delete(id, ({ status }) => {
                                 loading(false)
                                 status && (modalRef.hide(), onSuccess())
                             })
@@ -81,7 +135,10 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
             </BgsButton>}</>}
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
-                <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Ajukan {id && " Perubahan"}</BgsButton>
+                {id != null && status == "DIAJUKAN"? // && status diajukan
+                    <BgsButton variant="contained" className="btn-batalkan" loading={loading} visibleLoading={false} >Batalkan Pemesanan</BgsButton>
+                    : null
+                }
             </>}
         >
             <BgsForm name="main" {...group} />

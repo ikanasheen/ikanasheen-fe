@@ -1,14 +1,14 @@
 import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
-import { isArray, mounted } from "lib";
+import {  mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import TransaksiPembeliHelper from "helper/transaksi/TransaksiPembeliHelper";
-import { SatuanBeratConst } from "consts";
 
 export default function TransaksiForm({ title, mode, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
+    const [status, setStatus] = useState();
 
     const form: FormGroupModel = {
         apperance: "filled",
@@ -25,35 +25,25 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
             main: {
                 spacing: 3,
                 items: [
-                    `namaIkan|label.text=Nama Komoditi|validationRules=required`,
-                    `jumlah|label.text=Jumlah|validationRules=required`,
                     {
-                        dataField: "satuan",
-                        editorType: "select",
+                        dataField: "namaNelayan",
                         label: {
-                            text: ""
+                            text: "Nama Nelayan"
                         },
-                        editorOptions: {
-                            dataSource: SatuanBeratConst,
-                            displayExpr: "display",
-                            valueExpr: "value"
-                        },
+                        editorOptions:{
+                            disabled:true
+                        }
                     },
-                    `namaIkan|label.text=Nama Pembeli|editoryType=textarea|validationRules=required`,
                     {
-                        dataField: "ekspedisi",
-                        editorType: "select",
+                        dataField: "hargaNego",
                         label: {
-                            text: "Ekspedisi"
+                            text: "Harga yang Ditawarkan"
                         },
-                        editorOptions: {
-                            dataSource: SatuanBeratConst,
-                            displayExpr: "display",
-                            valueExpr: "value"
-                        },
+                        editorOptions:{
+                            disabled:true
+                        }
                     },
-                    `tanggal|label.text=Tanggal Pembelian|editoryType=date`,
-                    `catatan|label.text=Catatan|editoryType=textarea`,
+
                 ]
             },
         }
@@ -66,8 +56,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                 setLoading(false)
                 if (mode === "detail") formRef.current?.disabled(true)
                 if (status) {
-                    if (isArray(data.roles, 0)) data.roles = data.roles[0].code;
-
+                    setStatus(data.status);
                     formRef.current?.updateData(data);
                 }
             })
@@ -103,14 +92,13 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                 <MoreHorizRoundedIcon />
             </BgsButton>}</>}
             footer={<>
-                {id != null ? // && status diajukan
-                    <BgsButton variant="contained" className="btn-batalkan" loading={loading} visibleLoading={false} >Batalkan Pemesanan</BgsButton>
-                    : id != null ? // && status dalam proses
+                <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
+                {id != null && status == "NEGO" ? // && status nego
+                    <BgsButton variant="contained" className="btn-batalkan" loading={loading} visibleLoading={false} >Tolak Tawaran</BgsButton>
+                    : id != null && status == "DIPROSES" ? // && status dalam proses
                         <BgsButton variant="contained" className="btn-terima" color="primary" loading={loading} visibleLoading={false} >Terima Pemesanan</BgsButton>
                         : null
                 }
-                <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
-                <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Simpan {id && " Perubahan"}</BgsButton>
             </>}
         >
             <BgsForm name="main" {...group} />

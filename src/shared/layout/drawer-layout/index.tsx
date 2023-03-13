@@ -22,7 +22,7 @@ export interface DrawerRenderProps extends MainLayoutProps {
     params?: any;
     id?: any;
     idUserNelayan?:any,
-    hargaAwal?:any,
+    hargaNego?:any,
     isNego?:any,
     closeOnOutsideDisabled: Function;
 }

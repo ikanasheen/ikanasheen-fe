@@ -5,7 +5,7 @@ import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 import NegoConst from "consts/isNego.const";
 
-export default function TransaksiForm({ title, mode,id, idUserNelayan, hargaAwal, isNego,hide, onSuccess = () => { } }: DrawerRenderProps) {
+export default function TransaksiForm({ title, mode,id, idUserNelayan, hargaNego, isNego,hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const userId = credential.storage.get("user")?.idUser;
@@ -34,6 +34,7 @@ export default function TransaksiForm({ title, mode,id, idUserNelayan, hargaAwal
                         label: {
                             text: "Harga Awal"
                         },
+                        editorType: "label",
                         editorOptions: {
                             disabled: true,
                         }
@@ -87,7 +88,7 @@ export default function TransaksiForm({ title, mode,id, idUserNelayan, hargaAwal
         // const { idTransaksi };
         if (id) {
             loading(true)
-            TransaksiHelper.proses(id, idUserNelayan, hargaAwal, isNego, ({ data }) => {
+            TransaksiHelper.proses(id, idUserNelayan, hargaNego, isNego, ({ data }) => {
                 formRef.current?.updateData(data);
             })
         }

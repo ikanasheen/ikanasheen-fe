@@ -6,6 +6,7 @@ import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
 import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 import { credential } from "lib";
+import CancelIcon from '@mui/icons-material/Cancel';
 const Form = lazy(() => import("./form"));
 
 export default function TransaksiList(props: MainLayoutProps) {
@@ -34,6 +35,10 @@ export default function TransaksiList(props: MainLayoutProps) {
         temporaryParameter: [{
             propReq: "idUserPembeli",
             value: userId,
+            opt: "filter"
+        },{
+            propReq: "status",
+            value: ['DIAJUKAN'],
             opt: "filter"
         }],
         onRowClick: ({ rowData }) => form(rowData.idTransaksi),
@@ -70,13 +75,12 @@ export default function TransaksiList(props: MainLayoutProps) {
                 },
                 allowSorting: true,
             },
-            // {
-            //     sticky: "right",
-            //     icon: false,
-            //     width: 60,
-            //     template: () => <CheckCircleIcon className="fs-18" />
-            //     // visible: ({ data }) => data.requestStatus == "Requested" || data.requestStatus == "Approved" //hide when status 
-            // }
+            {
+                sticky: "right",
+                icon: false,
+                width: 60,
+                template: () => <CancelIcon className="fs-18" />
+            }
         ]
     }
 
