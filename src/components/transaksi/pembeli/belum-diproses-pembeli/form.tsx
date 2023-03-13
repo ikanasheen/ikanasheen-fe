@@ -51,7 +51,7 @@ export default function TransaksiForm({ title,  id, hide, onSuccess = () => { } 
                                     "idIkan|caption=Id Ikan|width=150",
                                     "namaIkan|caption=Nama Ikan|width=150",
                                     "ukuran|caption=Ukuran|width=150",
-                                    `hargaDasar|caption=Harga Dasar|dataType=number|width=150`,
+                                    `hargaDasar|caption=Harga Dasar(Per Kg)|dataType=number|width=150`,
                                     `deskripsi|caption=Deskripsi|width=200|className=text-break`,
                                 ]
                             },

@@ -55,8 +55,8 @@ export default function SosialisasiList(props: MainLayoutProps) {
             },
             `konten|caption=Konten|width=300`,
             `penulis|width=160`,
-            `tanggalDibuat|dataType=date|width=160`,
-            `tanggalDiubah|dataType=date|width=160`,
+            `tanggalDibuat|dataType=date|width=180`,
+            `tanggalDiubah|caption=Tanggal Disunting|dataType=date|width=180`,
             {
                 dataField: "status",
                 caption: "Status",

@@ -39,6 +39,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                         label: {
                             text: "Harga yang Ditawarkan"
                         },
+                        validationRules:["maxLength.10"],
                         editorOptions: {
                             disabled: true
                         }
