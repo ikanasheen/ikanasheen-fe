@@ -62,6 +62,7 @@ export default function TransaksiForm({ title, mode,id, idUserNelayan, hargaNego
                         label: {
                             text: "Harga Nego (Per Kg)"
                         },
+                        editorType: "number",
                         validationRules:["maxLength.10", "pattern.number"],
                         editorOptions: {
                             disabled: true,

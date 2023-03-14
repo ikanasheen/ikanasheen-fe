@@ -39,6 +39,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                         label: {
                             text: "Harga yang Ditawarkan (Per Kg)"
                         },
+                        editorType: "number",
                         validationRules:["maxLength.10", "pattern.number"],
                         editorOptions: {
                             disabled: true
@@ -49,6 +50,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                         label: {
                             text: "Harga Akumulasi Nego"
                         },
+                        editorType: "number",
                         validationRules:["maxLength.10", "pattern.number"],
                         editorOptions: {
                             disabled: true

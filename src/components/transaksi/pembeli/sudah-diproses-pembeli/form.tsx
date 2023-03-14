@@ -39,6 +39,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         label: {
                             text: "Harga Akhir"
                         },
+                        editorType: "number",
                         validationRules:["maxLength.10", "pattern.number"],
                         editorOptions: {
                             disabled: true
