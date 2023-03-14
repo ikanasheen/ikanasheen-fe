@@ -44,6 +44,16 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                             disabled: true
                         }
                     },
+                    {
+                        dataField: "hargaAkumulasiNego",
+                        label: {
+                            text: "Harga Akumulasi Nego"
+                        },
+                        validationRules:["maxLength.10", "pattern.number"],
+                        editorOptions: {
+                            disabled: true
+                        }
+                    },
 
                 ]
             },
