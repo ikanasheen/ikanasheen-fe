@@ -78,7 +78,7 @@ export default function TransaksiForm({ title,  id, hide, onSuccess = () => { } 
                         },
                         validationRules:['required']
                     },
-                    `alamat|label.text=Alamat Lengkap|editoryType=textarea|validationRules=required,maxLength.255`,
+                    `alamatPembeli|label.text=Alamat Lengkap|editoryType=textarea|validationRules=required,maxLength.255`,
                     `catatan|label.text=Catatan|editoryType=textarea|validationRules=required,maxLength.255`,
 
                 ]
