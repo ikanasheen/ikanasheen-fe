@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
-import { credential,  mounted } from "lib";
+import { credential, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 import NegoConst from "consts/isNego.const";
@@ -18,14 +18,13 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
             setLoading(true);
             TransaksiHelper.prosesTransaksi(values, ({ status }) => {
                 setLoading(false);
-                if (status) 
-                onSuccess();
+                if (status)
+                    onSuccess();
             })
         },
         formData: {
             isNego: NegoConst[1].value,
             idUserNelayan: userId,
-            
         },
         item: {
             main: {
@@ -37,7 +36,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                             text: "Harga Awal (Per Kg)"
                         },
                         editorType: "number",
-                        validationRules:["maxLength.10", "pattern.number"],
+                        validationRules: ["maxLength.10", "pattern.number"],
                         editorOptions: {
                             disabled: true,
                         }
@@ -53,8 +52,20 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                             displayExpr: "display",
                             valueExpr: "value",
                             onChange: ({ data }) => {
-                                if (data && NegoConst[0].value) {
-                                    formRef.current?.itemOption("hargaNego").option("editorOptions.disabled", false)
+                                // switch (data) {
+                                //     case data && NegoConst[0].value:
+                                //         formRef.current?.itemOption("hargaNego").option("visible", true)
+                                //         break;
+                                //     default:
+                                //         formRef.current?.itemOption("hargaNego").option("visible", false)
+                                //         break;
+                                // }
+                                if(data && NegoConst[0].value) {
+                                    formRef.current?.itemOption("hargaNego").option("visible", true)
+                                }else if(data && NegoConst[1].value){
+                                    formRef.current?.itemOption("hargaNego").option("visible", false)
+                                }else{
+                                    formRef.current?.itemOption("hargaNego").option("visible", false)
                                 }
                             }
                         },
@@ -65,10 +76,8 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                             text: "Harga Nego (Per Kg)"
                         },
                         editorType: "number",
-                        validationRules:["maxLength.10",'min.1', "pattern.number"],
-                        editorOptions: {
-                            disabled: true,
-                        }
+                        visible: false,
+                        validationRules: ["maxLength.10", 'min.1', "pattern.number"]
                     }
                 ]
             },
@@ -131,7 +140,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
             // </BgsButton>}</>}
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
-                <BgsButton className="btn-save"  loading={loading} type="submit">Proses</BgsButton>
+                <BgsButton className="btn-save" loading={loading} type="submit">Proses</BgsButton>
             </>}
         >
             <BgsForm name="main" {...group} />
