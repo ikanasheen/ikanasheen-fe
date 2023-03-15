@@ -50,9 +50,9 @@ export default function TransaksiForm({ title,  id, hide, onSuccess = () => { } 
                                     fullWidth: true
                                 },
                                 columns: [
-                                    "idIkan|caption=Id Ikan|width=150",
-                                    "namaIkan|caption=Nama Ikan|width=150",
-                                    "ukuran|caption=Ukuran|width=150",
+                                    "idIkan|caption=Id Ikan|width=160",
+                                    "namaIkan|caption=Nama Ikan|width=180|className=text-break",
+                                    "ukuran|caption=Ukuran|width=180",
                                     `hargaDasar|caption=Harga Dasar(Per Kg)|dataType=number|width=150`,
                                     `deskripsi|caption=Deskripsi|width=200|className=text-break`,
                                 ]

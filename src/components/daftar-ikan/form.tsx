@@ -37,7 +37,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                             text: "Harga Dasar(Per Kg)"
                         },
                         editorType: "number",
-                        validationRules:["required","maxLength.10", "pattern.number"],
+                        validationRules:["required","maxLength.10",'min.1',  "pattern.number"],
                     },
                     `deskripsi|label.text=Deskripsi|validationRules=required,maxLength.255|editorType=textarea`,
                 ]
