@@ -2,9 +2,9 @@ import { DisplayValueStandardModel } from "models";
 
 export const NegoConst: DisplayValueStandardModel[] = [{
     display: "Ya",
-    value: "YA"
+    value: "Ya"
 }, {
     display: "Tidak",
-    value: "TIDAK"
+    value: "Tidak"
 }]
 export default NegoConst;

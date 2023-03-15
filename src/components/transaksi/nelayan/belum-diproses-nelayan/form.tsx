@@ -5,7 +5,7 @@ import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 import NegoConst from "consts/isNego.const";
 
-export default function TransaksiForm({ title, mode,id, idUserNelayan, hargaNego, isNego,hide, onSuccess = () => { } }: DrawerRenderProps) {
+export default function TransaksiForm({ title, mode, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const userId = credential.storage.get("user")?.idUser;
@@ -16,14 +16,16 @@ export default function TransaksiForm({ title, mode,id, idUserNelayan, hargaNego
         showLabelShrink: true,
         onSubmit: (values) => {
             setLoading(true);
-            TransaksiHelper.createupdate(values, values.idTransaksi, ({ status }) => {
+            TransaksiHelper.prosesTransaksi(values, ({ status }) => {
                 setLoading(false);
-                if (status) onSuccess();
+                if (status) 
+                onSuccess();
             })
         },
         formData: {
             isNego: NegoConst[1].value,
             idUserNelayan: userId,
+            
         },
         item: {
             main: {
@@ -63,7 +65,7 @@ export default function TransaksiForm({ title, mode,id, idUserNelayan, hargaNego
                             text: "Harga Nego (Per Kg)"
                         },
                         editorType: "number",
-                        validationRules:["maxLength.10", "pattern.number"],
+                        validationRules:["maxLength.10",'min.1', "pattern.number"],
                         editorOptions: {
                             disabled: true,
                         }
@@ -86,51 +88,50 @@ export default function TransaksiForm({ title, mode,id, idUserNelayan, hargaNego
         }
     })
 
-    const prosesTransaksi = ({ loading }: { loading: Function }) => {
-        loading(true);
-        // const { idTransaksi };
-        if (id) {
-            loading(true)
-            TransaksiHelper.proses(id, idUserNelayan, hargaNego, isNego, ({ data }) => {
-                formRef.current?.updateData(data);
-            })
-        }
-    }
+    // const prosesTransaksi = ({ loading }: { loading: Function }) => {
+    //     loading(true);
+    //     // const { idTransaksi };
+    //     if (id) {
+    //         loading(true)
+    //         TransaksiHelper.proses(id, ({ status }) => {
+    //             // formRef.current?.updateData(data);
+    //             if (status) {
+    //                 onSuccess();
+    //             }
+    //         })
+    //     }
+    // }
 
     return <BgsGroupForm
         {...form}
         ref={formRef}
         render={group => <DrawerLayout
             title={<>{id ? "Proses" : "Tambah"} <b>{title}</b></>}
-            action={<>{id && <BgsButton
-                actionType="menu"
-                variant="icon"
-                menuOptions={{
-                    className: "br-3",
-                    items: [{
-                        actionCode: "delete",
-                        className: "text-danger",
-                        prefix: () => <i className="ri-delete-bin-line me-2"></i>,
-                        text: "Delete",
-                        actionType: "modal",
-                        onClick: ({ loading, modalRef }) => {
-                            loading(true)
-                            TransaksiHelper.delete(id, ({ status }) => {
-                                loading(false)
-                                status && (modalRef.hide(), onSuccess())
-                            })
-                        }
-                    }]
-                }}
-            >
-            </BgsButton>}</>}
+            // action={<>{id && <BgsButton
+            //     actionType="menu"
+            //     variant="icon"
+            //     menuOptions={{
+            //         className: "br-3",
+            //         items: [{
+            //             actionCode: "delete",
+            //             className: "text-danger",
+            //             prefix: () => <i className="ri-delete-bin-line me-2"></i>,
+            //             text: "Delete",
+            //             actionType: "modal",
+            //             onClick: ({ loading, modalRef }) => {
+            //                 loading(true)
+            //                 TransaksiHelper.delete(id, ({ status }) => {
+            //                     loading(false)
+            //                     status && (modalRef.hide(), onSuccess())
+            //                 })
+            //             }
+            //         }]
+            //     }}
+            // >
+            // </BgsButton>}</>}
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
-                <BgsButton className="btn-save" actionType="modal" loading={loading}
-                    modalOptions={{
-                        message: "Apakah Anda yakin untuk memproses transaksi ini?",
-                        width: 350
-                    }} onClick={e => prosesTransaksi(e)}>Proses</BgsButton>
+                <BgsButton className="btn-save"  loading={loading} type="submit">Proses</BgsButton>
             </>}
         >
             <BgsForm name="main" {...group} />
