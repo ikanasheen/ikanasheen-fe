@@ -26,7 +26,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                 spacing: 3,
                 items: [
                     `namaIkan|label.text=Nama Komoditi|editorOptions.disabled=true|validationRules=required`,
-                    `jumlah|label.text=Jumlah (Kg)|editorOptions.disabled=true|validationRules=required,maxLength.10,pattern.number`,
+                    `jumlah|label.text=Jumlah (Kg)|editorOptions.disabled=true|validationRules=required,maxLength.255,pattern.numbe,min.1`,
                     {
                         dataField: "satuan",
                         editorType: "select",

@@ -36,7 +36,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                             text: "Harga Awal (Per Kg)"
                         },
                         editorType: "number",
-                        validationRules: ["maxLength.10", "pattern.number"],
+                        validationRules: ["maxLength.255",'min.1', "pattern.number"],
                         editorOptions: {
                             disabled: true,
                         }
@@ -77,7 +77,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         },
                         editorType: "number",
                         visible: false,
-                        validationRules: ["maxLength.10", 'min.1', "pattern.number"]
+                        validationRules: ["maxLength.255", 'min.1', "pattern.number"]
                     }
                 ]
             },

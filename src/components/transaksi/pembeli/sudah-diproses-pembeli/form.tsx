@@ -40,7 +40,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                             text: "Harga Akhir"
                         },
                         editorType: "number",
-                        validationRules:["maxLength.10", "pattern.number"],
+                        validationRules:["maxLength.255",'min.1', "pattern.number"],
                         editorOptions: {
                             disabled: true
                         }
