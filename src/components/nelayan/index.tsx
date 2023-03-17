@@ -68,7 +68,9 @@ export default function NelayanList(props: MainLayoutProps) {
                 action={<BgsButton className="hg-40 br-3 min-wt-140 bg-black" onClick={() => form()} actionCode="create"><AddIcon /> Tambah Baru</BgsButton>}
                 {...props}
             >
+                {/* <h2 className="mgl-100">Nelayan</h2> */}
                 <BgsTable ref={tableRef} {...table} />
+
             </BreadcrumbLayout>
         </div>
     </>

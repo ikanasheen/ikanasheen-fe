@@ -7,7 +7,7 @@ const MainComponent = lazy(() => import("components/sosialisasi"));
 const props: MainLayoutProps = {
     title: "Daftar Sosialisasi",
     mode: "index",
-    menuCode: "sosialisasi",
+    menuCode: "sosialisasi-all",
     actionCode: "list",
     usingContainer: false
 }

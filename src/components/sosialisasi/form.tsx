@@ -43,7 +43,7 @@ export default function SosialisasiForm({ title, id, hide, onSuccess = () => { }
                             valueExpr: "value",
                         },
                     },
-                    `konten|label.text=Konten|editorType=textarea|validationRules=required`,
+                    `konten|label.text=Konten|editorType=textarea|validationRules|editorOptions.rows=10`,
                     {
                         dataField: "status",
                         label: {

@@ -52,21 +52,8 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                             displayExpr: "display",
                             valueExpr: "value",
                             onChange: ({ data }) => {
-                                // switch (data) {
-                                //     case data && NegoConst[0].value:
-                                //         formRef.current?.itemOption("hargaNego").option("visible", true)
-                                //         break;
-                                //     default:
-                                //         formRef.current?.itemOption("hargaNego").option("visible", false)
-                                //         break;
-                                // }
-                                if(data && NegoConst[0].value) {
-                                    formRef.current?.itemOption("hargaNego").option("visible", true)
-                                }else if(data && NegoConst[1].value){
-                                    formRef.current?.itemOption("hargaNego").option("visible", false)
-                                }else{
-                                    formRef.current?.itemOption("hargaNego").option("visible", false)
-                                }
+                                formRef.current?.itemOption("hargaNego").option("visible", data.value===NegoConst[0].value)
+                                
                             }
                         },
                     },

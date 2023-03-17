@@ -1,7 +1,8 @@
 import { MenuPermissionWrapper } from "models/menu.model";
-
+// import menuAdmin from "./menu.admin.const"
 export const MenuConst: MenuPermissionWrapper[] = [
     //1 admin, 2 gov, 3 nelayan, 4 pembeli
+    // ...menuAdmin,
     //DASHBOARD
     {
         menuCode: "dashboard",
@@ -48,7 +49,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuName: "Transaksi",
         details: [],
         menuIcon: "material-icons-round|receipt_long",
-        menuPath: "/transaksi/all/semua-transaksi",
+        // menuPath: "/transaksi/all/semua-transaksi",
         idRole: [1,2]
     },
     {
@@ -57,7 +58,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuName: "Transaksi",
         details: [],
         menuIcon: "material-icons-round|receipt_long",
-        menuPath: "/transaksi/pembeli/transaksi-pembeli",
+        // menuPath: "/transaksi/pembeli/transaksi-pembeli",
         idRole: [4]
     },
     {
@@ -66,7 +67,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuName: "Transaksi",
         details: [],
         menuIcon: "material-icons-round|receipt_long",
-        menuPath: "/transaksi/nelayan/transaksi-nelayan",
+        // menuPath: "/transaksi/nelayan/transaksi-nelayan",
         idRole: [3]
     },
     //children admin, gov
@@ -184,7 +185,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
     
     //SOSIALISASI
     {
-        menuCode: "sosialisasi",
+        menuCode: "sosialisasi-all",
         menuName: "Sosialisasi",
         details: ["list", "create", "update"],
         menuIcon: "material-icons-round|tips_and_updates",
@@ -195,24 +196,14 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuCode: "sosialisasi",
         menuName: "Sosialisasi",
         details: [],
-        // children:[{
-        //     name :"Berita",
-        //     to :"sosialisasi-berita"
-        // },{
-        //     name :"Informasi",
-        //     to :"sosialisasi-infromasi"
-        // },{
-        //     name :"Berita",
-        //     to :"sosialisasi-pengembangan-diri"
-        // }],
         menuIcon: "material-icons-round|tips_and_updates",
-        menuPath: "/sosialisasi/berita",
+        // menuPath: "/sosialisasi/berita",
         idRole: [3, 2]
     },
     {
         menuCode: "sosialisasi-berita",
         menuName: "Berita",
-        menuParent:"sosialiasi",
+        menuParent:"sosialisasi",
         details: ["list", "detail"],
         menuIcon: "material-icons-round|minimize",
         menuPath: "/sosialisasi/berita",
@@ -221,7 +212,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
     {
         menuCode: "sosialisasi-informasi",
         menuName: "Informasi",
-        menuParent:"sosialiasi",
+        menuParent:"sosialisasi",
         details: ["list", "detail"],
         menuIcon: "material-icons-round|minimize",
         menuPath: "/sosialisasi/informasi",
@@ -230,7 +221,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
     {
         menuCode: "sosialisasi-pengembangan-diri",
         menuName: "Pengembangan Diri",
-        menuParent:"sosialiasi",
+        menuParent:"sosialisasi",
         details: ["list", "detail"],
         menuIcon: "material-icons-round|minimize",
         menuPath: "/sosialisasi/pengembangan-diri",
