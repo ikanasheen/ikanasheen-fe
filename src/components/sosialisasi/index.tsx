@@ -25,9 +25,6 @@ export default function SosialisasiList(props: MainLayoutProps) {
 
     const table: TableModel = {
         helper: (data) => SosialisasiHelper.retrieve(data),
-        allowSearching: {
-            fullWidth: true
-        },
         allowFiltering: true,
         allowSorting: true,
         showIndexing: {
@@ -35,8 +32,7 @@ export default function SosialisasiList(props: MainLayoutProps) {
         },
         onRowClick: ({ rowData }) => form(rowData.idSosialisasi),
         columns: [
-            `judul|caption=Judul|width=160`,
-            // `jenisKonten|caption=Jenis Konten|width=160`,
+            `judul|caption=Judul|allowFiltering|width=160`,
             {
                 dataField: "jenisKonten",
                 caption: "Jenis Konten",
@@ -52,16 +48,18 @@ export default function SosialisasiList(props: MainLayoutProps) {
                     
                 },
                 allowSorting: true,
+                allowFiltering:true
             },
-            `konten|caption=Konten|width=300`,
-            `penulis|width=160`,
-            `tanggalDibuat|dataType=date|width=180`,
-            `tanggalDiubah|caption=Tanggal Disunting|dataType=date|width=180`,
+            `konten|caption=Konten|allowFiltering|width=300`,
+            `penulis|allowFiltering|width=160`,
+            `tanggalDibuat|dataType=date|allowFiltering|width=180`,
+            `tanggalDiubah|caption=Tanggal Disunting|dataType=date|allowFiltering|width=180`,
             {
                 dataField: "status",
                 caption: "Status",
                 width: 130,
                 allowSorting: true,
+                allowFiltering:true,
                 template: (data) => {
                     return <Chip className="chip-default" variant="outlined" color={data.status == "ACTIVE" ? "success" : "error"}
                         label={data.status == "ACTIVE" ? "Aktif" : "Tidak Aktif"} />

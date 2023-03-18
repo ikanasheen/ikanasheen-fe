@@ -43,8 +43,7 @@ export default function SosialisasiList(props: MainLayoutProps) {
         }],
         onRowClick: ({ rowData }) => form(rowData.idSosialisasi),
         columns: [
-            `judul|caption=Judul|width=160`,
-            // `jenisKonten|caption=Jenis Konten|width=160`,
+            `judul|caption=Judul|allowFiltering|width=160`,
             {
                 dataField: "jenisKonten",
                 caption: "Jenis Konten",
@@ -60,11 +59,12 @@ export default function SosialisasiList(props: MainLayoutProps) {
                     
                 },
                 allowSorting: true,
+                allowFiltering:true
             },
-            `konten|caption=Konten|width=300`,
-            `penulis|width=160`,
-            `tanggalDibuat|dataType=date|width=180`,
-            `tanggalDiubah|caption=Tanggal Disunting|dataType=date|width=180`,
+            `konten|caption=Konten|allowFiltering|width=300`,
+            `penulis|allowFiltering|width=160`,
+            `tanggalDibuat|dataType=date|allowFiltering|width=180`,
+            `tanggalDiubah|caption=Tanggal Disunting|dataType=date|allowFiltering|width=180`,
             
             {
                 sticky: "right",

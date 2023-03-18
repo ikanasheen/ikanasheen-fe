@@ -3,7 +3,7 @@ import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andr
 import { credential, isArray, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import NelayanHelper from "helper/nelayan/NelayanHelper";
-import StatusConst from "consts/status.const";
+// import StatusConst from "consts/status.const";
 import GenderConst from "consts/gender.consts";
 
 export default function NelayanForm({ title, id, hide, onSuccess = () => {} }: DrawerRenderProps) {
@@ -44,7 +44,7 @@ export default function NelayanForm({ title, id, hide, onSuccess = () => {} }: D
                     },
                     `tanggalLahir|label.text=Tanggal Lahir`,
                     `kecamatan|label.text=Kecamatan`,
-                    `kelurahan|label.text=Kelurahan`,
+                    `kelurahanDesa|label.text=Kelurahan`,
                     `alamat|label.text=Alamat|editorType=textarea|validationRules=maxLength.255`,
                     `noTelepon|label.text=No Telepon`,
                     `email|label.text=Email`,
@@ -53,12 +53,12 @@ export default function NelayanForm({ title, id, hide, onSuccess = () => {} }: D
                         label: {
                             text: "Status"
                         },
-                        editorType: "radiobutton",
-                        editorOptions: {
-                            dataSource: StatusConst,
-                            displayExpr: "display",
-                            valueExpr: "value",
-                        },
+                        // editorType: "radiobutton",
+                        // editorOptions: {
+                        //     dataSource: StatusConst,
+                        //     displayExpr: "display",
+                        //     valueExpr: "value",
+                        // },
                     }
                 ]
             },

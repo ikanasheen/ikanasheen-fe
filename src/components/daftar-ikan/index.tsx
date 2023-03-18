@@ -24,20 +24,20 @@ export default function DaftarIkanList(props: MainLayoutProps) {
 
     const table: TableModel = {
         helper: (data) => IkanHelper.retrieve(data),
-        allowSearching: {
-            fullWidth: true
-        },
+        // allowSearching: {
+        //     fullWidth: true
+        // },
         allowFiltering: true,
         showIndexing: {
             sticky: "left"
         },
         onRowClick: ({ rowData }) => form(rowData.idIkan),
         columns: [
-            `idIkan|caption=Kode Komoditi|width=200`,
-            `namaIkan|caption=Nama Komoditi|width=200|className=text-break`,
-            `ukuran|caption=Ukuran|width=180`,
-            `hargaDasar|caption=Harga Dasar(Per Kg)|dataType=number|width=180`,
-            `deskripsi|caption=Deskripsi|width=250|className=text-break`,
+            `idIkan|caption=Kode Komoditi|allowFiltering|width=200`,
+            `namaIkan|caption=Nama Komoditi|allowFiltering|width=200|className=text-break`,
+            `ukuran|caption=Ukuran|allowFiltering|width=180`,
+            `hargaDasar|caption=Harga Dasar(Per Kg)|dataType=number|allowFiltering|width=220`,
+            `deskripsi|caption=Deskripsi|width=250|allowFiltering|className=text-break`,
             {
                 sticky: "right",
                 icon: false,

@@ -24,32 +24,18 @@ export default function NelayanList(props: MainLayoutProps) {
 
     const table: TableModel = {
         helper: (data) => NelayanHelper.retrieve(data),
-        allowSearching: {
-            fullWidth: true
-        },
         allowFiltering: true,
         showIndexing: {
             sticky: "left"
         },
-        // onRowClick: ({ rowData }) => form(rowData.idNelayan),
+        onRowClick: ({ rowData }) => form(rowData.idNelayan),
         columns: [
-            `idNelayan|caption=ID|width=160`,
-            `namaLengkap|caption=Nama Lengkap|width=250`,
-            {
-                dataField: "gender",
-                caption: "Jenis Kelamin",
-                width: 180,
-                template: (data) => {
-                    return data.gender == "PEREMPUAN" ? "Perempuan" : "Laki-laki"
-                },
-                allowSorting: true,
-            },
-            `tanggalLahir|caption=Tanggal Lahir|dataType=date|width=180`,
-            `kecamatan|caption=Kecamatan|width=200`,
-            `kelurahanDesa|caption=Kelurahan|width=200`,
-            `alamat|caption=Alamat|className=text-break|width=300`,
-            `noTelepon|caption=No Telepon|width=180`,
-            `email|caption=Email|width=180`,
+            `idNelayan|caption=ID|allowFiltering|width=160`,
+            `namaLengkap|caption=Nama Lengkap|allowFiltering|width=250`,
+            `kecamatan|caption=Kecamatan|allowFiltering|width=200`,
+            `kelurahanDesa|caption=Kelurahan|allowFiltering|width=200`,
+            `alamat|caption=Alamat|allowFiltering|className=text-break|width=300`,
+            `noTelepon|caption=No Telepon|allowFiltering|width=180`,
             {
                 dataField: "status",
                 caption: "Status",
