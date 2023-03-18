@@ -31,7 +31,7 @@ export default function NelayanList(props: MainLayoutProps) {
         onRowClick: ({ rowData }) => form(rowData.idNelayan),
         columns: [
             `idNelayan|caption=ID|allowFiltering|width=160`,
-            `namaLengkap|caption=Nama Lengkap|allowFiltering|width=250`,
+            `namaLengkap|caption=Nama Lengkap|allowFiltering|className=text-break|width=180`,
             `kecamatan|caption=Kecamatan|allowFiltering|width=200`,
             `kelurahanDesa|caption=Kelurahan|allowFiltering|width=200`,
             `alamat|caption=Alamat|allowFiltering|className=text-break|width=300`,

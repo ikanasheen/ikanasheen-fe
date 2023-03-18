@@ -62,7 +62,7 @@ export default function SosialisasiList(props: MainLayoutProps) {
             `konten|caption=Konten|allowFiltering|width=300`,           
             `penulis|allowFiltering|width=160`,
             `tanggalDibuat|dataType=date|allowFiltering|width=180`,
-            `tanggalDiubah|caption=Tanggal Disunting|dataType=date|allowFiltering|width=180`,
+            `tanggalDiubah|caption=Tanggal Disunting|dataType=date|allowFiltering|width=200`,
            
             {
                 sticky: "right",
