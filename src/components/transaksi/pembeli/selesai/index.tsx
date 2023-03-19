@@ -43,6 +43,8 @@ export default function TransaksiList(props: MainLayoutProps) {
         columns: [
             `idTransaksi|caption=ID Transaksi|allowFiltering|width=180`,
             `namaIkan|caption=Nama Komoditi|allowFiltering|width=180`,
+            `jumlah|caption=Jumlah (Kg)|allowFiltering|width=160`,
+            `hargaAkhir|caption=Harga Akhir|dataType=number|allowFiltering|width=200`,
             `tanggalSelesai|caption=Tanggal Selesai|dataType=date|allowFiltering|width=200`,
             {
                 dataField: "status",

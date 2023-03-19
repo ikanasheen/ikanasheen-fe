@@ -43,11 +43,14 @@ export default function TransaksiList(props: MainLayoutProps) {
         columns: [
             `idTransaksi|caption=ID Transaksi|allowFiltering|width=180`,
             `namaIkan|caption=Nama Komoditi|allowFiltering|width=180`,
+            `jumlah|caption=Jumlah (Kg)|allowFiltering|width=160`,
+            `hargaAwal|caption=Harga Awal (per Kg)|dataType=number|allowFiltering|width=210`,
+            `hargaNego|caption=Harga Nego (per Kg)|dataType=number|allowFiltering|width=210`,
             `tanggalDibutuhkan|caption=Tanggal Dibutuhkan|dataType=date|allowFiltering|width=210`,
             {
                 dataField: "status",
                 caption: "Status",
-                width: 160,
+                width: 130,
                 template: (data) => {
                     if (data.status == "DIAJUKAN") {
                         return "Diajukan"
