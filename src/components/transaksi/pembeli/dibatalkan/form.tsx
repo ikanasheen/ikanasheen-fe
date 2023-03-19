@@ -33,7 +33,7 @@ export default function TransaksiForm({ title,  id, hide, onSuccess = () => { } 
                         label: {
                             text: "Jumlah (Kg)"
                         },
-                        validationRules: ['required', 'pattern.number', 'min.1', 'maxLength.255']
+                        validationRules: ['pattern.number', 'min.1', 'maxLength.255']
                     },
                     {
                         dataField: "tanggalDibutuhkan",
@@ -41,12 +41,18 @@ export default function TransaksiForm({ title,  id, hide, onSuccess = () => { } 
                             text: "Tanggal Dibutuhkan"
                         },
                         editorType: "date",
-                        validationRules: ['required']
                     },
-                    `alamatPembeli|label.text=Alamat Lengkap|editoryType=textarea|validationRules=required,maxLength.255`,
-                    `catatan|label.text=Catatan|editoryType=textarea|validationRules=required,maxLength.255`,
+                    `alamatPembeli|label.text=Alamat Lengkap|editoryType=textarea`,
+                    `catatan|label.text=Catatan|editoryType=textarea`,
                     `idTransaksi|label.text=ID Transaksi|editorOptions.disabled=true` ,
-                    `hargaAwal|label.text=Harga Awal|editorOptions.disabled=true` ,
+                    {
+                        dataField: "hargaAwal",
+                        label: {
+                            text: "Harga Awal (Per Kg)"
+                        },
+                        editorType: "number",
+                        validationRules:["maxLength.255",'min.1', "pattern.number"],
+                    },
                     `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true` ,
                     {
                         dataField: "status",
