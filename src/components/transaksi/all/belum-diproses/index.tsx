@@ -42,12 +42,9 @@ export default function TransaksiList(props: MainLayoutProps) {
             // `hargaNego|caption=Harga Nego (per Kg)|dataType=number|allowFiltering|width=200`,
             // `hargaAkhir|caption=Harga Akhir|dataType=number|allowFiltering|width=200`,
             // `alamatPembeli|caption=Alamat Pembeli|width=250|className=text-break`,
-            // `namaPembeli|caption=Nama Pembeli|width=250`,
+            // `namaPembeli|caption=Nama Pembeli|width=180`,
             // `namaNelayan|caption=Nama Nelayan|width=250`,
             `tanggalDibutuhkan|caption=Tanggal Dibutuhkan|dataType=date|allowFiltering|width=210`,
-            `tanggalDiproses|caption=Tanggal Diproses|dataType=date|allowFiltering|width=200`,
-            `tanggalSelesai|caption=Tanggal Selesai|dataType=date|allowFiltering|width=200`,
-            // `catatan|caption=Catatan|width=250|allowFiltering|className=text-break`,
             {
                 dataField: "status",
                 caption: "Status",
