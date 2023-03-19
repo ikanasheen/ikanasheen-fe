@@ -5,6 +5,7 @@ import BreadcrumbLayout from "shared/layout/breadcrumb-layout";
 import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
 import TransaksiHelper from "helper/transaksi/TransaksiHelper";
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 const Form = lazy(() => import("./form"));
 
 export default function TransaksiList(props: MainLayoutProps) {
@@ -31,7 +32,7 @@ export default function TransaksiList(props: MainLayoutProps) {
             value: ['DIAJUKAN'],
             opt: "filter"
         }],
-        // onRowClick: ({ rowData }) => form(rowData.id),
+        onRowClick: ({ rowData }) => form(rowData.idTransaksi),
         columns: [
             `idTransaksi|caption=ID Transaksi|allowFiltering|width=180`,
             `namaIkan|caption=Nama Komoditi|allowFiltering|width=180`,
@@ -43,7 +44,7 @@ export default function TransaksiList(props: MainLayoutProps) {
             // `alamatPembeli|caption=Alamat Pembeli|width=250|className=text-break`,
             // `namaPembeli|caption=Nama Pembeli|width=250`,
             // `namaNelayan|caption=Nama Nelayan|width=250`,
-            `tanggalDibutuhkan|caption=Tanggal Dibutuhkan|dataType=date|allowFiltering|width=200`,
+            `tanggalDibutuhkan|caption=Tanggal Dibutuhkan|dataType=date|allowFiltering|width=210`,
             `tanggalDiproses|caption=Tanggal Diproses|dataType=date|allowFiltering|width=200`,
             `tanggalSelesai|caption=Tanggal Selesai|dataType=date|allowFiltering|width=200`,
             // `catatan|caption=Catatan|width=250|allowFiltering|className=text-break`,
@@ -68,13 +69,12 @@ export default function TransaksiList(props: MainLayoutProps) {
                 allowSorting: true,
                 allowFiltering: true
             },
-            // {
-            //     sticky: "right",
-            //     icon: false,
-            //     width: 60,
-            //     template: () => <CheckCircleIcon className="fs-18" />
-            //     // visible: ({ data }) => data.requestStatus == "Requested" || data.requestStatus == "Approved" //hide when status 
-            // }
+            {
+                sticky: "right",
+                icon: false,
+                width: 60,
+                template: () => <ArrowForwardIcon className="fs-18" />
+            }
         ]
     }
 

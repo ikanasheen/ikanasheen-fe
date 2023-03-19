@@ -1,14 +1,14 @@
 import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
-import { isArray, mounted } from "lib";
+import { credential, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
-import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import TransaksiHelper from "helper/transaksi/TransaksiHelper";
-import { SatuanBeratConst } from "consts";
+import StatusTransaksiConst from "consts/statusTransaksi.const";
 
 export default function TransaksiForm({ title, mode, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
+    const roleId = credential.storage.get("user")?.idRole;
 
     const form: FormGroupModel = {
         apperance: "filled",
@@ -18,42 +18,42 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
             setLoading(true);
             TransaksiHelper.createupdate(values, values.id, ({ status }) => {
                 setLoading(false);
-                if (status) onSuccess();
+                if (status) {
+                    onSuccess();
+                }
             })
         },
         item: {
             main: {
                 spacing: 3,
                 items: [
-                    `namaIkan|label.text=Nama Komoditi|validationRules=required`,
-                    `jumlah|label.text=Jumlah (Kg)|validationRules=required,maxLength.255,pattern.number`,
+                    `idTransaksi|label.text=ID Transaksi|editorOptions.disabled=true`,
+                    `namaIkan|label.text=Nama Komoditi|editorOptions.disabled=true`,
+                    `ukuran|label.text=Ukuran|editorOptions.disabled=true`,
+                    `jumlah|label.text=Jumlah|editorOptions.disabled=true`,
+                    `hargaAwal|label.text=Harga Awal|editorOptions.disabled=true`,
+                    `hargaNego|label.text=Harga Nego|editorOptions.disabled=true`,
+                    `hargaAkhir|label.text=Harga Akhir|editorOptions.disabled=true`,
+                    `alamatPembeli|label.text=Alamat Pembeli|editoryType=textarea|editorOptions.disabled=true`,
+                    `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true`,
+                    `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
+                    `tanggalDibutuhkan|label.text=Tanggal Dibutuhkan|editoryType=date|editorOptions.disabled=true`,
+                    `tanggalDiproses|label.text=Tanggal Dibutuhkan|editoryType=date|editorOptions.disabled=true`,
+                    `tanggalSelesai|label.text=Tanggal Dibutuhkan|editoryType=date|editorOptions.disabled=true`,
+                    `catatan|label.text=Nama Pembeli|editoryType=textarea|editorOptions.disabled=true`,
                     {
-                        dataField: "satuan",
+                        dataField: "status",
                         editorType: "select",
                         label: {
-                            text: ""
+                            text: "Status"
                         },
                         editorOptions: {
-                            dataSource: SatuanBeratConst,
+                            dataSource: StatusTransaksiConst,
                             displayExpr: "display",
-                            valueExpr: "value"
+                            valueExpr: "value",
+                            disabled: true
                         },
                     },
-                    `namaIkan|label.text=Nama Pembeli|editoryType=textarea|validationRules=required`,
-                    {
-                        dataField: "ekspedisi",
-                        editorType: "select",
-                        label: {
-                            text: "Ekspedisi"
-                        },
-                        editorOptions: {
-                            dataSource: SatuanBeratConst,
-                            displayExpr: "display",
-                            valueExpr: "value"
-                        },
-                    },
-                    `tanggal|label.text=Tanggal Pembelian|editoryType=date`,
-                    `catatan|label.text=Catatan|editoryType=textarea`,
                 ]
             },
         }
@@ -66,8 +66,6 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                 setLoading(false)
                 if (mode === "detail") formRef.current?.disabled(true)
                 if (status) {
-                    if (isArray(data.roles, 0)) data.roles = data.roles[0].code;
-
                     formRef.current?.updateData(data);
                 }
             })
@@ -78,7 +76,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
         {...form}
         ref={formRef}
         render={group => <DrawerLayout
-            title={<>{id ? "Ubah" : "Tambah"} <b>{title}</b></>}
+            title={<>{id ? "Detail" : "Tambah"} <b>{title}</b></>}
             action={<>{id && <BgsButton
                 actionType="menu"
                 variant="icon"
@@ -100,17 +98,13 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                     }]
                 }}
             >
-                <MoreHorizRoundedIcon />
             </BgsButton>}</>}
             footer={<>
-                {id != null ? // && status diajukan
-                    <BgsButton variant="contained" className="btn-batalkan" loading={loading} visibleLoading={false} >Batalkan Pemesanan</BgsButton>
-                    : id != null ? // && status dalam proses
-                        <BgsButton variant="contained" className="btn-terima" color="primary" loading={loading} visibleLoading={false} >Terima Pemesanan</BgsButton>
+                <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
+                {
+                    roleId === 3  ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Simpan {id && " Perubahan"}</BgsButton>
                         : null
                 }
-                <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
-                <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Simpan {id && " Perubahan"}</BgsButton>
             </>}
         >
             <BgsForm name="main" {...group} />
