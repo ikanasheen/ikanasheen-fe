@@ -25,10 +25,6 @@ export default function TransaksiList(props: MainLayoutProps) {
 
     const table: TableModel = {
         helper: (data) => TransaksiHelper.retrieve(data),
-        // title:"Transaksi yang Diajukan Pembeli",
-        allowSearching: {
-            fullWidth: true
-        },
         showIndexing: {
             sticky: "left"
         },
@@ -41,7 +37,7 @@ export default function TransaksiList(props: MainLayoutProps) {
         columns: [
             `idTransaksi|caption=ID Transaksi|allowFiltering|width=180`,
             `namaIkan|caption=Nama Komoditi|allowFiltering|width=180`,
-            `tanggalDibutuhkan|caption=Tanggal Dibutuhkan|dataType=date|allowFiltering|width=200`,
+            `tanggalDibutuhkan|caption=Tanggal Dibutuhkan|dataType=date|allowFiltering|width=210`,
             `tanggalDiproses|caption=Tanggal Diproses|dataType=date|allowFiltering|width=200`,
             `tanggalSelesai|caption=Tanggal Selesai|dataType=date|allowFiltering|width=200`,
             {

@@ -26,22 +26,19 @@ export default function UserManagementUserList(props: MainLayoutProps) {
 
     const table: TableModel = {
         helper: (data) => UserManagementHelper.retrieve(data),
-        allowSearching: {
-            fullWidth: true
-        },
-
         showIndexing: {
             sticky: "left"
         },
         onRowClick: ({ rowData }) => form(rowData.idUser),
         columns: [
-            `idUser|caption=ID Pengguna|width=250`,
-            `username|caption=Username|width=250`,
+            `idUser|caption=ID Pengguna|allowFiltering|width=250`,
+            `username|caption=Username|allowFiltering|width=250`,
             {
                 dataField: "idRole",
                 caption: "Role",
                 width: 160,
                 allowSorting: true,
+                allowFiltering: true,
                 template: (data) => {
                     return data.role.namaRole
                 },
@@ -51,6 +48,7 @@ export default function UserManagementUserList(props: MainLayoutProps) {
                 caption: "Status",
                 width: 130,
                 allowSorting: true,
+                allowFiltering: true,
                 template: (data) => {
                     return <Chip className="chip-default" variant="outlined" color={data.status == "ACTIVE" ? "success" : "error"}
                         label={data.status == "ACTIVE" ? "Aktif" : "Tidak Aktif"} />
