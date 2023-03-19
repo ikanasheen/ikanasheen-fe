@@ -49,7 +49,7 @@ export default function NelayanForm({ title, id, hide, onSuccess = () => {} }: D
                     `noTelepon|label.text=No Telepon`,
                     `email|label.text=Email`,
                     {
-                        dataField: "user.status",
+                        dataField: "data.user.status",
                         label: {
                             text: "Status"
                         },

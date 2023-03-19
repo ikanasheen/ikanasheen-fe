@@ -6,6 +6,8 @@ import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
 import NelayanHelper from "helper/nelayan/NelayanHelper";
 import Chip from "@mui/material/Chip";
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
 const Form = lazy(() => import("../nelayan/form"));
 
 export default function NelayanList(props: MainLayoutProps) {
@@ -44,7 +46,14 @@ export default function NelayanList(props: MainLayoutProps) {
                 return <Chip className="chip-default" variant="outlined" color={data.user.status == "ACTIVE" ? "success" : "error"} 
                 label={data.user.status == "ACTIVE" ? "Aktif" : "Tidak Aktif"} />},
                 allowSorting: true,
-            },
+            },            
+            {
+                sticky: "right",
+                icon: false,
+                width: 60,
+                template: () => <ArrowForwardIcon className="fs-18" />
+
+            }
         ]
     }
 
