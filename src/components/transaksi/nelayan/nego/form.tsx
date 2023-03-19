@@ -1,13 +1,14 @@
 import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
-import { isArray, mounted } from "lib";
+import { credential,mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
-import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import TransaksiHelper from "helper/transaksi/TransaksiHelper";
+import StatusTransaksiConst from "consts/statusTransaksi.const";
 
 export default function TransaksiForm({ title, mode, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
+    const roleId = credential.storage.get("user")?.idRole;
 
     const form: FormGroupModel = {
         apperance: "filled",
@@ -24,9 +25,33 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
             main: {
                 spacing: 3,
                 items: [
-                    `namaIkan|label.text=Nama Komoditi|editorOptions.disabled=true|validationRules=required`,
-                    `jumlah|label.text=Jumlah (Kg)|editorOptions.disabled=true|validationRules=required,maxLength.255,pattern.number`,
-
+                    `idTransaksi|label.text=ID Transaksi|editorOptions.disabled=true`,
+                    `namaIkan|label.text=Nama Komoditi|editorOptions.disabled=true`,
+                    `ukuran|label.text=Ukuran|editorOptions.disabled=true`,
+                    `jumlah|label.text=Jumlah|editorOptions.disabled=true`,
+                    `hargaAwal|label.text=Harga Awal|editorOptions.disabled=true`,
+                    `hargaNego|label.text=Harga Nego|editorOptions.disabled=true`,
+                    `hargaAkhir|label.text=Harga Akhir|editorOptions.disabled=true`,
+                    `alamatPembeli|label.text=Alamat Pembeli|editoryType=textarea|editorOptions.disabled=true`,
+                    `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true`,
+                    `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
+                    `tanggalDibutuhkan|label.text=Tanggal Dibutuhkan|editoryType=date|editorOptions.disabled=true`,
+                    `tanggalDiproses|label.text=Tanggal Dibutuhkan|editoryType=date|editorOptions.disabled=true`,
+                    `tanggalSelesai|label.text=Tanggal Dibutuhkan|editoryType=date|editorOptions.disabled=true`,
+                    `catatan|label.text=Nama Pembeli|editoryType=textarea|editorOptions.disabled=true`,
+                    {
+                        dataField: "status",
+                        editorType: "select",
+                        label: {
+                            text: "Status"
+                        },
+                        editorOptions: {
+                            dataSource: StatusTransaksiConst,
+                            displayExpr: "display",
+                            valueExpr: "value",
+                            disabled: true
+                        },
+                    },
                 ]
             },
         }
@@ -39,8 +64,6 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                 setLoading(false)
                 if (mode === "detail") formRef.current?.disabled(true)
                 if (status) {
-                    if (isArray(data.roles, 0)) data.roles = data.roles[0].code;
-
                     formRef.current?.updateData(data);
                 }
             })
@@ -51,7 +74,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
         {...form}
         ref={formRef}
         render={group => <DrawerLayout
-            title={<>{id ? "Ubah" : "Tambah"} <b>{title}</b></>}
+            title={<>{id ? "Detail" : "Tambah"} <b>{title}</b></>}
             action={<>{id && <BgsButton
                 actionType="menu"
                 variant="icon"
@@ -73,12 +96,13 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                     }]
                 }}
             >
-                <MoreHorizRoundedIcon />
             </BgsButton>}</>}
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
-                <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Simpan {id && " Perubahan"}</BgsButton>
-            </>}
+                {
+                    roleId === 1 ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Simpan {id && " Perubahan"}</BgsButton>
+                        : null
+                }</>}
         >
             <BgsForm name="main" {...group} />
         </DrawerLayout>}
