@@ -4,6 +4,7 @@ import { mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 // import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import TransaksiHelper from "helper/transaksi/TransaksiHelper";
+import StatusTransaksiConst from "consts/statusTransaksi.const";
 
 export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
@@ -25,14 +26,50 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
             main: {
                 spacing: 3,
                 items: [
+                    `namaIkan|label.text=Nama Komoditi|editorOptions.disabled=true` ,
+                    `ukuran|label.text=Ukuran|editorOptions.disabled=true` ,
                     {
-                        dataField: "namaNelayan",
+                        dataField: "jumlah",
                         label: {
-                            text: "Nama Nelayan"
+                            text: "Jumlah (Kg)"
+                        },
+                        validationRules: ['pattern.number', 'min.1', 'maxLength.255']
+                    },
+                    {
+                        dataField: "tanggalDibutuhkan",
+                        label: {
+                            text: "Tanggal Dibutuhkan"
+                        },
+                        editorType: "date",
+                        editorOptions:{
+                            disabled:true
+                        }
+                    },
+                    `catatan|label.text=Catatan|editoryType=textarea|validationRules=maxLength.255`,
+                    `idTransaksi|label.text=ID Transaksi|editorOptions.disabled=true` ,
+                    `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true` ,
+                    `alamatPembeli|label.text=Alamat Lengkap Pembeli|editoryType=textarea|validationRules=maxLength.255`,
+                    `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true` ,
+                    {
+                        dataField: "status",
+                        editorType: "select",
+                        label: {
+                            text: "Status"
                         },
                         editorOptions: {
+                            dataSource: StatusTransaksiConst,
+                            displayExpr: "display",
+                            valueExpr: "value",
                             disabled: true
-                        }
+                        },
+                    },
+                    {
+                        dataField: "hargaAwal",
+                        label: {
+                            text: "Harga Awal (Per Kg)"
+                        },
+                        editorType: "number",
+                        validationRules:["maxLength.255",'min.1', "pattern.number"],
                     },
                     {
                         dataField: "hargaNego",

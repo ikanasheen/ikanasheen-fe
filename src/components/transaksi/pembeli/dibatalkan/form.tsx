@@ -4,8 +4,9 @@ import {  mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import TransaksiHelper from "helper/transaksi/TransaksiHelper";
+import StatusTransaksiConst from "consts/statusTransaksi.const";
 
-export default function TransaksiForm({ title, mode, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
+export default function TransaksiForm({ title,  id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [status, setStatus] = useState();
@@ -25,26 +26,41 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
             main: {
                 spacing: 3,
                 items: [
+                    `namaIkan|label.text=Nama Komoditi|editorOptions.disabled=true` ,
+                    `ukuran|label.text=Ukuran|editorOptions.disabled=true` ,
                     {
-                        dataField: "namaNelayan",
+                        dataField: "jumlah",
                         label: {
-                            text: "Nama Nelayan"
+                            text: "Jumlah (Kg)"
                         },
-                        editorOptions:{
-                            disabled:true
-                        }
+                        validationRules: ['required', 'pattern.number', 'min.1', 'maxLength.255']
                     },
                     {
-                        dataField: "hargaNego",
+                        dataField: "tanggalDibutuhkan",
                         label: {
-                            text: "Harga yang Ditawarkan (Per Kg)"
+                            text: "Tanggal Dibutuhkan"
                         },
-                        editorType: "number",
-                        validationRules:["maxLength.255",'min.1', "pattern.number"],
-                        editorOptions:{
-                            disabled:true
-                        }
+                        editorType: "date",
+                        validationRules: ['required']
                     },
+                    `alamatPembeli|label.text=Alamat Lengkap|editoryType=textarea|validationRules=required,maxLength.255`,
+                    `catatan|label.text=Catatan|editoryType=textarea|validationRules=required,maxLength.255`,
+                    `idTransaksi|label.text=ID Transaksi|editorOptions.disabled=true` ,
+                    `hargaAwal|label.text=Harga Awal|editorOptions.disabled=true` ,
+                    `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true` ,
+                    {
+                        dataField: "status",
+                        editorType: "select",
+                        label: {
+                            text: "Status"
+                        },
+                        editorOptions: {
+                            dataSource: StatusTransaksiConst,
+                            displayExpr: "display",
+                            valueExpr: "value",
+                            disabled: true
+                        },
+                    } ,
 
                 ]
             },
@@ -56,7 +72,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
             setLoading(true)
             TransaksiHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
-                if (mode === "detail") formRef.current?.disabled(true)
+                if (data.status == "DIBATALKAN") formRef.current?.disabled(true)
                 if (status) {
                     setStatus(data.status);
                     formRef.current?.updateData(data);

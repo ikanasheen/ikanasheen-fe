@@ -5,8 +5,9 @@ import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 import IkanHelper from "helper/daftar-ikan/IkanHelper"
 import moment from "moment";
+import StatusTransaksiConst from "consts/statusTransaksi.const";
 
-export default function TransaksiForm({ title,  id, hide, onSuccess = () => { } }: DrawerRenderProps) {
+export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const userId = credential.storage.get("user")?.idUser;
@@ -31,17 +32,17 @@ export default function TransaksiForm({ title,  id, hide, onSuccess = () => { } 
             main: {
                 spacing: 3,
                 items: [
-                    {
+                    !id ? {
                         dataField: "idIkan",
                         label: {
                             text: "Nama Komoditi"
                         },
-                        validationRules: ["required","maxLength.255"],
+                        validationRules: ["required", "maxLength.255"],
                         editorType: "select",
                         editorOptions: {
                             mode: "popup",
                             helper: data => IkanHelper.retrieve(data),
-                            displayExpr: ({ namaIkan, hargaDasar }) => `${namaIkan} - Rp ${hargaDasar} /Kg`,
+                            displayExpr: ({ idIkan, namaIkan, hargaDasar }) => `${idIkan} - ${namaIkan} - Rp ${hargaDasar} /Kg`,
                             valueExpr: "idIkan",
                             tableOptions: {
                                 mode: "popup",
@@ -58,14 +59,15 @@ export default function TransaksiForm({ title,  id, hide, onSuccess = () => { } 
                                 ]
                             },
                         }
-                    },
-                    // `|label.text=|validationRules=required,pattern.number,min.1,maxLength.255`,
+                    }: null,
+                    id ? `namaIkan|label.text=Nama Komoditi|editorOptions.disabled=true` : null,
+                    id ? `ukuran|label.text=Ukuran|editorOptions.disabled=true` : null,
                     {
                         dataField: "jumlah",
                         label: {
                             text: "Jumlah (Kg)"
                         },
-                        validationRules:['required','pattern.number','min.1','maxLength.255']
+                        validationRules: ['required', 'pattern.number', 'min.1', 'maxLength.255']
                     },
                     {
                         dataField: "tanggalDibutuhkan",
@@ -73,13 +75,30 @@ export default function TransaksiForm({ title,  id, hide, onSuccess = () => { } 
                             text: "Tanggal Dibutuhkan"
                         },
                         editorType: "date",
-                        editorOptions:{
+                        editorOptions: {
                             minDate: date,
                         },
-                        validationRules:['required']
+                        validationRules: ['required']
                     },
-                    `alamat|label.text=Alamat Lengkap|editoryType=textarea|validationRules=required,maxLength.255`,
+                    `alamatPembeli|label.text=Alamat Lengkap|editoryType=textarea|validationRules=required,maxLength.255`,
                     `catatan|label.text=Catatan|editoryType=textarea|validationRules=required,maxLength.255`,
+
+                    id ? `idTransaksi|label.text=ID Transaksi|editorOptions.disabled=true` : null,
+                    id ? `hargaAwal|label.text=Harga Awal|editorOptions.disabled=true` : null,
+                    id ? `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true` : null,
+                    id ? {
+                        dataField: "status",
+                        editorType: "select",
+                        label: {
+                            text: "Status"
+                        },
+                        editorOptions: {
+                            dataSource: StatusTransaksiConst,
+                            displayExpr: "display",
+                            valueExpr: "value",
+                            disabled: true
+                        },
+                    } : null,
 
                 ]
             },

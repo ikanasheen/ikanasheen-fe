@@ -6,6 +6,7 @@ import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
 import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 import { credential } from "lib";
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const Form = lazy(() => import("./form"))
 
@@ -31,20 +32,18 @@ export default function TransaksiList(props: MainLayoutProps) {
         },
         temporaryParameter: [{
             propReq: "idUserPembeli",
-            value: userId,
+            value: [userId],
             opt: "filter"
         },{
             propReq: "status",
             value: ['DIBATALKAN'],
             opt: "filter"
         }],
-        // onRowClick: ({ rowData }) => form(rowData.idTransaksi),
+        onRowClick: ({ rowData }) => form(rowData.idTransaksi),
         columns: [
             `idTransaksi|caption=ID Transaksi|allowFiltering|width=180`,
             `namaIkan|caption=Nama Komoditi|allowFiltering|width=180`,
             `tanggalDibutuhkan|caption=Tanggal Dibutuhkan|dataType=date|allowFiltering|width=210`,
-            `tanggalDiproses|caption=Tanggal Diproses|dataType=date|allowFiltering|width=200`,
-            `tanggalSelesai|caption=Tanggal Selesai|dataType=date|allowFiltering|width=200`,
             {
                 dataField: "status",
                 caption: "Status",
@@ -66,6 +65,12 @@ export default function TransaksiList(props: MainLayoutProps) {
                 allowSorting: true,
                 allowFiltering:true
             },
+            {
+                sticky: "right",
+                icon: false,
+                width: 60,
+                template: () => <ArrowForwardIcon className="fs-18" />
+            }
         ]
     }
 
