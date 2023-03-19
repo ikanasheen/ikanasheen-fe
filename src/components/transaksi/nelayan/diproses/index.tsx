@@ -45,7 +45,6 @@ export default function TransaksiList(props: MainLayoutProps) {
             `namaIkan|caption=Nama Komoditi|allowFiltering|width=180`,
             `tanggalDibutuhkan|caption=Tanggal Dibutuhkan|dataType=date|allowFiltering|width=210`,
             `tanggalDiproses|caption=Tanggal Diproses|dataType=date|allowFiltering|width=200`,
-            `tanggalSelesai|caption=Tanggal Selesai|dataType=date|allowFiltering|width=200`,
             {
                 dataField: "status",
                 caption: "Status",

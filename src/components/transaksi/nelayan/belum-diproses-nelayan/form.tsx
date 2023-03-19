@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
 import { credential, mounted } from "lib";
-import DrawerLayout, {  DrawerRenderProps } from "shared/layout/drawer-layout";
+import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 import NegoConst from "consts/isNego.const";
 // import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
@@ -39,16 +39,10 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                     `namaIkan|label.text=Nama Komoditi|editorOptions.disabled=true`,
                     `ukuran|label.text=Ukuran|editorOptions.disabled=true`,
                     `jumlah|label.text=Jumlah|editorOptions.disabled=true`,
-                    `hargaAwal|label.text=Harga Awal|editorOptions.disabled=true`,
-                    `hargaNego|label.text=Harga Nego|editorOptions.disabled=true`,
-                    `hargaAkhir|label.text=Harga Akhir|editorOptions.disabled=true`,
-                    `alamatPembeli|label.text=Alamat Pembeli|editoryType=textarea|editorOptions.disabled=true`,
+                    `catatan|label.text=Catatan|editoryType=textarea|editorOptions.disabled=true`,
                     `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true`,
-                    `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
+                    `alamatPembeli|label.text=Alamat Pembeli|editoryType=textarea|editorOptions.disabled=true`,
                     `tanggalDibutuhkan|label.text=Tanggal Dibutuhkan|editoryType=date|editorOptions.disabled=true`,
-                    `tanggalDiproses|label.text=Tanggal Dibutuhkan|editoryType=date|editorOptions.disabled=true`,
-                    `tanggalSelesai|label.text=Tanggal Dibutuhkan|editoryType=date|editorOptions.disabled=true`,
-                    `catatan|label.text=Nama Pembeli|editoryType=textarea|editorOptions.disabled=true`,
                     {
                         dataField: "status",
                         editorType: "select",
@@ -61,6 +55,17 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                             valueExpr: "value",
                             disabled: true
                         },
+                    },
+                    {
+                        dataField: "hargaAwal",
+                        label: {
+                            text: "Harga Awal (Per Kg)"
+                        },
+                        editorType: "number",
+                        editorOptions: {
+                            disabled: true
+                        },
+                        validationRules: ["pattern.number"]
                     },
                     {
                         dataField: "isNego",
@@ -79,15 +84,6 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                             }
                         },
                     },
-                    {
-                        dataField: "hargaNego",
-                        label: {
-                            text: "Harga Nego (Per Kg)"
-                        },
-                        editorType: "number",
-                        visible: false,
-                        validationRules: ["required","maxLength.255", 'min.1', "pattern.number"]
-                    }
                 ]
             },
         }

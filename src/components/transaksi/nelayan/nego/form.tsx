@@ -29,16 +29,53 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                     `namaIkan|label.text=Nama Komoditi|editorOptions.disabled=true`,
                     `ukuran|label.text=Ukuran|editorOptions.disabled=true`,
                     `jumlah|label.text=Jumlah|editorOptions.disabled=true`,
-                    `hargaAwal|label.text=Harga Awal|editorOptions.disabled=true`,
-                    `hargaNego|label.text=Harga Nego|editorOptions.disabled=true`,
-                    `hargaAkhir|label.text=Harga Akhir|editorOptions.disabled=true`,
-                    `alamatPembeli|label.text=Alamat Pembeli|editoryType=textarea|editorOptions.disabled=true`,
+                    {
+                        dataField: "hargaAwal",
+                        label: {
+                            text: "Harga Awal (Per Kg)"
+                        },
+                        editorType: "number",
+                        editorOptions: {
+                            disabled:true
+                        },
+                        validationRules:["maxLength.255",'min.1', "pattern.number"],
+                    },
+                    {
+                        dataField: "hargaNego",
+                        label: {
+                            text: "Harga yang Ditawarkan (Per Kg)"
+                        },
+                        editorType: "number",
+                        validationRules:["maxLength.255",'min.1', "pattern.number"],
+                        editorOptions: {
+                            disabled: true
+                        }
+                    },
+                    {
+                        dataField: "hargaAkumulasiNego",
+                        label: {
+                            text: "Harga Akumulasi Nego"
+                        },
+                        editorType: "number",
+                        validationRules:["maxLength.255",'min.1', "pattern.number"],
+                        editorOptions: {
+                            disabled: true
+                        }
+                    },
+                    {
+                        dataField: "tanggalDibutuhkan",
+                        label: {
+                            text: "Tanggal Dibutuhkan"
+                        },
+                        editorType: "date",
+                        editorOptions: {
+                            disabled:true
+                        },
+                    },
+                    `catatan|label.text=Catatan|editoryType=textarea|editorOptions.disabled=true`,
                     `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true`,
+                    `alamatPembeli|label.text=Alamat Pembeli|editoryType=textarea|editorOptions.disabled=true`,
                     `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
-                    `tanggalDibutuhkan|label.text=Tanggal Dibutuhkan|editoryType=date|editorOptions.disabled=true`,
-                    `tanggalDiproses|label.text=Tanggal Dibutuhkan|editoryType=date|editorOptions.disabled=true`,
-                    `tanggalSelesai|label.text=Tanggal Dibutuhkan|editoryType=date|editorOptions.disabled=true`,
-                    `catatan|label.text=Nama Pembeli|editoryType=textarea|editorOptions.disabled=true`,
                     {
                         dataField: "status",
                         editorType: "select",
