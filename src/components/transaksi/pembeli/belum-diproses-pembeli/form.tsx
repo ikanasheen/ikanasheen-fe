@@ -31,79 +31,80 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
         item: {
             main: {
                 spacing: 3,
-                items: [
-                    !id ? {
-                        dataField: "idIkan",
-                        label: {
-                            text: "Nama Komoditi"
-                        },
-                        validationRules: ["required", "maxLength.255"],
-                        editorType: "select",
-                        editorOptions: {
+                items: [{
+                    dataField: "idIkan",
+                    label: {
+                        text: "Nama Komoditi"
+                    },
+                    validationRules: ["required", "maxLength.255"],
+                    editorType: "select",
+                    editorOptions: {
+                        mode: "popup",
+                        helper: data => IkanHelper.retrieve(data),
+                        displayExpr: ({ idIkan, namaIkan, hargaDasar }) => `${idIkan} - ${namaIkan} - Rp ${hargaDasar} /Kg`,
+                        valueExpr: "idIkan",
+                        tableOptions: {
                             mode: "popup",
-                            helper: data => IkanHelper.retrieve(data),
-                            displayExpr: ({ idIkan, namaIkan, hargaDasar }) => `${idIkan} - ${namaIkan} - Rp ${hargaDasar} /Kg`,
-                            valueExpr: "idIkan",
-                            tableOptions: {
-                                mode: "popup",
-                                showIndexing: true,
-                                allowSearching: {
-                                    fullWidth: true
-                                },
-                                columns: [
-                                    "idIkan|caption=Id Ikan|width=160",
-                                    "namaIkan|caption=Nama Ikan|width=180|className=text-break",
-                                    "ukuran|caption=Ukuran|width=180",
-                                    `hargaDasar|caption=Harga Dasar(Per Kg)|dataType=number|width=150`,
-                                    `deskripsi|caption=Deskripsi|width=200|className=text-break`,
-                                ]
+                            showIndexing: true,
+                            allowSearching: {
+                                fullWidth: true
                             },
-                        }
-                    }: null,
-                    id ? `namaIkan|label.text=Nama Komoditi|editorOptions.disabled=true` : null,
-                    id ? `ukuran|label.text=Ukuran|editorOptions.disabled=true` : null,
-                    {
-                        dataField: "jumlah",
-                        label: {
-                            text: "Jumlah (Kg)"
+                            columns: [
+                                "idIkan|caption=Id Ikan|width=160",
+                                "namaIkan|caption=Nama Ikan|width=180|className=text-break",
+                                "ukuran|caption=Ukuran|width=180",
+                                `hargaDasar|caption=Harga Dasar(Per Kg)|dataType=number|width=150`,
+                                `deskripsi|caption=Deskripsi|width=200|className=text-break`,
+                            ]
                         },
+                    }
+                },
+                // id ? `namaIkan|label.text=Nama Komoditi|editorOptions.disabled=true` : null,
+                // id ? `ukuran|label.text=Ukuran|editorOptions.disabled=true` : null,
+                {
+                    dataField: "jumlah",
+                    label: {
+                        text: "Jumlah (Kg)"
                     },
-                    {
-                        dataField: "tanggalDibutuhkan",
-                        label: {
-                            text: "Tanggal Dibutuhkan"
-                        },
-                        editorType: "date",
-                        editorOptions: {
-                            minDate: date,
-                        },
+                    validationRules: ["required"],
+                },
+                {
+                    dataField: "tanggalDibutuhkan",
+                    label: {
+                        text: "Tanggal Dibutuhkan"
                     },
-                    `alamatPembeli|label.text=Alamat Lengkap|editoryType=textarea`,
+                    editorType: "date",
+                    editorOptions: {
+                        minDate: date,
+                    },
+                    validationRules: ["required"],
+                },
+                    `alamat|label.text=Alamat Lengkap|editoryType=textarea|validationRules=minLength.50,required`,
                     `catatan|label.text=Catatan|editoryType=textarea`,
 
-                    id ? `idTransaksi|label.text=ID Transaksi|editorOptions.disabled=true` : null,
-                    id ? {
-                        dataField: "hargaAwal",
-                        label: {
-                            text: "Harga Awal (Per Kg)"
-                        },
-                        editorType: "number",
-                        validationRules:["maxLength.255",'min.1', "pattern.number"],
-                    } : null,
-                    id ? `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true` : null,
-                    id ? {
-                        dataField: "status",
-                        editorType: "select",
-                        label: {
-                            text: "Status"
-                        },
-                        editorOptions: {
-                            dataSource: StatusTransaksiConst,
-                            displayExpr: "display",
-                            valueExpr: "value",
-                            disabled: true
-                        },
-                    } : null,
+                id ? `idTransaksi|label.text=ID Transaksi|editorOptions.disabled=true` : null,
+                id ? {
+                    dataField: "hargaAwal",
+                    label: {
+                        text: "Harga Awal (Per Kg)"
+                    },
+                    editorType: "number",
+                    validationRules: ["maxLength.255", 'min.1', "pattern.number"],
+                } : null,
+                id ? `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true` : null,
+                id ? {
+                    dataField: "status",
+                    editorType: "select",
+                    label: {
+                        text: "Status"
+                    },
+                    editorOptions: {
+                        dataSource: StatusTransaksiConst,
+                        displayExpr: "display",
+                        valueExpr: "value",
+                        disabled: true
+                    },
+                } : null,
 
                 ]
             },
