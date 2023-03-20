@@ -76,7 +76,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuName: "Semua Transaksi",
         menuParent: "transaksi",
         details: ["list"],
-        menuIcon: "material-icons-round|minimize",
+        menuIcon: "material-icons-round|folder_open",
         menuPath: "/transaksi/all/semua-transaksi",
         idRole: [2, 1] 
     },
@@ -85,7 +85,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuName: "Transaksi Belum Diproses",
         menuParent: "transaksi",
         details: ["list"],
-        menuIcon: "material-icons-round|minimize",
+        menuIcon: "material-icons-round|folder_open",
         menuPath: "/transaksi/all/belum-diproses",
         idRole: [2, 1]
     },
@@ -94,7 +94,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuName: "Transaksi Sudah Diproses",
         menuParent: "transaksi",
         details: ["list"],
-        menuIcon: "material-icons-round|minimize",
+        menuIcon: "material-icons-round|folder_open",
         menuPath: "/transaksi/all/sudah-diproses",
         idRole: [2, 1]
     },
@@ -104,7 +104,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuName: "Transaksi Diajukan",
         menuParent: "transaksi-nelayan",
         details: ["list", "update"],
-        menuIcon: "material-icons-round|minimize",
+        menuIcon: "material-icons-round|folder_open",
         menuPath: "/transaksi/nelayan/belum-diproses-nelayan",
         idRole: [3]
     },    
@@ -112,8 +112,8 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuCode: "transaksi-nelayan-nego",
         menuName: "Transaksi Nego",
         menuParent: "transaksi-nelayan",
-        details: ["list"],
-        menuIcon: "material-icons-round|minimize",
+        details: ["list", "update"],
+        menuIcon: "material-icons-round|folder_open",
         menuPath: "/transaksi/nelayan/nego",
         idRole: [3]
     },
@@ -121,8 +121,8 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuCode: "transaksi-nelayan-diproses",
         menuName: "Transaksi Diproses",
         menuParent: "transaksi-nelayan",
-        details: ["list"],
-        menuIcon: "material-icons-round|minimize",
+        details: ["list", "update"],
+        menuIcon: "material-icons-round|folder_open",
         menuPath: "/transaksi/nelayan/diproses",
         idRole: [3]
     },
@@ -130,8 +130,8 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuCode: "transaksi-nelayan-selesai",
         menuName: "Transaksi Selesai",
         menuParent: "transaksi-nelayan",
-        details: ["list"],
-        menuIcon: "material-icons-round|minimize",
+        details: ["list", "update"],
+        menuIcon: "material-icons-round|folder_open",
         menuPath: "/transaksi/nelayan/selesai",
         idRole: [3]
     },
@@ -141,7 +141,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuName: "Transaksi Belum Diproses",
         menuParent: "transaksi-pembeli",
         details: ["list", "create", "update"],
-        menuIcon: "material-icons-round|minimize",
+        menuIcon: "material-icons-round|folder_open",
         menuPath: "/transaksi/pembeli/belum-diproses-pembeli",
         idRole: [4]
     },
@@ -149,8 +149,8 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuCode: "transaksi-pembeli-nego",
         menuName: "Transaksi Nego",
         menuParent: "transaksi-pembeli",
-        details: ["list"],
-        menuIcon: "material-icons-round|minimize",
+        details: ["list", "update"],
+        menuIcon: "material-icons-round|folder_open",
         menuPath: "/transaksi/pembeli/nego",
         idRole: [4]
     },
@@ -158,8 +158,8 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuCode: "transaksi-sudah-diproses-pembeli",
         menuName: "Transaksi Diproses",
         menuParent: "transaksi-pembeli",
-        details: ["list"],
-        menuIcon: "material-icons-round|minimize",
+        details: ["list", "update"],
+        menuIcon: "material-icons-round|folder_open",
         menuPath: "/transaksi/pembeli/sudah-diproses-pembeli",
         idRole: [4]
     },
@@ -167,8 +167,8 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuCode: "transaksi-pembeli-dibatalkan",
         menuName: "Transaksi Dibatalkan",
         menuParent: "transaksi-pembeli",
-        details: ["list"],
-        menuIcon: "material-icons-round|minimize",
+        details: ["list", "update"],
+        menuIcon: "material-icons-round|folder_open",
         menuPath: "/transaksi/pembeli/dibatalkan",
         idRole: [4]
     },
@@ -176,8 +176,8 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuCode: "transaksi-pembeli-selesai",
         menuName: "Transaksi Selesai",
         menuParent: "transaksi-pembeli",
-        details: ["list"],
-        menuIcon: "material-icons-round|minimize",
+        details: ["list", "update"],
+        menuIcon: "material-icons-round|folder_open",
         menuPath: "/transaksi/pembeli/selesai",
         idRole: [4]
     },
@@ -205,7 +205,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuName: "Berita",
         menuParent:"sosialisasi",
         details: ["list", "detail"],
-        menuIcon: "material-icons-round|minimize",
+        menuIcon: "material-icons-round|folder_open",
         menuPath: "/sosialisasi/berita",
         idRole: [3, 2]
     },
@@ -214,7 +214,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuName: "Informasi",
         menuParent:"sosialisasi",
         details: ["list", "detail"],
-        menuIcon: "material-icons-round|minimize",
+        menuIcon: "material-icons-round|folder_open",
         menuPath: "/sosialisasi/informasi",
         idRole: [3, 2]
     },
@@ -223,7 +223,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuName: "Pengembangan Diri",
         menuParent:"sosialisasi",
         details: ["list", "detail"],
-        menuIcon: "material-icons-round|minimize",
+        menuIcon: "material-icons-round|folder_open",
         menuPath: "/sosialisasi/pengembangan-diri",
         idRole: [3, 2]
     },
@@ -261,15 +261,16 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuName: "User",
         menuParent:"user-management",
         details: ["list", "update"],
-        menuIcon: "material-icons-round|minimize",
+        menuIcon: "material-icons-round|folder_open",
         menuPath: "/user-management/user",
         idRole: [1]
-    },{
+    },
+    {
         menuCode: "role-list",
         menuName: "Role",
         menuParent:"user-management",
         details: ["list"],
-        menuIcon: "material-icons-round|minimize",
+        menuIcon: "material-icons-round|folder_open",
         menuPath: "/user-management/role",
         idRole: [1]
     }
