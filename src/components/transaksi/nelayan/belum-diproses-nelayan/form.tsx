@@ -84,6 +84,15 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                             }
                         },
                     },
+                    {
+                        dataField: "hargaNego",
+                        label: {
+                            text: "Harga Nego (Per Kg)"
+                        },
+                        editorType: "number",
+                        visible: false,
+                        validationRules: ["pattern.number","min.1","maxLength.255",]
+                    },
                 ]
             },
         }

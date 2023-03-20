@@ -70,7 +70,6 @@ export default function TransaksiForm({ title,  id, hide, onSuccess = () => { } 
                     `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true` ,
                     `alamatPembeli|label.text=Alamat Lengkap Pembeli|editoryType=textarea|validationRules=maxLength.255`,
                     `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true` ,
-                    `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true` ,
                     {
                         dataField: "status",
                         editorType: "select",

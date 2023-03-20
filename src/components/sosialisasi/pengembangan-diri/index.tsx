@@ -34,11 +34,11 @@ export default function SosialisasiList(props: MainLayoutProps) {
         },
         temporaryParameter: [{
             propReq: "status",
-            value: 'ACTIVE',
+            value: ['ACTIVE'],
             opt: "filter"
         },{
             propReq: "jenisKonten",
-            value: 'PENGEMBANGAN_DIRI',
+            value: ['PENGEMBANGAN_DIRI'],
             opt: "filter"
         }],
         onRowClick: ({ rowData }) => form(rowData.idSosialisasi),

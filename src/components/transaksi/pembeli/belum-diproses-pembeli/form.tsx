@@ -41,7 +41,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                     editorOptions: {
                         mode: "popup",
                         helper: data => IkanHelper.retrieve(data),
-                        displayExpr: ({ idIkan, namaIkan, hargaDasar }) => `${idIkan} - ${namaIkan} - Rp ${hargaDasar} /Kg`,
+                        displayExpr: ({ namaIkan, hargaDasar }) => ` ${namaIkan} - Rp ${hargaDasar} /Kg`,
                         valueExpr: "idIkan",
                         tableOptions: {
                             mode: "popup",
@@ -59,14 +59,13 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                         },
                     }
                 },
-                // id ? `namaIkan|label.text=Nama Komoditi|editorOptions.disabled=true` : null,
                 // id ? `ukuran|label.text=Ukuran|editorOptions.disabled=true` : null,
                 {
                     dataField: "jumlah",
                     label: {
                         text: "Jumlah (Kg)"
                     },
-                    validationRules: ["required"],
+                    validationRules: ["required", "min.1", "pattern.number"],
                 },
                 {
                     dataField: "tanggalDibutuhkan",
