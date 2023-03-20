@@ -91,7 +91,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         },
                         editorType: "number",
                         visible: false,
-                        validationRules: ["pattern.number","min.1","maxLength.255",]
+                        validationRules: ["required","pattern.number","min.1","maxLength.255",]
                     },
                 ]
             },
