@@ -46,15 +46,14 @@ const AppBar = styled(MuiAppBar, {
 function MainNavigation() {
     const router = useRouter();
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
-    const [fullName, setFullName] = useState<string | null | undefined>();
+    // const [nama, setNama] = useState<string | null | undefined>();
+    const { nama } = credential.storage.get("user").nama || {};
     const [email, setEmail] = useState<string | null | undefined>();
-
     const { sidebarOpen = true }: ConfigureStore = store.getState();
 
     useEffect(() => {
-        const { fullName: name, email } = credential.storage.get("user") || {};
-
-        setFullName(name);
+        // const { nama: nama } = credential.storage.get("user") || {};
+        // setNama(nama);
         setEmail(email);
     }, [])
 
@@ -92,7 +91,7 @@ function MainNavigation() {
                     </Box>
                 </Box>
                 <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center", justifyContent: "space-between", height: 64, width: sidebarOpen ? "100%" : "calc(100% - 75px)", borderBottom: "2px solid #0193cb17" }}>
-                    <BgsTypography className="fw-bold fs-18 ms-3">👋Hi {fullName || "user"}!</BgsTypography>
+                    <BgsTypography className="fw-bold fs-18 ms-3">Hi {nama}!👋</BgsTypography>
                     <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center", pr: 2 }}>
                         <BgsButton className="btn br-20 me-4 shadow-none ps-4 pe-4" to="/event-catalog/create"><EventAvailableRoundedIcon /> Create Event</BgsButton>
                         <Tooltip title="Inbox">
@@ -111,7 +110,7 @@ function MainNavigation() {
                         </Tooltip>
                         <Tooltip title="Open settings">
                             <Button onClick={handleOpenUserMenu} sx={{ p: 0, m: 0, minWidth: 0 }} size="small">
-                                <Avatar sx={{ width: 34, height: 34 }} variant="circular" />
+                                <Avatar sx={{ width: 34, height: 34 }} alt="Oceanare" className="me-2" /> Halo, {nama}!
                             </Button>
                         </Tooltip>
                         <Menu
@@ -143,7 +142,7 @@ function MainNavigation() {
                         >
                             <Box className="d-flex flex-column justify-content-center align-items-center p-3 ps-4 pe-4 min-wt-250">
                                 <Avatar className="p-0 m-0 mb-2" sx={{ width: 45, height: 45 }} variant="rounded" />
-                                <BgsTypography className="fw-bold">{fullName}</BgsTypography>
+                                <BgsTypography className="fw-bold">{nama}</BgsTypography>
                                 <BgsTypography className="text-secondary">{email}</BgsTypography>
                             </Box>
                             <Divider />

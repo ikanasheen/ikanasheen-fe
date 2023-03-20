@@ -54,7 +54,6 @@ export default function BreadcrumbLayout({
             menuStorage.filter(x => !x.menuParent).forEach(({ menuCode, menuName, menuPath, menuIcon, ...others }) => menuTemp.push({ ...others, menuCode, menuName, menuPath, menuIcon, children: recursiveMenu(menuCode) }))
 
             const find = menuTemp.find(findBreadcrumb)
-
             if (find) {
                 breadcrumbTemp.push(find)
                 if (find.children?.length) {
