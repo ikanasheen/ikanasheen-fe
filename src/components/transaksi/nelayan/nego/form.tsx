@@ -43,7 +43,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                     {
                         dataField: "hargaNego",
                         label: {
-                            text: "Harga yang Ditawarkan (Per Kg)"
+                            text: "Harga Nego (Per Kg)"
                         },
                         editorType: "number",
                         validationRules:["maxLength.255",'min.1', "pattern.number"],
