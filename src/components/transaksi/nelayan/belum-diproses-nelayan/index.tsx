@@ -11,7 +11,7 @@ const Form = lazy(() => import("./form"));
 
 export default function TransaksiList(props: MainLayoutProps) {
     const tableRef = useRef<TableRef>(null);
-    
+
     const form = (id?: string) => {
         drawerLayout({
             render: (props) => <Form
@@ -28,15 +28,51 @@ export default function TransaksiList(props: MainLayoutProps) {
         showIndexing: {
             sticky: "left"
         },
-        temporaryParameter: [{
+        defaultParameter: [{
             propReq: "status",
             value: ['DIAJUKAN'],
             opt: "filter"
         }],
+        
         onRowClick: ({ rowData }) => form(rowData.idTransaksi),
         columns: [
-            `idTransaksi|caption=ID Transaksi|allowFiltering|width=180`,
-            `namaIkan|caption=Nama Komoditi|allowFiltering|width=180`,
+            // `idTransaksi|caption=ID Transaksi|allowFiltering|width=180`,
+            {
+                dataField: "idTransaksi",
+                caption: "ID Transaksi",
+                width: 180,
+                allowFiltering: {
+                    helper: (data) => TransaksiHelper.retrieve(data),
+                    displayExpr: "status",
+                    valueExpr: "idTransaksi",
+                    parameter: () => {
+                        return {
+                            filter: {
+                                status: ["DIAJUKAN"]
+                            }
+                        }
+                    }
+                },
+            },
+            // `namaIkan|caption=Nama Komoditi|allowFiltering|width=180`,
+            {
+                dataField: "ikan.namaIkan",
+                caption: "Nama Komoditi",
+                width: 180,
+                allowFiltering: {
+                    helper: (data) => TransaksiHelper.retrieve(data),
+                    displayExpr: "status",
+                    valueExpr: "idTransaksi",
+                    parameter: () => {
+                        return {
+                            filter: {
+                                status: ["DIAJUKAN"]
+                            }
+                        }
+                    }
+                },
+                allowSorting: true,
+            },
             `tanggalDibutuhkan|caption=Tanggal Dibutuhkan|dataType=date|allowFiltering|width=210`,
             {
                 dataField: "status",
@@ -57,7 +93,18 @@ export default function TransaksiList(props: MainLayoutProps) {
 
                 },
                 allowSorting: true,
-                allowFiltering:true
+                allowFiltering: {
+                    helper: (data) => TransaksiHelper.retrieve(data),
+                    displayExpr: "status", //no capslock
+                    valueExpr: "idTransaksi",
+                    parameter: () => {
+                        return {
+                            filter: {
+                                status: ["DIAJUKAN"]
+                            }
+                        }
+                    }
+                }
             },
             {
                 sticky: "right",
