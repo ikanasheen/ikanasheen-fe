@@ -6,6 +6,7 @@ import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 import NegoConst from "consts/isNego.const";
 // import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import StatusTransaksiConst from "consts/statusTransaksi.const";
+import OpsiPengirimanConst from "consts/opsiPengiriman.const";
 // const Detail = lazy(() => import("./detail"));
 
 export default function TransaksiForm({ title, mode, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
@@ -44,6 +45,18 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                     `alamatPembeli|label.text=Alamat Pembeli|editoryType=textarea|editorOptions.disabled=true`,
                     `tanggalDibutuhkan|label.text=Tanggal Dibutuhkan|editoryType=date|editorOptions.disabled=true`,
                     {
+                        dataField: "opsiPengiriman",
+                        editorType: "select",
+                        label: {
+                            text: "Opsi Pengiriman"
+                        },
+                        editorOptions: {
+                            dataSource: OpsiPengirimanConst,
+                            displayExpr: "display",
+                            valueExpr: "value",
+                            disabled: true
+                        },
+                    },{
                         dataField: "status",
                         editorType: "select",
                         label: {

@@ -46,6 +46,22 @@ export default function TransaksiList(props: MainLayoutProps) {
             `tanggalDibutuhkan|caption=Tanggal Dibutuhkan|dataType=date|allowFiltering|width=210`,
             `tanggalDiproses|caption=Tanggal Diproses|dataType=date|allowFiltering|width=200`,
             {
+                dataField: "opsiPengiriman",
+                caption: "Opsi Pengiriman",
+                width: 200,
+                template: (data) => {
+                    if (data.opsiPengiriman == "AMBIL") {
+                        return "Ambil Sendiri"
+                    } else if (data.opsiPengiriman == "ANTAR"){
+                        return "Diantar"
+                    } else{
+                        return ""
+                    }
+
+                },
+                allowSorting: true,
+                allowFiltering: true
+            },{
                 dataField: "status",
                 caption: "Status",
                 width: 160,

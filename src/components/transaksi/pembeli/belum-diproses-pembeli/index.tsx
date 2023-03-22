@@ -54,6 +54,22 @@ export default function TransaksiList(props: MainLayoutProps) {
             `hargaAwal|caption=Harga Awal (per Kg)|dataType=number|allowFiltering|width=230`,
             `tanggalDibutuhkan|caption=Tanggal Dibutuhkan|dataType=date|allowFiltering|width=210`,
             {
+                dataField: "opsiPengiriman",
+                caption: "Opsi Pengiriman",
+                width: 190,
+                template: (data) => {
+                    if (data.opsiPengiriman == "AMBIL") {
+                        return "Ambil Sendiri"
+                    } else if (data.opsiPengiriman == "ANTAR"){
+                        return "Diantar"
+                    } else{
+                        return ""
+                    }
+
+                },
+                allowSorting: true,
+                allowFiltering: true
+            },{
                 dataField: "status",
                 caption: "Status",
                 width: 160,

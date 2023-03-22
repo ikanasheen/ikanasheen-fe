@@ -6,6 +6,7 @@ import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 import IkanHelper from "helper/daftar-ikan/IkanHelper"
 import moment from "moment";
 import StatusTransaksiConst from "consts/statusTransaksi.const";
+import OpsiPengirimanConst from "consts/opsiPengiriman.const";
 
 export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
@@ -84,14 +85,14 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                     `catatan|label.text=Catatan|editoryType=textarea`,
 
                     id ? `idTransaksi|label.text=ID Transaksi|editorOptions.disabled=true` : null,
-                    // id ? {
-                    //     dataField: "hargaAwal",
-                    //     label: {
-                    //         text: "Harga Awal (Per Kg)"
-                    //     },
-                    //     editorType: "number",
-                    //     validationRules: ["maxLength.255", 'min.1', "pattern.number"],
-                    // } : null,
+                    id ? {
+                        dataField: "hargaAwal",
+                        label: {
+                            text: "Harga Awal (Per Kg)"
+                        },
+                        editorType: "number",
+                        validationRules: ["maxLength.255", 'min.1', "pattern.number"],
+                    } : null,
                     id ? `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true` : null,
                     id ? {
                         dataField: "status",
@@ -105,7 +106,19 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                             valueExpr: "value",
                             disabled: true
                         },
-                    } : null,
+                    } : {
+                        dataField: "opsiPengiriman",
+                        editorType: "select",
+                        label: {
+                            text: "Opsi Pengiriman"
+                        },
+                        editorOptions: {
+                            dataSource: OpsiPengirimanConst,
+                            displayExpr: "display",
+                            valueExpr: "value",
+                        },
+                        validationRules:['required']
+                    },
 
                 ]
             },

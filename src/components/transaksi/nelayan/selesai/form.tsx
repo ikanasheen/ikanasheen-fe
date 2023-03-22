@@ -4,6 +4,7 @@ import { credential,mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 import StatusTransaksiConst from "consts/statusTransaksi.const";
+import OpsiPengirimanConst from "consts/opsiPengiriman.const";
 
 export default function TransaksiForm({ title, mode, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
@@ -93,6 +94,18 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                     `alamatPembeli|label.text=Alamat Pembeli|editoryType=textarea|editorOptions.disabled=true`,
                     `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
                     {
+                        dataField: "opsiPengiriman",
+                        editorType: "select",
+                        label: {
+                            text: "Opsi Pengiriman"
+                        },
+                        editorOptions: {
+                            dataSource: OpsiPengirimanConst,
+                            displayExpr: "display",
+                            valueExpr: "value",
+                            disabled: true
+                        },
+                    },{
                         dataField: "status",
                         editorType: "select",
                         label: {
