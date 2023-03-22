@@ -26,8 +26,8 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
             main: {
                 spacing: 3,
                 items: [
-                    `ikan.namaIkan|label.text=Nama Komoditi|editorOptions.disabled=true` ,
-                    `ikan.ukuran|label.text=Ukuran|editorOptions.disabled=true` ,
+                    `namaIkan|label.text=Nama Komoditi|editorOptions.disabled=true` ,
+                    `ukuran|label.text=Ukuran|editorOptions.disabled=true` ,
                     {
                         dataField: "jumlah",
                         label: {
@@ -50,6 +50,10 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                     `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true` ,
                     `alamatPembeli|label.text=Alamat Lengkap Pembeli|editoryType=textarea|validationRules=maxLength.255`,
                     `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true` ,
+                    `kelurahanDesaNelayan|label.text=Kelurahan Nelayan|editorOptions.disabled=true` ,
+                    `kecamatanNelayan|label.text=Kecamatan Nelayan|editorOptions.disabled=true` ,
+                    `alamatNelayan|label.text=Alamat Nelayan|editorOptions.disabled=true` ,
+
                     {
                         dataField: "status",
                         editorType: "select",

@@ -42,7 +42,7 @@ export default function TransaksiList(props: MainLayoutProps) {
         onRowClick: ({ rowData }) => form(rowData.idTransaksi),
         columns: [
             `idTransaksi|caption=ID Transaksi|allowFiltering|width=180`,
-            `ikan.namaIkan|caption=Nama Komoditi|allowFiltering|width=180`,
+            `namaIkan|caption=Nama Komoditi|allowFiltering|width=180`,
             `jumlah|caption=Jumlah (Kg)|allowFiltering|width=160`,
             `hargaAkhir|caption=Harga Akhir|dataType=number|allowFiltering|width=200`,
             `tanggalDibutuhkan|caption=Tanggal Dibutuhkan|dataType=date|allowFiltering|width=210`,

@@ -56,7 +56,7 @@ export default function TransaksiList(props: MainLayoutProps) {
             },
             // `namaIkan|caption=Nama Komoditi|allowFiltering|width=180`,
             {
-                dataField: "ikan.namaIkan",
+                dataField: "namaIkan",
                 caption: "Nama Komoditi",
                 width: 180,
                 allowFiltering: {
