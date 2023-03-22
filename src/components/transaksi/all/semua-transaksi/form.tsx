@@ -103,7 +103,6 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                             valueExpr: "value",
                             disabled:true
                         },
-                        validationRules:['required']
                     },
                     `alamatPembeli|label.text=Alamat Pembeli|editoryType=textarea|editorOptions.disabled=true`,
                     `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
