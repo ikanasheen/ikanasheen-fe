@@ -54,6 +54,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                             dataSource: OpsiPengirimanConst,
                             displayExpr: "display",
                             valueExpr: "value",
+                            disabled:true
                         },
                         validationRules: ['required']
                     },
