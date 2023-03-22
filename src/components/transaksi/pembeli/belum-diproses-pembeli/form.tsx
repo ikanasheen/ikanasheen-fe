@@ -32,7 +32,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
             main: {
                 spacing: 3,
                 items: [{
-                    dataField: "idIkan",
+                    dataField: "ikan.idIkan",
                     label: {
                         text: "Nama Komoditi"
                     },
@@ -82,14 +82,14 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                     `catatan|label.text=Catatan|editoryType=textarea`,
 
                 id ? `idTransaksi|label.text=ID Transaksi|editorOptions.disabled=true` : null,
-                id ? {
-                    dataField: "hargaAwal",
-                    label: {
-                        text: "Harga Awal (Per Kg)"
-                    },
-                    editorType: "number",
-                    validationRules: ["maxLength.255", 'min.1', "pattern.number"],
-                } : null,
+                // id ? {
+                //     dataField: "hargaAwal",
+                //     label: {
+                //         text: "Harga Awal (Per Kg)"
+                //     },
+                //     editorType: "number",
+                //     validationRules: ["maxLength.255", 'min.1', "pattern.number"],
+                // } : null,
                 id ? `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true` : null,
                 id ? {
                     dataField: "status",

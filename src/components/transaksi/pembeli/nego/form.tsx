@@ -26,8 +26,8 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
             main: {
                 spacing: 3,
                 items: [
-                    `namaIkan|label.text=Nama Komoditi|editorOptions.disabled=true` ,
-                    `ukuran|label.text=Ukuran|editorOptions.disabled=true` ,
+                    `ikan.namaIkan|label.text=Nama Komoditi|editorOptions.disabled=true` ,
+                    `ikan.ukuran|label.text=Ukuran|editorOptions.disabled=true` ,
                     {
                         dataField: "jumlah",
                         label: {

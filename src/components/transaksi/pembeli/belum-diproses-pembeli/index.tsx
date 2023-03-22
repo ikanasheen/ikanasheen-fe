@@ -41,8 +41,16 @@ export default function TransaksiList(props: MainLayoutProps) {
         onRowClick: ({ rowData }) => form(rowData.idTransaksi),
         columns: [
             `idTransaksi|caption=ID Transaksi|allowFiltering|width=180`,
-            `namaIkan|caption=Nama Komoditi|allowFiltering|width=180`,
-            `jumlah|caption=Jumlah (Kg)|width=160`,
+            // `ikan.namaIkan|caption=Nama Komoditi|allowFiltering|width=180`,
+            {
+                dataField: "ikan.namaIkan",
+                caption: "Nama Komoditi",
+                width: 180,
+                allowSorting: true,                
+                allowFiltering:true
+
+            },
+            `jumlah|caption=Jumlah (Kg)|allowFiltering|width=160`,
             `hargaAwal|caption=Harga Awal (per Kg)|dataType=number|allowFiltering|width=230`,
             `tanggalDibutuhkan|caption=Tanggal Dibutuhkan|dataType=date|allowFiltering|width=210`,
             {
