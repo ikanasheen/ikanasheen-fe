@@ -90,7 +90,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                             disabled: true
                         },
                     },
-                    `catatan|label.text=Nama Pembeli|editoryType=textarea|editorOptions.disabled=true`,
+                    `catatan|label.text=Catatan|editoryType=textarea|editorOptions.disabled=true`,
                     {
                         dataField: "opsiPengiriman",
                         editorType: "select",
