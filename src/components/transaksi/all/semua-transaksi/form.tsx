@@ -41,7 +41,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                             disabled: true
                         },
                         validationRules: ["pattern.number"]
-                    },{
+                    }, {
                         dataField: "hargaNego",
                         label: {
                             text: "Harga Nego (Per Kg)"
@@ -51,7 +51,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                             disabled: true
                         },
                         validationRules: ["pattern.number"]
-                    },{
+                    }, {
                         dataField: "hargaAkhir",
                         label: {
                             text: "Harga Akhir"
@@ -68,30 +68,33 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         },
                         editorType: "date",
                         editorOptions: {
-                            disabled:true
+                            disabled: true
                         },
-                    },{
+                    }, {
                         dataField: "tanggalDiproses",
                         label: {
                             text: "Tanggal Diproses"
                         },
                         editorType: "date",
                         editorOptions: {
-                            disabled:true
+                            disabled: true
                         },
-                    },{
+                    }, {
                         dataField: "tanggalSelesai",
                         label: {
                             text: "Tanggal Selesai"
                         },
                         editorType: "date",
                         editorOptions: {
-                            disabled:true
+                            disabled: true
                         },
                     },
                     `catatan|label.text=Nama Pembeli|editoryType=textarea|editorOptions.disabled=true`,
                     `alamatPembeli|label.text=Alamat Pembeli|editoryType=textarea|editorOptions.disabled=true`,
                     `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
+                    `kelurahanDesaNelayan|label.text=Kelurahan Nelayan|editorOptions.disabled=true`,
+                    `kecamatanNelayan|label.text=Kecamatan Nelayan|editorOptions.disabled=true`,
+                    `alamatNelayan|label.text=Alamat Nelayan|editorOptions.disabled=true`,
                     {
                         dataField: "status",
                         editorType: "select",
@@ -153,7 +156,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
                 {
-                    roleId === 3  ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Simpan {id && " Perubahan"}</BgsButton>
+                    roleId === 3 ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Simpan {id && " Perubahan"}</BgsButton>
                         : null
                 }
             </>}
