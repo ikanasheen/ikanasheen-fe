@@ -33,6 +33,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
             main: {
                 spacing: 3,
                 items: [
+                    id ? `idTransaksi|label.text=ID Transaksi|editorOptions.disabled=true` : null,
                     id ? `namaIkan|label.text=Nama Komoditi|editorOptions.disabled=true` : null,
                     // id ? `ukuran|label.text=Ukuran|editorOptions.disabled=true` : null,
                     !id ? {
@@ -83,8 +84,19 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                     },
                     `alamatPembeli|label.text=Alamat Lengkap|editoryType=textarea|validationRules=minLength.50,required`,
                     `catatan|label.text=Catatan|editoryType=textarea`,
-
-                    id ? `idTransaksi|label.text=ID Transaksi|editorOptions.disabled=true` : null,
+                    {
+                        dataField: "opsiPengiriman",
+                        editorType: "select",
+                        label: {
+                            text: "Opsi Pengiriman"
+                        },
+                        editorOptions: {
+                            dataSource: OpsiPengirimanConst,
+                            displayExpr: "display",
+                            valueExpr: "value",
+                        },
+                        validationRules:['required']
+                    },
                     id ? {
                         dataField: "hargaAwal",
                         label: {
@@ -106,19 +118,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                             valueExpr: "value",
                             disabled: true
                         },
-                    } : {
-                        dataField: "opsiPengiriman",
-                        editorType: "select",
-                        label: {
-                            text: "Opsi Pengiriman"
-                        },
-                        editorOptions: {
-                            dataSource: OpsiPengirimanConst,
-                            displayExpr: "display",
-                            valueExpr: "value",
-                        },
-                        validationRules:['required']
-                    },
+                    } : null,
 
                 ]
             },
