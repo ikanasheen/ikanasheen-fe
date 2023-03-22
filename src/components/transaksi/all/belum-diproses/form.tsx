@@ -4,6 +4,7 @@ import { credential, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 import StatusTransaksiConst from "consts/statusTransaksi.const";
+import OpsiPengirimanConst from "consts/opsiPengiriman.const";
 
 export default function TransaksiForm({ title, mode, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
@@ -43,6 +44,19 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         validationRules: ["pattern.number"]
                     },
                     `catatan|label.text=Nama Pembeli|editoryType=textarea|editorOptions.disabled=true`,
+                    {
+                        dataField: "opsiPengiriman",
+                        editorType: "select",
+                        label: {
+                            text: "Opsi Pengiriman"
+                        },
+                        editorOptions: {
+                            dataSource: OpsiPengirimanConst,
+                            displayExpr: "display",
+                            valueExpr: "value",
+                        },
+                        validationRules: ['required']
+                    },
                     `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true`,
                     `alamatPembeli|label.text=Alamat Pembeli|editoryType=textarea|editorOptions.disabled=true`,
                     {
@@ -106,7 +120,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
                 {
-                    roleId === 3  ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Simpan {id && " Perubahan"}</BgsButton>
+                    roleId === 3 ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Simpan {id && " Perubahan"}</BgsButton>
                         : null
                 }
             </>}
