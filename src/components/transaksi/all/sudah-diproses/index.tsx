@@ -32,7 +32,7 @@ export default function TransaksiList(props: MainLayoutProps) {
         },
         temporaryParameter: [{
             propReq: "status",
-            value: ['DIPROSES','DIBATALKAN','NEGO','SELESAI'],
+            value: ['DIPROSES','DIBATALKAN','NEGO','SELESAI','SIAP_DIAMBIL','DIKIRIM'],
             opt: "filter"
         }],
         onRowClick: ({ rowData }) => form(rowData.idTransaksi),

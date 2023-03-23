@@ -36,7 +36,7 @@ export default function TransaksiList(props: MainLayoutProps) {
             opt: "filter"
         },{
             propReq: "status",
-            value: ['DIPROSES'],
+            value: ['DIPROSES','SIAP_DIAMBIL','DIKIRIM'],
             opt: "filter"
         }],
         onRowClick: ({ rowData }) => form(rowData.idTransaksi),
