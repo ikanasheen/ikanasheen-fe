@@ -33,7 +33,10 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                         label: {
                             text: "Jumlah (Kg)"
                         },
-                        validationRules: ['pattern.number', 'min.1', 'maxLength.255']
+                        validationRules: ['pattern.number', 'min.1', 'maxLength.255'],
+                        editorOptions: {
+                            disabled: true
+                        }
                     },
                     {
                         dataField: "tanggalDibutuhkan",
@@ -55,10 +58,10 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                             disabled: true
                         }
                     },
-                    `catatan|label.text=Catatan|editoryType=textarea|validationRules=maxLength.255`,
+                    `catatan|label.text=Catatan|editoryType=textarea|validationRules=maxLength.255|editorOptions.disabled=true`,
                     `idTransaksi|label.text=ID Transaksi|editorOptions.disabled=true`,
                     `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true`,
-                    `alamatPembeli|label.text=Alamat Lengkap Pembeli|editoryType=textarea|validationRules=maxLength.255`,
+                    `alamatPembeli|label.text=Alamat Lengkap Pembeli|editoryType=textarea|editorOptions.disabled=true|validationRules=maxLength.255`,
                     `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
                     `kelurahanDesaNelayan|label.text=Kelurahan Nelayan|editorOptions.disabled=true`,
                     `kecamatanNelayan|label.text=Kecamatan Nelayan|editorOptions.disabled=true`,
@@ -83,6 +86,9 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                         },
                         editorType: "number",
                         validationRules: ["maxLength.255", 'min.1', "pattern.number"],
+                        editorOptions: {
+                            disabled: true
+                        }
                     },
                     {
                         dataField: "hargaNego",

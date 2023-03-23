@@ -24,10 +24,10 @@ class TransaksiHelper extends BaseHelper {
         return super.postBase("approvalnego", { parameter: { data: { idTransaksi, isApprove:"Tidak" } } }, callback)
     }
     static diambil(idTransaksi: any, callback?: Callback) {
-        return super.postBase("prosesDikirim", { parameter: { data: { idTransaksi } } }, callback)
+        return super.postBase("prosesSiapDiambil", { parameter: { data: { idTransaksi } } }, callback)
     }
     static dikirim(data: any, callback?: Callback) {
-        return super.postBase("prosesSiapDiambil", { parameter: { data: data } }, callback)
+        return super.postBase("prosesDikirim", { parameter: { data: data } }, callback)
     }
 }
 
