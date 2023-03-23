@@ -175,7 +175,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
             </BgsButton>}</>}
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
-                {id != null && status == "DIPROSES" ? // && status dalam proses
+                {id != null && status == "DIKIRIM" || status == "SIAP_DIAMBIL" ? // && status dalam proses
                     <BgsButton variant="contained" className="btn-terima" color="primary" loading={loading}
                         modalOptions={{
                             message: "Apakah Anda yakin untuk memproses transaksi ini?",
