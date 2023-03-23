@@ -105,6 +105,13 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                             valueExpr: "value",
                             disabled: true
                         },
+                    },
+                    {
+                        dataField: "catatanPengiriman",
+                        label: {
+                            text: "Catatan Pengiriman"
+                        },
+                        editorOptions:{disabled: true}
                     },{
                         dataField: "status",
                         editorType: "select",

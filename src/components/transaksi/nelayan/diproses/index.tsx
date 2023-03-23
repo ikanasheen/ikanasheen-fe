@@ -36,7 +36,7 @@ export default function TransaksiList(props: MainLayoutProps) {
             opt: "filter"
         },{
             propReq: "status",
-            value: ['DIPROSES'],
+            value: ['DIPROSES','SIAP_DIAMBIL','DIKIRIM'],
             opt: "filter"
         }],
         onRowClick: ({ rowData }) => form(rowData.idTransaksi),
@@ -74,6 +74,10 @@ export default function TransaksiList(props: MainLayoutProps) {
                         return "Dibatalkan"
                     } else if (data.status == "NEGO") {
                         return "Nego"
+                    }else if (data.status == "SIAP_DIAMBIL") {
+                        return "Siap Diambi"
+                    }else if (data.status == "DIKIRIM") {
+                        return "Sedang Dikirim"
                     } else {
                         return "Selesai"
                     }

@@ -4,7 +4,7 @@ export const OpsiPengirimanConst: DisplayValueStandardModel[] = [{
     display: "Ambil Sendiri",
     value: "AMBIL"
 }, {
-    display: "Diantar",
+    display: "Diantar", //dikirim nelayan
     value: "ANTAR"
 }]
 export default OpsiPengirimanConst;
