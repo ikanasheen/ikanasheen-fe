@@ -192,6 +192,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuPath: "/sosialisasi",
         idRole: [1]
     },
+    //children sosialisasi
     {
         menuCode: "sosialisasi",
         menuName: "Sosialisasi",
@@ -234,15 +235,61 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuName: "Bantuan",
         details: [""],
         menuIcon: "material-icons-round|sticky_note_2",
-        menuPath: "/bantuan",
-        idRole: [1, 3]
+        idRole: [1, 2, 3]
+    },
+    //children bantuan
+    {//admin
+        menuCode: "bantuan-tersedia-admin",
+        menuName: "Bantuan Tersedia",
+        menuParent:"bantuan",
+        details: ["list", "create", "update", "delete"],
+        menuIcon: "material-icons-round|folder_open",
+        menuPath: "/bantuan/admin/tersedia",
+        idRole: [1]
     },
     {
-        menuCode: "bantuan-tersedia",
+        menuCode: "bantuan-diajukan-admin",
+        menuName: "Bantuan Diajukan",
+        menuParent:"bantuan",
+        details: ["list","detail"],
+        menuIcon: "material-icons-round|folder_open'",
+        menuPath: "/bantuan/admin/diajukan",
+        idRole: [1]
+    },
+    {//nelayan
+        menuCode: "bantuan-tersedia-nelayan",
         menuName: "Bantuan Tersedia",
+        menuParent:"bantuan",
         details: ["list", "update"],
-        menuIcon: "material-icons-round|sticky_note_2",
-        menuPath: "/master-data/transaksi",
+        menuIcon: "material-icons-round|folder_open'",
+        menuPath: "/bantuan/nelayan/tersedia",
+        idRole: [3]
+    },
+    {
+        menuCode: "bantuan-diajukan-nelayan",
+        menuName: "Bantuan Diajukan",
+        menuParent:"bantuan",
+        details: ["list"],
+        menuIcon: "material-icons-round|folder_open'",
+        menuPath: "/bantuan/nelayan/diajukan",
+        idRole: [3]
+    },
+    {//gov
+        menuCode: "bantuan-tersedia-gov",
+        menuName: "Bantuan Tersedia",
+        menuParent:"bantuan",
+        details: ["list","detail"],
+        menuIcon: "material-icons-round|folder_open'",
+        menuPath: "/bantuan/gov/tersedia",
+        idRole: [2]
+    },
+    {
+        menuCode: "bantuan-diajukan-gov",
+        menuName: "Bantuan Diajukan",
+        menuParent:"bantuan",
+        details: ["list","update"],
+        menuIcon: "material-icons-round|folder_open'",
+        menuPath: "/bantuan/gov/diajukan",
         idRole: [2]
     },
 

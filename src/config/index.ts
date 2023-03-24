@@ -32,7 +32,10 @@ export const api = {
     },
     transaksi:{
         transaksi                  : `${baseUrl}fishery/transaksi/`,
-
+    },
+    bantuan:{
+        bantuan                    : `${baseUrl}fishery/bantuan/`,
     }
+
     
 }
