@@ -28,6 +28,11 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
         showIndexing: {
             sticky: "left"
         },
+        temporaryParameter: [{
+            propReq: "statusBantuan",
+            value: ['ACTIVE','UNAVAILABLE'],
+            opt: "filter"
+        }],
         onRowClick: ({ rowData }) => form(rowData.idBantuan),
         columns: [
             `idBantuan|caption=Kode Bantuan|allowFiltering|width=180`,
