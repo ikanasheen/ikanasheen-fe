@@ -5,7 +5,6 @@ import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import NelayanHelper from "helper/nelayan/NelayanHelper";
 // import StatusConst from "consts/status.const";
 import GenderConst from "consts/gender.consts";
-import StatusConst from "consts/status.const";
 
 export default function NelayanForm({ title, id, hide, onSuccess = () => {} }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
@@ -49,18 +48,18 @@ export default function NelayanForm({ title, id, hide, onSuccess = () => {} }: D
                     `alamat|label.text=Alamat|editorType=textarea|validationRules=maxLength.255`,
                     `noTelepon|label.text=No Telepon`,
                     `email|label.text=Email`,
-                    {
-                        dataField: "user.status",
-                        label: {
-                            text: "Status"
-                        },
-                        editorType: "select",
-                        editorOptions: {
-                            dataSource: StatusConst,
-                            displayExpr: "display",
-                            valueExpr: "value",
-                        },
-                    },
+                    // {
+                    //     dataField: "user.status",
+                    //     label: {
+                    //         text: "Status"
+                    //     },
+                    //     editorType: "select",
+                    //     editorOptions: {
+                    //         dataSource: StatusConst,
+                    //         displayExpr: "display",
+                    //         valueExpr: "value",
+                    //     },
+                    // },
                 ]
             },
         }
