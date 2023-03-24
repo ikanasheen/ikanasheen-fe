@@ -43,7 +43,8 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                         //     mode:"number"
                         // },
                     },
-                    {
+                    `formatProposal|label.text=Format Proposal|validationRules=required`,
+                    id?{
                         dataField: "statusBantuan",
                         label: {
                             text: "Status"
@@ -54,8 +55,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                             displayExpr: "display",
                             valueExpr: "value",
                         },
-                    },
-                    `formatProposal|label.text=Format Proposal|validationRules=required`,
+                    }:null
                 ],
             },
         }
