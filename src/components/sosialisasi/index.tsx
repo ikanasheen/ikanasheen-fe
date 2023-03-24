@@ -36,7 +36,7 @@ export default function SosialisasiList(props: MainLayoutProps) {
             {
                 dataField: "jenisKonten",
                 caption: "Jenis Konten",
-                width: 130,
+                width: 160,
                 template: (data) => {                      
                     if (data.jenisKonten=="BERITA"){
                         return "Berita"
