@@ -1,9 +1,8 @@
 import { useRef, useState } from "react";
-import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
+import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton, Items } from "@andrydharmawan/bgs-component";
 import { credential, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import SosialisasiHelper from "helper/sosialisasi/SosialisasiHelper";
-import JenisKontenConst from "consts/jenisKontent.const";
 import StatusConst from "consts/status.const";
 
 export default function SosialisasiForm({ title, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
@@ -11,6 +10,12 @@ export default function SosialisasiForm({ title, id, hide, onSuccess = () => { }
     const [loading, setLoading] = useState<boolean>(false);
     const roleId = credential.storage.get("user")?.idRole;
 
+    const item: Items = {
+        editorOptions: {
+            aligned: "horizontal"
+        },
+        editorType: "label"
+    }
     const form: FormGroupModel = {
         apperance: "filled",
         showIcon: true,
@@ -29,34 +34,36 @@ export default function SosialisasiForm({ title, id, hide, onSuccess = () => { }
             main: {
                 spacing: 3,
                 items: [
-                    `judul|label.text=Judul|validationRules=required`,
                     {
-                        dataField: "jenisKonten",
+                        dataField: "judul",
                         label: {
-                            text: "Jenis Konten"
+                            text: "Judul"
                         },
-                        validationRules: ["required"],
-                        editorType: "select",
-                        editorOptions: {
-                            dataSource: JenisKontenConst,
-                            displayExpr: "display",
-                            valueExpr: "value",
-                        },
+                        ...item
                     },
-                    `konten|minRows=6|label.text=Konten|editorType=textarea|validationRules=required,maxLength.255`,
+                    // {
+                    //     dataField: "jenisKonten",
+                    //     label: {
+                    //         text: "Jenis Konten"
+                    //     },
+                    //     ...item
+                    // },
                     {
-                        dataField: "status",
+                        dataField: "konten",
                         label: {
-                            text: "Status"
+                            text: "Konten"
                         },
-                        editorType: "radiobutton",
-                        editorOptions: {
-                            dataSource: StatusConst,
-                            displayExpr: "display",
-                            valueExpr: "value",
-                        },
+                        ...item
                     },
-                    `penulis|label.text=Penulis|validationRules=required`,
+                    {
+                        dataField: "penulis",
+                        label: {
+                            text: "Penulis"
+                        },
+                        ...item
+                    },
+                    // `konten|minRows=6|label.text=Konten|editorType=textarea|validationRules=required,maxLength.255`,
+                    // `penulis|label.text=Penulis|validationRules=required`,
 
                 ]
             },
