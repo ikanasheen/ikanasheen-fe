@@ -15,7 +15,7 @@ export default function SosialisasiList(props: MainLayoutProps) {
     const form = (id?: string) => {
         drawerLayout({
             render: (props) => <Form
-                title="Daftar Sosialisasi - Pengembangan Diri"
+                title="Sosialisasi - Pengembangan Diri"
                 id={id}
                 {...props}
             />,
@@ -25,9 +25,6 @@ export default function SosialisasiList(props: MainLayoutProps) {
 
     const table: TableModel = {
         helper: (data) => SosialisasiHelper.retrieve(data),
-        allowSearching: {
-            fullWidth: true
-        },
         allowFiltering: true,
         showIndexing: {
             sticky: "left"
@@ -64,8 +61,6 @@ export default function SosialisasiList(props: MainLayoutProps) {
             `konten|caption=Konten|allowFiltering|width=300`,
             `penulis|allowFiltering|width=160`,
             `tanggalDibuat|dataType=date|allowFiltering|width=180`,
-            `tanggalDiubah|caption=Tanggal Disunting|dataType=date|allowFiltering|width=200`,
-            
             {
                 sticky: "right",
                 icon: false,

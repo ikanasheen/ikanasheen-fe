@@ -15,7 +15,7 @@ export default function SosialisasiList(props: MainLayoutProps) {
     const form = (id?: string) => {
         drawerLayout({
             render: (props) => <Form
-                title="Daftar Sosialisasi - Berita"
+                title="Sosialisasi - Berita"
                 id={id}
                 {...props}
             />,
@@ -41,7 +41,6 @@ export default function SosialisasiList(props: MainLayoutProps) {
         onRowClick: ({ rowData }) => form(rowData.idSosialisasi),
         columns: [
             `judul|caption=Judul|allowFiltering|width=160`,
-            // `jenisKonten|caption=Jenis Konten|width=160`,
             {
                 dataField: "jenisKonten",
                 caption: "Jenis Konten",
@@ -62,8 +61,6 @@ export default function SosialisasiList(props: MainLayoutProps) {
             `konten|caption=Konten|allowFiltering|width=300`,           
             `penulis|allowFiltering|width=160`,
             `tanggalDibuat|dataType=date|allowFiltering|width=180`,
-            `tanggalDiubah|caption=Tanggal Disunting|dataType=date|allowFiltering|width=200`,
-           
             {
                 sticky: "right",
                 icon: false,

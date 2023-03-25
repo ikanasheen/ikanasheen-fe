@@ -15,7 +15,7 @@ export default function SosialisasiList(props: MainLayoutProps) {
     const form = (id?: string) => {
         drawerLayout({
             render: (props) => <Form
-                title="Daftar Sosialisasi - Informasi"
+                title="Sosialisasi - Informasi"
                 id={id}
                 {...props}
             />,
@@ -61,7 +61,6 @@ export default function SosialisasiList(props: MainLayoutProps) {
             `konten|caption=Konten|allowFiltering|width=300`,           
             `penulis|allowFiltering|width=160`,
             `tanggalDibuat|dataType=date|allowFiltering|width=180`,
-            `tanggalDiubah|caption=Tanggal Disunting|dataType=date|allowFiltering|width=200`,             
             {
                 sticky: "right",
                 icon: false,

@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton, Items } from "@andrydharmawan/bgs-component";
+import { FormGroupModel, FormRef, BgsGroupForm, BgsButton, Items, BgsTypography, BgsForm } from "@andrydharmawan/bgs-component";
 import { credential, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import SosialisasiHelper from "helper/sosialisasi/SosialisasiHelper";
@@ -9,6 +9,10 @@ export default function SosialisasiForm({ title, id, hide, onSuccess = () => { }
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const roleId = credential.storage.get("user")?.idRole;
+    const [judul, setJudul] = useState();
+    const [konten, setKonten] = useState();
+    const [penulis, setPenulis] = useState();
+    const [tanggalDibuat, setTanggalDibuat] = useState();
 
     const item: Items = {
         editorOptions: {
@@ -36,23 +40,14 @@ export default function SosialisasiForm({ title, id, hide, onSuccess = () => { }
                 items: [
                     {
                         dataField: "judul",
-                        label: {
-                            text: "Judul"
-                        },
                         ...item
                     },
                     {
                         dataField: "konten",
-                        label: {
-                            text: "Konten"
-                        },
                         ...item
                     },
                     {
                         dataField: "penulis",
-                        label: {
-                            text: "Penulis"
-                        },
                         ...item
                     },
 
@@ -66,6 +61,10 @@ export default function SosialisasiForm({ title, id, hide, onSuccess = () => { }
             setLoading(true)
             SosialisasiHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
+                setJudul(data.judul)
+                setKonten(data.konten)
+                setPenulis(data.penulis)
+                setTanggalDibuat(data.tanggalDibuat)
                 if (roleId !== 1) formRef.current?.disabled(true)
                 // if (mode === "detail") formRef.current?.disabled(true)
                 if (status) {
@@ -116,7 +115,12 @@ export default function SosialisasiForm({ title, id, hide, onSuccess = () => { }
 
             </>}
         >
-            <BgsForm name="main" {...group} />
+            <BgsForm {...group} />
+            <BgsTypography variant="h4" className="fw-bold fs-20 text-center" >{judul}</BgsTypography>
+            <BgsTypography variant="body1" className="text-secondary fs-14 text-start mt-4" >{konten}</BgsTypography>
+            <BgsTypography variant="body2" className="text-secondary fs-14 text-end mt-4" >{tanggalDibuat}</BgsTypography>
+            <BgsTypography variant="body2" className="text-secondary fs-14 text-end mt-2" >Penulis: {penulis}</BgsTypography>
+
         </DrawerLayout>}
     />
 }
