@@ -3,7 +3,7 @@ import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andr
 import { credential, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
-import IkanHelper from "helper/daftar-ikan/IkanHelper";
+import BantuanHelper from "helper/bantuan/BantuanHelper";
 
 export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
@@ -16,7 +16,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
         showLabelShrink: true,
         onSubmit: (values) => {
             setLoading(true);
-            IkanHelper.createupdate(values, values.idIkan, ({ status }) => {
+            BantuanHelper.createupdate(values, values.idBantuan, ({ status }) => {
                 setLoading(false);
                 if (status) onSuccess();
             })
@@ -47,7 +47,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
     mounted(() => {
         if (id) {
             setLoading(true)
-            IkanHelper.detail(id, ({ status, data }) => {
+            BantuanHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
                 if (roleId !== 1) formRef.current?.disabled(true)
                 if (status) {
@@ -78,7 +78,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                         actionType: "modal",
                         onClick: ({ loading, modalRef }) => {
                             loading(true)
-                            IkanHelper.delete(id, ({ status }) => {
+                            BantuanHelper.delete(id, ({ status }) => {
                                 loading(false)
                                 status && (modalRef.hide(), onSuccess())
                             })

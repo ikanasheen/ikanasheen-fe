@@ -15,5 +15,11 @@ export const StatusTransaksiConst: DisplayValueStandardModel[] = [{
 }, {
     display: "Selesai",
     value: "SELESAI"
+}, {
+    display: "Siap Diambil",
+    value: "AMBIL"
+}, {
+    display: "Siap Dikirim",
+    value: "ANTAR"
 }]
 export default StatusTransaksiConst;

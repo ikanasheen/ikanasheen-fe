@@ -10,6 +10,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [opsiPengiriman, setOpsiPengiriman] = useState();
+    const [status, setStatus] = useState();
     // const roleId = credential.storage.get("user")?.idRole;
 
     const form: FormGroupModel = {
@@ -111,6 +112,25 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                             disabled: true,
                         },
                     },
+                    "opsiPengiriman" === OpsiPengirimanConst[0].value ? {
+                        dataField: "tanggalSiapDiambil",
+                        label: {
+                            text: "Tanggal Siap Diambil"
+                        },
+                        editorType: "date",
+                        editorOptions: {
+                            disabled: true
+                        },
+                    }:{
+                        dataField: "tanggalDikirim",
+                        label: {
+                            text: "Tanggal Dikirim"
+                        },
+                        editorType: "date",
+                        editorOptions: {
+                            disabled: true
+                        },
+                    },
                     opsiPengiriman==="ANTAR" ? {
                         dataField: "catatanPengiriman",
                         label: {
@@ -128,6 +148,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
             TransaksiHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
                 if (status) {
+                    setStatus(data.status)
                     setOpsiPengiriman(data.opsiPengiriman)
                     formRef.current?.updateData(data);
                 }
@@ -179,9 +200,9 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
                 {
                     //if value dikirim == kirim pesanan, value ambil == Siap Diambil
-                    opsiPengiriman !== null && opsiPengiriman === "ANTAR" ?
+                    status === "DIPROSES" && opsiPengiriman !== null && opsiPengiriman === "ANTAR"  ?
                         <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Siap Dikirim</BgsButton>
-                        : opsiPengiriman !== null && opsiPengiriman === "AMBIL" ?
+                        : status === "DIPROSES" && opsiPengiriman !== null && opsiPengiriman === "AMBIL" ?
                             <BgsButton className="btn-save" loading={loading} visibleLoading={false} onClick={e => siapDiambil(e)}>Siap Diambil</BgsButton>
                             : null
                 }</>}
