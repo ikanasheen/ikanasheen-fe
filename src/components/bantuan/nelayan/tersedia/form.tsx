@@ -3,13 +3,16 @@ import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andr
 import { credential, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import BantuanHelper from "helper/bantuan/BantuanHelper";
+import ProposalHelper from "helper/bantuan/ProposalHelper";
 // import StatusBantuanConst from "consts/statusBantuan.const";
 
 export default function HargaIkanForm({ id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const roleId = credential.storage.get("user")?.idRole;
+    const userId = credential.storage.get("user")?.idUser;
     const [namaBantuan, setNamaBantuan] = useState();
+    const [idBantuan, setIdBantuan] = useState();
 
     const form: FormGroupModel = {
         apperance: "filled",
@@ -17,13 +20,14 @@ export default function HargaIkanForm({ id, hide, onSuccess = () => { } }: Drawe
         showLabelShrink: true,
         onSubmit: (values) => {
             setLoading(true);
-            BantuanHelper.createupdate(values, values.idBantuan, ({ status }) => {
+            ProposalHelper.createupdate(values, values.idProposalBantuan, ({ status }) => {
                 setLoading(false);
                 if (status) onSuccess();
             })
         },
         formData: {
-            isActive: true
+            idUserNelayan: userId,
+            idBantuan: idBantuan
         },
         item: {
             main: {
@@ -44,7 +48,7 @@ export default function HargaIkanForm({ id, hide, onSuccess = () => { } }: Drawe
                     //         valueExpr: "value",
                     //     },
                     // },
-                    `formatProposal|label.text=Format Proposal|validationRules=required`,
+                    `file|label.text=FIle Proposal|validationRules=required`,
                 ],
             },
         }
@@ -58,6 +62,7 @@ export default function HargaIkanForm({ id, hide, onSuccess = () => { } }: Drawe
                 // if (roleId !== 1) formRef.current?.disabled(true)
                 if (status) {
                     setNamaBantuan(data.namaBantuan)
+                    setIdBantuan(data.idBantuan)
                     formRef.current?.updateData(data);
                 }
             })

@@ -4,8 +4,8 @@ import { MainLayoutProps } from "shared/layout/main-layout";
 import BreadcrumbLayout from "shared/layout/breadcrumb-layout";
 import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import BantuanHelper from "helper/bantuan/BantuanHelper";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 const Form = lazy(() => import("./form"));
 
 export default function DaftarBantuanList(props: MainLayoutProps) {
@@ -60,7 +60,7 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
                 sticky: "right",
                 icon: false,
                 width: 60,
-                template: () => <ArrowForwardIcon className="fs-18" />
+                template: () => <AddCircleIcon className="fs-18" />
 
             }
         ],
