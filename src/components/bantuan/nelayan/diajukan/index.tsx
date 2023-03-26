@@ -61,7 +61,7 @@ export default function DaftarProposalList(props: MainLayoutProps) {
                 allowSorting: true,
                 allowFiltering: true
             },
-            `file|caption=File|width=160|allowFiltering`,
+            `file|caption=File|width=160`,
             // {
             //     icon: "image",
             //     caption: "Foto",
