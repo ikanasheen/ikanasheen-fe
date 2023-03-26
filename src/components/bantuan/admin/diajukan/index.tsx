@@ -35,8 +35,8 @@ export default function DaftarProposalList(props: MainLayoutProps) {
             `namaBantuan|caption=Nama Bantuan|allowFiltering|width=180`,
             `jenisBantuan|caption=Jenis Bantuan|allowFiltering|width=180`,
             // `tanggalDiajukan|caption=Tanggal Diajukan|width=190|dataType=date|allowFiltering`,
-            // `tanggalDisetujui|caption=Tanggal Disetujui|width=250|dataType=date|allowFiltering`,
-            // `tanggalDitolak|caption=Tanggal Ditolak|width=250|dataType=date|allowFiltering`,
+            // `tanggalDisetujui|caption=Tanggal Disetujui|width=190|dataType=date|allowFiltering`,
+            // `tanggalDitolak|caption=Tanggal Ditolak|width=190|dataType=date|allowFiltering`,
             `file|caption=File|width=250|allowFiltering`,
             {
                 dataField: "statusProposal",
