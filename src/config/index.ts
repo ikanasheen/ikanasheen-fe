@@ -35,6 +35,7 @@ export const api = {
     },
     bantuan:{
         bantuan                    : `${baseUrl}fishery/bantuan/`,
+        proposal                   : `${baseUrl}fishery/proposal/`
     }
 
     

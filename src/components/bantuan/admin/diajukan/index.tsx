@@ -5,16 +5,16 @@ import BreadcrumbLayout from "shared/layout/breadcrumb-layout";
 import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import BantuanHelper from "helper/bantuan/BantuanHelper";
+import ProposalHelper from "helper/bantuan/ProposalHelper";
 const Form = lazy(() => import("./form"));
 
-export default function DaftarBantuanList(props: MainLayoutProps) {
+export default function DaftarProposalList(props: MainLayoutProps) {
     const tableRef = useRef<TableRef>(null);
 
     const form = (id?: string) => {
         drawerLayout({
             render: (props) => <Form
-                title="Daftar Bantuan Diajukan"
+                title="Daftar Proposal Diajukan"
                 id={id}
                 {...props}
             />,
@@ -23,35 +23,48 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
     }
 
     const table: TableModel = {
-        helper: (data) => BantuanHelper.retrieve(data),
+        helper: (data) => ProposalHelper.retrieve(data),
         allowFiltering: true,
         showIndexing: {
             sticky: "left"
         },
-        onRowClick: ({ rowData }) => form(rowData.idBantuan),
+        onRowClick: ({ rowData }) => form(rowData.idProposalBantuan),
         columns: [
-            `idBantuan|caption=Kode Bantuan|allowFiltering|width=180`,
-            `namaBantuan|caption=Nama Bantuan|allowFiltering|width=180|className=text-break`,
+            `idNelayan|caption=ID Nelayan|allowFiltering|width=180`,
+            `namaNelayan|caption=Nama Nelayan|allowFiltering|width=180`,
+            `namaBantuan|caption=Nama Bantuan|allowFiltering|width=180`,
             `jenisBantuan|caption=Jenis Bantuan|allowFiltering|width=180`,
-            `kuota|caption=Kuota|allowFiltering|width=220`,
-            `formatProposal|caption=Format Proposal|width=250|allowFiltering|className=text-break`,
+            // `tanggalDiajukan|caption=Tanggal Diajukan|width=190|dataType=date|allowFiltering`,
+            // `tanggalDisetujui|caption=Tanggal Disetujui|width=250|dataType=date|allowFiltering`,
+            // `tanggalDitolak|caption=Tanggal Ditolak|width=250|dataType=date|allowFiltering`,
+            `file|caption=File|width=250|allowFiltering`,
             {
-                dataField: "statusBantuan",
+                dataField: "statusProposal",
                 caption: "Status",
                 width: 160,
                 template: (data) => {
-                    if (data.statusBantuan == "ACTIVE") {
-                        return "Aktif"
-                    } else if (data.statusBantuan == "INACTIVE") {
-                        return "Tidak Aktif"
+                    if (data.statusProposal == "DIAJUKAN") {
+                        return "Diajukan"
+                    } else if (data.statusProposal == "DISETUJUI") {
+                        return "Disetujui"
+                    } else if (data.statusProposal == "DITOLAK") {
+                        return "Ditolak"
                     } else {
-                        return "Kuota Habis"
+                        return ""
                     }
 
                 },
                 allowSorting: true,
                 allowFiltering: true
-            },{
+            },
+            // {
+            //     icon: "image",
+            //     caption: "Foto",
+            //     width: 140,
+            //     className: "img-container",
+            //     template: ({ photoProfiles = [] }) => Children.toArray(photoProfiles.map((data: FileProps) => <Image {...data} showFull className="br-3" />))
+            // },
+            {
                 sticky: "right",
                 icon: false,
                 width: 60,
