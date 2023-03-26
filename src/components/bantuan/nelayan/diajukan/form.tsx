@@ -31,9 +31,36 @@ export default function ProposalForm({ title, id, hide, onSuccess = () => { } }:
                 items: [
                     `jenisBantuan|label.text=Jenis Bantuan`,
                     `namaBantuan|label.text=Nama Bantuan`,
-                    id? `tanggaldDiajukan|label.text=Tanggal Diajukan|editorType=date`:null,
-                    id? `tanggalDisetujui|label.text=Tanggal Disetujui|editorType=date`:null,
-                    id? `tanggalDitolak|label.text=Tanggal Ditolak|editorType=date`:null,
+                    id?{
+                        dataField: "tanggalDiajukan",
+                        editorType: "date",
+                        editorOptions: {
+                            mode: "datetime",
+                            format: {
+                                value: "YYYY-MM-DDTHH:MM:SS"
+                            }
+                        },
+                    }:null,
+                    id?{
+                        dataField: "tanggalDisetujui",
+                        editorType: "date",
+                        editorOptions: {
+                            mode: "datetime",
+                            format: {
+                                value: "YYYY-MM-DDTHH:MM:SS"
+                            }
+                        },
+                    }:null,
+                    id?{
+                        dataField: "tanggalDitolak",
+                        editorType: "date",
+                        editorOptions: {
+                            mode: "datetime",
+                            format: {
+                                value: "YYYY-MM-DDTHH:MM:SS"
+                            }
+                        },
+                    }:null,
                     id? {
                         dataField: "statusProposal",
                         label: {
@@ -119,7 +146,7 @@ export default function ProposalForm({ title, id, hide, onSuccess = () => { } }:
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
                 {
-                    roleId === 3 ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Ajukan</BgsButton>
+                    roleId !== 3 ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Ajukan</BgsButton>
                         : null
                 }
 

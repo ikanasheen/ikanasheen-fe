@@ -32,9 +32,34 @@ export default function ProposalForm({ title, id, hide, onSuccess = () => { } }:
                     `namaNelayan|label.text=Nama Nelayan`,
                     `jenisBantuan|label.text=Jenis Bantuan`,
                     `namaBantuan|label.text=Nama Bantuan`,
-                    `tanggaldDiajukan|label.text=Tanggal Diajukan|editorType=date`,
-                    `tanggalDisetujui|label.text=Tanggal Disetujui|editorType=date`,
-                    `tanggalDitolak|label.text=Tanggal Ditolak|editorType=date`,
+                    {
+                        dataField: "tanggalDiajukan",
+                        editorType: "date",
+                        editorOptions: {
+                            mode: "datetime",
+                            format: {
+                                value: "YYYY-MM-DDTHH:MM:SS"
+                            }
+                        },
+                    }, {
+                        dataField: "tanggalDisetujui",
+                        editorType: "date",
+                        editorOptions: {
+                            mode: "datetime",
+                            format: {
+                                value: "YYYY-MM-DDTHH:MM:SS"
+                            }
+                        },
+                    }, {
+                        dataField: "tanggalDitolak",
+                        editorType: "date",
+                        editorOptions: {
+                            mode: "datetime",
+                            format: {
+                                value: "YYYY-MM-DDTHH:MM:SS"
+                            }
+                        },
+                    },
                     {
                         dataField: "statusProposal",
                         label: {
