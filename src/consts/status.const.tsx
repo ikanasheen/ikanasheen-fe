@@ -8,14 +8,14 @@ export const StatusConst: DisplayValueStandardModel[] = [{
     value: "INACTIVE"
 }]
 
-interface StatusEnumModel {
-    [x: string]: Status;
-}
+// interface StatusEnumModel {
+//     [x: string]: Status;
+// }
 
-export const StatusEnum: StatusEnumModel = {
-    ACTIVE: "ACTIVE",
-    INACTIVE: "INACTIVE",
-}
+// export const StatusEnum: StatusEnumModel = {
+//     ACTIVE: "ACTIVE",
+//     INACTIVE: "INACTIVE",
+// }
 
-export type Status = "ACTIVE" | "INACTIVE";
+// export type Status = "ACTIVE" | "INACTIVE";
 export default StatusConst;

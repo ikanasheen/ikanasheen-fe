@@ -9,6 +9,24 @@ export default function ProposalForm({ title, id, hide, onSuccess = () => { } }:
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const roleId = credential.storage.get("user")?.idRole;
+    const [statusProposal, setStatusProposal] = useState();
+
+    mounted(() => {
+        if (id) {
+            setLoading(true)
+            ProposalHelper.detail(id, ({ status, data }) => {
+                setLoading(false)
+                if (roleId === 1) formRef.current?.disabled(true)
+                if (status) {
+                    setStatusProposal(data.statusProposal)
+                    formRef.current?.updateData(data);
+                }
+                if (data.statusProposal === "DISETUJUI") formRef.current?.itemOption("tanggalDisetujui").option("visible", true);
+                if (data.statusProposal === "DITOLAK") formRef.current?.itemOption("tanggalDitolak").option("visible", true);
+                console.log(statusProposal)
+            })
+        }
+    })
 
     const form: FormGroupModel = {
         apperance: "filled",
@@ -50,6 +68,7 @@ export default function ProposalForm({ title, id, hide, onSuccess = () => { } }:
                                 value: "YYYY-MM-DDTHH:MM:SS"
                             }
                         },
+                        visible: false
                     }, {
                         dataField: "tanggalDitolak",
                         editorType: "date",
@@ -59,6 +78,7 @@ export default function ProposalForm({ title, id, hide, onSuccess = () => { } }:
                                 value: "YYYY-MM-DDTHH:MM:SS"
                             }
                         },
+                        visible: false
                     },
                     {
                         dataField: "statusProposal",
@@ -99,18 +119,6 @@ export default function ProposalForm({ title, id, hide, onSuccess = () => { } }:
         }
     }
 
-    mounted(() => {
-        if (id) {
-            setLoading(true)
-            ProposalHelper.detail(id, ({ status, data }) => {
-                setLoading(false)
-                if (roleId === 1) formRef.current?.disabled(true)
-                if (status) {
-                    formRef.current?.updateData(data);
-                }
-            })
-        }
-    })
 
     return <BgsGroupForm
         {...form}

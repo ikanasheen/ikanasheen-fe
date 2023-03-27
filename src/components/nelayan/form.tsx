@@ -1,15 +1,31 @@
 import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
-import { credential, isArray, mounted } from "lib";
+import { credential,  mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import NelayanHelper from "helper/nelayan/NelayanHelper";
-// import StatusConst from "consts/status.const";
 import GenderConst from "consts/gender.consts";
 
 export default function NelayanForm({ title, id, hide, onSuccess = () => {} }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const roleId = credential.storage.get("user")?.idRole;
+    const [statusNelayan, setStatusNelayan] = useState();
+
+    mounted(() => {
+        if (id) {
+            setLoading(true)
+            NelayanHelper.detail(id, ({ status, data }) => {
+                setLoading(false)
+                formRef.current?.disabled(true)
+                if (status) {
+                    setStatusNelayan(data.user.status)
+                    formRef.current?.updateData(data);
+                    console.log(data.user.status, " ini statusny")
+                    console.log(statusNelayan)
+                }
+            })
+        }
+    })
 
     const form: FormGroupModel = {
         apperance: "filled",
@@ -53,32 +69,19 @@ export default function NelayanForm({ title, id, hide, onSuccess = () => {} }: D
                     //     label: {
                     //         text: "Status"
                     //     },
-                    //     editorType: "select",
-                    //     editorOptions: {
-                    //         dataSource: StatusConst,
-                    //         displayExpr: "display",
-                    //         valueExpr: "value",
-                    //     },
+                    //     // editorType: "select",
+                    //     // editorOptions: {
+                    //     //     dataSource: StatusConst,
+                    //     //     displayExpr: "display",
+                    //     //     valueExpr: "value",
+                    //     // },
                     // },
                 ]
             },
         }
     }
 
-    mounted(() => {
-        if (id) {
-            setLoading(true)
-            NelayanHelper.detail(id, ({ status, data }) => {
-                setLoading(false)
-                formRef.current?.disabled(true)
-                if (status) {
-                    if (isArray(data.roles, 0)) data.roles = data.roles[0].code;
 
-                    formRef.current?.updateData(data);
-                }
-            })
-        }
-    })
 
     return <BgsGroupForm
         {...form}

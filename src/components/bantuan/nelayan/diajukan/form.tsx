@@ -10,7 +10,25 @@ export default function ProposalForm({ title, id, hide, onSuccess = () => { } }:
     const [loading, setLoading] = useState<boolean>(false);
     const roleId = credential.storage.get("user")?.idRole;
     const userId = credential.storage.get("user")?.idUser;
+    const [statusProposal, setStatusProposal] = useState();
 
+    mounted(() => {
+        if (id) {
+            setLoading(true)
+            ProposalHelper.detail(id, ({ status, data }) => {
+                setLoading(false)
+                if (id) formRef.current?.disabled(true)
+                if (status) {
+                    setStatusProposal(data.statusProposal)
+                    formRef.current?.updateData(data);
+                }
+                if (data.statusProposal === "DISETUJUI") formRef.current?.itemOption("tanggalDisetujui").option("visible", true);
+                if (data.statusProposal === "DITOLAK") formRef.current?.itemOption("tanggalDitolak").option("visible", true);
+                console.log(statusProposal)
+
+            })
+        }
+    })
     const form: FormGroupModel = {
         apperance: "filled",
         showIcon: true,
@@ -100,18 +118,7 @@ export default function ProposalForm({ title, id, hide, onSuccess = () => { } }:
         }
     }
 
-    mounted(() => {
-        if (id) {
-            setLoading(true)
-            ProposalHelper.detail(id, ({ status, data }) => {
-                setLoading(false)
-                if (id) formRef.current?.disabled(true)
-                if (status) {
-                    formRef.current?.updateData(data);
-                }
-            })
-        }
-    })
+
 
     return <BgsGroupForm
         {...form}

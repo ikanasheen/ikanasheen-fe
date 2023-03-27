@@ -23,6 +23,9 @@ export default function ProposalForm({ id, hide, onSuccess = () => { } }: Drawer
                     setStatusProposal(data.statusProposal)
                     formRef.current?.updateData(data);
                 }
+                if (data.statusProposal === "DISETUJUI") formRef.current?.itemOption("tanggalDisetujui").option("visible", true);
+                if (data.statusProposal === "DITOLAK") formRef.current?.itemOption("tanggalDitolak").option("visible", true);
+
             })
         }
     })
@@ -64,6 +67,7 @@ export default function ProposalForm({ id, hide, onSuccess = () => { } }: Drawer
                                 value: "YYYY-MM-DDTHH:MM:SS"
                             }
                         },
+                        visible: false
                     },
                     {
                         dataField: "tanggalDitolak",
@@ -74,6 +78,7 @@ export default function ProposalForm({ id, hide, onSuccess = () => { } }: Drawer
                                 value: "YYYY-MM-DDTHH:MM:SS"
                             }
                         },
+                        visible: false
                     },                    
                     {
                         dataField: "statusProposal",
