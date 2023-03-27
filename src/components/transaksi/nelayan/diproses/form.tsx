@@ -82,29 +82,12 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                             disabled: true
                         },
                         validationRules: ["pattern.number"]
-                    }, {
-                        dataField: "tanggalDibutuhkan",
-                        label: {
-                            text: "Tanggal Dibutuhkan"
-                        },
-                        editorType: "date",
-                        editorOptions: {
-                            disabled: true
-                        },
-                    }, {
-                        dataField: "tanggalDiproses",
-                        label: {
-                            text: "Tanggal Diproses"
-                        },
-                        editorType: "date",
-                        editorOptions: {
-                            disabled: true
-                        },
                     },
                     `catatan|label.text=Catatan|editoryType=textarea|editorOptions.disabled=true`,
                     `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true`,
                     `alamatPembeli|label.text=Alamat Pembeli|editoryType=textarea|editorOptions.disabled=true`,
                     `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
+                    
                     {
                         dataField: "status",
                         editorType: "select",
@@ -129,6 +112,25 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                             displayExpr: "display",
                             valueExpr: "value",
                             disabled: true,
+                        },
+                    },
+                    {
+                        dataField: "tanggalDibutuhkan",
+                        label: {
+                            text: "Tanggal Dibutuhkan"
+                        },
+                        editorType: "date",
+                        editorOptions: {
+                            disabled: true
+                        },
+                    }, {
+                        dataField: "tanggalDiproses",
+                        label: {
+                            text: "Tanggal Diproses"
+                        },
+                        editorType: "date",
+                        editorOptions: {
+                            disabled: true
                         },
                     },
                     {

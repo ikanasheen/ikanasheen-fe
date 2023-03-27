@@ -47,7 +47,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                 items: [
                     `namaBantuan|label.text=Nama Bantuan`,
                     `jenisBantuan|label.text=Jenis Bantuan`,
-                    `kuota|label.text=Kuota`,
+                    `kuota|label.text=Kuota Tersedia`,
                     {
                         dataField: "kuotaTersisa",
                         label: {

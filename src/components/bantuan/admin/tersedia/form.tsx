@@ -53,7 +53,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                     {
                         dataField: "kuota",
                         label: {
-                            text: "Kuota"
+                            text: "Kuota Tersedia"
                         },
                         editorType: "number",
                         validationRules: ["required","min.1","pattern.number"]
