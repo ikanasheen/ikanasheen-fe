@@ -10,6 +10,8 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const roleId = credential.storage.get("user")?.idRole;
+    const [statusTransaksi, setStatusTransaksi] = useState();
+    const [opsiPengiriman, setOpsiPengiriman] = useState();
     mounted(() => {
         if (id) {
             setLoading(true)
@@ -17,8 +19,19 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                 setLoading(false)
                 if (mode === "detail") formRef.current?.disabled(true)
                 if (status) {
+                    setStatusTransaksi(data.status)
+                    setOpsiPengiriman(data.opsiPengiriman)
                     formRef.current?.updateData(data);
                 }
+                if (data.status === "SIAP_DIAMBIL") formRef.current?.itemOption("tanggalSiapDiambil").option("visible", true);
+                if (data.status === "DIKIRIM") formRef.current?.itemOption("tanggalDikirim").option("visible", true);
+                if (data.status === "DIPROSES") formRef.current?.itemOption("tanggalDiproses").option("visible", true);
+                if (data.status === "SELESAI") formRef.current?.itemOption("tanggalSelesai").option("visible", true);
+                if (data.status === "SELESAI" && data.opsiPengiriman === "AMBIL") formRef.current?.itemOption("tanggalSiapDiambil").option("visible", true);
+                if (data.status === "SELESAI" && data.opsiPengiriman === "ANTAR") formRef.current?.itemOption("tanggalDikirim").option("visible", true);
+                if (data.opsiPengiriman === "ANTAR") formRef.current?.itemOption("catatanPengiriman").option("visible", true);
+                console.log(statusTransaksi)
+                console.log(opsiPengiriman)
             })
         }
     })
@@ -117,6 +130,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         editorOptions: {
                             disabled: true
                         },
+                        visible:true
                     },
                     {
                         dataField: "tanggalDikirim",
@@ -127,13 +141,15 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         editorOptions: {
                             disabled: true
                         },
+                        visible:true
                     },
                     {
                         dataField: "catatanPengiriman",
                         label: {
                             text: "Catatan Pengiriman"
                         },
-                        editorOptions:{disabled: true}
+                        editorOptions:{disabled: true},
+                        visible:true
                     },
                     {
                         dataField: "tanggalSelesai",

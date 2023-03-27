@@ -9,6 +9,30 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [status, setStatus] = useState();
+    const [opsiPengiriman, setOpsiPengiriman] = useState();
+
+    mounted(() => {
+        if (id) {
+            setLoading(true)
+            TransaksiHelper.detail(id, ({ status, data }) => {
+                setLoading(false)
+                if (data.status == "SELESAI") formRef.current?.disabled(true)
+                if (status) {
+                    setOpsiPengiriman(data.opsiPengiriman)
+                    setStatus(data.status);
+                    formRef.current?.updateData(data);
+                }
+                if (data.status === "SIAP_DIAMBIL") formRef.current?.itemOption("tanggalSiapDiambil").option("visible", true);
+                if (data.status === "DIKIRIM") formRef.current?.itemOption("tanggalDikirim").option("visible", true);
+                if (data.status === "DIPROSES") formRef.current?.itemOption("tanggalDiproses").option("visible", true);
+                if (data.status === "SELESAI") formRef.current?.itemOption("tanggalSelesai").option("visible", true);
+                if (data.status === "SELESAI" && data.opsiPengiriman === "AMBIL") formRef.current?.itemOption("tanggalSiapDiambil").option("visible", true);
+                if (data.status === "SELESAI" && data.opsiPengiriman === "ANTAR") formRef.current?.itemOption("tanggalDikirim").option("visible", true);
+                if (data.opsiPengiriman === "ANTAR") formRef.current?.itemOption("catatanPengiriman").option("visible", true);
+                console.log(opsiPengiriman)
+            })
+        }
+    })
 
     const form: FormGroupModel = {
         apperance: "filled",
@@ -103,18 +127,9 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                         },
                         editorType: "date",
                         editorOptions: {
-                            disabled: true
-                        }
-                    },
-                    {
-                        dataField: "tanggalDiproses",
-                        label: {
-                            text: "Tanggal Diproses"
-                        },
-                        editorType: "date",
-                        editorOptions: {
                             disabled:true
                         },
+                        visible:false
                     },
                     {
                         dataField: "tanggalSiapDiambil",
@@ -125,6 +140,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                         editorOptions: {
                             disabled: true
                         },
+                        visible:false
                     },
                     {
                         dataField: "tanggalDikirim",
@@ -135,6 +151,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                         editorOptions: {
                             disabled: true
                         },
+                        visible:false
                     },
                     {
                         dataField: "tanggalSelesai",
@@ -152,19 +169,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
         }
     }
 
-    mounted(() => {
-        if (id) {
-            setLoading(true)
-            TransaksiHelper.detail(id, ({ status, data }) => {
-                setLoading(false)
-                if (data.status == "SELESAI") formRef.current?.disabled(true)
-                if (status) {
-                    setStatus(data.status);
-                    formRef.current?.updateData(data);
-                }
-            })
-        }
-    })
+
 
     return <BgsGroupForm
         {...form}

@@ -47,6 +47,10 @@ export default function TransaksiList(props: MainLayoutProps) {
                         return "Dibatalkan"
                     } else if (data.status == "NEGO") {
                         return "Nego"
+                    } else if (data.status == "SIAP_DIAMBIL") {
+                        return "Siap Diambil"
+                    } else if (data.status == "DIKIRIM") {
+                        return "Sedang Dikirim"
                     } else {
                         return "Selesai"
                     }

@@ -10,6 +10,32 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const roleId = credential.storage.get("user")?.idRole;
+    const [statusTransaksi, setStatusTransaksi] = useState();
+    const [opsiPengiriman, setOpsiPengiriman] = useState();
+
+    mounted(() => {
+        if (id) {
+            setLoading(true)
+            TransaksiHelper.detail(id, ({ status, data }) => {
+                setLoading(false)
+                if (mode === "detail") formRef.current?.disabled(true)
+                if (status) {
+                    setStatusTransaksi(data.status)
+                    setOpsiPengiriman(data.opsiPengiriman)
+                    formRef.current?.updateData(data);
+                }
+                if (data.status === "SIAP_DIAMBIL") formRef.current?.itemOption("tanggalSiapDiambil").option("visible", true);
+                if (data.status === "DIKIRIM") formRef.current?.itemOption("tanggalDikirim").option("visible", true);
+                if (data.status === "DIPROSES") formRef.current?.itemOption("tanggalDiproses").option("visible", true);
+                if (data.status === "SELESAI") formRef.current?.itemOption("tanggalSelesai").option("visible", true);
+                if (data.status === "SELESAI" && data.opsiPengiriman === "AMBIL") formRef.current?.itemOption("tanggalSiapDiambil").option("visible", true);
+                if (data.status === "SELESAI" && data.opsiPengiriman === "ANTAR") formRef.current?.itemOption("tanggalDikirim").option("visible", true);
+                if (data.opsiPengiriman === "ANTAR") formRef.current?.itemOption("catatanPengiriman").option("visible", true);
+                console.log(statusTransaksi)
+                console.log(opsiPengiriman)
+            })
+        }
+    })
 
     const form: FormGroupModel = {
         apperance: "filled",
@@ -62,34 +88,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                             disabled: true
                         },
                         validationRules: ["pattern.number"]
-                    }, {
-                        dataField: "tanggalDibutuhkan",
-                        label: {
-                            text: "Tanggal Dibutuhkan"
-                        },
-                        editorType: "date",
-                        editorOptions: {
-                            disabled: true
-                        },
-                    }, {
-                        dataField: "tanggalDiproses",
-                        label: {
-                            text: "Tanggal Diproses"
-                        },
-                        editorType: "date",
-                        editorOptions: {
-                            disabled: true
-                        },
-                    }, {
-                        dataField: "tanggalSelesai",
-                        label: {
-                            text: "Tanggal Selesai"
-                        },
-                        editorType: "date",
-                        editorOptions: {
-                            disabled: true
-                        },
-                    },
+                    }, 
                     `catatan|label.text=Catatan|editoryType=textarea|editorOptions.disabled=true`,
                     {
                         dataField: "opsiPengiriman",
@@ -109,6 +108,59 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                     `kelurahanDesaNelayan|label.text=Kelurahan Nelayan|editorOptions.disabled=true`,
                     `kecamatanNelayan|label.text=Kecamatan Nelayan|editorOptions.disabled=true`,
                     `alamatNelayan|label.text=Alamat Nelayan|editorOptions.disabled=true`,
+                    {
+                        dataField: "tanggalDibutuhkan",
+                        label: {
+                            text: "Tanggal Dibutuhkan"
+                        },
+                        editorType: "date",
+                        editorOptions: {
+                            disabled: true
+                        },
+                    }, {
+                        dataField: "tanggalDiproses",
+                        label: {
+                            text: "Tanggal Diproses"
+                        },
+                        editorType: "date",
+                        editorOptions: {
+                            disabled: true
+                        },
+                        visible: false
+                        
+                    }, 
+                    {
+                        dataField: "tanggalSiapDiambil",
+                        label: {
+                            text: "Tanggal Siap Diambil"
+                        },
+                        editorType: "date",
+                        editorOptions: {
+                            disabled: true
+                        },
+                        visible: false
+                    },
+                    {
+                        dataField: "tanggalDikirim",
+                        label: {
+                            text: "Tanggal Dikirim"
+                        },
+                        editorType: "date",
+                        editorOptions: {
+                            disabled: true
+                        },
+                        visible: false
+                    },{
+                        dataField: "tanggalSelesai",
+                        label: {
+                            text: "Tanggal Selesai"
+                        },
+                        editorType: "date",
+                        editorOptions: {
+                            disabled: true
+                        },
+                        visible: false
+                    },
                     {
                         dataField: "status",
                         editorType: "select",
@@ -136,6 +188,11 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                 if (status) {
                     formRef.current?.updateData(data);
                 }
+                if (data.status === "SIAP_DIAMBIL") formRef.current?.itemOption("tanggalSiapDiambil").option("visible", true);
+                if (data.status === "DIKIRIM") formRef.current?.itemOption("tanggalDikirim").option("visible", true);
+                if (data.status === "DIPROSES") formRef.current?.itemOption("tanggalDiproses").option("visible", true);
+                if (data.status === "SELESAI") formRef.current?.itemOption("tanggalSelesai").option("visible", true);
+                console.log(statusTransaksi)
             })
         }
     })

@@ -159,8 +159,6 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                             text: "Catatan Pengiriman"
                         },
                         visible: false
-                        // visible:  status =="DIPROSES" ? true:false
-                        // visible: ({data}) => data.opsiPengiriman === "ANTAR" ? true:false
                     },
                 ]
             },
