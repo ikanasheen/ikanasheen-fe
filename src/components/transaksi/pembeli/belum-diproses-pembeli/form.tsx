@@ -15,6 +15,25 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
     const [statusTransaksi, setStatusTransaksi] = useState();
     const [date] = useState<string>(moment().format("YYYY-MM-DD"));
 
+
+    mounted(() => {
+        if (id) {
+            setLoading(true)
+            TransaksiHelper.detail(id, ({ status, data }) => {
+                setLoading(false)
+                if (status) {
+                    setStatusTransaksi(data.status);
+                    formRef.current?.updateData(data);
+                }
+                if (data.status == "DIAJUKAN") formRef.current?.disabled(true)
+                // if (id!= null){
+                formRef.current?.itemOption("idTransaksi").option("visible", true);
+                formRef.current?.itemOption("namaIkan").option("visible", true);
+
+            })
+        }
+    })
+
     const form: FormGroupModel = {
         apperance: "filled",
         showIcon: true,
@@ -33,8 +52,22 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
             main: {
                 spacing: 3,
                 items: [
-                    id ? `idTransaksi|label.text=ID Transaksi|editorOptions.disabled=true` : null,
-                    id ? `namaIkan|label.text=Nama Komoditi|editorOptions.disabled=true` : null,
+                    {
+                        dataField: "idTransaksi",
+                        label: {
+                            text: "ID Transaksi"
+                        },
+                        visible: false
+                    },
+                    {
+                        dataField: "namaIkan",
+                        label: {
+                            text: "Nama Komoditi"
+                        },
+                        visible: false
+                    },
+                    // id ? `idTransaksi|label.text=ID Transaksi|editorOptions.disabled=true` : null,
+                    // id ? `namaIkan|label.text=Nama Komoditi|editorOptions.disabled=true` : null,
                     // id ? `ukuran|label.text=Ukuran|editorOptions.disabled=true` : null,
                     !id ? {
                         dataField: "idIkan",
@@ -95,7 +128,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                             displayExpr: "display",
                             valueExpr: "value",
                         },
-                        validationRules:['required']
+                        validationRules: ['required']
                     },
                     id ? {
                         dataField: "hargaAwal",
@@ -125,19 +158,6 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
         }
     }
 
-    mounted(() => {
-        if (id) {
-            setLoading(true)
-            TransaksiHelper.detail(id, ({ status, data }) => {
-                setLoading(false)
-                if (data.status == "DIAJUKAN") formRef.current?.disabled(true)
-                if (status) {
-                    setStatusTransaksi(data.status);
-                    formRef.current?.updateData(data);
-                }
-            })
-        }
-    })
 
     const batalkanTransaksi = ({ loading }: { loading: Function }) => {
         loading(true);
@@ -184,7 +204,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                 {id != null && statusTransaksi == "DIAJUKAN" ? // && status diajukan
                     <BgsButton variant="contained" className="btn-batalkan"
                         modalOptions={{
-                            message: "Apakah Anda yakin untuk memproses transaksi ini?",
+                            message: "Apakah Anda yakin untuk membatalkan transaksi ini?",
                             width: 350
                         }} onClick={e => batalkanTransaksi(e)} >Batalkan Pemesanan</BgsButton>
                     : <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Ajukan</BgsButton>
