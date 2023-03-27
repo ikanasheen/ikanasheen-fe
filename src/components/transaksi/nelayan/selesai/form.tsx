@@ -107,6 +107,26 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         },
                     },
                     {
+                        dataField: "tanggalSiapDiambil",
+                        label: {
+                            text: "Tanggal Siap Diambil"
+                        },
+                        editorType: "date",
+                        editorOptions: {
+                            disabled: true
+                        },
+                    },
+                    {
+                        dataField: "tanggalDikirim",
+                        label: {
+                            text: "Tanggal Dikirim"
+                        },
+                        editorType: "date",
+                        editorOptions: {
+                            disabled: true
+                        },
+                    },
+                    {
                         dataField: "catatanPengiriman",
                         label: {
                             text: "Catatan Pengiriman"

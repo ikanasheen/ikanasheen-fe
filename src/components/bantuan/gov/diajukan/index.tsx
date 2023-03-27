@@ -35,7 +35,6 @@ export default function DaftarProposalList(props: MainLayoutProps) {
         }],
         onRowClick: ({ rowData }) => form(rowData.idProposalBantuan),
         columns: [
-            `idNelayan|caption=ID Nelayan|allowFiltering|width=180`,
             `namaNelayan|caption=Nama Nelayan|allowFiltering|width=180`,
             `namaBantuan|caption=Nama Bantuan|allowFiltering|width=180`,
             `jenisBantuan|caption=Jenis Bantuan|allowFiltering|width=180`,

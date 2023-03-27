@@ -26,28 +26,12 @@ export default function ProposalForm({ id, hide, onSuccess = () => { } }: Drawer
             main: {
                 spacing: 3,
                 items: [
+                    `idNelayan|label.text=ID Nelayan`,
+                    `namaNelayan|label.text=Nama Nelayan`,
                     `jenisBantuan|label.text=Jenis Bantuan`,
                     `namaBantuan|label.text=Nama Bantuan`,
                     {
                         dataField: "tanggalDiajukan",
-                        editorType: "date",
-                        editorOptions: {
-                            mode: "datetime",
-                            format: {
-                                value: "YYYY-MM-DDTHH:MM:SS"
-                            }
-                        },
-                    },{
-                        dataField: "tanggalDisetujui",
-                        editorType: "date",
-                        editorOptions: {
-                            mode: "datetime",
-                            format: {
-                                value: "YYYY-MM-DDTHH:MM:SS"
-                            }
-                        },
-                    },{
-                        dataField: "tanggalDitolak",
                         editorType: "date",
                         editorOptions: {
                             mode: "datetime",

@@ -11,6 +11,19 @@ export default function ProposalForm({ id, hide, onSuccess = () => { } }: Drawer
     const roleId = credential.storage.get("user")?.idRole;
     const [namaBantuan, setNamaBantuan] = useState();
 
+    mounted(() => {
+        if (id) {
+            setLoading(true)
+            ProposalHelper.detail(id, ({ status, data }) => {
+                setLoading(false)
+                if (roleId !== 1) formRef.current?.disabled(true)
+                if (status) {
+                    setNamaBantuan(data.namaBantuan)
+                    formRef.current?.updateData(data);
+                }
+            })
+        }
+    })
     const form: FormGroupModel = {
         apperance: "filled",
         showIcon: true,
@@ -22,13 +35,12 @@ export default function ProposalForm({ id, hide, onSuccess = () => { } }: Drawer
                 if (status) onSuccess();
             })
         },
-        formData: {
-            isActive: true
-        },
         item: {
             main: {
                 spacing: 3,
                 items: [
+                    `idNelayan|label.text=ID Nelayan`,
+                    `namaNelayan|label.text=Nama Nelayan`,
                     `jenisBantuan|label.text=Jenis Bantuan`,
                     `namaBantuan|label.text=Nama Bantuan`,
                     {
@@ -40,7 +52,8 @@ export default function ProposalForm({ id, hide, onSuccess = () => { } }: Drawer
                                 value: "YYYY-MM-DDTHH:MM:SS"
                             }
                         },
-                    },{
+                    },
+                    {
                         dataField: "tanggalDisetujui",
                         editorType: "date",
                         editorOptions: {
@@ -49,7 +62,8 @@ export default function ProposalForm({ id, hide, onSuccess = () => { } }: Drawer
                                 value: "YYYY-MM-DDTHH:MM:SS"
                             }
                         },
-                    },{
+                    },
+                    {
                         dataField: "tanggalDitolak",
                         editorType: "date",
                         editorOptions: {
@@ -58,7 +72,7 @@ export default function ProposalForm({ id, hide, onSuccess = () => { } }: Drawer
                                 value: "YYYY-MM-DDTHH:MM:SS"
                             }
                         },
-                    },
+                    },                    
                     {
                         dataField: "statusProposal",
                         label: {
@@ -98,19 +112,6 @@ export default function ProposalForm({ id, hide, onSuccess = () => { } }: Drawer
         }
     }
 
-    mounted(() => {
-        if (id) {
-            setLoading(true)
-            ProposalHelper.detail(id, ({ status, data }) => {
-                setLoading(false)
-                if (roleId !== 1) formRef.current?.disabled(true)
-                if (status) {
-                    setNamaBantuan(data.namaBantuan)
-                    formRef.current?.updateData(data);
-                }
-            })
-        }
-    })
 
     return <BgsGroupForm
         {...form}

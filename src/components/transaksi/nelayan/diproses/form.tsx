@@ -13,6 +13,19 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
     const [status, setStatus] = useState();
     // const roleId = credential.storage.get("user")?.idRole;
 
+    mounted(() => {
+        if (id) {
+            setLoading(true)
+            TransaksiHelper.detail(id, ({ status, data }) => {
+                setLoading(false)
+                if (status) {
+                    setStatus(data.status)
+                    setOpsiPengiriman(data.opsiPengiriman)
+                    formRef.current?.updateData(data);
+                }
+            })
+        }
+    })
     const form: FormGroupModel = {
         apperance: "filled",
         showIcon: true,
@@ -112,7 +125,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                             disabled: true,
                         },
                     },
-                    "opsiPengiriman" === OpsiPengirimanConst[0].value ? {
+                    {
                         dataField: "tanggalSiapDiambil",
                         label: {
                             text: "Tanggal Siap Diambil"
@@ -121,7 +134,8 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                         editorOptions: {
                             disabled: true
                         },
-                    }:{
+                    },
+                    {
                         dataField: "tanggalDikirim",
                         label: {
                             text: "Tanggal Dikirim"
@@ -131,7 +145,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                             disabled: true
                         },
                     },
-                    opsiPengiriman==="ANTAR" ? {
+                    opsiPengiriman === "ANTAR" ? {
                         dataField: "catatanPengiriman",
                         label: {
                             text: "Catatan Pengiriman"
@@ -142,19 +156,6 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
         }
     }
 
-    mounted(() => {
-        if (id) {
-            setLoading(true)
-            TransaksiHelper.detail(id, ({ status, data }) => {
-                setLoading(false)
-                if (status) {
-                    setStatus(data.status)
-                    setOpsiPengiriman(data.opsiPengiriman)
-                    formRef.current?.updateData(data);
-                }
-            })
-        }
-    })
 
     const siapDiambil = ({ loading }: { loading: Function }) => {
         loading(true);
