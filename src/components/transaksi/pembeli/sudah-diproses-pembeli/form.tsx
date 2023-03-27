@@ -11,6 +11,23 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
     const [loading, setLoading] = useState<boolean>(false);
     const [status, setStatus] = useState();
 
+    mounted(() => {
+        if (id) {
+            setLoading(true)
+            TransaksiHelper.detail(id, ({ status, data }) => {
+                setLoading(false)
+                if (data.status == "DIPROSES") formRef.current?.disabled(true)
+                if (status) {
+                    setStatus(data.status);
+                    formRef.current?.updateData(data);
+                }
+                if (data.status === "SIAP_DIAMBIL") formRef.current?.itemOption("tanggalSiapDiambil").option("visible", true);
+                if (data.status === "DIKIRIM") formRef.current?.itemOption("tanggalDikirim").option("visible", true);
+
+            })
+        }
+    })
+
     const form: FormGroupModel = {
         apperance: "filled",
         showIcon: true,
@@ -37,47 +54,6 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                         editorOptions: {
                             disabled: true
                         }
-                    },
-                    {
-                        dataField: "tanggalDibutuhkan",
-                        label: {
-                            text: "Tanggal Dibutuhkan"
-                        },
-                        editorType: "date",
-                        editorOptions: {
-                            disabled: true
-                        }
-                    },
-                    {
-                        dataField: "tanggalDiproses",
-                        label: {
-                            text: "Tanggal Diproses"
-                        },
-                        editorType: "date",
-                        editorOptions: {
-                            disabled: true
-                        }
-                    },
-                    `catatan|label.text=Catatan|editoryType=textarea|validationRules=maxLength.255|editorOptions.disabled=true`,
-                    `idTransaksi|label.text=ID Transaksi|editorOptions.disabled=true`,
-                    `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true`,
-                    `alamatPembeli|label.text=Alamat Lengkap Pembeli|editoryType=textarea|editorOptions.disabled=true|validationRules=maxLength.255`,
-                    `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
-                    `kelurahanDesaNelayan|label.text=Kelurahan Nelayan|editorOptions.disabled=true`,
-                    `kecamatanNelayan|label.text=Kecamatan Nelayan|editorOptions.disabled=true`,
-                    `alamatNelayan|label.text=Alamat Nelayan|editorOptions.disabled=true`,
-                    {
-                        dataField: "status",
-                        editorType: "select",
-                        label: {
-                            text: "Status"
-                        },
-                        editorOptions: {
-                            dataSource: StatusTransaksiConst,
-                            displayExpr: "display",
-                            valueExpr: "value",
-                            disabled: true
-                        },
                     },
                     {
                         dataField: "hargaAwal",
@@ -112,25 +88,76 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                             disabled: true
                         }
                     },
+                    `catatan|label.text=Catatan|editoryType=textarea|validationRules=maxLength.255|editorOptions.disabled=true`,
+                    `idTransaksi|label.text=ID Transaksi|editorOptions.disabled=true`,
+                    `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true`,
+                    `alamatPembeli|label.text=Alamat Lengkap Pembeli|editoryType=textarea|editorOptions.disabled=true|validationRules=maxLength.255`,
+                    `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
+                    `kelurahanDesaNelayan|label.text=Kelurahan Nelayan|editorOptions.disabled=true`,
+                    `kecamatanNelayan|label.text=Kecamatan Nelayan|editorOptions.disabled=true`,
+                    `alamatNelayan|label.text=Alamat Nelayan|editorOptions.disabled=true`,
+                    {
+                        dataField: "status",
+                        editorType: "select",
+                        label: {
+                            text: "Status"
+                        },
+                        editorOptions: {
+                            dataSource: StatusTransaksiConst,
+                            displayExpr: "display",
+                            valueExpr: "value",
+                            disabled: true
+                        },
+                    },
+                    {
+                        dataField: "tanggalDibutuhkan",
+                        label: {
+                            text: "Tanggal Dibutuhkan"
+                        },
+                        editorType: "date",
+                        editorOptions: {
+                            disabled: true
+                        }
+                    },
+                    {
+                        dataField: "tanggalDiproses",
+                        label: {
+                            text: "Tanggal Diproses"
+                        },
+                        editorType: "date",
+                        editorOptions: {
+                            disabled: true
+                        }
+                    },
+                    {
+                        dataField: "tanggalSiapDiambil",
+                        label: {
+                            text: "Tanggal Siap Diambil"
+                        },
+                        editorType: "date",
+                        editorOptions: {
+                            disabled: true
+                        },
+                        visible: false
+                    },
+                    {
+                        dataField: "tanggalDikirim",
+                        label: {
+                            text: "Tanggal Dikirim"
+                        },
+                        editorType: "date",
+                        editorOptions: {
+                            disabled: true
+                        },
+                        visible: false
+                    },
 
                 ]
             },
         }
     }
 
-    mounted(() => {
-        if (id) {
-            setLoading(true)
-            TransaksiHelper.detail(id, ({ status, data }) => {
-                setLoading(false)
-                if (data.status == "DIPROSES") formRef.current?.disabled(true)
-                if (status) {
-                    setStatus(data.status);
-                    formRef.current?.updateData(data);
-                }
-            })
-        }
-    })
+
     const terimaTransaksi = ({ loading }: { loading: Function }) => {
         loading(true);
         // const { idTransaksi };

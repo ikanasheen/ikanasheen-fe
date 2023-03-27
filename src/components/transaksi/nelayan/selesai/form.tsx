@@ -10,7 +10,18 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const roleId = credential.storage.get("user")?.idRole;
-
+    mounted(() => {
+        if (id) {
+            setLoading(true)
+            TransaksiHelper.detail(id, ({ status, data }) => {
+                setLoading(false)
+                if (mode === "detail") formRef.current?.disabled(true)
+                if (status) {
+                    formRef.current?.updateData(data);
+                }
+            })
+        }
+    })
     const form: FormGroupModel = {
         apperance: "filled",
         showIcon: true,
@@ -61,6 +72,23 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         },
                         validationRules: ["pattern.number"]
                     },
+                    `catatan|label.text=Catatan|editoryType=textarea|editorOptions.disabled=true`,
+                    `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true`,
+                    `alamatPembeli|label.text=Alamat Pembeli|editoryType=textarea|editorOptions.disabled=true`,
+                    `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
+                    {
+                        dataField: "opsiPengiriman",
+                        editorType: "select",
+                        label: {
+                            text: "Opsi Pengiriman"
+                        },
+                        editorOptions: {
+                            dataSource: OpsiPengirimanConst,
+                            displayExpr: "display",
+                            valueExpr: "value",
+                            disabled: true
+                        },
+                    },                    
                     {
                         dataField: "tanggalDibutuhkan",
                         label: {
@@ -78,32 +106,6 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         editorType: "date",
                         editorOptions: {
                             disabled:true
-                        },
-                    },{
-                        dataField: "tanggalSelesai",
-                        label: {
-                            text: "Tanggal Selesai"
-                        },
-                        editorType: "date",
-                        editorOptions: {
-                            disabled:true
-                        },
-                    },
-                    `catatan|label.text=Catatan|editoryType=textarea|editorOptions.disabled=true`,
-                    `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true`,
-                    `alamatPembeli|label.text=Alamat Pembeli|editoryType=textarea|editorOptions.disabled=true`,
-                    `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
-                    {
-                        dataField: "opsiPengiriman",
-                        editorType: "select",
-                        label: {
-                            text: "Opsi Pengiriman"
-                        },
-                        editorOptions: {
-                            dataSource: OpsiPengirimanConst,
-                            displayExpr: "display",
-                            valueExpr: "value",
-                            disabled: true
                         },
                     },
                     {
@@ -132,7 +134,18 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                             text: "Catatan Pengiriman"
                         },
                         editorOptions:{disabled: true}
-                    },{
+                    },
+                    {
+                        dataField: "tanggalSelesai",
+                        label: {
+                            text: "Tanggal Selesai"
+                        },
+                        editorType: "date",
+                        editorOptions: {
+                            disabled:true
+                        },
+                    },
+                    {
                         dataField: "status",
                         editorType: "select",
                         label: {
@@ -150,18 +163,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
         }
     }
 
-    mounted(() => {
-        if (id) {
-            setLoading(true)
-            TransaksiHelper.detail(id, ({ status, data }) => {
-                setLoading(false)
-                if (mode === "detail") formRef.current?.disabled(true)
-                if (status) {
-                    formRef.current?.updateData(data);
-                }
-            })
-        }
-    })
+
 
     return <BgsGroupForm
         {...form}

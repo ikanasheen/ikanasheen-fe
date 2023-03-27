@@ -26,6 +26,8 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                 if (data.opsiPengiriman === "ANTAR" && data.status === "DIPROSES") {
                     formRef.current?.itemOption("catatanPengiriman").option("visible", true);
                 }
+                if (data.status === "SIAP_DIAMBIL") formRef.current?.itemOption("tanggalSiapDiambil").option("visible", true);
+                if (data.status === "DIKIRIM") formRef.current?.itemOption("tanggalDikirim").option("visible", true);
 
             })
 
@@ -138,6 +140,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                         editorOptions: {
                             disabled: true
                         },
+                        visible: false
                     },
                     {
                         dataField: "tanggalDikirim",
@@ -148,6 +151,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                         editorOptions: {
                             disabled: true
                         },
+                        visible: false
                     },
                     {
                         dataField: "catatanPengiriman",

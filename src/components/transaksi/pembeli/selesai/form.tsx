@@ -34,57 +34,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                         },
                         validationRules: ['pattern.number', 'min.1', 'maxLength.255']
                     },
-                    {
-                        dataField: "tanggalDibutuhkan",
-                        label: {
-                            text: "Tanggal Dibutuhkan"
-                        },
-                        editorType: "date",
-                        editorOptions: {
-                            disabled: true
-                        }
-                    },
-                    {
-                        dataField: "tanggalDiproses",
-                        label: {
-                            text: "Tanggal Diproses"
-                        },
-                        editorType: "date",
-                        editorOptions: {
-                            disabled: true
-                        }
-                    },
-                    {
-                        dataField: "tanggalSelesai",
-                        label: {
-                            text: "Tanggal Selesai"
-                        },
-                        editorType: "date",
-                        editorOptions: {
-                            disabled: true
-                        }
-                    },
-                    `catatan|label.text=Catatan|editoryType=textarea|validationRules=maxLength.255`,
-                    `idTransaksi|label.text=ID Transaksi|editorOptions.disabled=true`,
-                    `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true`,
-                    `alamatPembeli|label.text=Alamat Lengkap Pembeli|editoryType=textarea|validationRules=maxLength.255`,
-                    `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
-                    `kelurahanDesaNelayan|label.text=Kelurahan Nelayan|editorOptions.disabled=true`,
-                    `kecamatanNelayan|label.text=Kecamatan Nelayan|editorOptions.disabled=true`,
-                    `alamatNelayan|label.text=Alamat Nelayan|editorOptions.disabled=true`,
-                    {
-                        dataField: "status",
-                        editorType: "select",
-                        label: {
-                            text: "Status"
-                        },
-                        editorOptions: {
-                            dataSource: StatusTransaksiConst,
-                            displayExpr: "display",
-                            valueExpr: "value",
-                            disabled: true
-                        },
-                    },
+                    
                     {
                         dataField: "hargaAwal",
                         label: {
@@ -111,6 +61,87 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                         },
                         editorType: "number",
                         validationRules: ["maxLength.255", 'min.1', "pattern.number"],
+                        editorOptions: {
+                            disabled: true
+                        }
+                    },
+                    `catatan|label.text=Catatan|editoryType=textarea|validationRules=maxLength.255`,
+                    `idTransaksi|label.text=ID Transaksi|editorOptions.disabled=true`,
+                    `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true`,
+                    `alamatPembeli|label.text=Alamat Lengkap Pembeli|editoryType=textarea|validationRules=maxLength.255`,
+                    `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
+                    `kelurahanDesaNelayan|label.text=Kelurahan Nelayan|editorOptions.disabled=true`,
+                    `kecamatanNelayan|label.text=Kecamatan Nelayan|editorOptions.disabled=true`,
+                    `alamatNelayan|label.text=Alamat Nelayan|editorOptions.disabled=true`,
+                    {
+                        dataField: "status",
+                        editorType: "select",
+                        label: {
+                            text: "Status"
+                        },
+                        editorOptions: {
+                            dataSource: StatusTransaksiConst,
+                            displayExpr: "display",
+                            valueExpr: "value",
+                            disabled: true
+                        },
+                    },
+                    {
+                        dataField: "tanggalDibutuhkan",
+                        label: {
+                            text: "Tanggal Dibutuhkan"
+                        },
+                        editorType: "date",
+                        editorOptions: {
+                            disabled: true
+                        }
+                    },
+                    {
+                        dataField: "tanggalDiproses",
+                        label: {
+                            text: "Tanggal Diproses"
+                        },
+                        editorType: "date",
+                        editorOptions: {
+                            disabled: true
+                        }
+                    },
+                    {
+                        dataField: "tanggalDiproses",
+                        label: {
+                            text: "Tanggal Diproses"
+                        },
+                        editorType: "date",
+                        editorOptions: {
+                            disabled:true
+                        },
+                    },
+                    {
+                        dataField: "tanggalSiapDiambil",
+                        label: {
+                            text: "Tanggal Siap Diambil"
+                        },
+                        editorType: "date",
+                        editorOptions: {
+                            disabled: true
+                        },
+                    },
+                    {
+                        dataField: "tanggalDikirim",
+                        label: {
+                            text: "Tanggal Dikirim"
+                        },
+                        editorType: "date",
+                        editorOptions: {
+                            disabled: true
+                        },
+                    },
+                    {
+                        dataField: "tanggalSelesai",
+                        label: {
+                            text: "Tanggal Selesai"
+                        },
+                        editorType: "date",
                         editorOptions: {
                             disabled: true
                         }
