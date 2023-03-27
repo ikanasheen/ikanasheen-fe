@@ -23,7 +23,12 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                     setOpsiPengiriman(data.opsiPengiriman)
                     formRef.current?.updateData(data);
                 }
+                if (data.opsiPengiriman === "ANTAR" && data.status === "DIPROSES") {
+                    formRef.current?.itemOption("catatanPengiriman").option("visible", true);
+                }
+
             })
+
         }
     })
     const form: FormGroupModel = {
@@ -34,7 +39,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
             setLoading(true);
             TransaksiHelper.dikirim(values, ({ status }) => {
                 setLoading(false);
-                if (status) onSuccess(); 
+                if (status) onSuccess();
             })
         },
         item: {
@@ -75,8 +80,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                             disabled: true
                         },
                         validationRules: ["pattern.number"]
-                    },
-                    {
+                    }, {
                         dataField: "tanggalDibutuhkan",
                         label: {
                             text: "Tanggal Dibutuhkan"
@@ -99,7 +103,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                     `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true`,
                     `alamatPembeli|label.text=Alamat Pembeli|editoryType=textarea|editorOptions.disabled=true`,
                     `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
-                     {
+                    {
                         dataField: "status",
                         editorType: "select",
                         label: {
@@ -145,12 +149,15 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                             disabled: true
                         },
                     },
-                    opsiPengiriman === "ANTAR" ? {
+                    {
                         dataField: "catatanPengiriman",
                         label: {
                             text: "Catatan Pengiriman"
                         },
-                    }:null,
+                        visible: false
+                        // visible:  status =="DIPROSES" ? true:false
+                        // visible: ({data}) => data.opsiPengiriman === "ANTAR" ? true:false
+                    },
                 ]
             },
         }
@@ -198,10 +205,10 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
             >
             </BgsButton>}</>}
             footer={<>
-                <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
+                <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}> Kembali</BgsButton>
                 {
                     //if value dikirim == kirim pesanan, value ambil == Siap Diambil
-                    status === "DIPROSES" && opsiPengiriman !== null && opsiPengiriman === "ANTAR"  ?
+                    status === "DIPROSES" && opsiPengiriman !== null && opsiPengiriman === "ANTAR" ?
                         <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Siap Dikirim</BgsButton>
                         : status === "DIPROSES" && opsiPengiriman !== null && opsiPengiriman === "AMBIL" ?
                             <BgsButton className="btn-save" loading={loading} visibleLoading={false} onClick={e => siapDiambil(e)}>Siap Diambil</BgsButton>
