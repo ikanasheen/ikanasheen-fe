@@ -49,7 +49,7 @@ export default function ProposalForm({ title, id, hide, onSuccess = () => { } }:
                 items: [
                     `jenisBantuan|label.text=Jenis Bantuan`,
                     `namaBantuan|label.text=Nama Bantuan`,
-                    id?{
+                    {
                         dataField: "tanggalDiajukan",
                         editorType: "date",
                         editorOptions: {
@@ -58,8 +58,7 @@ export default function ProposalForm({ title, id, hide, onSuccess = () => { } }:
                                 value: "YYYY-MM-DDTHH:MM:SS"
                             }
                         },
-                    }:null,
-                    id?{
+                    }, {
                         dataField: "tanggalDisetujui",
                         editorType: "date",
                         editorOptions: {
@@ -68,8 +67,8 @@ export default function ProposalForm({ title, id, hide, onSuccess = () => { } }:
                                 value: "YYYY-MM-DDTHH:MM:SS"
                             }
                         },
-                    }:null,
-                    id?{
+                        visible: false
+                    }, {
                         dataField: "tanggalDitolak",
                         editorType: "date",
                         editorOptions: {
@@ -78,8 +77,9 @@ export default function ProposalForm({ title, id, hide, onSuccess = () => { } }:
                                 value: "YYYY-MM-DDTHH:MM:SS"
                             }
                         },
-                    }:null,
-                    id? {
+                        visible: false
+                    },
+                    {
                         dataField: "statusProposal",
                         label: {
                             text: "Status"
@@ -90,8 +90,7 @@ export default function ProposalForm({ title, id, hide, onSuccess = () => { } }:
                             displayExpr: "display",
                             valueExpr: "value",
                         },
-                    }:null,
-                    `file|label.text=File`,
+                    },
                     // {
                     //     dataField: "photoProfiles",
                     //     label: {
@@ -113,6 +112,7 @@ export default function ProposalForm({ title, id, hide, onSuccess = () => { } }:
                     //     editorType: "upload",
                     //     validationRules: ["required"]
                     // },
+                    `file|label.text=File`,
                 ]
             },
         }
