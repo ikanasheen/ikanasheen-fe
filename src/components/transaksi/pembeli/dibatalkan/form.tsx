@@ -26,8 +26,11 @@ export default function TransaksiForm({ title,  id, hide, onSuccess = () => { } 
             main: {
                 spacing: 3,
                 items: [
+                    `idTransaksi|label.text=ID Transaksi|editorOptions.disabled=true` ,
                     `namaIkan|label.text=Nama Komoditi|editorOptions.disabled=true` ,
                     `ukuran|label.text=Ukuran|editorOptions.disabled=true` ,
+                    `alamatPembeli|label.text=Alamat Lengkap|editoryType=textarea`,
+                    `catatan|label.text=Catatan|editoryType=textarea`,
                     {
                         dataField: "jumlah",
                         label: {
@@ -35,16 +38,6 @@ export default function TransaksiForm({ title,  id, hide, onSuccess = () => { } 
                         },
                         validationRules: ['pattern.number', 'min.1', 'maxLength.255']
                     },
-                    {
-                        dataField: "tanggalDibutuhkan",
-                        label: {
-                            text: "Tanggal Dibutuhkan"
-                        },
-                        editorType: "date",
-                    },
-                    `alamatPembeli|label.text=Alamat Lengkap|editoryType=textarea`,
-                    `catatan|label.text=Catatan|editoryType=textarea`,
-                    `idTransaksi|label.text=ID Transaksi|editorOptions.disabled=true` ,
                     {
                         dataField: "hargaAwal",
                         label: {
@@ -65,6 +58,14 @@ export default function TransaksiForm({ title,  id, hide, onSuccess = () => { } 
                             displayExpr: "display",
                             valueExpr: "value",
                         },
+                    },
+                    
+                    {
+                        dataField: "tanggalDibutuhkan",
+                        label: {
+                            text: "Tanggal Dibutuhkan"
+                        },
+                        editorType: "date",
                     },{
                         dataField: "status",
                         editorType: "select",

@@ -49,6 +49,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
             main: {
                 spacing: 3,
                 items: [
+                    `idTransaksi|label.text=ID Transaksi|editorOptions.disabled=true`,
                     `namaIkan|label.text=Nama Komoditi|editorOptions.disabled=true`,
                     `ukuran|label.text=Ukuran|editorOptions.disabled=true`,
                     {
@@ -90,26 +91,13 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                         }
                     },
                     `catatan|label.text=Catatan|editoryType=textarea|validationRules=maxLength.255`,
-                    `idTransaksi|label.text=ID Transaksi|editorOptions.disabled=true`,
                     `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true`,
                     `alamatPembeli|label.text=Alamat Lengkap Pembeli|editoryType=textarea|validationRules=maxLength.255`,
                     `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
                     `kelurahanDesaNelayan|label.text=Kelurahan Nelayan|editorOptions.disabled=true`,
                     `kecamatanNelayan|label.text=Kecamatan Nelayan|editorOptions.disabled=true`,
                     `alamatNelayan|label.text=Alamat Nelayan|editorOptions.disabled=true`,
-                    {
-                        dataField: "status",
-                        editorType: "select",
-                        label: {
-                            text: "Status"
-                        },
-                        editorOptions: {
-                            dataSource: StatusTransaksiConst,
-                            displayExpr: "display",
-                            valueExpr: "value",
-                            disabled: true
-                        },
-                    },
+                    
                     {
                         dataField: "tanggalDibutuhkan",
                         label: {
@@ -162,6 +150,19 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                         editorOptions: {
                             disabled: true
                         }
+                    },
+                    {
+                        dataField: "status",
+                        editorType: "select",
+                        label: {
+                            text: "Status"
+                        },
+                        editorOptions: {
+                            dataSource: StatusTransaksiConst,
+                            displayExpr: "display",
+                            valueExpr: "value",
+                            disabled: true
+                        },
                     },
 
                 ]
