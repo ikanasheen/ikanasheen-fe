@@ -24,9 +24,6 @@ export default function TransaksiList(props: MainLayoutProps) {
 
     const table: TableModel = {
         helper: (data) => TransaksiHelper.retrieve(data),
-        allowSearching: {
-            fullWidth: true
-        },
         showIndexing: {
             sticky: "left"
         },

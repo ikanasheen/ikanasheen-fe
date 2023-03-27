@@ -38,7 +38,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                             text: "Kuota"
                         },
                         editorType: "number",
-                        validationRules: ["required"]
+                        validationRules: ["required","min.1","pattern.number"]
                         // editorOptions: {
                         //     mode:"number"
                         // },
