@@ -10,7 +10,23 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const roleId = credential.storage.get("user")?.idRole;
+    const [kuotaTersisa, setKuotaTersisa] = useState();
 
+    mounted(() => {
+        if (id) {
+            setLoading(true)
+            BantuanHelper.detail(id, ({ status, data }) => {
+                setLoading(false)
+                if (roleId !== 1) formRef.current?.disabled(true)
+                if (status) {
+                    setKuotaTersisa(data.kuotaTersisa)
+                    formRef.current?.updateData(data);
+                }
+                if (id) formRef.current?.itemOption("kuotaTersisa").option("visible", true);
+                console.log(kuotaTersisa)
+            })
+        }
+    })
     const form: FormGroupModel = {
         apperance: "filled",
         showIcon: true,
@@ -33,6 +49,14 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                     `jenisBantuan|label.text=Jenis Bantuan`,
                     `kuota|label.text=Kuota`,
                     {
+                        dataField: "kuotaTersisa",
+                        label: {
+                            text: "Kuota Tersisa"
+                        },
+                        editorType: "number",
+                        visible:false
+                    },
+                    {
                         dataField: "statusBantuan",
                         label: {
                             text: "Status"
@@ -50,18 +74,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
         }
     }
 
-    mounted(() => {
-        if (id) {
-            setLoading(true)
-            BantuanHelper.detail(id, ({ status, data }) => {
-                setLoading(false)
-                if (roleId !== 1) formRef.current?.disabled(true)
-                if (status) {
-                    formRef.current?.updateData(data);
-                }
-            })
-        }
-    })
+
 
     return <BgsGroupForm
         {...form}

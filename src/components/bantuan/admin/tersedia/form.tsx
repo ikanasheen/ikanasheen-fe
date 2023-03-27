@@ -10,6 +10,23 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const roleId = credential.storage.get("user")?.idRole;
+    const [kuotaTersisa, setKuotaTersisa] = useState();
+
+    mounted(() => {
+        if (id) {
+            setLoading(true)
+            BantuanHelper.detail(id, ({ status, data }) => {
+                setLoading(false)
+                if (roleId !== 1) formRef.current?.disabled(true)
+                if (status) {
+                    setKuotaTersisa(data.kuotaTersisa)
+                    formRef.current?.updateData(data);
+                }
+                if (id) formRef.current?.itemOption("kuotaTersisa").option("visible", true);
+
+            })
+        }
+    })
 
     const form: FormGroupModel = {
         apperance: "filled",
@@ -23,7 +40,8 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
             })
         },
         formData: {
-            statusBantuan: StatusBantuanConst[0].value
+            statusBantuan: StatusBantuanConst[0].value,
+            kuotaTersisa: kuotaTersisa
         },
         item: {
             main: {
@@ -39,9 +57,15 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                         },
                         editorType: "number",
                         validationRules: ["required","min.1","pattern.number"]
-                        // editorOptions: {
-                        //     mode:"number"
-                        // },
+                    },
+                    {
+                        dataField: "kuotaTersisa",
+                        label: {
+                            text: "Kuota Tersisa"
+                        },
+                        editorType: "number",
+                        editorOptions:{disabled:true},
+                        visible:false
                     },
                     `formatProposal|label.text=Format Proposal|validationRules=required`,
                     id?{
@@ -61,18 +85,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
         }
     }
 
-    mounted(() => {
-        if (id) {
-            setLoading(true)
-            BantuanHelper.detail(id, ({ status, data }) => {
-                setLoading(false)
-                if (roleId !== 1) formRef.current?.disabled(true)
-                if (status) {
-                    formRef.current?.updateData(data);
-                }
-            })
-        }
-    })
+    
 
     return <BgsGroupForm
         {...form}
