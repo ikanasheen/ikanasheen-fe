@@ -10,6 +10,7 @@ export default function ProposalForm({ id, hide, onSuccess = () => { } }: Drawer
     const [loading, setLoading] = useState<boolean>(false);
     const roleId = credential.storage.get("user")?.idRole;
     const [namaBantuan, setNamaBantuan] = useState();
+    const [statusProposal, setStatusProposal] = useState();
 
     mounted(() => {
         if (id) {
@@ -19,6 +20,7 @@ export default function ProposalForm({ id, hide, onSuccess = () => { } }: Drawer
                 if (roleId !== 1) formRef.current?.disabled(true)
                 if (status) {
                     setNamaBantuan(data.namaBantuan)
+                    setStatusProposal(data.statusProposal)
                     formRef.current?.updateData(data);
                 }
             })
@@ -146,7 +148,7 @@ export default function ProposalForm({ id, hide, onSuccess = () => { } }: Drawer
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
                 {
-                    roleId === 2 ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">{id && " Approve"}</BgsButton>
+                    roleId === 2  && statusProposal === "DIAJUKAN"? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">{id && " Approve"}</BgsButton>
                         : null
                 }
 
