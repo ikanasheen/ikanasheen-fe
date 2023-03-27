@@ -130,7 +130,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         editorOptions: {
                             disabled: true
                         },
-                        visible:true
+                        visible:false
                     },
                     {
                         dataField: "tanggalDikirim",
@@ -141,15 +141,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         editorOptions: {
                             disabled: true
                         },
-                        visible:true
-                    },
-                    {
-                        dataField: "catatanPengiriman",
-                        label: {
-                            text: "Catatan Pengiriman"
-                        },
-                        editorOptions:{disabled: true},
-                        visible:true
+                        visible:false
                     },
                     {
                         dataField: "tanggalSelesai",
@@ -160,6 +152,14 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         editorOptions: {
                             disabled:true
                         },
+                    },
+                    {
+                        dataField: "catatanPengiriman",
+                        label: {
+                            text: "Catatan Pengiriman"
+                        },
+                        editorOptions:{disabled: true},
+                        visible:false
                     },
                     {
                         dataField: "status",

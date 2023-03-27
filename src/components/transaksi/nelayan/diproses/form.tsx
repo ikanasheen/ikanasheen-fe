@@ -89,19 +89,6 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                     `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
                     
                     {
-                        dataField: "status",
-                        editorType: "select",
-                        label: {
-                            text: "Status"
-                        },
-                        editorOptions: {
-                            dataSource: StatusTransaksiConst,
-                            displayExpr: "display",
-                            valueExpr: "value",
-                            disabled: true
-                        },
-                    },
-                    {
                         dataField: "opsiPengiriman",
                         editorType: "select",
                         label: {
@@ -161,6 +148,20 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                             text: "Catatan Pengiriman"
                         },
                         visible: false
+                    },
+                    
+                    {
+                        dataField: "status",
+                        editorType: "select",
+                        label: {
+                            text: "Status"
+                        },
+                        editorOptions: {
+                            dataSource: StatusTransaksiConst,
+                            displayExpr: "display",
+                            valueExpr: "value",
+                            disabled: true
+                        },
                     },
                 ]
             },
