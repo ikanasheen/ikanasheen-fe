@@ -33,21 +33,6 @@ export default function HargaIkanForm({ id, hide, onSuccess = () => { } }: Drawe
             main: {
                 spacing: 3,
                 items: [
-                    // `namaBantuan|label.text=Nama Bantuan|validationRules=required,maxLength.255`,
-                    // `jenisBantuan|label.text=Jenis Bantuan|validationRules=required,maxLength.255`,
-                    // `kuota|label.text=Kuota|validationRules=required,maxLength.255,pattern.number,min.1`,
-                    // {
-                    //     dataField: "statusBantuan",
-                    //     label: {
-                    //         text: "Status"
-                    //     },
-                    //     editorType: "select",
-                    //     editorOptions: {
-                    //         dataSource: StatusBantuanConst,
-                    //         displayExpr: "display",
-                    //         valueExpr: "value",
-                    //     },
-                    // },
                     `file|label.text=FIle Proposal|validationRules=required`,
                 ],
             },

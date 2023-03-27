@@ -38,7 +38,7 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
             `idBantuan|caption=Kode Bantuan|allowFiltering|width=180`,
             `namaBantuan|caption=Nama Bantuan|allowFiltering|width=180|className=text-break`,
             `jenisBantuan|caption=Jenis Bantuan|allowFiltering|width=180`,
-            `kuota|caption=Kuota|allowFiltering|width=220`,
+            `kuotaTersisa|caption=Kuota Tersisa|allowFiltering|width=220`,
             `formatProposal|caption=Format Proposal|width=250|allowFiltering|className=text-break`,
             {
                 dataField: "statusBantuan",
