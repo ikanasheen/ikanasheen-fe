@@ -5,7 +5,7 @@ import MainLayout from "shared/layout/main-layout";
 const MainComponent = lazy(() => import("components/bantuan/gov/tersedia"));
 
 const props: MainLayoutProps = {
-    title: "Daftar Bantuan",
+    title: "Daftar Proposal",
     mode: "index",
     menuCode: "bantuan-tersedia-gov",
     actionCode: "list",

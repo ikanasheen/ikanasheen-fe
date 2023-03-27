@@ -29,9 +29,9 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
             main: {
                 spacing: 3,
                 items: [
-                    `namaBantuan|label.text=Nama Bantuan|validationRules=required,maxLength.255`,
-                    `jenisBantuan|label.text=Jenis Bantuan|validationRules=required,maxLength.255`,
-                    `kuota|label.text=Kuota|validationRules=required,maxLength.255,pattern.number,min.1`,
+                    `namaBantuan|label.text=Nama Bantuan`,
+                    `jenisBantuan|label.text=Jenis Bantuan`,
+                    `kuota|label.text=Kuota`,
                     {
                         dataField: "statusBantuan",
                         label: {
@@ -44,7 +44,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                             valueExpr: "value",
                         },
                     },
-                    `formatProposal|label.text=Format Proposal|validationRules=required`,
+                    `formatProposal|label.text=Format Proposal`,
                 ],
             },
         }

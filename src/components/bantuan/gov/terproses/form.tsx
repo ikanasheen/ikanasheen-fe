@@ -22,6 +22,9 @@ export default function ProposalForm({ id, hide, onSuccess = () => { } }: Drawer
                 if (status) onSuccess();
             })
         },
+        formData: {
+            isActive: true
+        },
         item: {
             main: {
                 spacing: 3,
@@ -109,29 +112,6 @@ export default function ProposalForm({ id, hide, onSuccess = () => { } }: Drawer
         }
     })
 
-    const approveProposal = ({ loading }: { loading: Function }) => {
-        loading(true);
-        if (id) {
-            loading(true)
-            ProposalHelper.approve(id, ({ status }) => {
-                if (status) {
-                    onSuccess();
-                }
-            })
-        }
-    }
-    const rejectProposal = ({ loading }: { loading: Function }) => {
-        loading(true);
-        if (id) {
-            loading(true)
-            ProposalHelper.reject(id, ({ status }) => {
-                if (status) {
-                    onSuccess();
-                }
-            })
-        }
-    }
-
     return <BgsGroupForm
         {...form}
         ref={formRef}
@@ -164,16 +144,10 @@ export default function ProposalForm({ id, hide, onSuccess = () => { } }: Drawer
             </BgsButton>}</>}
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
-                <BgsButton className="btn-batalkan" loading={loading} visibleLoading={false}
-                    modalOptions={{
-                        message: "Apakah Anda yakin untuk menolak proposal ini?",
-                        width: 350
-                    }} onClick={e => rejectProposal(e)} >Tolak</BgsButton>
-                <BgsButton className="btn-save" loading={loading} visibleLoading={false}
-                    modalOptions={{
-                        message: "Apakah Anda yakin untuk menyetujui proposal ini?",
-                        width: 350
-                    }} onClick={e => approveProposal(e)} >Setujui</BgsButton>
+                {
+                    roleId === 2 ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">{id && " Approve"}</BgsButton>
+                        : null
+                }
 
             </>}
         >

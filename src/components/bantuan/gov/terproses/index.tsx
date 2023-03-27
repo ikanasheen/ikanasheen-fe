@@ -7,14 +7,17 @@ import { drawerLayout } from "shared/layout/drawer-layout";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ProposalHelper from "helper/bantuan/ProposalHelper";
 const Form = lazy(() => import("./form"));
+// import { credential } from "lib";
+
 
 export default function DaftarProposalList(props: MainLayoutProps) {
     const tableRef = useRef<TableRef>(null);
+    // const userId = credential.storage.get("user")?.idUser;
 
     const form = (id?: string) => {
         drawerLayout({
             render: (props) => <Form
-                title="Daftar Proposal Diajukan"
+                title="Daftar Proposal Sudah Diproses"
                 id={id}
                 {...props}
             />,
@@ -30,7 +33,7 @@ export default function DaftarProposalList(props: MainLayoutProps) {
         },
         temporaryParameter: [{
             propReq: "statusProposal",
-            value: ['DIAJUKAN'],
+            value: ['DISETUJUI', 'DITOLAK'],
             opt: "filter"
         }],
         onRowClick: ({ rowData }) => form(rowData.idProposalBantuan),
@@ -39,7 +42,8 @@ export default function DaftarProposalList(props: MainLayoutProps) {
             `namaNelayan|caption=Nama Nelayan|allowFiltering|width=180`,
             `namaBantuan|caption=Nama Bantuan|allowFiltering|width=180`,
             `jenisBantuan|caption=Jenis Bantuan|allowFiltering|width=180`,
-            `tanggalDiajukan|caption=Tanggal Diajukan|width=190|dataType=datetime|allowFiltering`,
+            `tanggalDisetujui|caption=Tanggal Disetujui|width=190|dataType=datetime|allowFiltering`,
+            `tanggalDitolak|caption=Tanggal Ditolak|width=190|dataType=date|allowFiltering`,
             `file|caption=File|width=160`,
             {
                 dataField: "statusProposal",

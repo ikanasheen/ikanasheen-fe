@@ -292,6 +292,15 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuPath: "/bantuan/gov/diajukan",
         idRole: [2]
     },
+    {
+        menuCode: "bantuan-terproses-gov",
+        menuName: "Bantuan Terproses",
+        menuParent:"bantuan",
+        details: ["list"],
+        menuIcon: "material-icons-round|folder_open'",
+        menuPath: "/bantuan/gov/terproses",
+        idRole: [2]
+    },
 
     //USER MANAGEMENT
     {
