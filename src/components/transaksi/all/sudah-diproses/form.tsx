@@ -24,6 +24,9 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                     setOpsiPengiriman(data.opsiPengiriman)
                     formRef.current?.updateData(data);
                 }
+                if (data.opsiPengiriman === "ANTAR" && data.status === "DIPROSES") {
+                    formRef.current?.itemOption("catatanPengiriman").option("visible", true);
+                }
                 if (data.status === "SIAP_DIAMBIL") formRef.current?.itemOption("tanggalSiapDiambil").option("visible", true);
                 if (data.status === "DIKIRIM") formRef.current?.itemOption("tanggalDikirim").option("visible", true);
                 if (data.status === "DIPROSES") formRef.current?.itemOption("tanggalDiproses").option("visible", true);
@@ -90,19 +93,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         validationRules: ["pattern.number"]
                     }, 
                     `catatan|label.text=Catatan|editoryType=textarea|editorOptions.disabled=true`,
-                    {
-                        dataField: "opsiPengiriman",
-                        editorType: "select",
-                        label: {
-                            text: "Opsi Pengiriman"
-                        },
-                        editorOptions: {
-                            dataSource: OpsiPengirimanConst,
-                            displayExpr: "display",
-                            valueExpr: "value",
-                            disabled:true
-                        },
-                    },
+                    
                     `alamatPembeli|label.text=Alamat Pembeli|editoryType=textarea|editorOptions.disabled=true`,
                     `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
                     `kelurahanDesaNelayan|label.text=Kelurahan Nelayan|editorOptions.disabled=true`,
@@ -158,6 +149,29 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         editorType: "date",
                         editorOptions: {
                             disabled: true
+                        },
+                        visible: false
+                    },
+                    {
+                        dataField: "opsiPengiriman",
+                        editorType: "select",
+                        label: {
+                            text: "Opsi Pengiriman"
+                        },
+                        editorOptions: {
+                            dataSource: OpsiPengirimanConst,
+                            displayExpr: "display",
+                            valueExpr: "value",
+                            disabled:true
+                        },
+                    },
+                    {
+                        dataField: "catatanPengiriman",
+                        label: {
+                            text: "Catatan Pengiriman"
+                        },
+                        editorOptions: {
+                            disabled:true
                         },
                         visible: false
                     },
