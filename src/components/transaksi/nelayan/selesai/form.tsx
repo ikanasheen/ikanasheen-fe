@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
-import { credential,mounted } from "lib";
+import { credential, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 import StatusTransaksiConst from "consts/statusTransaksi.const";
@@ -23,13 +23,18 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                     setOpsiPengiriman(data.opsiPengiriman)
                     formRef.current?.updateData(data);
                 }
-                if (data.status === "SIAP_DIAMBIL") formRef.current?.itemOption("tanggalSiapDiambil").option("visible", true);
-                if (data.status === "DIKIRIM") formRef.current?.itemOption("tanggalDikirim").option("visible", true);
-                if (data.status === "DIPROSES") formRef.current?.itemOption("tanggalDiproses").option("visible", true);
                 if (data.status === "SELESAI") formRef.current?.itemOption("tanggalSelesai").option("visible", true);
                 if (data.status === "SELESAI" && data.opsiPengiriman === "AMBIL") formRef.current?.itemOption("tanggalSiapDiambil").option("visible", true);
                 if (data.status === "SELESAI" && data.opsiPengiriman === "ANTAR") formRef.current?.itemOption("tanggalDikirim").option("visible", true);
-                if (data.opsiPengiriman === "ANTAR") formRef.current?.itemOption("catatanPengiriman").option("visible", true);
+                if (data.opsiPengiriman === "ANTAR") {
+                    formRef.current?.itemOption("catatanPengiriman").option("visible", true);
+                    formRef.current?.itemOption("alamatPembeli").option("visible", true);
+                }
+                if (data.opsiPengiriman === "AMBIL") {
+                    formRef.current?.itemOption("kecamatanNelayan").option("visible", true);
+                    formRef.current?.itemOption("kelurahanDesaNelayan").option("visible", true);
+                    formRef.current?.itemOption("alamatNelayan").option("visible", true);
+                }
                 console.log(statusTransaksi)
                 console.log(opsiPengiriman)
             })
@@ -64,7 +69,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                             disabled: true
                         },
                         validationRules: ["pattern.number"]
-                    },{
+                    }, {
                         dataField: "hargaNego",
                         label: {
                             text: "Harga Nego (Per Kg)"
@@ -74,7 +79,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                             disabled: true
                         },
                         validationRules: ["pattern.number"]
-                    },{
+                    }, {
                         dataField: "hargaAkhir",
                         label: {
                             text: "Harga Akhir"
@@ -87,7 +92,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                     },
                     `catatan|label.text=Catatan|editoryType=textarea|editorOptions.disabled=true`,
                     `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true`,
-                    `alamatPembeli|label.text=Alamat Pembeli|editoryType=textarea|editorOptions.disabled=true`,
+                    `alamatPembeli|label.text=Alamat Pembeli|editoryType=textarea|editorOptions.disabled=true|visible=false`,
                     `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
                     {
                         dataField: "opsiPengiriman",
@@ -101,7 +106,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                             valueExpr: "value",
                             disabled: true
                         },
-                    },                    
+                    },
                     {
                         dataField: "tanggalDibutuhkan",
                         label: {
@@ -109,16 +114,16 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         },
                         editorType: "date",
                         editorOptions: {
-                            disabled:true
+                            disabled: true
                         },
-                    },{
+                    }, {
                         dataField: "tanggalDiproses",
                         label: {
                             text: "Tanggal Diproses"
                         },
                         editorType: "date",
                         editorOptions: {
-                            disabled:true
+                            disabled: true
                         },
                     },
                     {
@@ -130,7 +135,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         editorOptions: {
                             disabled: true
                         },
-                        visible:false
+                        visible: false
                     },
                     {
                         dataField: "tanggalDikirim",
@@ -141,7 +146,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         editorOptions: {
                             disabled: true
                         },
-                        visible:false
+                        visible: false
                     },
                     {
                         dataField: "tanggalSelesai",
@@ -150,7 +155,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         },
                         editorType: "date",
                         editorOptions: {
-                            disabled:true
+                            disabled: true
                         },
                     },
                     {
@@ -158,8 +163,8 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                         label: {
                             text: "Catatan Pengiriman"
                         },
-                        editorOptions:{disabled: true},
-                        visible:false
+                        editorOptions: { disabled: true },
+                        visible: false
                     },
                     {
                         dataField: "status",

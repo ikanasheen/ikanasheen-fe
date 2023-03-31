@@ -207,13 +207,13 @@ function MainSidebar({ menuCode: menuCodeActive }: MainSidebarProps) {
                         <ListItemIcon>
                             <ManageAccountsOutlinedIcon fontSize="small" />
                         </ListItemIcon>
-                        My Account
+                        Profil
                     </MenuItem>
                     <MenuItem onClick={logout}>
                         <ListItemIcon>
                             <Logout fontSize="small" />
                         </ListItemIcon>
-                        Logout
+                        Keluar
                     </MenuItem>
                 </Menu>
             </Box>

@@ -32,7 +32,7 @@ export default function UserManagementUserForm({ title, mode, id, hide, onSucces
                             disabled: true
                         },
                         label: {
-                            text: "ID User"
+                            text: "ID Pengguna"
                         },
                     },
                     {

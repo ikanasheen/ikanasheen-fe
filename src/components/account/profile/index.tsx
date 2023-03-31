@@ -38,7 +38,7 @@ export default function AccountProfileComponent() {
     }
 
     return <>
-        <BgsTypography className="title-account">My Profile</BgsTypography>
+        <BgsTypography className="title-account">Profil Saya</BgsTypography>
         <BgsForm {...form} />
         <BgsButton className="text-end float-end mt-3">Update</BgsButton>
 

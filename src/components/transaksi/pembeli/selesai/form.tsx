@@ -4,6 +4,7 @@ import { mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import TransaksiHelper from "helper/transaksi/TransaksiHelper";
 import StatusTransaksiConst from "consts/statusTransaksi.const";
+import OpsiPengirimanConst from "consts/opsiPengiriman.const";
 
 export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
@@ -25,9 +26,12 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                 if (data.opsiPengiriman === "ANTAR" && data.status === "DIPROSES") {
                     formRef.current?.itemOption("catatanPengiriman").option("visible", true);
                 }
-                if (data.status === "SIAP_DIAMBIL") formRef.current?.itemOption("tanggalSiapDiambil").option("visible", true);
-                if (data.status === "DIKIRIM") formRef.current?.itemOption("tanggalDikirim").option("visible", true);
-                if (data.status === "DIPROSES") formRef.current?.itemOption("tanggalDiproses").option("visible", true);
+                if(data.opsiPengiriman ==="AMBIL"){
+                    formRef.current?.itemOption("kecamatanNelayan").option("visible", true);
+                    formRef.current?.itemOption("kelurahanDesaNelayan").option("visible", true);
+                    formRef.current?.itemOption("alamatNelayan").option("visible", true);
+                }
+
                 if (data.status === "SELESAI") formRef.current?.itemOption("tanggalSelesai").option("visible", true);
                 if (data.status === "SELESAI" && data.opsiPengiriman === "AMBIL") formRef.current?.itemOption("tanggalSiapDiambil").option("visible", true);
                 if (data.status === "SELESAI" && data.opsiPengiriman === "ANTAR") formRef.current?.itemOption("tanggalDikirim").option("visible", true);
@@ -97,9 +101,9 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                     `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true`,
                     `alamatPembeli|label.text=Alamat Lengkap Pembeli|editoryType=textarea|validationRules=maxLength.255`,
                     `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
-                    `kelurahanDesaNelayan|label.text=Kelurahan Nelayan|editorOptions.disabled=true`,
-                    `kecamatanNelayan|label.text=Kecamatan Nelayan|editorOptions.disabled=true`,
-                    `alamatNelayan|label.text=Alamat Nelayan|editorOptions.disabled=true`,
+                    `kecamatanNelayan|label.text=Kecamatan Nelayan|editorOptions.disabled=true|visible=false` ,
+                    `kelurahanDesaNelayan|label.text=Kelurahan Nelayan|editorOptions.disabled=true|visible=false`,
+                    `alamatNelayan|label.text=Alamat Nelayan|editorOptions.disabled=true|visible=false`,
                     
                     {
                         dataField: "tanggalDibutuhkan",
@@ -153,6 +157,19 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                         editorOptions: {
                             disabled: true
                         }
+                    },
+                    {
+                        dataField: "opsiPengiriman",
+                        editorType: "select",
+                        label: {
+                            text: "Opsi Pengiriman"
+                        },
+                        editorOptions: {
+                            dataSource: OpsiPengirimanConst,
+                            displayExpr: "display",
+                            valueExpr: "value",
+                            disabled:true
+                        },
                     },
                     {
                         dataField: "catatanPengiriman",

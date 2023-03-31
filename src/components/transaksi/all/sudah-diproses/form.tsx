@@ -27,6 +27,11 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                 if (data.opsiPengiriman === "ANTAR" && data.status === "DIPROSES") {
                     formRef.current?.itemOption("catatanPengiriman").option("visible", true);
                 }
+                if(data.opsiPengiriman ==="AMBIL"){
+                    formRef.current?.itemOption("kecamatanNelayan").option("visible", true);
+                    formRef.current?.itemOption("kelurahanDesaNelayan").option("visible", true);
+                    formRef.current?.itemOption("alamatNelayan").option("visible", true);
+                }
                 if (data.status === "SIAP_DIAMBIL") formRef.current?.itemOption("tanggalSiapDiambil").option("visible", true);
                 if (data.status === "DIKIRIM") formRef.current?.itemOption("tanggalDikirim").option("visible", true);
                 if (data.status === "DIPROSES") formRef.current?.itemOption("tanggalDiproses").option("visible", true);
@@ -96,9 +101,9 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                     
                     `alamatPembeli|label.text=Alamat Pembeli|editoryType=textarea|editorOptions.disabled=true`,
                     `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
-                    `kelurahanDesaNelayan|label.text=Kelurahan Nelayan|editorOptions.disabled=true`,
-                    `kecamatanNelayan|label.text=Kecamatan Nelayan|editorOptions.disabled=true`,
-                    `alamatNelayan|label.text=Alamat Nelayan|editorOptions.disabled=true`,
+                    `kelurahanDesaNelayan|label.text=Kelurahan Nelayan|editorOptions.disabled=true|visible=false`,
+                    `kecamatanNelayan|label.text=Kecamatan Nelayan|editorOptions.disabled=true|visible=false`,
+                    `alamatNelayan|label.text=Alamat Nelayan|editorOptions.disabled=true|visible=false`,
                     {
                         dataField: "tanggalDibutuhkan",
                         label: {

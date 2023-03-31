@@ -26,17 +26,24 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                 if (data.opsiPengiriman === "ANTAR" && data.status === "DIPROSES") {
                     formRef.current?.itemOption("catatanPengiriman").option("visible", true);
                 }
+                if (data.opsiPengiriman === "ANTAR" && data.status === "DIKIRIM") {
+                    formRef.current?.itemOption("catatanPengiriman").option("visible", true);
+                    formRef.current?.itemOption("catatanPengiriman").option("editorOptions.disabled", true);
+                }
+                if (data.opsiPengiriman === "AMBIL") {
+                    formRef.current?.itemOption("kecamatanNelayan").option("visible", true);
+                    formRef.current?.itemOption("kelurahanDesaNelayan").option("visible", true);
+                    formRef.current?.itemOption("alamatNelayan").option("visible", true);
+                }
+                if (data.opsiPengiriman === "ANTAR") formRef.current?.itemOption("alamatPembeli").option("visible", true);
                 if (data.status === "SIAP_DIAMBIL") formRef.current?.itemOption("tanggalSiapDiambil").option("visible", true);
                 if (data.status === "DIKIRIM") formRef.current?.itemOption("tanggalDikirim").option("visible", true);
                 if (data.status === "DIPROSES") formRef.current?.itemOption("tanggalDiproses").option("visible", true);
                 if (data.status === "SELESAI") formRef.current?.itemOption("tanggalSelesai").option("visible", true);
                 if (data.status === "SELESAI" && data.opsiPengiriman === "AMBIL") formRef.current?.itemOption("tanggalSiapDiambil").option("visible", true);
                 if (data.status === "SELESAI" && data.opsiPengiriman === "ANTAR") formRef.current?.itemOption("tanggalDikirim").option("visible", true);
-                if (data.opsiPengiriman === "ANTAR"&& data.status === "DIKIRIM") {
-                    formRef.current?.itemOption("catatanPengiriman").option("visible", true);
-                    formRef.current?.itemOption("catatanPengiriman").option("editorOptions.disabled", true);
-                }
-                
+
+
             })
 
         }
@@ -93,10 +100,12 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                     },
                     `catatan|label.text=Catatan|editoryType=textarea|editorOptions.disabled=true`,
                     `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true`,
-                    `alamatPembeli|label.text=Alamat Pembeli|editoryType=textarea|editorOptions.disabled=true`,
+                    `alamatPembeli|label.text=Alamat Pembeli|editoryType=textarea|editorOptions.disabled=true|visible=false`,
                     `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
-                    
-                    
+                    `kecamatanNelayan|label.text=Kecamatan Nelayan|editorOptions.disabled=true|visible=false`,
+                    `kelurahanDesaNelayan|label.text=Kelurahan Nelayan|editorOptions.disabled=true|visible=false`,
+                    `alamatNelayan|label.text=Alamat Nelayan|editorOptions.disabled=true|visible=false`,
+
                     {
                         dataField: "tanggalDibutuhkan",
                         label: {
@@ -158,7 +167,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                         },
                         visible: false
                     },
-                    
+
                     {
                         dataField: "status",
                         editorType: "select",

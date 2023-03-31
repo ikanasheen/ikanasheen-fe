@@ -19,6 +19,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
             IkanHelper.createupdate(values, values.idIkan, ({ status }) => {
                 setLoading(false);
                 if (status) onSuccess();
+
             })
         },
         formData: {
@@ -28,6 +29,16 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
             main: {
                 spacing: 3,
                 items: [
+                    {
+                        dataField: "idIkan",
+                        label: {
+                            text: "ID Komoditi"
+                        },
+                        editorOptions:{
+                            disabled:true
+                        },
+                        visible:false
+                    },
                     `namaIkan|label.text=Nama Komoditi|validationRules=required,maxLength.255`,
                     `ukuran|label.text=Ukuran|validationRules=maxLength.255`,
                     {
@@ -51,8 +62,12 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                 setLoading(false)
                 if (roleId !== 1) formRef.current?.disabled(true)
                 if (status) {
+                    // formRef.current?.itemOption("idIkan").option("editorOptions.disabled", true);
+                    formRef.current?.itemOption("idIkan").option("visible", true);
                     formRef.current?.updateData(data);
                 }
+                // if(id) 
+
             })
         }
     })

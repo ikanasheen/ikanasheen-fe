@@ -60,6 +60,15 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                     `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true`,
                     `alamatPembeli|label.text=Alamat Pembeli|editoryType=textarea|editorOptions.disabled=true`,
                     {
+                        dataField: "tanggalDibutuhkan",
+                        label: {
+                            text: "Tanggal Dibutuhkan"
+                        },
+                        editorType: "date",
+                        editorOptions: {
+                            disabled: true
+                        },
+                    }, {
                         dataField: "status",
                         editorType: "select",
                         label: {
@@ -84,6 +93,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                 setLoading(false)
                 if (mode === "detail") formRef.current?.disabled(true)
                 if (status) {
+                    formRef.current?.itemOption("kuotaTersisa").option("visible", true);
                     formRef.current?.updateData(data);
                 }
             })
