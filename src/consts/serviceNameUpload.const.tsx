@@ -5,5 +5,7 @@ interface ServiceNameUploadModel {
 export const ServiceNameUploadConst: ServiceNameUploadModel = {
     PARTNER: "PARTNER",
     SALES_AGENT: "SALES_AGENT",
-    USER: "USER"
+    USER: "USER",
+    BANTUAN: "BANTUAN",
+    PROPOSAL: "PROPOSAL",
 }

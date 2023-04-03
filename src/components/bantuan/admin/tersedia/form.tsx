@@ -5,6 +5,9 @@ import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import BantuanHelper from "helper/bantuan/BantuanHelper";
 import StatusBantuanConst from "consts/statusBantuan.const";
+import { ServiceNameUploadConst } from "consts/serviceNameUpload.const";
+import UploadHelper from "helper/bantuan/UploadHelper";
+import Image from "components/file/components/image";
 
 export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
@@ -22,7 +25,10 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                     setKuotaTersisa(data.kuotaTersisa)
                     formRef.current?.updateData(data);
                 }
-                if (id) formRef.current?.itemOption("kuotaTersisa").option("visible", true);
+                if (id) {
+                    formRef.current?.itemOption("kuotaTersisa").option("visible", true);
+                    formRef.current?.itemOption("statusBantuan").option("visible", true);
+                }
 
             })
         }
@@ -67,8 +73,29 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                         editorOptions:{disabled:true},
                         visible:false
                     },
-                    `formatProposal|label.text=Format Proposal|validationRules=required`,
-                    id?{
+                    // `formatProposal|label.text=Format Proposal|validationRules=required`,
+                    {
+                        dataField: "dokumen",
+                        label: {
+                            text: "Format Proposal"
+                        },
+                        editorOptions: {
+                            maxFile: 1,
+                            accept: ".docx",
+                            maxSize: 2,
+                            helper: (data) => UploadHelper.upload(data),
+                            beforeUpload: () => {
+                                return {
+                                    namaService: ServiceNameUploadConst.BANTUAN
+                                }
+                            },
+                            iconUpload: (data) => <Image showFull {...data} size="lg" />,
+                            iconRemoveUpload: () => <i className="ri-delete-bin-line fs-16 mgl-2 mgr-2"></i>
+                        },
+                        editorType: "upload",
+                        validationRules: ["required"]
+                    },
+                    {
                         dataField: "statusBantuan",
                         label: {
                             text: "Status"
@@ -79,7 +106,8 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                             displayExpr: "display",
                             valueExpr: "value",
                         },
-                    }:null
+                        visible:false
+                    }
                 ],
             },
         }

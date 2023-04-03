@@ -24,6 +24,9 @@ class UserHelper extends BaseHelper {
     static changePassword(data: any, callback?: Callback) {
         return super.postBase(`user/changepassword`,  { parameter: { data } }, callback)
     }
+    static changeProfile(data: any, callback?: Callback) {
+        return super.postBase(`user/changepassword`,  { parameter: { data } }, callback)
+    }
 }
 
 export default UserHelper;
