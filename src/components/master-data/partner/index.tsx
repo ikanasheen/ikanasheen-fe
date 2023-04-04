@@ -3,11 +3,11 @@ import { BgsButton, TableModel, BgsTable, TableRef } from "@andrydharmawan/bgs-c
 import { MainLayoutProps } from "shared/layout/main-layout";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import BreadcrumbLayout from "shared/layout/breadcrumb-layout";
-import { Children, lazy, useRef } from "react";
+import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
 import PartnerHelper from "helper/PartnerHelper";
-import Image from "components/file/components/image";
-import { FileProps } from "models";
+// import Image from "components/file/components/image";
+// import { FileProps } from "models";
 import Chip from "@mui/material/Chip";
 const Form = lazy(() => import("./form"));
 
@@ -56,7 +56,7 @@ export default function PartnerList(props: MainLayoutProps) {
                 caption: "Foto",
                 width: 140,
                 className: "img-container",
-                template: ({ partnerPhotos = [] }) => Children.toArray(partnerPhotos.map((data: FileProps) => <Image {...data} showFull className="br-3" />))
+                // template: ({ partnerPhotos = [] }) => Children.toArray(partnerPhotos.map((data: FileProps) => <Image {...data} showFull className="br-3" />))
             },
             `partnerCategory|caption=Kategori|allowFiltering|width=180|icon=list`,
             `partnerEmail|caption=Email|allowFiltering|width=180|icon=mail`,

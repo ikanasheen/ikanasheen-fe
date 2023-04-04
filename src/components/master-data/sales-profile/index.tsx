@@ -3,11 +3,11 @@ import { BgsButton, TableModel, BgsTable, TableRef } from "@andrydharmawan/bgs-c
 import { MainLayoutProps } from "shared/layout/main-layout";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import BreadcrumbLayout from "shared/layout/breadcrumb-layout";
-import { Children, lazy, useRef } from "react";
+import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
 import SalesAgentHelper from "helper/SalesAgentHelper";
-import Image from "components/file/components/image";
-import { FileProps } from "models";
+// import Image from "components/file/components/image";
+// import { FileProps } from "models";
 const Form = lazy(() => import("./form"));
 
 export default function SalesProfileList(props: MainLayoutProps) {
@@ -47,7 +47,7 @@ export default function SalesProfileList(props: MainLayoutProps) {
                 caption: "Foto",
                 width: 140,
                 className: "img-container",
-                template: ({ photoProfiles = [] }) => Children.toArray(photoProfiles.map((data: FileProps) => <Image {...data} showFull className="br-3" />))
+                // template: ({ photoProfiles = [] }) => Children.toArray(photoProfiles.map((data: FileProps) => <Image {...data} showFull className="br-3" />))
             },
             {
                 sticky: "right",

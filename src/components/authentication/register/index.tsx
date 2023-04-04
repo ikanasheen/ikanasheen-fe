@@ -60,7 +60,7 @@ export default function AgentJourneyPlanDetail({ title, mode, id }: DrawerRender
                                         caption: "Foto",
                                         width: 140,
                                         className: "img-container",
-                                        template: ({ photoProfiles = [] }) => Children.toArray(photoProfiles.map((data: FileProps) => <Image {...data} showFull className="br-3" />))
+                                        // template: ({ photoProfiles = [] }) => Children.toArray(photoProfiles.map((data: FileProps) => <Image {...data} showFull className="br-3" />))
                                     },
                                 ]
                             },

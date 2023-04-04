@@ -1,4 +1,4 @@
-import { Children, lazy, useRef, useState } from "react";
+import { lazy, useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
 import { credential, mounted } from "lib";
 import DrawerLayout, { drawerLayout, DrawerRenderProps } from "shared/layout/drawer-layout";
@@ -6,8 +6,8 @@ import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import VisitHelper from "helper/VisitHelper";
 import SalesAgentHelper from "helper/SalesAgentHelper";
 import PartnerHelper from "helper/PartnerHelper";
-import Image from "components/file/components/image";
-import { FileProps } from "models";
+// import Image from "components/file/components/image";
+// import { FileProps } from "models";
 const Detail = lazy(() => import("./detail"));
 
 export default function AgentJourneyPlanForm({ title, mode, id, hide, onSuccess = () => {} }: DrawerRenderProps) {
@@ -66,7 +66,7 @@ export default function AgentJourneyPlanForm({ title, mode, id, hide, onSuccess 
                                         caption: "Foto",
                                         width: 140,
                                         className: "img-container",
-                                        template: ({ photoProfiles = [] }) => Children.toArray(photoProfiles.map((data: FileProps) => <Image {...data} showFull className="br-3" />))
+                                        // template: ({ photoProfiles = [] }) => Children.toArray(photoProfiles.map((data: FileProps) => <Image {...data} showFull className="br-3" />))
                                     },
                                 ]
                             },
