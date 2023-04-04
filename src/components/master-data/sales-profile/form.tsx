@@ -6,7 +6,7 @@ import SalesAgentHelper from "helper/SalesAgentHelper";
 import SalesCategoryHelper from "helper/SalesCategoryHelper";
 import { ServiceNameUploadConst } from "consts";
 import FileHelper from "helper/FileHelper";
-import Image from "components/file/components/image";
+// import Image from "components/file/components/image";
 
 export default function SalesCategoryForm({ title, mode, id, hide, onSuccess = () => {} }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
@@ -62,7 +62,7 @@ export default function SalesCategoryForm({ title, mode, id, hide, onSuccess = (
                                     serviceName: ServiceNameUploadConst.SALES_AGENT
                                 }
                             },
-                            iconUpload: (data) => <Image showFull {...data} size="lg" />,
+                            // iconUpload: (data) => <Image showFull {...data} size="lg" />,
                             iconRemoveUpload: () => <i className="ri-delete-bin-line fs-16 mgl-2 mgr-2"></i>
                         },
                         editorType: "upload",

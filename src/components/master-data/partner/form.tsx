@@ -7,7 +7,7 @@ import PartnerHelper from "helper/PartnerHelper";
 import CityHelper from "helper/CityHelper";
 import { OutletTypeConst, PartnerCategoryConst, ServiceNameUploadConst, TierTypeConst } from "consts";
 import FileHelper from "helper/FileHelper";
-import Image from "components/file/components/image";
+// import Image from "components/file/components/image";
 
 export default function PartnerForm({ title, mode, id, hide, onSuccess = () => {} }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
@@ -102,7 +102,7 @@ export default function PartnerForm({ title, mode, id, hide, onSuccess = () => {
                                     serviceName: ServiceNameUploadConst.PARTNER
                                 }
                             },
-                            iconUpload: (data) => <Image showFull {...data} size="lg" />,
+                            // iconUpload: (data) => <Image showFull {...data} size="lg" />,
                             iconRemoveUpload: () => <i className="ri-delete-bin-line fs-16 mgl-2 mgr-2"></i>
                         },
                         editorType: "upload",
