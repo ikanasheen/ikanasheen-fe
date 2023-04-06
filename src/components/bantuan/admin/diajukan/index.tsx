@@ -6,6 +6,7 @@ import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ProposalHelper from "helper/bantuan/ProposalHelper";
+import CardFile from "components/file/components/card-file/card-file";
 const Form = lazy(() => import("./form"));
 
 export default function DaftarProposalList(props: MainLayoutProps) {
@@ -37,7 +38,14 @@ export default function DaftarProposalList(props: MainLayoutProps) {
             `tanggalDiajukan|caption=Tanggal Diajukan|width=190|dataType=date|allowFiltering`,
             // `tanggalDisetujui|caption=Tanggal Disetujui|width=190|dataType=datetime|allowFiltering`,
             // `tanggalDitolak|caption=Tanggal Ditolak|width=190|dataType=date|allowFiltering`,
-            `file|caption=File|width=160`,
+            
+            {
+                dataField: "dokumen",
+                caption: "Format Proposal",
+                width: 190,
+                className: "img-container",
+                template: (data: any) => <CardFile attachment={data.dokumen}/>
+            },
             {
                 dataField: "statusProposal",
                 caption: "Status",
@@ -57,13 +65,6 @@ export default function DaftarProposalList(props: MainLayoutProps) {
                 allowSorting: true,
                 allowFiltering: true
             },
-            // {
-            //     icon: "image",
-            //     caption: "Foto",
-            //     width: 140,
-            //     className: "img-container",
-            //     template: ({ photoProfiles = [] }) => Children.toArray(photoProfiles.map((data: FileProps) => <Image {...data} showFull className="br-3" />))
-            // },
             {
                 sticky: "right",
                 icon: false,

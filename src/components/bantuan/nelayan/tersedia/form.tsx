@@ -4,7 +4,9 @@ import { credential, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import BantuanHelper from "helper/bantuan/BantuanHelper";
 import ProposalHelper from "helper/bantuan/ProposalHelper";
-// import StatusBantuanConst from "consts/statusBantuan.const";
+import { ServiceNameUploadConst } from "consts/serviceNameUpload.const";
+import Image from "components/file/components/image";
+import UploadHelper from "helper/bantuan/UploadHelper";
 
 export default function HargaIkanForm({ id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
@@ -13,6 +15,21 @@ export default function HargaIkanForm({ id, hide, onSuccess = () => { } }: Drawe
     const userId = credential.storage.get("user")?.idUser;
     const [namaBantuan, setNamaBantuan] = useState();
     const [idBantuan, setIdBantuan] = useState();
+
+    mounted(() => {
+        if (id) {
+            setLoading(true)
+            BantuanHelper.detail(id, ({ status, data }) => {
+                setLoading(false)
+                // if (roleId !== 1) formRef.current?.disabled(true)
+                if (status) {
+                    setNamaBantuan(data.namaBantuan)
+                    setIdBantuan(data.idBantuan)
+                    formRef.current?.updateData(data);
+                }
+            })
+        }
+    })
 
     const form: FormGroupModel = {
         apperance: "filled",
@@ -33,26 +50,32 @@ export default function HargaIkanForm({ id, hide, onSuccess = () => { } }: Drawe
             main: {
                 spacing: 3,
                 items: [
-                    `file|label.text=FIle Proposal|validationRules=required`,
+                    {
+                        dataField: "dokumen",
+                        label: {
+                            text: "File Proposal"
+                        },
+                        editorOptions: {
+                            maxFile: 1,
+                            accept: ".docx",
+                            maxSize: 2,
+                            helper: (data) => UploadHelper.upload(data),
+                            beforeUpload: (file) => {
+                                console.log(file, "filee before")
+                                return {
+                                    namaService: ServiceNameUploadConst.PROPOSAL
+                                }
+                            },
+                            iconUpload: (data) => <Image showFull {...data} size="lg" />,
+                            iconRemoveUpload: () => <i className="ri-delete-bin-line fs-16 mgl-2 mgr-2"></i>
+                        },
+                        editorType: "upload",
+                        validationRules: ["required"]
+                    },
                 ],
             },
         }
     }
-
-    mounted(() => {
-        if (id) {
-            setLoading(true)
-            BantuanHelper.detail(id, ({ status, data }) => {
-                setLoading(false)
-                // if (roleId !== 1) formRef.current?.disabled(true)
-                if (status) {
-                    setNamaBantuan(data.namaBantuan)
-                    setIdBantuan(data.idBantuan)
-                    formRef.current?.updateData(data);
-                }
-            })
-        }
-    })
 
     return <BgsGroupForm
         {...form}

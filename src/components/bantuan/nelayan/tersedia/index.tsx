@@ -6,6 +6,7 @@ import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
 import BantuanHelper from "helper/bantuan/BantuanHelper";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import CardFile from "components/file/components/card-file/card-file";
 const Form = lazy(() => import("./form"));
 
 export default function DaftarBantuanList(props: MainLayoutProps) {
@@ -39,7 +40,13 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
             `namaBantuan|caption=Nama Bantuan|allowFiltering|width=180|className=text-break`,
             `jenisBantuan|caption=Jenis Bantuan|allowFiltering|width=180`,
             `kuotaTersisa|caption=Kuota Tersisa|allowFiltering|width=220`,
-            `formatProposal|caption=Format Proposal|width=250|allowFiltering|className=text-break`,
+            {
+                dataField: "dokumen",
+                caption: "Format Proposal",
+                width: 190,
+                className: "img-container",
+                template: (data: any) => <CardFile attachment={data.dokumen}/>
+            },
             {
                 dataField: "statusBantuan",
                 caption: "Status",

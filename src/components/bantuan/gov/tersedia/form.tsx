@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
 import { credential, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
-// import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import BantuanHelper from "helper/bantuan/BantuanHelper";
 import StatusBantuanConst from "consts/statusBantuan.const";
 
@@ -10,20 +9,16 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const roleId = credential.storage.get("user")?.idRole;
-    const [kuotaTersisa, setKuotaTersisa] = useState();
 
     mounted(() => {
         if (id) {
             setLoading(true)
             BantuanHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
-                if (roleId !== 1) formRef.current?.disabled(true)
+                if (roleId === 2) formRef.current?.disabled(true)
                 if (status) {
-                    setKuotaTersisa(data.kuotaTersisa)
                     formRef.current?.updateData(data);
                 }
-                if (id) formRef.current?.itemOption("kuotaTersisa").option("visible", true);
-                console.log(kuotaTersisa)
             })
         }
     })
@@ -54,7 +49,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                             text: "Kuota Tersisa"
                         },
                         editorType: "number",
-                        visible:false
+                        // visible:false
                     },
                     {
                         dataField: "statusBantuan",
@@ -67,8 +62,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                             displayExpr: "display",
                             valueExpr: "value",
                         },
-                    },
-                    `formatProposal|label.text=Format Proposal`,
+                    }
                 ],
             },
         }

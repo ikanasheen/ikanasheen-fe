@@ -62,7 +62,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                             text: "Kuota Tersedia"
                         },
                         editorType: "number",
-                        validationRules: ["required","min.1","pattern.number"]
+                        validationRules: ["required", "min.1", "pattern.number"]
                     },
                     {
                         dataField: "kuotaTersisa",
@@ -70,10 +70,9 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                             text: "Kuota Tersisa"
                         },
                         editorType: "number",
-                        editorOptions:{disabled:true},
-                        visible:false
+                        editorOptions: { disabled: true },
+                        visible: false
                     },
-                    // `formatProposal|label.text=Format Proposal|validationRules=required`,
                     {
                         dataField: "dokumen",
                         label: {
@@ -84,7 +83,8 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                             accept: ".docx",
                             maxSize: 2,
                             helper: (data) => UploadHelper.upload(data),
-                            beforeUpload: () => {
+                            beforeUpload: (file) => {
+                                console.log(file, "filee before")
                                 return {
                                     namaService: ServiceNameUploadConst.BANTUAN
                                 }
@@ -106,14 +106,14 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                             displayExpr: "display",
                             valueExpr: "value",
                         },
-                        visible:false
+                        visible: false
                     }
                 ],
             },
         }
     }
 
-    
+
 
     return <BgsGroupForm
         {...form}

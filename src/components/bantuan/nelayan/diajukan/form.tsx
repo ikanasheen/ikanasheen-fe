@@ -91,28 +91,6 @@ export default function ProposalForm({ title, id, hide, onSuccess = () => { } }:
                             valueExpr: "value",
                         },
                     },
-                    // {
-                    //     dataField: "photoProfiles",
-                    //     label: {
-                    //         text: "Foto"
-                    //     },
-                    //     editorOptions: {
-                    //         maxFile: 1,
-                    //         accept: ".jpg, .jpeg, .png",
-                    //         maxSize: 2,
-                    //         helper: (data) => FileHelper.upload(data),
-                    //         beforeUpload: () => {
-                    //             return {
-                    //                 serviceName: ServiceNameUploadConst.SALES_AGENT
-                    //             }
-                    //         },
-                    //         iconUpload: (data) => <Image showFull {...data} size="lg" />,
-                    //         iconRemoveUpload: () => <i className="ri-delete-bin-line fs-16 mgl-2 mgr-2"></i>
-                    //     },
-                    //     editorType: "upload",
-                    //     validationRules: ["required"]
-                    // },
-                    `file|label.text=File`,
                 ]
             },
         }
