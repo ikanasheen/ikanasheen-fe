@@ -43,7 +43,7 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
             {
                 dataField: "dokumen",
                 caption: "Format Proposal",
-                width: 190,
+                width: 200,
                 className: "img-container",
                 template: (data: any) => <CardFile attachment={data.dokumen}/>
             },
