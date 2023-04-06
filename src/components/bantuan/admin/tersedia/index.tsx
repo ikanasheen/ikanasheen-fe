@@ -36,7 +36,6 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
             `jenisBantuan|caption=Jenis Bantuan|allowFiltering|width=180`,
             `kuota|caption=Kuota Tersedia|allowFiltering|width=180`,
             `kuotaTersisa|caption=Kuota Tersisa|allowFiltering|width=180`,
-            // `dokumen|caption=Format Proposal|width=190|allowFiltering|className=text-break`,
             {
                 dataField: "dokumen",
                 caption: "Format Proposal",

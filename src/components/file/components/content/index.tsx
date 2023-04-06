@@ -1,4 +1,4 @@
-import { BgsButton, BgsForm, bgsSnackbar, BgsSpinner, ModalFunc } from "@andrydharmawan/bgs-component";
+import { BgsButton, BgsForm, bgsSnackbar, ModalFunc } from "@andrydharmawan/bgs-component";
 import { useEffect, useState } from "react";
 import CloudDownloadIcon from "@mui/icons-material/Download";
 import { api } from "config";
@@ -46,6 +46,7 @@ export default function ContentFile({ data, modalOptions }: ContentFileProps) {
                 setUrl(url)
             })
         }
+        console.log(loading, "loading")
     }, [id, fileName]);
 
     const sizeFormat = (size: number = 0) => {
@@ -93,7 +94,7 @@ export default function ContentFile({ data, modalOptions }: ContentFileProps) {
     return <>
         <div className="p-4 position-relative">
             <div className="row">
-                <div className="col-md-8">
+                {/* <div className="col-md-8">
                     <div className="position-relative w-100 max-hg-360 hg-360 border rounded" style={{ backgroundColor: "#eee" }}>
                         {loading
                             ? <div className="d-flex flex-column align-items-center justify-content-center w-100 min-hg-360">
@@ -119,10 +120,10 @@ export default function ContentFile({ data, modalOptions }: ContentFileProps) {
                                 }} />
                                 : null)}
                     </div>
-                </div>
-                <div className="col-md-4 position-relative">
+                </div> */}
+                <div className="col-md-12 position-relative">
                     <BgsForm formData={data} colCount={2} items={[{
-                        dataField: "originalName",
+                        dataField: "fileName",
                         editorType: "label",
                         colSpan: 2,
                         label: {
