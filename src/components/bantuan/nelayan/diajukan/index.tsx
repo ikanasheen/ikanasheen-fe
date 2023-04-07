@@ -43,7 +43,13 @@ export default function DaftarProposalList(props: MainLayoutProps) {
             `tanggalDiajukan|caption=Tanggal Diajukan|width=190|dataType=date|allowFiltering`,
             // `tanggalDisetujui|caption=Tanggal Disetujui|width=190|dataType=date|allowFiltering`,
             // `tanggalDitolak|caption=Tanggal Ditolak|width=190|dataType=date|allowFiltering`,
-            `file|caption=File|width=160`,
+            {
+                dataField: "dokumen",
+                caption: "Format Proposal",
+                width: 230,
+                className: "img-container",
+                template: (data: any) => <CardFile attachment={data.dokumen}/>
+            },
             {
                 dataField: "statusProposal",
                 caption: "Status",
@@ -62,13 +68,6 @@ export default function DaftarProposalList(props: MainLayoutProps) {
                 },
                 allowSorting: true,
                 allowFiltering: true
-            },
-            {
-                dataField: "dokumen",
-                caption: "Format Proposal",
-                width: 230,
-                className: "img-container",
-                template: (data: any) => <CardFile attachment={data.dokumen}/>
             },
             {
                 sticky: "right",
