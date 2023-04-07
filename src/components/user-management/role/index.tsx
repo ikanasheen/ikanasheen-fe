@@ -2,7 +2,6 @@ import AddIcon from "@mui/icons-material/Add";
 import { BgsButton, TableModel, BgsTable, TableRef } from "@andrydharmawan/bgs-component";
 import { MainLayoutProps } from "shared/layout/main-layout";
 import RoleHelper from "helper/RoleHelper";
-import Chip from "@mui/material/Chip";
 import BreadcrumbLayout from "shared/layout/breadcrumb-layout";
 import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
@@ -25,31 +24,15 @@ export default function UserManagementRoleList(props: MainLayoutProps) {
     
     const table: TableModel = {
         helper: data => RoleHelper.retrieve(data),
-        allowSearching: {
-            fullWidth: true
-        },
-        allowRefreshing: true,
-        allowSearchingOptions: true,
-        allowSortingOptions: true,
-        allowSelection: {
-            sticky: "left"
-        },
         showIndexing: {
             sticky: "left"
         },
         keyData: "code",
-        onRowClick: ({ rowData }) => form(rowData.code),
+        onRowClick: ({ rowData }) => form(rowData.idRole),
         columns: [
-            `code|allowFiltering|width=130|icon=key`,
-            `description|allowFiltering|width=230`,
-            {
-                dataField: "status",
-                caption: "Status",
-                icon: "boolean",
-                width: 100,
-                allowSearching: false,
-                template: ({ status = false }) => <Chip className="chip-default" variant="outlined" color={status ? "success" : "error"} label={status ? "Active" : "Inactive"} />
-            },
+            `idRole|caption=ID Role|allowFiltering|width=130`,
+            `namaRole|allowFiltering|width=200`,
+            `deskripsi|allowFiltering|width=200`,
             {
                 sticky: "right",
                 icon: false,

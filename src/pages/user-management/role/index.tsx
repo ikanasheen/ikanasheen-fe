@@ -7,7 +7,7 @@ const MainComponent = lazy(() => import("components/user-management/role"));
 const props: MainLayoutProps = {
     title: "Role List",
     mode: "index",
-    menuCode: "role",
+    menuCode: "role-list",
     actionCode: "list",
     usingContainer: false
 }

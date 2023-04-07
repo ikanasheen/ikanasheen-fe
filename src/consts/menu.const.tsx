@@ -234,7 +234,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuCode: "bantuan",
         menuName: "Bantuan",
         details: [""],
-        menuIcon: "material-icons-round|sticky_note_2",
+        menuIcon: "material-icons-round|handshake",
         idRole: [1, 2, 3]
     },
     //children bantuan
@@ -308,7 +308,6 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuName: "User Management",
         details: [""],
         menuIcon: "material-icons-round|account_tree",
-        menuPath: "/user-management/user",
         idRole: [1]
     },
     //children user management
@@ -325,7 +324,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuCode: "role-list",
         menuName: "Role",
         menuParent:"user-management",
-        details: ["list"],
+        details: ["list", "update"],
         menuIcon: "material-icons-round|folder_open",
         menuPath: "/user-management/role",
         idRole: [1]

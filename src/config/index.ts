@@ -15,7 +15,11 @@ export const api = {
 
 
     user                        : `${baseUrl}fishery/`,
-    dashboard                   : `${baseUrl}dashboard/`,
+
+    dashboard:{
+        nelayan                   : `${baseUrl}dashboard/`,
+
+    },
 
 
     register :{
@@ -29,6 +33,7 @@ export const api = {
     },
     userManagement:{
         userList                   : `${baseUrl}fishery/user/`,
+        roleList                   : `${baseUrl}fishery/role/`,
     },
     transaksi:{
         transaksi                  : `${baseUrl}fishery/transaksi/`,
