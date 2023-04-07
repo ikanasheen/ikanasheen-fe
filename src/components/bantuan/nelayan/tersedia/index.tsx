@@ -7,7 +7,7 @@ import { drawerLayout } from "shared/layout/drawer-layout";
 import BantuanHelper from "helper/bantuan/BantuanHelper";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import CardFile from "components/file/components/card-file/card-file";
-const Form = lazy(() => import("./form"));
+const Form = lazy(() => import("../diajukan/form-bantuan"));
 
 export default function DaftarBantuanList(props: MainLayoutProps) {
     const tableRef = useRef<TableRef>(null);

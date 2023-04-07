@@ -4,24 +4,34 @@ import { credential, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import ProposalHelper from "helper/bantuan/ProposalHelper";
 import StatusProposalConst from "consts/statusProposal.const";
+// import UploadHelper from "helper/bantuan/UploadHelper";
+// import { ServiceNameUploadConst } from "consts";
+// import Image from "components/file/components/image";
 
-export default function ProposalForm({ title, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
+export default function ProposalForm({ id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const roleId = credential.storage.get("user")?.idRole;
     const userId = credential.storage.get("user")?.idUser;
     const [statusProposal, setStatusProposal] = useState();
+    const [namaBantuan, setNamaBantuan] = useState();
+    const [idBantuan, setIdBantuan] = useState();
 
     mounted(() => {
         if (id) {
             setLoading(true)
             ProposalHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
-                if (id) formRef.current?.disabled(true)
+                if (status) {
+                    formRef.current?.disabled(true)
+                }
                 if (status) {
                     setStatusProposal(data.statusProposal)
+                    setIdBantuan(data.idBantuan)
+                    setNamaBantuan(data.namaBantuan)
                     formRef.current?.updateData(data);
                 }
+                
                 if (data.statusProposal === "DISETUJUI") formRef.current?.itemOption("tanggalDisetujui").option("visible", true);
                 if (data.statusProposal === "DITOLAK") formRef.current?.itemOption("tanggalDitolak").option("visible", true);
                 console.log(statusProposal)
@@ -41,7 +51,8 @@ export default function ProposalForm({ title, id, hide, onSuccess = () => { } }:
             })
         },
         formData:{
-            idNelayan : userId
+            idUserNelayan : userId,
+            idBantuan: idBantuan
         },
         item: {
             main: {
@@ -103,9 +114,9 @@ export default function ProposalForm({ title, id, hide, onSuccess = () => { } }:
         ref={formRef}
         render={group => <DrawerLayout
             title={<>{roleId == 3 ?
-                id ? "Ubah" : "Tambah"
+                id ? "Detail" : "Tambah"
                 : "Detail"
-            } <b>{title}</b></>}
+            } <b>Bantuan {namaBantuan}</b></>}
             action={<>{id && <BgsButton
                 actionType="menu"
                 variant="icon"

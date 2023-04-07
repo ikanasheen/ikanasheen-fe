@@ -269,7 +269,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuCode: "bantuan-diajukan-nelayan",
         menuName: "Bantuan Diajukan",
         menuParent:"bantuan",
-        details: ["list"],
+        details: ["list", "update"],
         menuIcon: "material-icons-round|folder_open'",
         menuPath: "/bantuan/nelayan/diajukan",
         idRole: [3]
