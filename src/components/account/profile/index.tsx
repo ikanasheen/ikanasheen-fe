@@ -1,6 +1,6 @@
 import { BgsButton, BgsForm, BgsTypography, FormModel, FormRef } from "@andrydharmawan/bgs-component";
 import Box from "@mui/material/Box";
-import { credential} from "lib";
+import { credential } from "lib";
 import Image from "components/file/components/image";
 import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/material/Grid";
@@ -41,6 +41,16 @@ export default function AccountProfileComponent() {
             if (roleId == "3") {
                 formRef.current?.itemOption("kelurahanDesa").option("visible", true);
                 formRef.current?.itemOption("kecamatan").option("visible", true);
+                formRef.current?.itemOption("alamat").option("visible", true);
+            }
+            if (roleId == "3" || roleId == "4") {
+                formRef.current?.itemOption("alamat").option("visible", true);
+                formRef.current?.itemOption("email").option("visible", true);
+                formRef.current?.itemOption("noTelepon").option("visible", true);
+                formRef.current?.itemOption("username").option("editorOptions.disabled", false);
+                formRef.current?.itemOption("nama").option("editorOptions.disabled", false);
+            }
+            if (roleId == "1" || roleId == "2") {
             }
             setLoading(true)
             UserHelper.changeProfile(values, ({ status }) => {
@@ -65,12 +75,14 @@ export default function AccountProfileComponent() {
                 colSpan: 9,
                 items: [
                     `idUser|label.text=ID User|editorOptions.disabled=true`,
-                    `username|colSpan=12|label.text=Username`,
+                    roleId == "1" || roleId == "2" ? `username|colSpan=12|label.text=Username|editorOptions.disabled=true`
+                        : `username|colSpan=12|label.text=Username`,
                 ],
             },
-            `nama|label.text=Nama Lengkap|colSpan=12`,
-            `noTelepon|label.text=No Telepon|colSpan=6`,
-            `email|label.text=Email|colSpan=6`,
+            roleId == "1" || roleId == "2" ? `nama|label.text=Nama Lengkap|colSpan=12|editorOptions.disabled=true`
+                : `nama|label.text=Nama Lengkap|colSpan=12`,
+            `noTelepon|label.text=No Telepon|colSpan=6|visible=false`,
+            `email|label.text=Email|colSpan=6|visible=false`,
             roleId == "3" ? {
                 colSpan: 6,
                 dataField: "kecamatan",
@@ -113,22 +125,8 @@ export default function AccountProfileComponent() {
                     }]
 
                 },
-            }: null,
-            `alamat|label.text=Alamat Lengkap|editorType=textarea|colSpan=12`,
-            // {
-            //     colSpan: 12,
-            //     dataField: "status",
-            //     editorType: "select",
-            //     label: {
-            //         text: "Status"
-            //     },
-            //     editorOptions: {
-            //         dataSource: StatusConst,
-            //         displayExpr: "display",
-            //         valueExpr: "value",
-            //         disabled: true
-            //     },
-            // },
+            } : null,
+            roleId == "3" || roleId == "4" ? `alamat|label.text=Alamat Lengkap|editorType=textarea|colSpan=12` : null,
         ]
     }
 
@@ -137,7 +135,9 @@ export default function AccountProfileComponent() {
         <Grid sx={{ verflowY: "scroll", overflowX: "hidden" }}>
             <BgsForm {...form} />
         </Grid>
-        <BgsButton loading={loading} type="submit" visibleLoading={false} className="text-end float-end mt-3">Update</BgsButton>
+        {roleId == "3" || roleId == "4" ? <BgsButton loading={loading} type="submit" visibleLoading={false} className="text-end float-end mt-3">Update</BgsButton>
+            : null}
+
 
     </>
 }
