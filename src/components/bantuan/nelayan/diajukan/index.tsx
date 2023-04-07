@@ -45,7 +45,7 @@ export default function DaftarProposalList(props: MainLayoutProps) {
             // `tanggalDitolak|caption=Tanggal Ditolak|width=190|dataType=date|allowFiltering`,
             {
                 dataField: "dokumen",
-                caption: "Format Proposal",
+                caption: "File Proposal",
                 width: 230,
                 className: "img-container",
                 template: (data: any) => <CardFile attachment={data.dokumen}/>

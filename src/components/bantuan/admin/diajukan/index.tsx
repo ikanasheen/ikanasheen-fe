@@ -41,7 +41,7 @@ export default function DaftarProposalList(props: MainLayoutProps) {
             
             {
                 dataField: "dokumen",
-                caption: "Format Proposal",
+                caption: "File Proposal",
                 width: 230,
                 className: "img-container",
                 template: (data: any) => <CardFile attachment={data.dokumen}/>
