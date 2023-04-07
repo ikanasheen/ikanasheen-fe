@@ -15,27 +15,18 @@ export default function ProposalForm({ id, hide, onSuccess = () => { } }: Drawer
     const userId = credential.storage.get("user")?.idUser;
     const [namaBantuan, setNamaBantuan] = useState<string>();
     const [idBantuan, setIdBantuan] = useState<string>();
-    // const [param, setParam] = useState<any>();
 
     mounted(() => {
-        // let params = {
-        //     idUserNelayan: credential.storage.get("user")?.idUser,
-        //     idBantuan: idBantuan
-        // }
         if (id) {
             setLoading(true)
             BantuanHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
-                // if (roleId !== 1) formRef.current?.disabled(true)
                 if (status) {
-                    // setParam(params)
                     setNamaBantuan(data.namaBantuan)
                     setIdBantuan(data.idBantuan)
-                    // formRef.current?.updateData(data);
                 }
                 console.log(idBantuan, "id Bantuanxx")
                 console.log(namaBantuan, "nama Bantuan")
-                // console.log(param, "param")
 
             })
         }
