@@ -3,8 +3,8 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import { BgsTypography } from "@andrydharmawan/bgs-component";
 import moment from "moment";
-import {  useState } from "react";
-// import DashboardHelper from "helper/DashboardHelper";
+import {  useEffect, useState } from "react";
+import DashboardHelper from "helper/DashboardHelper";
 
 interface PartnerProps {
     territoryName: string;
@@ -18,30 +18,30 @@ interface ColumnDataProps {
     value: number;
 }
 
-const PartnerComponent = () => {
-    const [data] = useState<ColumnDataProps[]>([]);
-    const [loading] = useState<boolean>(true);
+const TransaksiComponent = () => {
+    const [data, setData] = useState<ColumnDataProps[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
 
-    // useEffect(() => {
-    //     setLoading(true)
-    //     DashboardHelper.salesAgentPartner(({ status, data }) => {
-    //         setLoading(false)
-    //         let partnerData: ColumnDataProps[] = [];
-    //         if (status) (data as PartnerProps[]).forEach(({ territoryName, branch, hq }) => {
-    //             partnerData.push({
-    //                 type: "BRANCH",
-    //                 city: territoryName,
-    //                 value: branch
-    //             })
-    //             partnerData.push({
-    //                 type: "HQ",
-    //                 city: territoryName,
-    //                 value: hq
-    //             })
-    //         })
-    //         setData(partnerData)
-    //     })
-    // }, [])
+    useEffect(() => {
+        setLoading(true)
+        DashboardHelper.transaksiKabupaten(({ status, data }) => {
+            setLoading(false)
+            let partnerData: ColumnDataProps[] = [];
+            if (status) (data as PartnerProps[]).forEach(({ territoryName, branch, hq }) => {
+                partnerData.push({
+                    type: "BRANCH",
+                    city: territoryName,
+                    value: branch
+                })
+                partnerData.push({
+                    type: "HQ",
+                    city: territoryName,
+                    value: hq
+                })
+            })
+            setData(partnerData)
+        })
+    }, [])
 
     const config: ColumnConfig = {
         data,
@@ -68,12 +68,12 @@ const PartnerComponent = () => {
     return <Paper className="pdt-15 pdb-15 pdl-25 pdr-25 position-relative">
         <Box className="d-flex align-items-center justify-content-between mgb-20">
             <Box>
-                <BgsTypography className="fs-18">Partner</BgsTypography>
-                <BgsTypography className="fs-14 text-base-alt3-color">{moment().format("DD MMM YYYY")}</BgsTypography>
+                <BgsTypography className="fs-18">Transaksi per Kabupaten</BgsTypography>
+                <BgsTypography className="fs-14 text-base-alt3-color">{moment().format("DD MMM YYYY")} </BgsTypography>
             </Box>
         </Box>
         <Column {...config} data={data} loading={loading} />
     </Paper>;
 };
 
-export default PartnerComponent;
+export default TransaksiComponent;

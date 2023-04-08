@@ -3,10 +3,17 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { MainLayoutProps } from "shared/layout/main-layout";
 import "./index.scss"
-import ReportSalesComponent from "./components/report-sales";
-// import PartnerComponent from "./components/partner";
-// import CurrentStatsComponents from "./components/current-stats";
-// import AttendanceComponent from "./components/attendance";
+import { credential } from "lib";
+import TransaksiKabupatenComponent from "./components/transaksi-per-kabupaten";
+import TransaksiTanggalComponent from "./components/transaksi-per-tanggal";
+import CuacaComponent from "./components/cuaca";
+import JumlahKomiditiComponent from "./components/jumlah-komoditi";
+import JumlahNelayanComponent from "./components/jumlah-nelayan";
+import JumlahTransaksiComponent from "./components/jumlah-transaksi";
+import JumlahBantuanComponent from "./components/jumlah bantuan";
+import JumlahSosialisasiComponent from "./components/jumlah-sosialisasi";
+
+const roleId = credential.storage.get("user")?.role.namaRole;
 
 const HomeComponent = ({ }: MainLayoutProps) => {
     return <Box className="home-component">
@@ -15,28 +22,46 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                 <Grid container columns={1} spacing={1.4}>
                     <Grid item xs={1}>
                         <Box className="d-flex justify-content-between">
-                            <BgsTypography className="title-page">Dashboard cihuyyyy</BgsTypography>
+                            <BgsTypography className="title-page">Dashboard | {roleId}</BgsTypography>
                         </Box>
                     </Grid>
-                    <Grid item md={1} xs={2}>
-                        <ReportSalesComponent />
-                    </Grid>
-                    {/* <Grid item xs={1}>
-                        <CurrentStatsComponents />
-                    </Grid>
                     <Grid item xs={1}>
-                        <Grid container columns={2} spacing={1.4}>
+                        <Grid container columns={2} spacing={1}>
                             <Grid item md={1} xs={2}>
-                                <ReportSalesComponent />
+                                <CuacaComponent />
                             </Grid>
                             <Grid item md={1} xs={2}>
-                                <AttendanceComponent />
+                                <JumlahKomiditiComponent />
                             </Grid>
                         </Grid>
                     </Grid>
                     <Grid item xs={1}>
-                        <PartnerComponent />
-                    </Grid> */}
+                        <Grid container columns={2} spacing={1}>
+                            <Grid item md={1} xs={2}>
+                                <TransaksiKabupatenComponent />
+                            </Grid>
+                            <Grid item md={1} xs={2}>
+                                <TransaksiTanggalComponent />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={1}>
+                        <Grid container columns={4} spacing={1}>
+                            <Grid item md={1} xs={1}>
+                                <JumlahNelayanComponent />
+                            </Grid>
+                            <Grid item md={1} xs={2}>
+                                <JumlahTransaksiComponent />
+                            </Grid>
+
+                            <Grid item md={1} xs={2}>
+                                <JumlahBantuanComponent />
+                            </Grid>
+                            <Grid item md={1} xs={2}>
+                                <JumlahSosialisasiComponent />
+                            </Grid>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>
