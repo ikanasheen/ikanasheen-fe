@@ -13,7 +13,8 @@ import JumlahTransaksiComponent from "./components/jumlah-transaksi";
 import JumlahBantuanComponent from "./components/jumlah bantuan";
 import JumlahSosialisasiComponent from "./components/jumlah-sosialisasi";
 
-const roleId = credential.storage.get("user")?.role.namaRole;
+const roleName = credential.storage.get("user")?.role.namaRole;
+const roleId = credential.storage.get("user")?.idRole;
 
 const HomeComponent = ({ }: MainLayoutProps) => {
     return <Box className="home-component">
@@ -22,19 +23,27 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                 <Grid container columns={1} spacing={1.4}>
                     <Grid item xs={1}>
                         <Box className="d-flex justify-content-between">
-                            <BgsTypography className="title-page">Dashboard | {roleId}</BgsTypography>
+                            <BgsTypography className="title-page">Dashboard | {roleName}</BgsTypography>
                         </Box>
                     </Grid>
-                    <Grid item xs={1}>
-                        <Grid container columns={2} spacing={1}>
-                            <Grid item md={1} xs={2}>
-                                <CuacaComponent />
-                            </Grid>
-                            <Grid item md={1} xs={2}>
-                                <JumlahKomiditiComponent />
+                    {roleId == "4" ?
+                        <Grid item xs={1}>
+                            <Grid container columns={1} spacing={1}>
+                                <Grid item md={1} xs={2}>
+                                    <CuacaComponent />
+                                </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
+                        : <Grid item xs={1}>
+                            <Grid container columns={2} spacing={1}>
+                                <Grid item md={1} xs={2}>
+                                    <CuacaComponent />
+                                </Grid>
+                                <Grid item md={1} xs={2}>
+                                    <JumlahKomiditiComponent />
+                                </Grid>
+                            </Grid>
+                        </Grid>}
                     <Grid item xs={1}>
                         <Grid container columns={2} spacing={1}>
                             <Grid item md={1} xs={2}>
@@ -45,23 +54,45 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item xs={1}>
-                        <Grid container columns={4} spacing={1}>
-                            <Grid item md={1} xs={1}>
-                                <JumlahNelayanComponent />
-                            </Grid>
-                            <Grid item md={1} xs={2}>
-                                <JumlahTransaksiComponent />
-                            </Grid>
-
-                            <Grid item md={1} xs={2}>
-                                <JumlahBantuanComponent />
-                            </Grid>
-                            <Grid item md={1} xs={2}>
-                                <JumlahSosialisasiComponent />
+                    {roleId == "3" ?
+                        <Grid item xs={1}>
+                            <Grid container columns={3} spacing={1}>
+                                <Grid item md={1} xs={2}>
+                                    <JumlahTransaksiComponent />
+                                </Grid>
+                                <Grid item md={1} xs={2}>
+                                    <JumlahBantuanComponent />
+                                </Grid>
+                                <Grid item md={1} xs={2}>
+                                    <JumlahSosialisasiComponent />
+                                </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
+                        : roleId == "4" ? <Grid item xs={1}>
+                            <Grid container columns={1} spacing={1}>
+                                <Grid item md={1} xs={2}>
+                                    <JumlahTransaksiComponent />
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                            : <Grid item xs={1}>
+                                <Grid container columns={4} spacing={1}>
+                                    <Grid item md={1} xs={1}>
+                                        <JumlahNelayanComponent />
+                                    </Grid>
+                                    <Grid item md={1} xs={2}>
+                                        <JumlahTransaksiComponent />
+                                    </Grid>
+
+                                    <Grid item md={1} xs={2}>
+                                        <JumlahBantuanComponent />
+                                    </Grid>
+                                    <Grid item md={1} xs={2}>
+                                        <JumlahSosialisasiComponent />
+                                    </Grid>
+                                </Grid>
+                            </Grid>}
+
                 </Grid>
             </Grid>
         </Grid>
