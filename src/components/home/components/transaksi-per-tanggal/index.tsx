@@ -48,7 +48,7 @@ const TransaksiComponent = () => {
         <Box className="d-flex align-items-center justify-content-between mgb-20">
             <Box>
                 <BgsTypography className="fs-18">Transaksi per Tanggal</BgsTypography>
-                <BgsTypography className="fs-14 text-base-alt3-color">{moment().format("DD MMM YYYY")} </BgsTypography>
+                <BgsTypography className="fs-14 text-base-alt3-color">{moment().format("MMM YYYY")} </BgsTypography>
             </Box>
         </Box>
         <Column {...config} data={data} loading={loading} />

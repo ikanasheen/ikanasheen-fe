@@ -36,7 +36,7 @@ export default function DaftarIkanList(props: MainLayoutProps) {
             `idIkan|caption=Kode Komoditi|allowFiltering|width=200`,
             `namaIkan|caption=Nama Komoditi|allowFiltering|width=200|className=text-break`,
             `ukuran|caption=Ukuran|allowFiltering|width=180`,
-            `hargaDasar|caption=Harga Dasar(Per Kg)|dataType=number|allowFiltering|width=220`,
+            `hargaDasar|caption=Harga Dasar (Per Kg)|dataType=number|allowFiltering|width=220`,
             `deskripsi|caption=Deskripsi|width=250|allowFiltering|className=text-break`,
             {
                 sticky: "right",

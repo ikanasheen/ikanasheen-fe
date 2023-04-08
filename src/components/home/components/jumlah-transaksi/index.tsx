@@ -8,23 +8,32 @@ import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import MediationIcon from '@mui/icons-material/Mediation';
 import CachedIcon from '@mui/icons-material/Cached';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import TaskAltOutlinedIcon from '@mui/icons-material/TaskAltOutlined';
+
+import { credential } from "lib";
 interface StatisticProps {
     jumlahTransaksi: number;
+    transaksiDiajukan: number;
     transaksiNego: number;
     transaksiDiproses: number;
+    transaksiDibatalkan: number;
     transaksiSelesai: number;
 }
 
 const initValue = {
     jumlahTransaksi: 0,
+    transaksiDiajukan: 0,
     transaksiNego: 0,
     transaksiDiproses: 0,
+    transaksiDibatalkan: 0,
     transaksiSelesai: 0,
 }
 
 const JumlahNelayanComponent = () => {
     const [statistic, setStatistic] = useState<StatisticProps>(initValue);
     const [loading, setLoading] = useState<boolean>(true);
+    const roleId = credential.storage.get("user")?.idRole;
 
     useEffect(() => {
         setLoading(true)
@@ -42,7 +51,7 @@ const JumlahNelayanComponent = () => {
         <Grid container>
             <Grid item md={12} xs={12}>
                 <Grid container columns={1}>
-                    <Grid item md={1} xs={3} className="d-flex align-items-center pd-10"  borderBottom="1px solid #dee3e8">
+                    <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderBottom="1px solid #dee3e8">
                         <Box className="icon-dashboard">
                             <ReceiptLongIcon className="fs-18" />
                         </Box>
@@ -52,7 +61,84 @@ const JumlahNelayanComponent = () => {
                         </Box>
                     </Grid>
                 </Grid>
-                <Grid container columns={3}>
+                {roleId == "4" ?
+                    <Grid container columns={4}>
+                        <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
+                            <Box className="icon-dashboard">
+                                <TaskAltOutlinedIcon className="fs-18" />
+                            </Box>
+                            <Box>
+                                <BgsTypography className="fs-14">Diajukan</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.transaksiDiajukan}</BgsTypography>
+                            </Box>
+                        </Grid>
+                        <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
+                            <Box className="icon-dashboard">
+                                <MediationIcon className="fs-18" />
+                            </Box>
+                            <Box>
+                                <BgsTypography className="fs-14">Nego</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.transaksiNego}</BgsTypography>
+                            </Box>
+                        </Grid>
+                        <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
+                            <Box className="icon-dashboard">
+                                <CachedIcon className="fs-18" />
+                            </Box>
+                            <Box>
+                                <BgsTypography className="fs-14">Diproses</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.transaksiDiproses}</BgsTypography>
+                            </Box>
+                        </Grid>
+                        <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" >
+                            <Box className="icon-dashboard">
+                                <CancelOutlinedIcon className="fs-18" />
+                            </Box>
+                            <Box>
+                                <BgsTypography className="fs-14">Dibatalkan</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.transaksiDibatalkan}</BgsTypography>
+                            </Box>
+                        </Grid>
+                    </Grid>
+                    : <Grid container columns={3}>
+                        <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
+                            <Box className="icon-dashboard">
+                                <MediationIcon className="fs-18" />
+                            </Box>
+                            <Box>
+                                <BgsTypography className="fs-14">Nego</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.transaksiNego}</BgsTypography>
+                            </Box>
+                        </Grid>
+                        <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
+                            <Box className="icon-dashboard">
+                                <CachedIcon className="fs-18" />
+                            </Box>
+                            <Box>
+                                <BgsTypography className="fs-14">Diproses</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.transaksiDiproses}</BgsTypography>
+                            </Box>
+                        </Grid>
+                        <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" >
+                            <Box className="icon-dashboard">
+                                <DoneAllIcon className="fs-18" />
+                            </Box>
+                            <Box>
+                                <BgsTypography className="fs-14">Selesai</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.transaksiSelesai}</BgsTypography>
+                            </Box>
+                        </Grid>
+                    </Grid>}
+                {/* <Grid container columns={4}>
+                    <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
+                        <Box className="icon-dashboard">
+                            <MediationIcon className="fs-18" />
+                        </Box>
+                        <Box>
+                            <BgsTypography className="fs-14">Diajukan</BgsTypography>
+                            <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.transaksiDiajukan}</BgsTypography>
+                        </Box>
+                    </Grid>
                     <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
                         <Box className="icon-dashboard">
                             <MediationIcon className="fs-18" />
@@ -73,14 +159,14 @@ const JumlahNelayanComponent = () => {
                     </Grid>
                     <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" >
                         <Box className="icon-dashboard">
-                            <DoneAllIcon className="fs-18" />
+                            <CancelOutlinedIcon className="fs-18" />
                         </Box>
                         <Box>
-                            <BgsTypography className="fs-14">Selesai</BgsTypography>
-                            <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.transaksiSelesai}</BgsTypography>
+                            <BgsTypography className="fs-14">Dibatalkan</BgsTypography>
+                            <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.transaksiDibatalkan}</BgsTypography>
                         </Box>
                     </Grid>
-                </Grid>
+                </Grid> */}
             </Grid>
         </Grid>
     </Paper >

@@ -4,6 +4,7 @@ import Grid from "@mui/material/Grid";
 import { MainLayoutProps } from "shared/layout/main-layout";
 import "./index.scss"
 import { credential } from "lib";
+import TransaksiStatusComponent from "./components/transaksi-per-status";
 import TransaksiKabupatenComponent from "./components/transaksi-per-kabupaten";
 import TransaksiTanggalComponent from "./components/transaksi-per-tanggal";
 import CuacaComponent from "./components/cuaca";
@@ -44,16 +45,27 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                                 </Grid>
                             </Grid>
                         </Grid>}
-                    <Grid item xs={1}>
-                        <Grid container columns={2} spacing={1}>
-                            <Grid item md={1} xs={2}>
-                                <TransaksiKabupatenComponent />
-                            </Grid>
-                            <Grid item md={1} xs={2}>
-                                <TransaksiTanggalComponent />
+                    {roleId == "3" || roleId == "4" ?
+                        <Grid item xs={1}>
+                            <Grid container columns={2} spacing={1}>
+                                <Grid item md={1} xs={2}>
+                                    <TransaksiStatusComponent />
+                                </Grid>
+                                <Grid item md={1} xs={2}>
+                                    <TransaksiTanggalComponent />
+                                </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
+                        : <Grid item xs={1}>
+                            <Grid container columns={2} spacing={1}>
+                                <Grid item md={1} xs={2}>
+                                    <TransaksiKabupatenComponent />
+                                </Grid>
+                                <Grid item md={1} xs={2}>
+                                    <TransaksiTanggalComponent />
+                                </Grid>
+                            </Grid>
+                        </Grid>}
                     {roleId == "3" ?
                         <Grid item xs={1}>
                             <Grid container columns={3} spacing={1}>

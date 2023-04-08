@@ -63,20 +63,20 @@ const JumlahNelayanComponent = () => {
                             <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.berita}</BgsTypography>
                         </Box>
                     </Grid>
-                    <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
+                    <Grid item md={1} xs={3} className="d-flex align-items-center pd-12 me-4">
                         <Box className="icon-dashboard">
                             <InfoIcon className="fs-18" />
                         </Box>
                         <Box>
-                            <BgsTypography className="fs-14">Informasi</BgsTypography><span></span>
+                            <BgsTypography className="fs-14 me-2">Informasi</BgsTypography>
                             <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.informasi}</BgsTypography>
                         </Box>
                     </Grid>
-                    <Grid item md={1} xs={3} className="d-flex align-items-center pd-10">
+                    <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderLeft="1px solid #dee3e8">
                         <Box className="icon-dashboard">
                             <PsychologyIcon className="fs-18" />
                         </Box>
-                        <Box>
+                        <Box >
                             <BgsTypography className="fs-14">Pengembangan Diri</BgsTypography>
                             <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.pengembaganDiri}</BgsTypography>
                         </Box>
