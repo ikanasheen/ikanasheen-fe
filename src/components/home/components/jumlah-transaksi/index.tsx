@@ -100,7 +100,7 @@ const JumlahNelayanComponent = () => {
                             </Box>
                         </Grid>
                     </Grid>
-                    : <Grid container columns={3}>
+                    : roleId == "3" ? <Grid container columns={3}>
                         <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
                             <Box className="icon-dashboard">
                                 <MediationIcon className="fs-18" />
@@ -128,45 +128,27 @@ const JumlahNelayanComponent = () => {
                                 <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.transaksiSelesai}</BgsTypography>
                             </Box>
                         </Grid>
-                    </Grid>}
-                {/* <Grid container columns={4}>
-                    <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
-                        <Box className="icon-dashboard">
-                            <MediationIcon className="fs-18" />
-                        </Box>
-                        <Box>
-                            <BgsTypography className="fs-14">Diajukan</BgsTypography>
-                            <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.transaksiDiajukan}</BgsTypography>
-                        </Box>
                     </Grid>
-                    <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
-                        <Box className="icon-dashboard">
-                            <MediationIcon className="fs-18" />
-                        </Box>
-                        <Box>
-                            <BgsTypography className="fs-14">Nego</BgsTypography>
-                            <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.transaksiNego}</BgsTypography>
-                        </Box>
-                    </Grid>
-                    <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
-                        <Box className="icon-dashboard">
-                            <CachedIcon className="fs-18" />
-                        </Box>
-                        <Box>
-                            <BgsTypography className="fs-14">Diproses</BgsTypography>
-                            <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.transaksiDiproses}</BgsTypography>
-                        </Box>
-                    </Grid>
-                    <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" >
-                        <Box className="icon-dashboard">
-                            <CancelOutlinedIcon className="fs-18" />
-                        </Box>
-                        <Box>
-                            <BgsTypography className="fs-14">Dibatalkan</BgsTypography>
-                            <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.transaksiDibatalkan}</BgsTypography>
-                        </Box>
-                    </Grid>
-                </Grid> */}
+                        : <Grid container columns={2}>
+                            <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
+                                <Box className="icon-dashboard">
+                                    <MediationIcon className="fs-18" />
+                                </Box>
+                                <Box>
+                                    <BgsTypography className="fs-14">Diajukan</BgsTypography>
+                                    <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.transaksiDiajukan}</BgsTypography>
+                                </Box>
+                            </Grid>
+                            <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
+                                <Box className="icon-dashboard">
+                                    <CachedIcon className="fs-18" />
+                                </Box>
+                                <Box>
+                                    <BgsTypography className="fs-14">Diproses</BgsTypography>
+                                    <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.transaksiDiproses}</BgsTypography>
+                                </Box>
+                            </Grid>
+                        </Grid>}
             </Grid>
         </Grid>
     </Paper >
