@@ -21,7 +21,7 @@ export interface ContentFileProps {
 }
 
 export default function ContentFile({ data, modalOptions }: ContentFileProps) {
-    const { id, fileName, originalName, file } = data;
+    const { id, fileName, file } = data;
     const [loading, setLoading] = useState<boolean>(false);
     const [loadingDownload, setLoadingDownload] = useState<boolean>(false);
     const [url, setUrl] = useState<string | undefined>();
@@ -29,7 +29,7 @@ export default function ContentFile({ data, modalOptions }: ContentFileProps) {
     useEffect(() => {
         setLoading(true)
         if (typeof id === "number") {
-            fetch(`${api.file}${fileName}`, {
+            fetch(`${api.bantuan.download}${id}`, {
                 headers: {
                     // Authorization: `Bearer ${credential.storage.get("token")}`
                 }
@@ -74,7 +74,7 @@ export default function ContentFile({ data, modalOptions }: ContentFileProps) {
 
             const link = document.createElement("a")
             link.href = imageURL
-            link.download = originalName;
+            link.download = fileName;
             document.body.appendChild(link)
             link.click()
             document.body.removeChild(link);

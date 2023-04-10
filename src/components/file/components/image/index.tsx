@@ -21,7 +21,7 @@ export interface ImageRefProps {
     url: string;
 }
 
-const Image = forwardRef(({ fileName, sx, showFull, size = "sm", ...others }: ImageProps, ref: ForwardedRef<ImageRefProps>) => {
+const Image = forwardRef(({ id, fileName, sx, showFull, size = "sm", ...others }: ImageProps, ref: ForwardedRef<ImageRefProps>) => {
     const [url, setUrl] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(true);
 
@@ -32,7 +32,7 @@ const Image = forwardRef(({ fileName, sx, showFull, size = "sm", ...others }: Im
     useEffect(() => {
         setLoading(true)
 
-        fetch(`${api.file}${fileName}`, {
+        fetch(`${api.bantuan.download}${id}`, {
             headers: {
                 // Authorization: `Bearer ${credential.storage.get("token")}`
             }
@@ -58,7 +58,7 @@ const Image = forwardRef(({ fileName, sx, showFull, size = "sm", ...others }: Im
                 onClick={(e) => {
                     if(showFull){
                         e.stopPropagation()
-                        showFile({ fileName, ...others }) 
+                        showFile({ id, fileName, ...others }) 
                     }
                 }}
                 className={`img-default ${showFull ? "img-hover" : ""} ${others.className || ""}`}

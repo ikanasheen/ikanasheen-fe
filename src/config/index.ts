@@ -42,6 +42,7 @@ export const api = {
         bantuan                    : `${baseUrl}fishery/bantuan/`,
         proposal                   : `${baseUrl}fishery/proposal/`,
         upload                     : `${baseUrl}fishery/dokumen/upload/`,
+        download                   : `${baseUrl}fishery/dokumen/download/`,
     }
 
     
