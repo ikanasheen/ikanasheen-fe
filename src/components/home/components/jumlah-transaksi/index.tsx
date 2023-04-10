@@ -132,7 +132,7 @@ const JumlahNelayanComponent = () => {
                         : <Grid container columns={2}>
                             <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
                                 <Box className="icon-dashboard">
-                                    <MediationIcon className="fs-18" />
+                                    <TaskAltOutlinedIcon className="fs-18" />
                                 </Box>
                                 <Box>
                                     <BgsTypography className="fs-14">Diajukan</BgsTypography>

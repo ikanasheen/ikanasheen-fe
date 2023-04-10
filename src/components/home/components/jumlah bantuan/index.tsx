@@ -7,22 +7,30 @@ import DashboardHelper from "helper/DashboardHelper";
 import HandshakeIcon from '@mui/icons-material/Handshake';
 import ClearIcon from '@mui/icons-material/Clear';
 import CheckIcon from '@mui/icons-material/Check';
+import { credential } from "lib";
+import CachedIcon from '@mui/icons-material/Cached';
+import TaskAltOutlinedIcon from '@mui/icons-material/TaskAltOutlined';
 
 interface StatisticProps {
     jumlahBantuan: number;
     bantuanDiterima: number;
     bantuanDitolak: number;
+    bantuanDiajukan: number;
+    bantuanDiproses: number;
 }
 
 const initValue = {
     jumlahBantuan: 0,
     bantuanDiterima: 0,
     bantuanDitolak: 0,
+    bantuanDiajukan: 0,
+    bantuanDiproses: 0,
 }
 
 const JumlahNelayanComponent = () => {
     const [statistic, setStatistic] = useState<StatisticProps>(initValue);
     const [loading, setLoading] = useState<boolean>(true);
+    const roleId = credential.storage.get("user")?.idRole;
 
     useEffect(() => {
         setLoading(true)
@@ -40,7 +48,7 @@ const JumlahNelayanComponent = () => {
         <Grid container>
             <Grid item md={12} xs={12}>
                 <Grid container columns={1}>
-                    <Grid item md={1} xs={3} className="d-flex align-items-center pd-10"  borderBottom="1px solid #dee3e8">
+                    <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderBottom="1px solid #dee3e8">
                         <Box className="icon-dashboard">
                             <HandshakeIcon className="fs-18" />
                         </Box>
@@ -50,7 +58,7 @@ const JumlahNelayanComponent = () => {
                         </Box>
                     </Grid>
                 </Grid>
-                <Grid container columns={2}>
+                {roleId == "3" ? <Grid container columns={2}>
                     <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
                         <Box className="icon-dashboard">
                             <CheckIcon className="fs-18" />
@@ -70,6 +78,26 @@ const JumlahNelayanComponent = () => {
                         </Box>
                     </Grid>
                 </Grid>
+                    : <Grid container columns={2}>
+                        <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
+                            <Box className="icon-dashboard">
+                                <TaskAltOutlinedIcon className="fs-18" />
+                            </Box>
+                            <Box>
+                                <BgsTypography className="fs-14">Bantuan Diajukan</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.bantuanDiajukan}</BgsTypography>
+                            </Box>
+                        </Grid>
+                        <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" >
+                            <Box className="icon-dashboard">
+                                <CachedIcon className="fs-18" />
+                            </Box>
+                            <Box>
+                                <BgsTypography className="fs-14">Bantuan Terproses</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.bantuanDiproses}</BgsTypography>
+                            </Box>
+                        </Grid>
+                    </Grid>}
             </Grid>
         </Grid>
     </Paper >

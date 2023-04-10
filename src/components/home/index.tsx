@@ -45,27 +45,6 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                                 </Grid>
                             </Grid>
                         </Grid>}
-                    {roleId == "3" || roleId == "4" ?
-                        <Grid item xs={1}>
-                            <Grid container columns={2} spacing={1}>
-                                <Grid item md={1} xs={2}>
-                                    <TransaksiStatusComponent />
-                                </Grid>
-                                <Grid item md={1} xs={2}>
-                                    <TransaksiTanggalComponent />
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                        : <Grid item xs={1}>
-                            <Grid container columns={2} spacing={1}>
-                                <Grid item md={1} xs={2}>
-                                    <TransaksiKabupatenComponent />
-                                </Grid>
-                                <Grid item md={1} xs={2}>
-                                    <TransaksiTanggalComponent />
-                                </Grid>
-                            </Grid>
-                        </Grid>}
                     {roleId == "3" ?
                         <Grid item xs={1}>
                             <Grid container columns={3} spacing={1}>
@@ -104,6 +83,27 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                                     </Grid>
                                 </Grid>
                             </Grid>}
+                    {roleId == "3" || roleId == "4" ?
+                        <Grid item xs={1}>
+                            <Grid container columns={2} spacing={1}>
+                                <Grid item md={1} xs={2}>
+                                    <TransaksiStatusComponent />
+                                </Grid>
+                                <Grid item md={1} xs={2}>
+                                    <TransaksiTanggalComponent />
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        : <Grid item xs={1}>
+                            <Grid container columns={2} spacing={1}>
+                                <Grid item md={1} xs={2}>
+                                    <TransaksiKabupatenComponent />
+                                </Grid>
+                                <Grid item md={1} xs={2}>
+                                    <TransaksiTanggalComponent />
+                                </Grid>
+                            </Grid>
+                        </Grid>}
 
                 </Grid>
             </Grid>
