@@ -136,7 +136,7 @@ export default function ContentFile({ data, modalOptions }: ContentFileProps) {
                         },
                         editorType: "label"
                     }, 
-                    "fileExtention|editorType=label",
+                    // "fileExtention|editorType=label",
                     {
                         
                         dataField: "createdOn",
