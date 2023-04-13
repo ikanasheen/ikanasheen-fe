@@ -33,33 +33,95 @@ export default function SosialisasiList(props: MainLayoutProps) {
             propReq: "status",
             value: ['ACTIVE'],
             opt: "filter"
-        },{
+        }, {
             propReq: "jenisKonten",
             value: ['BERITA'],
             opt: "filter"
         }],
         onRowClick: ({ rowData }) => form(rowData.idSosialisasi),
         columns: [
-            `judul|caption=Judul|allowFiltering|width=160`,
             {
-                dataField: "jenisKonten",
-                caption: "Jenis Konten",
+                dataField: "judul",
+                caption: "Judul",
                 width: 160,
-                template: (data) => {                      
-                    if (data.jenisKonten=="BERITA"){
-                        return "Berita"
-                    }else if (data.jenisKonten=="INFORMASI"){
-                        return "Informasi"
-                    }else{
-                        return "Pengembangan Diri"
-                    }
-                    
-                },
                 allowSorting: true,
-                allowFiltering: true
+                allowFiltering: {
+                    helper: (data) => SosialisasiHelper.retrieve(data),
+                    displayExpr: "judul",
+                    valueExpr: "judul",
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    jenisKonten: ["BERITA"],
+                                    status: ["ACTIVE"]
+                                }
+                            }
+                        }
+                    }
+                },
             },
-            `konten|caption=Konten|allowFiltering|width=300`,           
-            `penulis|allowFiltering|width=160`,
+            // {
+            //     dataField: "jenisKonten",
+            //     caption: "Jenis Konten",
+            //     width: 160,
+            //     template: (data) => {
+            //         if (data.jenisKonten == "BERITA") {
+            //             return "Berita"
+            //         } else if (data.jenisKonten == "INFORMASI") {
+            //             return "Informasi"
+            //         } else {
+            //             return "Pengembangan Diri"
+            //         }
+
+            //     },
+            //     allowSorting: true,
+            //     allowFiltering: {
+            //         helper: (data) => SosialisasiHelper.retrieve(data),
+            //         displayExpr: (data: any) => {
+            //             if (data.jenisKonten == "BERITA") {
+            //                 return "Berita"
+            //             } else if (data.jenisKonten == "INFORMASI") {
+            //                 return "Informasi"
+            //             } else {
+            //                 return "Pengembangan Diri"
+            //             }
+            //         },
+            //         valueExpr: "jenisKonten",
+            //         parameter: () => {
+            //             return {
+            //                 parameter: {
+            //                     filter: {
+            //                         jenisKonten: ["BERITA"],
+            //                         status: ["ACTIVE"]
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     },
+            // },
+            `konten|caption=Konten|width=300`,
+            {
+                dataField: "penulis",
+                caption: "Penulis",
+                width: 160,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => SosialisasiHelper.retrieve(data),
+                    displayExpr: "penulis",
+                    valueExpr: "penulis",
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    jenisKonten: ["BERITA"],
+                                    status: ["ACTIVE"]
+                                }
+                            }
+                        }
+                    }
+                },
+            },
             `tanggalDibuat|dataType=date|allowFiltering|width=180`,
             {
                 sticky: "right",
