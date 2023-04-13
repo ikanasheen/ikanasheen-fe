@@ -7,14 +7,17 @@ import axios from "axios";
 import versionJSON from "build-id.json"
 import { storeDispatch } from "store";
 
+type KeyType = "token" | "user" | "redirect" | "menu"
 export const credential = {
     storage: {
-        get: (key?: "token" | "user" | "redirect" | "menu") => {
+        get: (key?: KeyType) => {
             let result: any = {};
             try {
                 Object.keys(localStorage).forEach(keys => {
                     const available = ["token", "user", "redirect", "menu"];
-                    if (available.includes(lockdata.decryptString(keys))) result[lockdata.decryptString(keys)] = lockdata.decryptString(localStorage[keys]);
+                    if (available.includes(keys)) {
+                        result[keys] = lockdata.decryptString(localStorage[keys]);
+                    }
                 })
             } catch (error) {
             }
@@ -23,12 +26,14 @@ export const credential = {
 
             return result;
         },
-        set: (key: "token" | "user" | "redirect" | "menu", value: any): any => {
-            localStorage.setItem(lockdata.encryptString(key), lockdata.encryptString(value))
+        set: (key: KeyType, value: any): any => {
+            localStorage.setItem(key, lockdata.encryptString(value))
         },
-        delete: (key?: "token" | "user" | "redirect" | "menu") => {
+        delete: (key?: KeyType) => {
             if (!key) localStorage.clear();
-            else localStorage.removeItem(key);
+            else {
+                localStorage.removeItem(key);
+            }
         }
     }
 }

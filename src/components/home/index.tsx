@@ -13,11 +13,17 @@ import JumlahNelayanComponent from "./components/jumlah-nelayan";
 import JumlahTransaksiComponent from "./components/jumlah-transaksi";
 import JumlahBantuanComponent from "./components/jumlah bantuan";
 import JumlahSosialisasiComponent from "./components/jumlah-sosialisasi";
+import { useEffect } from "react";
 
-const roleName = credential.storage.get("user")?.role.namaRole;
-const roleId = credential.storage.get("user")?.idRole;
+
 
 const HomeComponent = ({ }: MainLayoutProps) => {
+    const roleName = credential.storage.get("user")?.role.namaRole;
+    const roleId = credential.storage.get("user")?.idRole;
+
+    useEffect(() => {
+
+    }, [])
     return <Box className="home-component">
         <Grid container>
             <Grid item md={12} xs={12} className="left-content">

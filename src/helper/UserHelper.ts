@@ -24,6 +24,9 @@ class UserHelper extends BaseHelper {
     static changePassword(data: any, callback?: Callback) {
         return super.postBase(`user/changepassword`,  { parameter: { data } }, callback)
     }
+    static getProfile(id: any, callback?: Callback) {
+        return super.getBase(`user/profile/`+`${id}`,  callback, { showSuccess: false, showError: true })
+    }
     static changeProfile(data: any, callback?: Callback) {
         return super.postBase(`user/changepassword`,  { parameter: { data } }, callback)
     }

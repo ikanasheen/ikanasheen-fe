@@ -1,6 +1,6 @@
-import { BgsButton, BgsForm, BgsTypography, FormModel, FormRef } from "@andrydharmawan/bgs-component";
+import { BgsForm, BgsTypography, FormModel, FormRef } from "@andrydharmawan/bgs-component";
 import Box from "@mui/material/Box";
-import { credential } from "lib";
+import { credential, mounted } from "lib";
 import Image from "components/file/components/image";
 import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/material/Grid";
@@ -8,56 +8,44 @@ import KecamatanHelper from "helper/register/KecamatanHelper";
 import { useRef, useState } from "react";
 import UserHelper from "helper/UserHelper";
 
-
 export default function AccountProfileComponent() {
     const roleId = credential.storage.get("user")?.idRole;
-    // const userId = credential.storage.get("user")?.idUser;
     const [loading, setLoading] = useState<boolean>(false);
+    const userId = credential.storage.get("user")?.idUser;
     const formRef = useRef<FormRef>(null);
-    // mounted(() => {
-    //     if (id) {
-    //         setLoading(true)
-    //         UserHelper.detail(id, ({ status, data }) => {
-    //             setLoading(false)
-    //             if (status) {
-    //                 if(roleId == "3" ){
-    //                     formRef.current?.itemOption("kelurahanDesa").option("visible", true);
-    //                     formRef.current?.itemOption("kecamatan").option("visible", true);
-    //                 }
-    //                 formRef.current?.updateData(data);
-    //             }
-    //         })
-    //     }
-    // })
+    const [alamat, setAlamat] = useState();
+
+    mounted(() => {
+        setLoading(true)
+        UserHelper.getProfile(userId, ({ status, data}) => {
+            setLoading(false)
+            if (status) {
+                setAlamat(data.alamat)
+                formRef.current?.updateData(data);
+            }
+            console.log(loading, "lalala")
+            console.log(data, "dataa")
+            console.log(data.email, "data.alamat")
+            console.log(alamat, "alamat ")
+            console.log(userId, "userr ")
+        })
+    })
 
     const form: FormModel = {
         showLabelShrink: true,
         apperance: "filled",
         spacing: 2,
-        formData: credential.storage.get("user"),
+        // formData: {
+        //    data
+        // },
         colCount: 12,
-        onSubmit: (values, { reset }) => {
-
-            if (roleId == "3") {
-                formRef.current?.itemOption("kelurahanDesa").option("visible", true);
-                formRef.current?.itemOption("kecamatan").option("visible", true);
-                formRef.current?.itemOption("alamat").option("visible", true);
-            }
-            if (roleId == "3" || roleId == "4") {
-                formRef.current?.itemOption("alamat").option("visible", true);
-                formRef.current?.itemOption("email").option("visible", true);
-                formRef.current?.itemOption("noTelepon").option("visible", true);
-                formRef.current?.itemOption("username").option("editorOptions.disabled", false);
-                formRef.current?.itemOption("nama").option("editorOptions.disabled", false);
-            }
-            if (roleId == "1" || roleId == "2") {
-            }
-            setLoading(true)
-            UserHelper.changeProfile(values, ({ status }) => {
-                setLoading(false)
-                if (status) reset()
-            })
-        },
+        // onSubmit: (values, { reset }) => {
+        //     setLoading(true)
+        //     UserHelper.changeProfile(values, ({ status }) => {
+        //         setLoading(false)
+        //         if (status) reset()
+        //     })
+        // },
         items: [
             {
                 colSpan: 3,
@@ -79,8 +67,22 @@ export default function AccountProfileComponent() {
                         : `username|colSpan=12|label.text=Username`,
                 ],
             },
-            roleId == "1" || roleId == "2" ? `nama|label.text=Nama Lengkap|colSpan=12|editorOptions.disabled=true`
-                : `nama|label.text=Nama Lengkap|colSpan=12`,
+            roleId == "1" || roleId == "2" ? `namaLengkap|colSpan=12|editorOptions.disabled=true`
+                : `namaLengkap|colSpan=12`,
+            roleId == "3" || roleId == "4" ? {
+                colSpan: 6,
+                dataField: "email",
+                label: {
+                    text: "Email"
+                },
+            }: null,
+            roleId == "3" || roleId == "4" ? {
+                colSpan: 6,
+                dataField: "noTelepon",
+                label: {
+                    text: "No Telepon"
+                },
+            }: null,
             `noTelepon|label.text=No Telepon|colSpan=6|visible=false`,
             `email|label.text=Email|colSpan=6|visible=false`,
             roleId == "3" ? {
@@ -133,10 +135,10 @@ export default function AccountProfileComponent() {
     return <>
         <BgsTypography className="title-account">Profil Saya</BgsTypography>
         <Grid sx={{ verflowY: "scroll", overflowX: "hidden" }}>
-            <BgsForm {...form} />
+            <BgsForm {...form} ref={formRef} />
         </Grid>
-        {roleId == "3" || roleId == "4" ? <BgsButton loading={loading} type="submit" visibleLoading={false} className="text-end float-end mt-3">Update</BgsButton>
-            : null}
+        {/* {roleId == "3" || roleId == "4" ? <BgsButton loading={loading} type="submit" visibleLoading={false} className="text-end float-end mt-3">Update</BgsButton>
+            : null} */}
 
 
     </>
