@@ -41,8 +41,48 @@ export default function TransaksiList(props: MainLayoutProps) {
         }],
         onRowClick: ({ rowData }) => form(rowData.idTransaksi),
         columns: [
-            `idTransaksi|caption=ID Transaksi|allowFiltering|width=180`,
-            `namaIkan|caption=Nama Komoditi|allowFiltering|width=180`,
+            {
+                dataField: "idTransaksi",
+                caption: "ID Transaksi",
+                width: 180,
+                allowFiltering: {
+                    helper: (data) => TransaksiHelper.retrieve(data),
+                    displayExpr: "idTransaksi",
+                    valueExpr: "idTransaksi",
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    status: ['SELESAI'],
+                                    idUserNelayan: [userId]
+                                }
+                            }
+
+                        }
+                    }
+                },
+            },
+            {
+                dataField: "namaIkan",
+                caption: "Nama Komoditi",
+                width: 180,
+                allowFiltering: {
+                    helper: (data) => TransaksiHelper.retrieve(data),
+                    displayExpr: "namaIkan",
+                    valueExpr: "namaIkan",
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    status: ['SELESAI'],
+                                    idUserNelayan: [userId]
+                                }
+                            }
+                        }
+                    }
+                },
+                allowSorting: true,
+            },
             `tanggalSelesai|caption=Tanggal Selesai|dataType=date|allowFiltering|width=200`,
             {
                 dataField: "opsiPengiriman",
@@ -51,15 +91,36 @@ export default function TransaksiList(props: MainLayoutProps) {
                 template: (data) => {
                     if (data.opsiPengiriman == "AMBIL") {
                         return "Ambil Sendiri"
-                    } else if (data.opsiPengiriman == "ANTAR"){
+                    } else if (data.opsiPengiriman == "ANTAR") {
                         return "Dikirim"
-                    } else{
+                    } else {
                         return ""
                     }
-
                 },
                 allowSorting: true,
-                allowFiltering: true
+                allowFiltering: {
+                    helper: (data) => TransaksiHelper.retrieve(data),
+                    displayExpr: (data: any) => {
+                        if (data.opsiPengiriman == "AMBIL") {
+                            return "Ambil Sendiri"
+                        } else if (data.opsiPengiriman == "ANTAR") {
+                            return "Dikirim"
+                        } else {
+                            return ""
+                        }
+                    }, //no capslock
+                    valueExpr: "opsiPengiriman",
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    status:  ['SELESAI'],
+                                    idUserNelayan: [userId]
+                                }
+                            }
+                        }
+                    },
+                }
             },
             {
                 dataField: "status",
@@ -80,7 +141,38 @@ export default function TransaksiList(props: MainLayoutProps) {
 
                 },
                 allowSorting: true,
-                allowFiltering:true
+                allowFiltering: {
+                    helper: (data) => TransaksiHelper.retrieve(data),
+                    displayExpr: (data: any) => {
+                        if (data.status == "DIAJUKAN") {
+                            return "Diajukan"
+                        } else if (data.status == "DIPROSES") {
+                            return "Diproses"
+                        } else if (data.status == "DIBATALKAN") {
+                            return "Dibatalkan"
+                        } else if (data.status == "NEGO") {
+                            return "Nego"
+                        } else if (data.status == "SIAP_DIAMBIL") {
+                            return "Siap Diambil"
+                        } else if (data.status == "DIKIRIM") {
+                            return "Sedang Dikirim"
+                        } else {
+                            return "Selesai"
+                        }
+
+                    },
+                    valueExpr: "status",
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    status: ['SELESAI'],
+                                    idUserNelayan: [userId]
+                                }
+                            }
+                        }
+                    }
+                }
             },
             {
                 sticky: "right",

@@ -34,15 +34,55 @@ export default function TransaksiList(props: MainLayoutProps) {
             propReq: "idUserNelayan",
             value: [userId],
             opt: "filter"
-        },{
+        }, {
             propReq: "status",
-            value: ['DIPROSES','SIAP_DIAMBIL','DIKIRIM'],
+            value: ['DIPROSES', 'SIAP_DIAMBIL', 'DIKIRIM'],
             opt: "filter"
         }],
         onRowClick: ({ rowData }) => form(rowData.idTransaksi),
         columns: [
-            `idTransaksi|caption=ID Transaksi|allowFiltering|width=180`,
-            `namaIkan|caption=Nama Komoditi|allowFiltering|width=180`,
+            {
+                dataField: "idTransaksi",
+                caption: "ID Transaksi",
+                width: 180,
+                allowFiltering: {
+                    helper: (data) => TransaksiHelper.retrieve(data),
+                    displayExpr: "idTransaksi",
+                    valueExpr: "idTransaksi",
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    status: ['DIPROSES', 'SIAP_DIAMBIL', 'DIKIRIM'],
+                                    idUserNelayan: [userId]
+                                }
+                            }
+
+                        }
+                    }
+                },
+            },
+            {
+                dataField: "namaIkan",
+                caption: "Nama Komoditi",
+                width: 180,
+                allowFiltering: {
+                    helper: (data) => TransaksiHelper.retrieve(data),
+                    displayExpr: "namaIkan",
+                    valueExpr: "namaIkan",
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    status: ['DIPROSES', 'SIAP_DIAMBIL', 'DIKIRIM'],
+                                    idUserNelayan: [userId]
+                                }
+                            }
+                        }
+                    }
+                },
+                allowSorting: true,
+            },
             `tanggalDibutuhkan|caption=Tanggal Dibutuhkan|dataType=date|allowFiltering|width=210`,
             `tanggalDiproses|caption=Tanggal Diproses|dataType=date|allowFiltering|width=200`,
             {
@@ -52,16 +92,37 @@ export default function TransaksiList(props: MainLayoutProps) {
                 template: (data) => {
                     if (data.opsiPengiriman == "AMBIL") {
                         return "Ambil Sendiri"
-                    } else if (data.opsiPengiriman == "ANTAR"){
+                    } else if (data.opsiPengiriman == "ANTAR") {
                         return "Dikirim"
-                    } else{
+                    } else {
                         return ""
                     }
-
                 },
                 allowSorting: true,
-                allowFiltering: true
-            },{
+                allowFiltering: {
+                    helper: (data) => TransaksiHelper.retrieve(data),
+                    displayExpr: (data: any) => {
+                        if (data.opsiPengiriman == "AMBIL") {
+                            return "Ambil Sendiri"
+                        } else if (data.opsiPengiriman == "ANTAR") {
+                            return "Dikirim"
+                        } else {
+                            return ""
+                        }
+                    }, //no capslock
+                    valueExpr: "opsiPengiriman",
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    status: ['DIPROSES', 'SIAP_DIAMBIL', 'DIKIRIM'],
+                                    idUserNelayan: [userId]
+                                }
+                            }
+                        }
+                    },
+                }
+            }, {
                 dataField: "status",
                 caption: "Status",
                 width: 160,
@@ -74,9 +135,9 @@ export default function TransaksiList(props: MainLayoutProps) {
                         return "Dibatalkan"
                     } else if (data.status == "NEGO") {
                         return "Nego"
-                    }else if (data.status == "SIAP_DIAMBIL") {
+                    } else if (data.status == "SIAP_DIAMBIL") {
                         return "Siap Diambil"
-                    }else if (data.status == "DIKIRIM") {
+                    } else if (data.status == "DIKIRIM") {
                         return "Sedang Dikirim"
                     } else {
                         return "Selesai"
@@ -84,7 +145,38 @@ export default function TransaksiList(props: MainLayoutProps) {
 
                 },
                 allowSorting: true,
-                allowFiltering:true
+                allowFiltering: {
+                    helper: (data) => TransaksiHelper.retrieve(data),
+                    displayExpr: (data: any) => {
+                        if (data.status == "DIAJUKAN") {
+                            return "Diajukan"
+                        } else if (data.status == "DIPROSES") {
+                            return "Diproses"
+                        } else if (data.status == "DIBATALKAN") {
+                            return "Dibatalkan"
+                        } else if (data.status == "NEGO") {
+                            return "Nego"
+                        } else if (data.status == "SIAP_DIAMBIL") {
+                            return "Siap Diambil"
+                        } else if (data.status == "DIKIRIM") {
+                            return "Sedang Dikirim"
+                        } else {
+                            return "Selesai"
+                        }
+
+                    },
+                    valueExpr: "status",
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    status: ['DIPROSES', 'SIAP_DIAMBIL', 'DIKIRIM'],
+                                    idUserNelayan: [userId]
+                                }
+                            }
+                        }
+                    }
+                }
             },
             {
                 sticky: "right",
