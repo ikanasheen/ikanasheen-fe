@@ -3,7 +3,7 @@ import { api } from "config/index";
 import { Callback } from "models/response.model";
 
 class DashboardHelper extends BaseHelper {
-    static url = api.dashboard.nelayan;
+    static url = api.dashboard.dashboard;
 
     static cuaca(callback?: Callback) {
         return super.postBase("dashboard", {  }, callback, { showError: false, showSuccess: false })
