@@ -36,10 +36,87 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
         }],
         onRowClick: ({ rowData }) => form(rowData.idBantuan),
         columns: [
-            `idBantuan|caption=Kode Bantuan|allowFiltering|width=180`,
-            `namaBantuan|caption=Nama Bantuan|allowFiltering|width=180|className=text-break`,
-            `jenisBantuan|caption=Jenis Bantuan|allowFiltering|width=180`,
-            `kuotaTersisa|caption=Kuota Tersisa|allowFiltering|width=220`,
+            {
+                dataField: "idBantuan",
+                caption: "Kode Bantuan",
+                width: 180,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => BantuanHelper.retrieve(data),
+                    displayExpr: "idBantuan",
+                    valueExpr: "idBantuan",
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    statusBantuan: ['ACTIVE','UNAVAILABLE']
+                                }
+                            }
+                        }
+                    }
+                },
+            },
+            {
+                dataField: "namaBantuan",
+                caption: "Nama Bantuan",
+                width: 180,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => BantuanHelper.retrieve(data),
+                    displayExpr: "namaBantuan",
+                    valueExpr: "namaBantuan",
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    statusBantuan: ['ACTIVE','UNAVAILABLE']
+                                }
+                            }
+                        }
+                    }
+                },
+            },
+            {
+                dataField: "jenisBantuan",
+                caption: "Jenis Bantuan",
+                width: 180,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => BantuanHelper.retrieve(data),
+                    displayExpr: "jenisBantuan",
+                    valueExpr: "jenisBantuan",
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    statusBantuan: ['ACTIVE','UNAVAILABLE']
+                                }
+                            }
+                        }
+                    }
+                },
+            },
+            
+            {
+                dataField: "kuotaTersisa",
+                caption: "Kuota Tersisa",
+                width: 180,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => BantuanHelper.retrieve(data),
+                    displayExpr: "kuotaTersisa",
+                    valueExpr: "kuotaTersisa",
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    statusBantuan: ['ACTIVE','UNAVAILABLE']
+                                }
+                            }
+                        }
+                    }
+                },
+            },
             {
                 dataField: "dokumen",
                 caption: "Format Proposal",
@@ -62,7 +139,28 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
 
                 },
                 allowSorting: true,
-                allowFiltering: true
+                allowFiltering: {
+                    helper: (data) => BantuanHelper.retrieve(data),
+                    displayExpr: (data: any) => {
+                        if (data.statusBantuan == "ACTIVE") {
+                            return "Aktif"
+                        } else if (data.statusBantuan == "INACTIVE") {
+                            return "Tidak Aktif"
+                        } else {
+                            return "Kuota Habis"
+                        }
+                    }, //no capslock
+                    valueExpr: "statusBantuan",
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    statusBantuan: ['ACTIVE','UNAVAILABLE']
+                                }
+                            }
+                        }
+                    },
+                }
             },{
                 sticky: "right",
                 icon: false,
