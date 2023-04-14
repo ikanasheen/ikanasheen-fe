@@ -52,6 +52,7 @@ export default function ProposalForm({ id, hide, onSuccess = () => { } }: Drawer
                             valueExpr: "value",
                         },
                     },
+                    `catatan|label.text=Catatan|editorOptions.disabled=false`,
                 ]
             },
         }
@@ -62,9 +63,15 @@ export default function ProposalForm({ id, hide, onSuccess = () => { } }: Drawer
             setLoading(true)
             ProposalHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
-                if (roleId !== 1) formRef.current?.disabled(true)
+                // if (roleId !== 1) formRef.current?.disabled(true)
                 if (status) {
                     setNamaBantuan(data.namaBantuan)
+                    formRef.current?.itemOption("statusProposal").option("editorOptions.disabled", true);
+                    formRef.current?.itemOption("tanggalDiajukan").option("editorOptions.disabled", true);
+                    formRef.current?.itemOption("namaBantuan").option("editorOptions.disabled", true);
+                    formRef.current?.itemOption("jenisBantuan").option("editorOptions.disabled", true);
+                    formRef.current?.itemOption("namaNelayan").option("editorOptions.disabled", true);
+                    formRef.current?.itemOption("idNelayan").option("editorOptions.disabled", true);
                     formRef.current?.updateData(data);
                 }
             })

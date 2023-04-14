@@ -39,14 +39,77 @@ export default function DaftarProposalList(props: MainLayoutProps) {
         }],
         onRowClick: ({ rowData }) => form(rowData.idProposalBantuan),
         columns: [
-            `namaNelayan|caption=Nama Nelayan|allowFiltering|width=180`,
-            `namaBantuan|caption=Nama Bantuan|allowFiltering|width=180`,
-            `jenisBantuan|caption=Jenis Bantuan|allowFiltering|width=180`,
+            {
+                dataField: "namaNelayan",
+                caption: "Nama Nelayan",
+                width: 180,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => ProposalHelper.retrieve(data),
+                    displayExpr: "namaNelayan",
+                    valueExpr: "namaNelayan",
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    statusProposal: ['DISETUJUI', 'DITOLAK']
+                                }
+                            }
+                        }
+                    }
+                },
+            },
+            {
+                dataField: "namaBantuan",
+                caption: "Nama Bantuan",
+                width: 180,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => ProposalHelper.retrieve(data),
+                    displayExpr: "namaBantuan",
+                    valueExpr: "namaBantuan",
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    statusProposal: ['DISETUJUI', 'DITOLAK']
+                                }
+                            }
+                        }
+                    }
+                },
+            },
+            {
+                dataField: "jenisBantuan",
+                caption: "Jenis Bantuan",
+                width: 180,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => ProposalHelper.retrieve(data),
+                    displayExpr: "jenisBantuan",
+                    valueExpr: "jenisBantuan",
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    statusProposal: ['DISETUJUI', 'DITOLAK']
+                                }
+                            }
+                        }
+                    }
+                },
+            },
             `tanggalDiajukan|caption=Tanggal Diajukan|width=190|dataType=date|allowFiltering`,
             // `tanggalDisetujui|caption=Tanggal Disetujui|width=190|dataType=datetime|allowFiltering`,
             // `tanggalDitolak|caption=Tanggal Ditolak|width=190|dataType=date|allowFiltering`,
-            // `dokumen|caption=File|width=160`,
+            
             {
+                dataField: "dokumen",
+                caption: "File Proposal",
+                width: 230,
+                className: "img-container",
+                template: (data: any) => <CardFile attachment={data.dokumen}/>
+            },{
                 dataField: "statusProposal",
                 caption: "Status",
                 width: 160,
@@ -63,14 +126,30 @@ export default function DaftarProposalList(props: MainLayoutProps) {
 
                 },
                 allowSorting: true,
-                allowFiltering: true
-            },
-            {
-                dataField: "dokumen",
-                caption: "File Proposal",
-                width: 230,
-                className: "img-container",
-                template: (data: any) => <CardFile attachment={data.dokumen}/>
+                allowFiltering: {
+                    helper: (data) => ProposalHelper.retrieve(data),
+                    displayExpr: (data: any) => {
+                        if (data.statusProposal == "DIAJUKAN") {
+                            return "Diajukan"
+                        } else if (data.statusProposal == "DISETUJUI") {
+                            return "Disetujui"
+                        } else if (data.statusProposal == "DITOLAK") {
+                            return "Ditolak"
+                        } else {
+                            return ""
+                        }
+                    }, 
+                    valueExpr: "statusProposal",
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    statusProposal: ['DISETUJUI', 'DITOLAK']
+                                }
+                            }
+                        }
+                    },
+                }
             },
             {
                 sticky: "right",
