@@ -4,7 +4,7 @@ import { credential, mounted } from "lib";
 import Image from "components/file/components/image";
 import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/material/Grid";
-import KecamatanHelper from "helper/register/KecamatanHelper";
+// import KecamatanHelper from "helper/register/KecamatanHelper";
 import { useRef, useState } from "react";
 import UserHelper from "helper/UserHelper";
 
@@ -13,21 +13,15 @@ export default function AccountProfileComponent() {
     const [loading, setLoading] = useState<boolean>(false);
     const userId = credential.storage.get("user")?.idUser;
     const formRef = useRef<FormRef>(null);
-    const [alamat, setAlamat] = useState();
 
     mounted(() => {
         setLoading(true)
         UserHelper.getProfile(userId, ({ status, data}) => {
             setLoading(false)
             if (status) {
-                setAlamat(data.alamat)
                 formRef.current?.updateData(data);
             }
             console.log(loading, "lalala")
-            console.log(data, "dataa")
-            console.log(data.email, "data.alamat")
-            console.log(alamat, "alamat ")
-            console.log(userId, "userr ")
         })
     })
 
@@ -91,23 +85,23 @@ export default function AccountProfileComponent() {
                 label: {
                     text: "Kecamatan"
                 },
-                editorType: "select",
-                editorOptions: {
-                    helper: data => KecamatanHelper.retrieveDistrict(data),
-                    displayExpr: "name",
-                    valueExpr: "name",
-                    afterChange: {
-                        clearItems: ["kelurahanDesa"],
-                        reloadItems: ["kelurahanDesa"]
-                    },
+                // editorType: "select",
+                // editorOptions: {
+                //     helper: data => KecamatanHelper.retrieveDistrict(data),
+                //     displayExpr: "name",
+                //     valueExpr: "name",
+                //     // afterChange: {
+                //     //     clearItems: ["kelurahanDesa"],
+                //     //     reloadItems: ["kelurahanDesa"]
+                //     // },
 
-                    onChange: ({ formRef, data }) => {
-                        formRef.updateData({
-                            kecamatanId: data?.id || ""
-                        })
-                    }
+                //     // onChange: ({ formRef, data }) => {
+                //     //     formRef.updateData({
+                //     //         kecamatanId: data?.id || ""
+                //     //     })
+                //     // }
 
-                },
+                // },
             } : null,
             roleId == "3" ? {
                 colSpan: 6,
@@ -115,18 +109,18 @@ export default function AccountProfileComponent() {
                 label: {
                     text: "Kelurahan/Desa"
                 },
-                editorType: "select",
-                editorOptions: {
-                    helper: data => KecamatanHelper.retrieveVillages(data),
-                    displayExpr: "name",
-                    valueExpr: "name",
-                    parameterFromField: [{
-                        opt: "filter",
-                        fromField: "kecamatanId",
-                        propReq: "id"
-                    }]
+                // editorType: "select",
+                // editorOptions: {
+                //     helper: data => KecamatanHelper.retrieveVillages(data),
+                //     displayExpr: "name",
+                //     valueExpr: "name",
+                //     parameterFromField: [{
+                //         opt: "filter",
+                //         fromField: "kecamatanId",
+                //         propReq: "id"
+                //     }]
 
-                },
+                // },
             } : null,
             roleId == "3" || roleId == "4" ? `alamat|label.text=Alamat Lengkap|editorType=textarea|colSpan=12` : null,
         ]

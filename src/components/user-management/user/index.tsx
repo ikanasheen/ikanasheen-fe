@@ -31,27 +31,72 @@ export default function UserManagementUserList(props: MainLayoutProps) {
         },
         onRowClick: ({ rowData }) => form(rowData.idUser),
         columns: [
-            `idUser|caption=ID Pengguna|allowFiltering|width=250`,
-            `username|caption=Username|allowFiltering|width=250`,
+            {
+                dataField: "idUser",
+                caption: "ID User",
+                width: 200,
+                allowFiltering: {
+                    helper: (data) => UserManagementHelper.retrieve(data),
+                    displayExpr: "idUser",
+                    valueExpr: "idUser",
+                    allowSorting: false,
+                    allowSearching: false
+                },
+                allowSorting: true,
+            },
+            {
+                dataField: "username",
+                caption: "Username",
+                width: 200,
+                allowFiltering: {
+                    helper: (data) => UserManagementHelper.retrieve(data),
+                    displayExpr: "username",
+                    valueExpr: "username",
+                    allowSorting: false,
+                    allowSearching: false
+                },
+                allowSorting: true,
+            },
             {
                 dataField: "idRole",
                 caption: "Role",
                 width: 160,
                 allowSorting: true,
-                allowFiltering: true,
                 template: (data) => {
                     return data.role.namaRole
                 },
+                allowFiltering: {
+                    helper: (data) => UserManagementHelper.retrieve(data),
+                    displayExpr: (data: any) => {
+                        return data.role.namaRole
+                    },
+                    valueExpr: "idRole",
+                    allowSorting: false,
+                    allowSearching: false,
+                },
+
             },
             {
                 dataField: "status",
                 caption: "Status",
                 width: 130,
                 allowSorting: true,
-                allowFiltering: true,
                 template: (data) => {
                     return <Chip className="chip-default" variant="outlined" color={data.status == "ACTIVE" ? "success" : "error"}
                         label={data.status == "ACTIVE" ? "Aktif" : "Tidak Aktif"} />
+                },
+                allowFiltering: {
+                    helper: (data) => UserManagementHelper.retrieve(data),
+                    displayExpr: (data: any) => {
+                        if (data.status == "ACTIVE") {
+                            return "Aktif"
+                        } else {
+                            return "Tidak Aktif"
+                        }
+                    },
+                    valueExpr: "status",
+                    allowSorting: false,
+                    allowSearching: false,
                 },
             },
             {

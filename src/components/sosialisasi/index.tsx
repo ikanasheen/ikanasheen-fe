@@ -32,26 +32,76 @@ export default function SosialisasiList(props: MainLayoutProps) {
         },
         onRowClick: ({ rowData }) => form(rowData.idSosialisasi),
         columns: [
-            `judul|caption=Judul|allowFiltering|width=160`,
+            {
+                dataField: "judul",
+                caption: "Judul",
+                width: 160,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => SosialisasiHelper.retrieve(data),
+                    displayExpr: "judul",
+                    valueExpr: "judul",
+                    allowSorting: false,
+                    allowSearching: false
+                },
+            },
             {
                 dataField: "jenisKonten",
                 caption: "Jenis Konten",
                 width: 160,
-                template: (data) => {                      
-                    if (data.jenisKonten=="BERITA"){
+                template: (data) => {
+                    if (data.jenisKonten == "BERITA") {
                         return "Berita"
-                    }else if (data.jenisKonten=="INFORMASI"){
+                    } else if (data.jenisKonten == "INFORMASI") {
                         return "Informasi"
-                    }else{
+                    } else {
                         return "Pengembangan Diri"
                     }
-                    
+
                 },
                 allowSorting: true,
-                allowFiltering:true
+                allowFiltering: {
+                    helper: (data) => SosialisasiHelper.retrieve(data),
+                    displayExpr: (data: any) => {
+                        if (data.jenisKonten == "BERITA") {
+                            return "Berita"
+                        } else if (data.jenisKonten == "INFORMASI") {
+                            return "Informasi"
+                        } else {
+                            return "Pengembangan Diri"
+                        }
+                    },
+                    valueExpr: "status",
+                    allowSorting: false,
+                    allowSearching: false
+                }
             },
-            `konten|caption=Konten|allowFiltering|width=300`,
-            `penulis|allowFiltering|width=160`,
+            {
+                dataField: "konten",
+                caption: "Konten",
+                width: 300,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => SosialisasiHelper.retrieve(data),
+                    displayExpr: "konten",
+                    valueExpr: "konten",
+                    allowSorting: false,
+                    allowSearching: false
+                },
+            },
+            {
+                dataField: "penulis",
+                caption: "Penulus",
+                width: 160,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => SosialisasiHelper.retrieve(data),
+                    displayExpr: "penulis",
+                    valueExpr: "penulis",
+                    allowSorting: false,
+                    allowSearching: false
+                },
+            },
             `tanggalDibuat|dataType=date|allowFiltering|width=180`,
             `tanggalDiubah|caption=Tanggal Disunting|dataType=date|allowFiltering|width=200`,
             {
@@ -59,7 +109,19 @@ export default function SosialisasiList(props: MainLayoutProps) {
                 caption: "Status",
                 width: 130,
                 allowSorting: true,
-                allowFiltering:true,
+                allowFiltering: {
+                    helper: (data) => SosialisasiHelper.retrieve(data),
+                    displayExpr: (data: any) => {
+                        if (data.status == "ACTIVE") {
+                            return "Aktif"
+                        } else {
+                            return "Tidak Aktif"
+                        }
+                    },
+                    valueExpr: "status",
+                    allowSorting: false,
+                    allowSearching: false
+                },
                 template: (data) => {
                     return <Chip className="chip-default" variant="outlined" color={data.status == "ACTIVE" ? "success" : "error"}
                         label={data.status == "ACTIVE" ? "Aktif" : "Tidak Aktif"} />

@@ -30,9 +30,45 @@ export default function UserManagementRoleList(props: MainLayoutProps) {
         keyData: "code",
         onRowClick: ({ rowData }) => form(rowData.idRole),
         columns: [
-            `idRole|caption=ID Role|allowFiltering|width=130`,
-            `namaRole|allowFiltering|width=200`,
-            `deskripsi|allowFiltering|width=200`,
+            {
+                dataField: "idRole",
+                caption: "ID Role",
+                width: 130,
+                allowFiltering: {
+                    helper: (data) => RoleHelper.retrieve(data),
+                    displayExpr: "idRole",
+                    valueExpr: "idRole",
+                    allowSorting: false,
+                    allowSearching: false
+                },
+                allowSorting: true,
+            },
+            {
+                dataField: "namaRole",
+                caption: "Nama Role",
+                width: 200,
+                allowFiltering: {
+                    helper: (data) => RoleHelper.retrieve(data),
+                    displayExpr: "namaRole",
+                    valueExpr: "namaRole",
+                    allowSorting: false,
+                    allowSearching: false
+                },
+                allowSorting: true,
+            },
+            {
+                dataField: "deskripsi",
+                caption: "Deskripsi",
+                width: 200,
+                allowFiltering: {
+                    helper: (data) => RoleHelper.retrieve(data),
+                    displayExpr: "deskripsi",
+                    valueExpr: "deskripsi",
+                    allowSorting: false,
+                    allowSearching: false
+                },
+                allowSorting: true,
+            },
             {
                 sticky: "right",
                 icon: false,

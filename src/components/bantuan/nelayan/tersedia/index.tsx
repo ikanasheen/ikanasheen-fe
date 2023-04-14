@@ -45,6 +45,8 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
                     helper: (data) => BantuanHelper.retrieve(data),
                     displayExpr: "idBantuan",
                     valueExpr: "idBantuan",
+                    allowSorting: false,
+                    allowSearching: false,
                     parameter: () => {
                         return {
                             parameter: {
@@ -65,6 +67,8 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
                     helper: (data) => BantuanHelper.retrieve(data),
                     displayExpr: "namaBantuan",
                     valueExpr: "namaBantuan",
+                    allowSorting: false,
+                    allowSearching: false,
                     parameter: () => {
                         return {
                             parameter: {
@@ -85,6 +89,8 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
                     helper: (data) => BantuanHelper.retrieve(data),
                     displayExpr: "jenisBantuan",
                     valueExpr: "jenisBantuan",
+                    allowSorting: false,
+                    allowSearching: false,
                     parameter: () => {
                         return {
                             parameter: {
@@ -106,6 +112,8 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
                     helper: (data) => BantuanHelper.retrieve(data),
                     displayExpr: "kuotaTersisa",
                     valueExpr: "kuotaTersisa",
+                    allowSorting: false,
+                    allowSearching: false,
                     parameter: () => {
                         return {
                             parameter: {
@@ -149,8 +157,10 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
                         } else {
                             return "Kuota Habis"
                         }
-                    }, //no capslock
+                    },
                     valueExpr: "statusBantuan",
+                    allowSorting: false,
+                    allowSearching: false,
                     parameter: () => {
                         return {
                             parameter: {

@@ -32,21 +32,109 @@ export default function NelayanList(props: MainLayoutProps) {
         },
         onRowClick: ({ rowData }) => form(rowData.idNelayan),
         columns: [
-            `idNelayan|caption=ID Nelayan|allowFiltering|width=160`,
-            `namaLengkap|caption=Nama Lengkap|allowFiltering|className=text-break|width=180`,
-            `kecamatan|caption=Kecamatan|allowFiltering|width=200`,
-            `kelurahanDesa|caption=Kelurahan|allowFiltering|width=200`,
-            `alamat|caption=Alamat|allowFiltering|className=text-break|width=300`,
-            `noTelepon|caption=No Telepon|allowFiltering|width=180`,
+            {
+                dataField: "idNelayan",
+                caption: "ID Nelayan",
+                width: 160,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => NelayanHelper.retrieve(data),
+                    displayExpr: "idNelayan",
+                    valueExpr: "idNelayan",
+                    allowSorting: false,
+                    allowSearching: false
+                },
+            },
+            {
+                dataField: "namaLengkap",
+                caption: "Nama Lengkap",
+                className: "text-break",
+                width: 180,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => NelayanHelper.retrieve(data),
+                    displayExpr: "namaLengkap",
+                    valueExpr: "namaLengkap",
+                    allowSorting: false,
+                    allowSearching: false
+                },
+            },
+            {
+                dataField: "kecamatan",
+                caption: "Kecamatan",
+                width: 200,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => NelayanHelper.retrieve(data),
+                    displayExpr: "kecamatan",
+                    valueExpr: "kecamatan",
+                    allowSorting: false,
+                    allowSearching: false
+                },
+            },
+            {
+                dataField: "kelurahanDesa",
+                caption: "Kelurahan",
+                width: 200,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => NelayanHelper.retrieve(data),
+                    displayExpr: "kelurahanDesa",
+                    valueExpr: "kelurahanDesa",
+                    allowSorting: false,
+                    allowSearching: false
+                },
+            },
+            {
+                dataField: "alamat",
+                caption: "Alamat",
+                className: "text-break",
+                width: 300,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => NelayanHelper.retrieve(data),
+                    displayExpr: "alamat",
+                    valueExpr: "alamat",
+                    allowSorting: false,
+                    allowSearching: false
+                },
+            },
+            {
+                dataField: "noTelepon",
+                caption: "No Telepon",
+                width: 180,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => NelayanHelper.retrieve(data),
+                    displayExpr: "noTelepon",
+                    valueExpr: "noTelepon",
+                    allowSorting: false,
+                    allowSearching: false
+                },
+            },
             {
                 dataField: "status",
                 caption: "Status",
                 width: 130,
-                template: ( data ) => {
-                return <Chip className="chip-default" variant="outlined" color={data.user.status == "ACTIVE" ? "success" : "error"} 
-                label={data.user.status == "ACTIVE" ? "Aktif" : "Tidak Aktif"} />},
+                template: (data) => {
+                    return <Chip className="chip-default" variant="outlined" color={data.user.status == "ACTIVE" ? "success" : "error"}
+                        label={data.user.status == "ACTIVE" ? "Aktif" : "Tidak Aktif"} />
+                },
                 allowSorting: true,
-            },            
+                allowFiltering: {
+                    helper: (data) => NelayanHelper.retrieve(data),
+                    displayExpr: (data: any) => {
+                        if (data.user.status == "ACTIVE") {
+                            return "Aktif"
+                        } else {
+                            return "Tidak Aktif"
+                        }
+                    },
+                    valueExpr: "status",
+                    allowSorting: false,
+                    allowSearching: false
+                }
+            },
             {
                 sticky: "right",
                 icon: false,

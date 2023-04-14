@@ -47,6 +47,8 @@ export default function DaftarProposalList(props: MainLayoutProps) {
                     helper: (data) => ProposalHelper.retrieve(data),
                     displayExpr: "namaBantuan",
                     valueExpr: "namaBantuan",
+                    allowSorting: false,
+                    allowSearching: false,
                     parameter: () => {
                         return {
                             parameter: {
@@ -118,6 +120,8 @@ export default function DaftarProposalList(props: MainLayoutProps) {
                         }
                     }, 
                     valueExpr: "statusProposal",
+                    allowSorting: false,
+                    allowSearching: false,
                     parameter: () => {
                         return {
                             parameter: {

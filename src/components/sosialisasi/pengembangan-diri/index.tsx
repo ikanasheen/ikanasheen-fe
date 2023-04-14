@@ -49,6 +49,8 @@ export default function SosialisasiList(props: MainLayoutProps) {
                     helper: (data) => SosialisasiHelper.retrieve(data),
                     displayExpr: "judul",
                     valueExpr: "judul",
+                    allowSorting: false,
+                    allowSearching: false,
                     parameter: () => {
                         return {
                             parameter: {
@@ -61,46 +63,29 @@ export default function SosialisasiList(props: MainLayoutProps) {
                     }
                 },
             },
-            // {
-            //     dataField: "jenisKonten",
-            //     caption: "Jenis Konten",
-            //     width: 160,
-            //     template: (data) => {
-            //         if (data.jenisKonten == "BERITA") {
-            //             return "Berita"
-            //         } else if (data.jenisKonten == "INFORMASI") {
-            //             return "Informasi"
-            //         } else {
-            //             return "Pengembangan Diri"
-            //         }
-
-            //     },
-            //     allowSorting: true,
-            //     allowFiltering: {
-            //         helper: (data) => SosialisasiHelper.retrieve(data),
-            //         displayExpr: (data: any) => {
-            //             if (data.jenisKonten == "BERITA") {
-            //                 return "Berita"
-            //             } else if (data.jenisKonten == "INFORMASI") {
-            //                 return "Informasi"
-            //             } else {
-            //                 return "Pengembangan Diri"
-            //             }
-            //         },
-            //         valueExpr: "jenisKonten",
-            //         parameter: () => {
-            //             return {
-            //                 parameter: {
-            //                     filter: {
-            //                         jenisKonten: ['PENGEMBANGAN_DIRI'],
-            //                         status: ["ACTIVE"]
-            //                     }
-            //                 }
-            //             }
-            //         }
-            //     },
-            // },
-            `konten|caption=Konten|width=300`,
+            {
+                dataField: "konten",
+                caption: "Konten",
+                width: 300,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => SosialisasiHelper.retrieve(data),
+                    displayExpr: "konten",
+                    valueExpr: "konten",
+                    allowSorting: false,
+                    allowSearching: false,
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    jenisKonten: ["PENGEMBANGAN_DIRI"],
+                                    status: ["ACTIVE"]
+                                }
+                            }
+                        }
+                    }
+                },
+            },
             {
                 dataField: "penulis",
                 caption: "Penulis",
@@ -110,6 +95,8 @@ export default function SosialisasiList(props: MainLayoutProps) {
                     helper: (data) => SosialisasiHelper.retrieve(data),
                     displayExpr: "penulis",
                     valueExpr: "penulis",
+                    allowSorting: false,
+                    allowSearching: false,
                     parameter: () => {
                         return {
                             parameter: {

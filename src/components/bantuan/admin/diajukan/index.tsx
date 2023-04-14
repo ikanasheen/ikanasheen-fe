@@ -31,10 +31,61 @@ export default function DaftarProposalList(props: MainLayoutProps) {
         },
         onRowClick: ({ rowData }) => form(rowData.idProposalBantuan),
         columns: [
-            `idNelayan|caption=ID Nelayan|allowFiltering|width=180`,
-            `namaNelayan|caption=Nama Nelayan|allowFiltering|width=180`,
-            `namaBantuan|caption=Nama Bantuan|allowFiltering|width=180`,
-            `jenisBantuan|caption=Jenis Bantuan|allowFiltering|width=180`,
+            {
+                dataField: "idNelayan",
+                caption: "ID Nelayan",
+                width: 180,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => ProposalHelper.retrieve(data),
+                    displayExpr: "idNelayan",
+                    valueExpr: "idNelayan",
+                    allowSorting: false,
+                    allowSearching: false,
+                    
+                },
+            },{
+                dataField: "namaNelayan",
+                caption: "Nama Nelayan",
+                width: 180,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => ProposalHelper.retrieve(data),
+                    displayExpr: "namaNelayan",
+                    valueExpr: "namaNelayan",
+                    allowSorting: false,
+                    allowSearching: false,
+                    
+                },
+            },
+            {
+                dataField: "namaBantuan",
+                caption: "Nama Bantuan",
+                width: 180,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => ProposalHelper.retrieve(data),
+                    displayExpr: "namaBantuan",
+                    valueExpr: "namaBantuan",
+                    allowSorting: false,
+                    allowSearching: false,
+                    
+                },
+            },
+            {
+                dataField: "jenisBantuan",
+                caption: "Jenis Bantuan",
+                width: 180,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => ProposalHelper.retrieve(data),
+                    displayExpr: "jenisBantuan",
+                    valueExpr: "jenisBantuan",
+                    allowSorting: false,
+                    allowSearching: false,
+                    
+                },
+            },
             `tanggalDiajukan|caption=Tanggal Diajukan|width=190|dataType=date|allowFiltering`,
             // `tanggalDisetujui|caption=Tanggal Disetujui|width=190|dataType=datetime|allowFiltering`,
             // `tanggalDitolak|caption=Tanggal Ditolak|width=190|dataType=date|allowFiltering`,
@@ -63,7 +114,24 @@ export default function DaftarProposalList(props: MainLayoutProps) {
 
                 },
                 allowSorting: true,
-                allowFiltering: true
+                allowFiltering: {
+                    helper: (data) => ProposalHelper.retrieve(data),
+                    displayExpr: (data: any) => {
+                        if (data.statusProposal == "DIAJUKAN") {
+                            return "Diajukan"
+                        } else if (data.statusProposal == "DISETUJUI") {
+                            return "Disetujui"
+                        } else if (data.statusProposal == "DITOLAK") {
+                            return "Ditolak"
+                        } else {
+                            return ""
+                        }
+                    }, 
+                    valueExpr: "statusProposal",
+                    allowSorting: false,
+                    allowSearching: false,
+                    
+                }
             },
             {
                 sticky: "right",

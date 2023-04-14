@@ -42,6 +42,8 @@ export default function TransaksiList(props: MainLayoutProps) {
                     helper: (data) => TransaksiHelper.retrieve(data),
                     displayExpr: "idTransaksi",
                     valueExpr: "idTransaksi",
+                    allowSorting: false,
+                    allowSearching: false,
                     parameter: () => {
                         return {
                             parameter: {
@@ -62,6 +64,8 @@ export default function TransaksiList(props: MainLayoutProps) {
                     helper: (data) => TransaksiHelper.retrieve(data),
                     displayExpr: "namaIkan",
                     valueExpr: "namaIkan",
+                    allowSorting: false,
+                    allowSearching: false,
                     parameter: () => {
                         return {
                             parameter: {
@@ -74,7 +78,7 @@ export default function TransaksiList(props: MainLayoutProps) {
                 },
                 allowSorting: true,
             },
-            `tanggalDibutuhkan|caption=Tanggal Dibutuhkan|dataType=date|allowFiltering|width=200`,
+            `tanggalDibutuhkan|caption=Tanggal Dibutuhkan|dataType=date|allowFiltering|width=210`,
             `tanggalDiproses|caption=Tanggal Diproses|dataType=date|allowFiltering|width=200`,
             `tanggalSelesai|caption=Tanggal Selesai|dataType=date|allowFiltering|width=200`,
             {
@@ -121,6 +125,8 @@ export default function TransaksiList(props: MainLayoutProps) {
 
                     },
                     valueExpr: "status",
+                    allowSorting: false,
+                    allowSearching: false,
                     parameter: () => {
                         return {
                             parameter: {

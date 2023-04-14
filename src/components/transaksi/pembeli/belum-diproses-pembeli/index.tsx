@@ -40,18 +40,97 @@ export default function TransaksiList(props: MainLayoutProps) {
         }],
         onRowClick: ({ rowData }) => form(rowData.idTransaksi),
         columns: [
-            `idTransaksi|caption=ID Transaksi|allowFiltering|width=180`,
-            // `namaIkan|caption=Nama Komoditi|allowFiltering|width=180`,
+            {
+                dataField: "idTransaksi",
+                caption: "ID Transaksi",
+                width: 180,
+                allowFiltering: {
+                    helper: (data) => TransaksiHelper.retrieve(data),
+                    displayExpr: "idTransaksi",
+                    valueExpr: "idTransaksi",
+                    allowSorting: false,
+                    allowSearching: false,
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    status: ['DIAJUKAN'],
+                                    idUserPembeli :[userId]
+                                }
+                            }
+                        }
+                    }
+                },
+            },
             {
                 dataField: "namaIkan",
                 caption: "Nama Komoditi",
                 width: 180,
-                allowSorting: true,                
-                allowFiltering:true
-
+                allowFiltering: {
+                    helper: (data) => TransaksiHelper.retrieve(data),
+                    displayExpr: "namaIkan",
+                    valueExpr: "namaIkan",
+                    allowSorting: false,
+                    allowSearching: false,
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    status: ['DIAJUKAN'],
+                                    idUserPembeli :[userId]
+                                }
+                            }
+                        }
+                    }
+                },
+                allowSorting: true,
             },
-            `jumlah|caption=Jumlah (Kg)|allowFiltering|width=160`,
-            `hargaAwal|caption=Harga Awal (per Kg)|dataType=number|allowFiltering|width=230`,
+            {
+                dataField: "jumlah",
+                caption: "Jumlah (Kg)",
+                width: 160,
+                allowFiltering: {
+                    helper: (data) => TransaksiHelper.retrieve(data),
+                    displayExpr: "jumlah",
+                    valueExpr: "jumlah",
+                    allowSorting: false,
+                    allowSearching: false,
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    status: ['DIAJUKAN'],
+                                    idUserPembeli :[userId]
+                                }
+                            }
+                        }
+                    }
+                },
+                allowSorting: true,
+            },
+            {
+                dataField: "hargaAwal",
+                caption: "Harga Awal (per Kg)",
+                width: 230,
+                allowFiltering: {
+                    helper: (data) => TransaksiHelper.retrieve(data),
+                    displayExpr: "hargaAwal",
+                    valueExpr: "hargaAwal",
+                    allowSorting: false,
+                    allowSearching: false,
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    status: ['DIAJUKAN'],
+                                    idUserPembeli :[userId]
+                                }
+                            }
+                        }
+                    }
+                },
+                allowSorting: true,
+            },
             `tanggalDibutuhkan|caption=Tanggal Dibutuhkan|dataType=date|allowFiltering|width=210`,
             {
                 dataField: "opsiPengiriman",
@@ -65,10 +144,33 @@ export default function TransaksiList(props: MainLayoutProps) {
                     } else{
                         return ""
                     }
-
                 },
                 allowSorting: true,
-                allowFiltering: true
+                allowFiltering: {
+                    helper: (data) => TransaksiHelper.retrieve(data),
+                    displayExpr: (data: any) => {
+                        if (data.opsiPengiriman == "AMBIL") {
+                            return "Ambil Sendiri"
+                        } else if (data.opsiPengiriman == "ANTAR"){
+                            return "Dikirim"
+                        } else{
+                            return ""
+                        }
+                    },
+                    valueExpr: "opsiPengiriman",
+                    allowSorting: false,
+                    allowSearching: false,
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    status: ["DIAJUKAN"],
+                                    idUserPembeli: [userId]
+                                }
+                            }
+                        }
+                    }
+                }
             },{
                 dataField: "status",
                 caption: "Status",
@@ -88,7 +190,35 @@ export default function TransaksiList(props: MainLayoutProps) {
 
                 },
                 allowSorting: true,                
-                allowFiltering:true
+                allowFiltering: {
+                    helper: (data) => TransaksiHelper.retrieve(data),
+                    displayExpr: (data: any) => {
+                        if (data.status == "DIAJUKAN") {
+                            return "Diajukan"
+                        } else if (data.status == "DIPROSES") {
+                            return "Diproses"
+                        } else if (data.status == "DIBATALKAN") {
+                            return "Dibatalkan"
+                        } else if (data.status == "NEGO") {
+                            return "Nego"
+                        } else {
+                            return "Selesai"
+                        }
+                    },
+                    valueExpr: "status",
+                    allowSorting: false,
+                    allowSearching: false,
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    status: ["DIAJUKAN"],
+                                    idUserPembeli: [userId]
+                                }
+                            }
+                        }
+                    }
+                }
 
             },
             {

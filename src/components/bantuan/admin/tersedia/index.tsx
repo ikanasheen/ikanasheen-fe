@@ -31,11 +31,74 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
         },
         onRowClick: ({ rowData }) => form(rowData.idBantuan),
         columns: [
-            `idBantuan|caption=Kode Bantuan|allowFiltering|width=180`,
-            `namaBantuan|caption=Nama Bantuan|allowFiltering|width=180|className=text-break`,
-            `jenisBantuan|caption=Jenis Bantuan|allowFiltering|width=180`,
-            `kuota|caption=Kuota Tersedia|allowFiltering|width=180`,
-            `kuotaTersisa|caption=Kuota Tersisa|allowFiltering|width=180`,
+            {
+                dataField: "idBantuan",
+                caption: "Kode Bantuan",
+                width: 180,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => BantuanHelper.retrieve(data),
+                    displayExpr: "jenisBantuan",
+                    valueExpr: "jenisBantuan",
+                    allowSorting: false,
+                    allowSearching: false,
+                },
+            },
+            {
+                dataField: "namaBantuan",
+                caption: "Nama Bantuan",
+                width: 180,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => BantuanHelper.retrieve(data),
+                    displayExpr: "namaBantuan",
+                    valueExpr: "namaBantuan",
+                    allowSorting: false,
+                    allowSearching: false,
+                },
+            },
+            {
+                dataField: "jenisBantuan",
+                caption: "Jenis Bantuan",
+                width: 180,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => BantuanHelper.retrieve(data),
+                    displayExpr: "jenisBantuan",
+                    valueExpr: "jenisBantuan",
+                    allowSorting: false,
+                    allowSearching: false,
+                    
+                },
+            },
+            {
+                dataField: "kuota",
+                caption: "Kuota",
+                width: 180,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => BantuanHelper.retrieve(data),
+                    displayExpr: "kuota",
+                    valueExpr: "kuota",
+                    allowSorting: false,
+                    allowSearching: false,
+                    
+                },
+            },
+            {
+                dataField: "kuotaTersisa",
+                caption: "Kuota Tersisa",
+                width: 180,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => BantuanHelper.retrieve(data),
+                    displayExpr: "kuotaTersisa",
+                    valueExpr: "kuotaTersisa",
+                    allowSorting: false,
+                    allowSearching: false,
+                    
+                },
+            },
             {
                 dataField: "dokumen",
                 caption: "Format Proposal",
@@ -58,7 +121,21 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
 
                 },
                 allowSorting: true,
-                allowFiltering: true
+                allowFiltering: {
+                    helper: (data) => BantuanHelper.retrieve(data),
+                    displayExpr: (data: any) => {
+                        if (data.statusBantuan == "ACTIVE") {
+                            return "Aktif"
+                        } else if (data.statusBantuan == "INACTIVE") {
+                            return "Tidak Aktif"
+                        } else {
+                            return "Kuota Habis"
+                        }
+                    }, 
+                    valueExpr: "statusProposal",
+                    allowSorting: false,
+                    allowSearching: false,
+                }
             },{
                 sticky: "right",
                 icon: false,

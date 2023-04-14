@@ -33,11 +33,73 @@ export default function DaftarIkanList(props: MainLayoutProps) {
         },
         onRowClick: ({ rowData }) => form(rowData.idIkan),
         columns: [
-            `idIkan|caption=Kode Komoditi|allowFiltering|width=200`,
-            `namaIkan|caption=Nama Komoditi|allowFiltering|width=200|className=text-break`,
-            `ukuran|caption=Ukuran|allowFiltering|width=180`,
-            `hargaDasar|caption=Harga Dasar (Per Kg)|dataType=number|allowFiltering|width=220`,
-            `deskripsi|caption=Deskripsi|width=250|allowFiltering|className=text-break`,
+            {
+                dataField: "idIkan",
+                caption: "Kode Komoditi",
+                width: 200,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => IkanHelper.retrieve(data),
+                    displayExpr: "idIkan",
+                    valueExpr: "idIkan",
+                    allowSorting: false,
+                    allowSearching: false
+                },
+            },
+            {
+                dataField: "namaIkan",
+                caption: "Nama Komoditi",
+                width: 200,
+                className: "text-break",
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => IkanHelper.retrieve(data),
+                    displayExpr: "namaIkan",
+                    valueExpr: "namaIkan",
+                    allowSorting: false,
+                    allowSearching: false
+                },
+            },
+            {
+                dataField: "ukuran",
+                caption: "Ukuran",
+                width: 200,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => IkanHelper.retrieve(data),
+                    displayExpr: "ukuran",
+                    valueExpr: "ukuran",
+                    allowSorting: false,
+                    allowSearching: false
+                },
+            },
+            {
+                dataField: "hargaDasar",
+                caption: "Harga Dasar",
+                width: 200,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => IkanHelper.retrieve(data),
+                    displayExpr: "hargaDasar",
+                    valueExpr: "hargaDasar",
+                    allowSorting: false,
+                    allowSearching: false
+                },
+            },
+            {
+                dataField: "deskripsi",
+                caption: "Deskripsi",
+                className: "text-break",
+                width: 200,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => IkanHelper.retrieve(data),
+                    displayExpr: "deskripsi",
+                    valueExpr: "deskripsi",
+                    allowSorting: false,
+                    allowSearching: false
+                },
+            },
             {
                 sticky: "right",
                 icon: false,

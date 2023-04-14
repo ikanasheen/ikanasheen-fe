@@ -5,6 +5,7 @@ import { BgsTypography } from "@andrydharmawan/bgs-component";
 import { useEffect, useState } from "react";
 import DashboardHelper from "helper/DashboardHelper";
 import ContactsIcon from '@mui/icons-material/Contacts';
+import { Link } from "react-router-dom";
 interface StatisticProps {
     jumlahKomoditi: number;
 }
@@ -31,7 +32,7 @@ const JumlahKomoditiComponent = () => {
         </Box> */}
 
         <Grid container>
-        {/* borderTop="1px solid #dee3e8" */}
+            {/* borderTop="1px solid #dee3e8" */}
             <Grid item md={12} xs={12}>
                 <Grid container columns={1}>
                     <Grid item md={1} xs={3} className="d-flex align-items-center pd-10">
@@ -39,8 +40,10 @@ const JumlahKomoditiComponent = () => {
                             <ContactsIcon className="fs-18" />
                         </Box>
                         <Box>
-                            <BgsTypography className="fs-14">Jumlah Komoditi</BgsTypography>
-                            <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.jumlahKomoditi}</BgsTypography>
+                            <Link to="/daftar-komoditi">
+                                <BgsTypography className="fs-14">Jumlah Komoditi</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.jumlahKomoditi}</BgsTypography>
+                            </Link>
                         </Box>
                     </Grid>
                 </Grid>
