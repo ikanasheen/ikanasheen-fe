@@ -92,6 +92,7 @@ export default function ProposalForm({ title, id, hide, onSuccess = () => { } }:
                             valueExpr: "value",
                         },
                     },
+                    `catatan|label.text=Catatan`,
                 ]
             },
         }

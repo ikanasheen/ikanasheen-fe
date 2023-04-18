@@ -15,13 +15,13 @@ export default function ProposalForm({ id, hide, onSuccess = () => { } }: Drawer
         apperance: "filled",
         showIcon: true,
         showLabelShrink: true,
-        onSubmit: (values) => {
-            setLoading(true);
-            ProposalHelper.createupdate(values, values.idProposalBantuan, ({ status }) => {
-                setLoading(false);
-                if (status) onSuccess();
-            })
-        },
+        // onSubmit: (values) => {
+        //     setLoading(true);
+        //     ProposalHelper.createupdate(values, values.idProposalBantuan, ({ status }) => {
+        //         setLoading(false);
+        //         if (status) onSuccess();
+        //     })
+        // },
         item: {
             main: {
                 spacing: 3,
@@ -80,20 +80,31 @@ export default function ProposalForm({ id, hide, onSuccess = () => { } }: Drawer
 
     const approveProposal = ({ loading }: { loading: Function }) => {
         loading(true);
-        if (id) {
+        const data = {
+            catatan: formRef.current?.getData("catatan"),
+            isApprove: "Ya",
+            idProposalBantuan: id
+        };
+        if (data) {
             loading(true)
-            ProposalHelper.approve(id, ({ status }) => {
+            ProposalHelper.approve(data, ({ status }) => {
                 if (status) {
                     onSuccess();
                 }
             })
         }
+        console.log(data, "dataas")
     }
     const rejectProposal = ({ loading }: { loading: Function }) => {
         loading(true);
-        if (id) {
+        const data = {
+            catatan: formRef.current?.getData("catatan"),
+            isApprove: "Tidak",
+            idProposalBantuan: id
+        };
+        if (data) {
             loading(true)
-            ProposalHelper.reject(id, ({ status }) => {
+            ProposalHelper.reject(data, ({ status }) => {
                 if (status) {
                     onSuccess();
                 }
