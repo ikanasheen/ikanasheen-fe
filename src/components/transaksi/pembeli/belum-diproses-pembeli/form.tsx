@@ -203,7 +203,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
             </BgsButton>}</>}
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
-                {id != null && statusTransaksi == "DIAJUKAN" ? // && status diajukan
+                {id != null && statusTransaksi == "DIAJUKAN" ||statusTransaksi == "NEGO" ||statusTransaksi == "DIDIPROSES"? // && status diajukan
                     <BgsButton variant="contained" className="btn-batalkan"
                         modalOptions={{
                             message: "Apakah Anda yakin untuk membatalkan transaksi ini?",
