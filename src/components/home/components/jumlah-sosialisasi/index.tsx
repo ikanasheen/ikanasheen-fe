@@ -10,17 +10,17 @@ import NewspaperIcon from '@mui/icons-material/Newspaper';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 
 interface StatisticProps {
-    jumlahNelayan: number;
+    jumlahSosialisasi: number;
     berita: number;
     informasi: number;
-    pengembaganDiri: number;
+    pengembanganDiri: number;
 }
 
 const initValue = {
-    jumlahNelayan: 0,
+    jumlahSosialisasi: 0,
     berita: 0,
     informasi: 0,
-    pengembaganDiri: 0,
+    pengembanganDiri: 0,
 }
 
 const jumlahSosialisasiComponent = () => {
@@ -49,7 +49,7 @@ const jumlahSosialisasiComponent = () => {
                         </Box>
                         <Box>
                             <BgsTypography className="fs-14">Sosialisasi</BgsTypography>
-                            <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.jumlahNelayan}</BgsTypography>
+                            <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.jumlahSosialisasi}</BgsTypography>
                         </Box>
                     </Grid>
                 </Grid>
@@ -78,7 +78,7 @@ const jumlahSosialisasiComponent = () => {
                         </Box>
                         <Box >
                             <BgsTypography className="fs-14">Pengembangan Diri</BgsTypography>
-                            <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.pengembaganDiri}</BgsTypography>
+                            <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.pengembanganDiri}</BgsTypography>
                         </Box>
                     </Grid>
                 </Grid>

@@ -4,16 +4,16 @@ import Grid from "@mui/material/Grid";
 import { MainLayoutProps } from "shared/layout/main-layout";
 import "./index.scss"
 import { credential } from "lib";
-import TransaksiStatusComponent from "./components/transaksi-per-status";
-import TransaksiKabupatenComponent from "./components/transaksi-per-kabupaten";
-import TransaksiTanggalComponent from "./components/transaksi-per-tanggal";
+// import TransaksiStatusComponent from "./components/transaksi-per-status";
+// import TransaksiKabupatenComponent from "./components/transaksi-per-kabupaten";
+// import TransaksiTanggalComponent from "./components/transaksi-per-tanggal";
 // import CuacaComponent from "./components/cuaca";
 import JumlahKomiditiComponent from "./components/jumlah-komoditi";
 import JumlahNelayanComponent from "./components/jumlah-nelayan";
 import JumlahTransaksiComponent from "./components/jumlah-transaksi";
-// import JumlahBantuanComponent from "./components/jumlah bantuan";
+import JumlahBantuanComponent from "./components/jumlah bantuan";
 import JumlahSosialisasiComponent from "./components/jumlah-sosialisasi";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 
 
@@ -21,9 +21,9 @@ const HomeComponent = ({ }: MainLayoutProps) => {
     const roleName = credential.storage.get("user")?.role.namaRole;
     const roleId = credential.storage.get("user")?.idRole;
 
-    useEffect(() => {
+    // useEffect(() => {
 
-    }, [])
+    // }, [])
     return <Box className="home-component">
         <Grid container>
             <Grid item md={12} xs={12} className="left-content">
@@ -42,7 +42,7 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                             </Grid>
                         </Grid>
                         : <Grid item xs={1}>
-                            <Grid container columns={2} spacing={1}>
+                            <Grid container columns={1} spacing={1}>
                                 <Grid item md={1} xs={2}>
                                     {/* <CuacaComponent /> */}
                                 </Grid>
@@ -58,7 +58,7 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                                     <JumlahTransaksiComponent />
                                 </Grid>
                                 <Grid item md={1} xs={2}>
-                                    {/* <JumlahBantuanComponent /> */}
+                                    <JumlahBantuanComponent />
                                 </Grid>
                                 <Grid item md={1} xs={2}>
                                     <JumlahSosialisasiComponent />
@@ -82,7 +82,7 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                                     </Grid>
 
                                     <Grid item md={1} xs={2}>
-                                        {/* <JumlahBantuanComponent /> */}
+                                        <JumlahBantuanComponent />
                                     </Grid>
                                     <Grid item md={1} xs={2}>
                                         <JumlahSosialisasiComponent />
@@ -92,25 +92,24 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                     {roleId == "3" || roleId == "4" ?
                         <Grid item xs={1}>
                             <Grid container columns={2} spacing={1}>
-                                <Grid item md={1} xs={2}>
+                                {/* <Grid item md={1} xs={2}>
                                     <TransaksiStatusComponent />
                                 </Grid>
                                 <Grid item md={1} xs={2}>
                                     <TransaksiTanggalComponent />
-                                </Grid>
+                                </Grid> */}
                             </Grid>
                         </Grid>
                         : <Grid item xs={1}>
                             <Grid container columns={2} spacing={1}>
-                                <Grid item md={1} xs={2}>
+                                {/* <Grid item md={1} xs={2}>
                                     <TransaksiKabupatenComponent />
                                 </Grid>
                                 <Grid item md={1} xs={2}>
                                     <TransaksiTanggalComponent />
-                                </Grid>
+                                </Grid> */}
                             </Grid>
                         </Grid>}
-
                 </Grid>
             </Grid>
         </Grid>

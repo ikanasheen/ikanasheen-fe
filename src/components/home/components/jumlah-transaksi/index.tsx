@@ -62,7 +62,7 @@ const jumlahTransaksiComponent = () => {
                     </Grid>
                 </Grid>
                 {roleId == "4" ?
-                    <Grid container columns={4}>
+                    <Grid container columns={5}>
                         <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
                             <Box className="icon-dashboard">
                                 <TaskAltOutlinedIcon className="fs-18" />
@@ -90,12 +90,21 @@ const jumlahTransaksiComponent = () => {
                                 <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.transaksiDiproses}</BgsTypography>
                             </Box>
                         </Grid>
-                        <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" >
+                        <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
                             <Box className="icon-dashboard">
                                 <CancelOutlinedIcon className="fs-18" />
                             </Box>
                             <Box>
                                 <BgsTypography className="fs-14">Dibatalkan</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.transaksiDibatalkan}</BgsTypography>
+                            </Box>
+                        </Grid>
+                        <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" >
+                            <Box className="icon-dashboard">
+                                <DoneAllIcon className="fs-18" />
+                            </Box>
+                            <Box>
+                                <BgsTypography className="fs-14">Selesai</BgsTypography>
                                 <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.transaksiDibatalkan}</BgsTypography>
                             </Box>
                         </Grid>
@@ -129,7 +138,7 @@ const jumlahTransaksiComponent = () => {
                             </Box>
                         </Grid>
                     </Grid>
-                        : <Grid container columns={2}>
+                        : <Grid container columns={3}>
                             <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
                                 <Box className="icon-dashboard">
                                     <TaskAltOutlinedIcon className="fs-18" />
@@ -148,6 +157,15 @@ const jumlahTransaksiComponent = () => {
                                     <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.transaksiDiproses}</BgsTypography>
                                 </Box>
                             </Grid>
+                        <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" >
+                            <Box className="icon-dashboard">
+                                <DoneAllIcon className="fs-18" />
+                            </Box>
+                            <Box>
+                                <BgsTypography className="fs-14">Selesai</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.transaksiSelesai}</BgsTypography>
+                            </Box>
+                        </Grid>
                         </Grid>}
             </Grid>
         </Grid>

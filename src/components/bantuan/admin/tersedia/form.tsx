@@ -105,6 +105,12 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                             dataSource: StatusBantuanConst,
                             displayExpr: "display",
                             valueExpr: "value",
+                            // onChange: ({ data }) => {
+                            //     if (data.value === StatusBantuanConst[2].value) {
+                            //         formRef.current?.updateData({ "kuota": "0" })
+                            //         formRef.current?.disabled(true)
+                            //     }
+                            // }
                         },
                         visible: false
                     }
