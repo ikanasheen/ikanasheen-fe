@@ -8,8 +8,8 @@ class DashboardHelper extends BaseHelper {
     static cuaca(callback?: Callback) {
         return super.postBase("dashboard", {  }, callback, { showError: false, showSuccess: false })
     }
-    static jumlahKomoditi(callback?: Callback) {
-        return super.postBase("komoditi", {  }, callback, { showError: false, showSuccess: false })
+    static jumlahIkan(callback?: Callback) {
+        return super.postBase("ikan", {  }, callback, { showError: false, showSuccess: false })
     }
     static jumlahNelayan(callback?: Callback) {
         return super.postBase("nelayan", {  }, callback, { showError: false, showSuccess: false })
@@ -28,9 +28,6 @@ class DashboardHelper extends BaseHelper {
     }
     static jumlahSosialisasi(callback?: Callback) {
         return super.postBase("sosialisasi", {  }, callback, { showError: false, showSuccess: false })
-    }
-    static salesAgentPartner(callback?: Callback) {
-        return super.postBase("sales-agent/partner", {  }, callback, { showError: false, showSuccess: false })
     }
 }
 

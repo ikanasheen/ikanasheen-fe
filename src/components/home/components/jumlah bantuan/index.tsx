@@ -27,7 +27,7 @@ const initValue = {
     bantuanDiproses: 0,
 }
 
-const JumlahNelayanComponent = () => {
+const jumlahBantuanComponent = () => {
     const [statistic, setStatistic] = useState<StatisticProps>(initValue);
     const [loading, setLoading] = useState<boolean>(true);
     const roleId = credential.storage.get("user")?.idRole;
@@ -103,4 +103,4 @@ const JumlahNelayanComponent = () => {
     </Paper >
 }
 
-export default JumlahNelayanComponent;
+export default jumlahBantuanComponent;

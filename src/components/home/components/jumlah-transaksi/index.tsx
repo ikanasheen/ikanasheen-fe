@@ -30,7 +30,7 @@ const initValue = {
     transaksiSelesai: 0,
 }
 
-const JumlahNelayanComponent = () => {
+const jumlahTransaksiComponent = () => {
     const [statistic, setStatistic] = useState<StatisticProps>(initValue);
     const [loading, setLoading] = useState<boolean>(true);
     const roleId = credential.storage.get("user")?.idRole;
@@ -154,4 +154,4 @@ const JumlahNelayanComponent = () => {
     </Paper >
 }
 
-export default JumlahNelayanComponent;
+export default jumlahTransaksiComponent;

@@ -23,13 +23,13 @@ const initValue = {
     pengembaganDiri: 0,
 }
 
-const JumlahNelayanComponent = () => {
+const jumlahSosialisasiComponent = () => {
     const [statistic, setStatistic] = useState<StatisticProps>(initValue);
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         setLoading(true)
-        DashboardHelper.jumlahNelayan(({ status, data }) => {
+        DashboardHelper.jumlahSosialisasi(({ status, data }) => {
             setLoading(false)
             setStatistic(status ? data : initValue)
         })
@@ -87,4 +87,4 @@ const JumlahNelayanComponent = () => {
     </Paper >
 }
 
-export default JumlahNelayanComponent;
+export default jumlahSosialisasiComponent;

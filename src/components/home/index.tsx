@@ -7,11 +7,11 @@ import { credential } from "lib";
 import TransaksiStatusComponent from "./components/transaksi-per-status";
 import TransaksiKabupatenComponent from "./components/transaksi-per-kabupaten";
 import TransaksiTanggalComponent from "./components/transaksi-per-tanggal";
-import CuacaComponent from "./components/cuaca";
+// import CuacaComponent from "./components/cuaca";
 import JumlahKomiditiComponent from "./components/jumlah-komoditi";
 import JumlahNelayanComponent from "./components/jumlah-nelayan";
 import JumlahTransaksiComponent from "./components/jumlah-transaksi";
-import JumlahBantuanComponent from "./components/jumlah bantuan";
+// import JumlahBantuanComponent from "./components/jumlah bantuan";
 import JumlahSosialisasiComponent from "./components/jumlah-sosialisasi";
 import { useEffect } from "react";
 
@@ -37,14 +37,14 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                         <Grid item xs={1}>
                             <Grid container columns={1} spacing={1}>
                                 <Grid item md={1} xs={2}>
-                                    <CuacaComponent />
+                                    {/* <CuacaComponent /> */}
                                 </Grid>
                             </Grid>
                         </Grid>
                         : <Grid item xs={1}>
                             <Grid container columns={2} spacing={1}>
                                 <Grid item md={1} xs={2}>
-                                    <CuacaComponent />
+                                    {/* <CuacaComponent /> */}
                                 </Grid>
                                 <Grid item md={1} xs={2}>
                                     <JumlahKomiditiComponent />
@@ -58,7 +58,7 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                                     <JumlahTransaksiComponent />
                                 </Grid>
                                 <Grid item md={1} xs={2}>
-                                    <JumlahBantuanComponent />
+                                    {/* <JumlahBantuanComponent /> */}
                                 </Grid>
                                 <Grid item md={1} xs={2}>
                                     <JumlahSosialisasiComponent />
@@ -82,7 +82,7 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                                     </Grid>
 
                                     <Grid item md={1} xs={2}>
-                                        <JumlahBantuanComponent />
+                                        {/* <JumlahBantuanComponent /> */}
                                     </Grid>
                                     <Grid item md={1} xs={2}>
                                         <JumlahSosialisasiComponent />

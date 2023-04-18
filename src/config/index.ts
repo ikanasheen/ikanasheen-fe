@@ -17,7 +17,7 @@ export const api = {
     user                        : `${baseUrl}fishery/`,
 
     dashboard:{
-        dashboard                   : `${baseUrl}dashboard/`,
+        dashboard                   : `${baseUrl}fishery/dashboard/`,
 
     },
 

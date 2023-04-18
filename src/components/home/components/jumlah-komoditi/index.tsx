@@ -6,23 +6,25 @@ import { useEffect, useState } from "react";
 import DashboardHelper from "helper/DashboardHelper";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import { Link } from "react-router-dom";
+
 interface StatisticProps {
-    jumlahKomoditi: number;
+    jumlahIkan: number;
 }
 
 const initValue = {
-    jumlahKomoditi: 0,
+    jumlahIkan: 0,
 }
 
 const JumlahKomoditiComponent = () => {
-    const [statistic, setStatistic] = useState<StatisticProps>(initValue);
+    const [ikan, setStatistic] = useState<StatisticProps>(initValue);
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         setLoading(true)
-        DashboardHelper.jumlahKomoditi(({ status, data }) => {
+        DashboardHelper.jumlahIkan(({ status, data }) => {
             setLoading(false)
             setStatistic(status ? data : initValue)
+            console.log(ikan, "ikaan")
         })
     }, [])
 
@@ -42,7 +44,7 @@ const JumlahKomoditiComponent = () => {
                         <Box>
                             <Link to="/daftar-komoditi">
                                 <BgsTypography className="fs-14">Jumlah Komoditi</BgsTypography>
-                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.jumlahKomoditi}</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{ikan.jumlahIkan}</BgsTypography>
                             </Link>
                         </Box>
                     </Grid>
