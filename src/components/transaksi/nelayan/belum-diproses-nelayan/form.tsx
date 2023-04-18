@@ -43,7 +43,7 @@ export default function TransaksiForm({ title, mode, id, hide, onSuccess = () =>
                     `catatan|label.text=Catatan|editoryType=textarea|editorOptions.disabled=true`,
                     `namaPembeli|label.text=Nama Pembeli|editorOptions.disabled=true`,
                     `alamatPembeli|label.text=Alamat Pembeli|editoryType=textarea|editorOptions.disabled=true`,
-                    `tanggalDibutuhkan|label.text=Tanggal Dibutuhkan|editoryType=date|editorOptions.disabled=true`,
+                    `tanggalDibutuhkan|label.text=Tanggal Dibutuhkan|editorType=date|editorOptions.disabled=true`,
                     {
                         dataField: "opsiPengiriman",
                         editorType: "select",

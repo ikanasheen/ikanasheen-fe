@@ -26,6 +26,7 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                     formRef.current?.updateData(data);
                 }
                 if (data.status == "DIAJUKAN") formRef.current?.disabled(true)
+                if (data.status == "NEGO") formRef.current?.disabled(true)
                 // if (id!= null){
                 formRef.current?.itemOption("idTransaksi").option("visible", true);
                 formRef.current?.itemOption("namaIkan").option("visible", true);
