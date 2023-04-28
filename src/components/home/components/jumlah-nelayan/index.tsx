@@ -58,7 +58,7 @@ const JumlahNelayanComponent = () => {
                         </Box>
                         <Box>
                             <BgsTypography className="fs-14">Aktif</BgsTypography>
-                            <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.nelayanActive}</BgsTypography>
+                            <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.nelayanActive}</BgsTypography>
                         </Box>
                     </Grid>
                     <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" >

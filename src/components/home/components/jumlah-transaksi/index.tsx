@@ -145,7 +145,7 @@ const jumlahTransaksiComponent = () => {
                                 </Box>
                                 <Box>
                                     <BgsTypography className="fs-14">Diajukan</BgsTypography>
-                                    <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.transaksiDiajukan}</BgsTypography>
+                                    <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.transaksiDiajukan}</BgsTypography>
                                 </Box>
                             </Grid>
                             <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
