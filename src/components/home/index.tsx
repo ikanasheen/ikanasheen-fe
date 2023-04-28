@@ -18,7 +18,7 @@ import JumlahSosialisasiComponent from "./components/jumlah-sosialisasi";
 
 
 const HomeComponent = ({ }: MainLayoutProps) => {
-    const roleName = credential.storage.get("user")?.role.namaRole;
+    // const roleName = credential.storage.get("user")?.role.namaRole;
     const roleId = credential.storage.get("user")?.idRole;
 
     // useEffect(() => {
@@ -30,7 +30,7 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                 <Grid container columns={1} spacing={1.4}>
                     <Grid item xs={1}>
                         <Box className="d-flex justify-content-between">
-                            <BgsTypography className="title-page">Dashboard | {roleName}</BgsTypography>
+                            <BgsTypography className="title-page">Dashboard</BgsTypography>
                         </Box>
                     </Grid>
                     {roleId == "4" ?
