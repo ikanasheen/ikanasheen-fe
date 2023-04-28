@@ -69,7 +69,7 @@ const jumlahTransaksiComponent = () => {
                             </Box>
                             <Box>
                                 <BgsTypography className="fs-14">Diajukan</BgsTypography>
-                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.transaksiDiajukan}</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.transaksiDiajukan}</BgsTypography>
                             </Box>
                         </Grid>
                         <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
@@ -78,7 +78,7 @@ const jumlahTransaksiComponent = () => {
                             </Box>
                             <Box>
                                 <BgsTypography className="fs-14">Nego</BgsTypography>
-                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.transaksiNego}</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.transaksiNego}</BgsTypography>
                             </Box>
                         </Grid>
                         <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
@@ -87,7 +87,7 @@ const jumlahTransaksiComponent = () => {
                             </Box>
                             <Box>
                                 <BgsTypography className="fs-14">Diproses</BgsTypography>
-                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.transaksiDiproses}</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.transaksiDiproses}</BgsTypography>
                             </Box>
                         </Grid>
                         <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
@@ -116,7 +116,7 @@ const jumlahTransaksiComponent = () => {
                             </Box>
                             <Box>
                                 <BgsTypography className="fs-14">Nego</BgsTypography>
-                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.transaksiNego}</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.transaksiNego}</BgsTypography>
                             </Box>
                         </Grid>
                         <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
@@ -125,7 +125,7 @@ const jumlahTransaksiComponent = () => {
                             </Box>
                             <Box>
                                 <BgsTypography className="fs-14">Diproses</BgsTypography>
-                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.transaksiDiproses}</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.transaksiDiproses}</BgsTypography>
                             </Box>
                         </Grid>
                         <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" >

@@ -60,7 +60,7 @@ const jumlahSosialisasiComponent = () => {
                         </Box>
                         <Box>
                             <BgsTypography className="fs-14">Berita</BgsTypography>
-                            <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.berita}</BgsTypography>
+                            <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.berita}</BgsTypography>
                         </Box>
                     </Grid>
                     <Grid item md={1} xs={3} className="d-flex align-items-center pd-12 me-4">
@@ -69,7 +69,7 @@ const jumlahSosialisasiComponent = () => {
                         </Box>
                         <Box>
                             <BgsTypography className="fs-14 me-2">Informasi</BgsTypography>
-                            <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.informasi}</BgsTypography>
+                            <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.informasi}</BgsTypography>
                         </Box>
                     </Grid>
                     <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderLeft="1px solid #dee3e8">
