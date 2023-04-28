@@ -6,9 +6,11 @@ export const StatusBantuanConst: DisplayValueStandardModel[] = [{
 }, {
     display: "Tidak Aktif",
     value: "INACTIVE"
-}, {
-    display: "Kuota Habis",
-    value: "UNAVAILABLE"
-}]
+}, 
+// {
+//     display: "Kuota Habis",
+//     value: "UNAVAILABLE"
+// }
+]
 
 export default StatusBantuanConst;

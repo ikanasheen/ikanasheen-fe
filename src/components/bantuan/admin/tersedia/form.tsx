@@ -14,6 +14,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
     const [loading, setLoading] = useState<boolean>(false);
     const roleId = credential.storage.get("user")?.idRole;
     const [kuotaTersisa, setKuotaTersisa] = useState();
+    const [statusBantuan, setStatusBantuan] = useState();
 
     mounted(() => {
         if (id) {
@@ -23,13 +24,18 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                 if (roleId !== 1) formRef.current?.disabled(true)
                 if (status) {
                     setKuotaTersisa(data.kuotaTersisa)
+                    setStatusBantuan(data.statusBantuan)
                     formRef.current?.updateData(data);
                 }
                 if (id) {
                     formRef.current?.itemOption("kuotaTersisa").option("visible", true);
                     formRef.current?.itemOption("statusBantuan").option("visible", true);
                 }
-
+                               
+                if (data.statusBantuan === "UNAVAILABLE") {
+                    formRef.current?.disabled(true)
+                    formRef.current?.itemOption("statusBantuan").option("visible", false);
+                }
             })
         }
     })
@@ -108,7 +114,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                             // onChange: ({ data }) => {
                             //     if (data.value === StatusBantuanConst[2].value) {
                             //         formRef.current?.updateData({ "kuota": "0" })
-                            //         formRef.current?.disabled(true)
+                            //         formRef.current?.itemOption("kuota").option("editorOptions.disabled", true);
                             //     }
                             // }
                         },
@@ -155,7 +161,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
                 {
-                    roleId === 1 ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Simpan {id && " Perubahan"}</BgsButton>
+                    roleId === 1 && statusBantuan !== "UNAVAILABLE" ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Simpan {id && " Perubahan"}</BgsButton>
                         : null
                 }
 
