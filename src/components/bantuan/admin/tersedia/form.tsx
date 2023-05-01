@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
 import { credential, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
-import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import BantuanHelper from "helper/bantuan/BantuanHelper";
 import StatusBantuanConst from "consts/statusBantuan.const";
 import { ServiceNameUploadConst } from "consts/serviceNameUpload.const";
@@ -156,7 +155,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                     }]
                 }}
             >
-                {roleId === 1 ? <MoreHorizRoundedIcon /> : null}
+                {/* {roleId === 1 ? <MoreHorizRoundedIcon /> : null} */}
             </BgsButton>}</>}
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
