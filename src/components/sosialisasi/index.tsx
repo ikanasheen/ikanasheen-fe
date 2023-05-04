@@ -91,7 +91,7 @@ export default function SosialisasiList(props: MainLayoutProps) {
             },
             {
                 dataField: "penulis",
-                caption: "Penulus",
+                caption: "Penulis",
                 width: 160,
                 allowSorting: true,
                 allowFiltering: {
