@@ -4,26 +4,32 @@ import Grid from "@mui/material/Grid";
 import { MainLayoutProps } from "shared/layout/main-layout";
 import "./index.scss"
 import { credential } from "lib";
-// import TransaksiStatusComponent from "./components/transaksi-per-status";
-// import TransaksiKabupatenComponent from "./components/transaksi-per-kabupaten";
-// import TransaksiTanggalComponent from "./components/transaksi-per-tanggal";
+import TransaksiStatusComponent from "./components/transaksi-per-status";
+import TransaksiKabupatenComponent from "./components/transaksi-per-kabupaten";
+import TransaksiTanggalComponent from "./components/transaksi-per-tanggal";
 // import CuacaComponent from "./components/cuaca";
 import JumlahKomiditiComponent from "./components/jumlah-komoditi";
 import JumlahNelayanComponent from "./components/jumlah-nelayan";
 import JumlahTransaksiComponent from "./components/jumlah-transaksi";
 import JumlahBantuanComponent from "./components/jumlah bantuan";
 import JumlahSosialisasiComponent from "./components/jumlah-sosialisasi";
-// import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 
 
 const HomeComponent = ({ }: MainLayoutProps) => {
-    // const roleName = credential.storage.get("user")?.role.namaRole;
-    const roleId = credential.storage.get("user")?.idRole;
+    const idRole = credential.storage.get("user")?.idRole;
+    const [roleId, setRoleId] = useState();
+    const [userId, setUserId] = useState();
 
-    // useEffect(() => {
+    useEffect(() => {
+        const fetchUser = async () => {
+            setRoleId(idRole)
+            setUserId(credential.storage.get("user")?.idUser)
+        };
+        fetchUser();
+    }, [])
 
-    // }, [])
     return <Box className="home-component">
         <Grid container>
             <Grid item md={12} xs={12} className="left-content">
@@ -33,7 +39,7 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                             <BgsTypography className="title-page">Dashboard</BgsTypography>
                         </Box>
                     </Grid>
-                    {roleId == "4" ?
+                    {idRole == "4" ?
                         <Grid item xs={1}>
                             <Grid container columns={1} spacing={1}>
                                 <Grid item md={1} xs={2}>
@@ -51,11 +57,11 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                                 </Grid>
                             </Grid>
                         </Grid>}
-                    {roleId == "3" ?
+                    {idRole == "3" ?
                         <Grid item xs={1}>
                             <Grid container columns={3} spacing={1}>
                                 <Grid item md={1} xs={2}>
-                                    <JumlahTransaksiComponent />
+                                    <JumlahTransaksiComponent userId={userId} roleId={roleId} />
                                 </Grid>
                                 <Grid item md={1} xs={2}>
                                     <JumlahBantuanComponent />
@@ -65,10 +71,10 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                                 </Grid>
                             </Grid>
                         </Grid>
-                        : roleId == "4" ? <Grid item xs={1}>
+                        : idRole == "4" ? <Grid item xs={1}>
                             <Grid container columns={1} spacing={1}>
                                 <Grid item md={1} xs={2}>
-                                    <JumlahTransaksiComponent />
+                                    <JumlahTransaksiComponent userId={userId} roleId={roleId} />
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -78,7 +84,7 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                                         <JumlahNelayanComponent />
                                     </Grid>
                                     <Grid item md={1} xs={2}>
-                                        <JumlahTransaksiComponent />
+                                        <JumlahTransaksiComponent userId={userId} roleId={roleId} />
                                     </Grid>
 
                                     <Grid item md={1} xs={2}>
@@ -89,27 +95,20 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                                     </Grid>
                                 </Grid>
                             </Grid>}
-                    {roleId == "3" || roleId == "4" ?
-                        <Grid item xs={1}>
-                            <Grid container columns={2} spacing={1}>
-                                {/* <Grid item md={1} xs={2}>
-                                    <TransaksiStatusComponent />
-                                </Grid>
-                                <Grid item md={1} xs={2}>
-                                    <TransaksiTanggalComponent />
-                                </Grid> */}
-                            </Grid>
+                    {idRole == "3" || idRole == "4" ?
+                        <><Grid item xs={1}>
+                            <TransaksiStatusComponent />
                         </Grid>
-                        : <Grid item xs={1}>
-                            <Grid container columns={2} spacing={1}>
-                                {/* <Grid item md={1} xs={2}>
-                                    <TransaksiKabupatenComponent />
-                                </Grid>
-                                <Grid item md={1} xs={2}>
-                                    <TransaksiTanggalComponent />
-                                </Grid> */}
-                            </Grid>
-                        </Grid>}
+                        <Grid item xs={1}>
+                                <TransaksiTanggalComponent />
+                            </Grid></>
+                        : <><Grid item xs={1}>
+                            <TransaksiKabupatenComponent />
+                        </Grid>
+                            <Grid item xs={1}>
+                                <TransaksiTanggalComponent />
+                            </Grid></>
+                    }
                 </Grid>
             </Grid>
         </Grid>

@@ -14,12 +14,17 @@ class DashboardHelper extends BaseHelper {
     static jumlahNelayan(callback?: Callback) {
         return super.postBase("nelayan", {  }, callback, { showError: false, showSuccess: false })
     }
+
     static transaksiTanggal(callback?: Callback) {
-        return super.postBase("transaksi", {  }, callback, { showError: false, showSuccess: false })
+        return super.postBase("transaksi/weekly", {  }, callback, { showError: false, showSuccess: false })
     }
-    static transaksiKabupaten(callback?: Callback) {
-        return super.postBase("transaksi", {  }, callback, { showError: false, showSuccess: false })
+    static transaksiStatus(callback?: Callback) {
+        return super.postBase("transaksi/daily", {  }, callback, { showError: false, showSuccess: false })
     }
+    static transaksiKecamatan(callback?: Callback) {
+        return super.postBase("transaksi/kecamatan", {  }, callback, { showError: false, showSuccess: false })
+    }
+
     static jumlahTransaksi(callback?: Callback) {
         return super.postBase("transaksi", {  }, callback, { showError: false, showSuccess: false })
     }
