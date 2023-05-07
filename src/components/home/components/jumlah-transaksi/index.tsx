@@ -30,10 +30,15 @@ const initValue = {
     transaksiSelesai: 0,
 }
 
-const jumlahTransaksiComponent = () => {
+interface TransaksiProps {
+    userId?: string;
+    roleId?:string
+}
+
+const jumlahTransaksiComponent = ({}:TransaksiProps) => {
     const [statistic, setStatistic] = useState<StatisticProps>(initValue);
     const [loading, setLoading] = useState<boolean>(true);
-    const roleId = credential.storage.get("user")?.idRole;
+    const idRole = credential.storage.get("user")?.idRole;
 
     useEffect(() => {
         setLoading(true)
@@ -61,7 +66,7 @@ const jumlahTransaksiComponent = () => {
                         </Box>
                     </Grid>
                 </Grid>
-                {roleId == "4" ?
+                {idRole == "4" ?
                     <Grid container columns={5}>
                         <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
                             <Box className="icon-dashboard">
@@ -109,7 +114,7 @@ const jumlahTransaksiComponent = () => {
                             </Box>
                         </Grid>
                     </Grid>
-                    : roleId == "3" ? <Grid container columns={3}>
+                    : idRole == "3" ? <Grid container columns={3}>
                         <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderRight="1px solid #dee3e8">
                             <Box className="icon-dashboard">
                                 <MediationIcon className="fs-18" />
