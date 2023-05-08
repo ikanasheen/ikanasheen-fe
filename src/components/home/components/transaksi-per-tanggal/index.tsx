@@ -2,13 +2,13 @@ import { Column, ColumnConfig } from "@ant-design/plots";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import { BgsTypography } from "@andrydharmawan/bgs-component";
-import moment from "moment";
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DashboardHelper from "helper/DashboardHelper";
 import { credential } from "lib";
+import moment from "moment";
 
 interface PartnerProps {
-    tanggal:string;
+    tanggal: string;
     transaksiDiajukan: number;
     transaksiDiproses: number;
     transaksiSelesai: number;
@@ -19,16 +19,23 @@ interface ColumnDataProps {
     tgl: string;
     value: number;
 }
-interface ParamProps{
-    idUser:string
-    idRole:string
+interface ParamProps {
+    idUser: string
+    idRole: string
 }
 
 const TransaksiComponent = () => {
     const [data, setData] = useState<ColumnDataProps[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);    
+    const [loading, setLoading] = useState<boolean>(true);
     const [roleId, setRoleId] = useState();
     const [userId, setUserId] = useState();
+    
+    const [endDate, setEndDate] = useState<string>(moment().format("DD MMM YYYY"));
+    const [startDate, setStartDate] = useState(() => {
+        const date = new Date();
+        date.setDate(date.getDate() - 6); // Set start date to 7 days ago
+        return date;
+    });
 
     useEffect(() => {
         setLoading(true)
@@ -36,6 +43,10 @@ const TransaksiComponent = () => {
             setLoading(false)
             setRoleId(credential.storage.get("user")?.idRole)
             setUserId(credential.storage.get("user")?.idUser)
+
+            setStartDate(startDate)
+            setEndDate(endDate)
+
             let transaksiData: ColumnDataProps[] = [];
             let paramData: ParamProps
             if (status) (data as PartnerProps[]).forEach(({ transaksiDiajukan, transaksiDiproses, transaksiSelesai, tanggal }) => {
@@ -55,13 +66,14 @@ const TransaksiComponent = () => {
                     type: "Transaksi Selesai"
                 })
                 paramData.idRole,
-                paramData.idUser
+                    paramData.idUser
             })
-            setData(transaksiData) 
+            setData(transaksiData)
             console.log(roleId)
             console.log(userId)
+            
         })
-    }, [])
+    }, [startDate, endDate])
 
     const config: ColumnConfig = {
         data,
@@ -89,7 +101,7 @@ const TransaksiComponent = () => {
         <Box className="d-flex align-items-center justify-content-between mgb-20">
             <Box>
                 <BgsTypography className="fs-18">Transaksi Tujuh Hari Terakhir</BgsTypography>
-                <BgsTypography className="fs-14 text-base-alt3-color">{moment().format("DD MMM YYYY")} </BgsTypography>
+                <BgsTypography className="fs-14 text-base-alt3-color">{startDate.toLocaleDateString('en-UK', { day: '2-digit', month: 'short', year: 'numeric' })} - {endDate}</BgsTypography>
             </Box>
         </Box>
         <Column {...config} data={data} loading={loading} />
