@@ -24,7 +24,6 @@ const JumlahKomoditiComponent = () => {
         DashboardHelper.jumlahIkan(({ status, data }) => {
             setLoading(false)
             setStatistic(status ? data : initValue)
-            console.log(ikan, "ikaan")
         })
     }, [])
 
