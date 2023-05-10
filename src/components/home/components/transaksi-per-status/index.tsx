@@ -15,18 +15,19 @@ interface StatusProps {
 const TransaksiComponent = () => {
     const [data, setData] = useState<StatusProps[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-    const [roleId, setRoleId] = useState();
-    const [userId, setUserId] = useState();
+    const {
+        idRole,
+        idUser
+    } = credential.storage.get("user") || {};
 
     useEffect(() => {
         setLoading(true)
-        DashboardHelper.transaksiStatus(({ status, data }) => {
+        DashboardHelper.transaksiStatus({
+            idRole,
+            idUser
+        }, ({ status, data }) => {
             setLoading(false)
-            setRoleId(credential.storage.get("user")?.idRole)
-            setUserId(credential.storage.get("user")?.idUser)
             setData(status ? data : [])
-            console.log(roleId)
-            console.log(userId)
         })
     }, [])
 

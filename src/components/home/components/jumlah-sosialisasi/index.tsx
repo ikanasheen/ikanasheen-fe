@@ -8,6 +8,8 @@ import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
 import InfoIcon from '@mui/icons-material/Info';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import PsychologyIcon from '@mui/icons-material/Psychology';
+import { Link } from "react-router-dom";
+import { credential } from "lib";
 
 interface StatisticProps {
     jumlahSosialisasi: number;
@@ -26,7 +28,9 @@ const initValue = {
 const jumlahSosialisasiComponent = () => {
     const [statistic, setStatistic] = useState<StatisticProps>(initValue);
     const [loading, setLoading] = useState<boolean>(true);
-
+    const {
+        idRole
+    } = credential.storage.get("user") || {};
     useEffect(() => {
         setLoading(true)
         DashboardHelper.jumlahSosialisasi(({ status, data }) => {
@@ -40,7 +44,7 @@ const jumlahSosialisasiComponent = () => {
             <BgsTypography className="fs-18">Nelayan</BgsTypography>
         </Box> */}
 
-        <Grid container>  
+        <Grid container>
             <Grid item md={12} xs={12}>
                 <Grid container columns={1}>
                     <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" borderBottom="1px solid #dee3e8">
@@ -48,8 +52,13 @@ const jumlahSosialisasiComponent = () => {
                             <TipsAndUpdatesIcon className="fs-18" />
                         </Box>
                         <Box>
-                            <BgsTypography className="fs-14">Sosialisasi</BgsTypography>
-                            <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.jumlahSosialisasi}</BgsTypography>
+                            {idRole == "1"? <Link to="/sosialisasi">
+                                <BgsTypography className="fs-14">Sosialisasi</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.jumlahSosialisasi}</BgsTypography>
+                            </Link> : <Link to="/sosialisasi/berita">
+                                <BgsTypography className="fs-14">Sosialisasi</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.jumlahSosialisasi}</BgsTypography>
+                            </Link>}
                         </Box>
                     </Grid>
                 </Grid>

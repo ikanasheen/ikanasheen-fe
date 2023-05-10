@@ -18,7 +18,7 @@ import { useEffect, useState } from "react";
 
 
 const HomeComponent = ({ }: MainLayoutProps) => {
-    const idRole = credential.storage.get("user")?.idRole;
+    const { idRole } = credential.storage.get("user") || {};
     const [roleId, setRoleId] = useState();
     const [userId, setUserId] = useState();
 
@@ -96,18 +96,22 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                                 </Grid>
                             </Grid>}
                     {idRole == "3" || idRole == "4" ?
-                        <><Grid item xs={1}>
-                            <TransaksiStatusComponent />
-                        </Grid>
-                        <Grid item xs={1}>
-                                <TransaksiTanggalComponent />
-                            </Grid></>
-                        : <><Grid item xs={1}>
-                            <TransaksiKabupatenComponent />
-                        </Grid>
+                        <>
+                            <Grid item xs={1}>
+                                <TransaksiStatusComponent />
+                            </Grid>
                             <Grid item xs={1}>
                                 <TransaksiTanggalComponent />
-                            </Grid></>
+                            </Grid>
+                        </>
+                        : <>
+                            <Grid item xs={1}>
+                                <TransaksiKabupatenComponent />
+                            </Grid>
+                            <Grid item xs={1}>
+                                <TransaksiTanggalComponent />
+                            </Grid>
+                        </>
                     }
                 </Grid>
             </Grid>

@@ -12,6 +12,7 @@ import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import TaskAltOutlinedIcon from '@mui/icons-material/TaskAltOutlined';
 
 import { credential } from "lib";
+import { Link } from "react-router-dom";
 interface StatisticProps {
     jumlahTransaksi: number;
     transaksiDiajukan: number;
@@ -32,20 +33,26 @@ const initValue = {
 
 interface TransaksiProps {
     userId?: string;
-    roleId?:string
+    roleId?: string
 }
 
-const jumlahTransaksiComponent = ({}:TransaksiProps) => {
+const jumlahTransaksiComponent = ({ }: TransaksiProps) => {
     const [statistic, setStatistic] = useState<StatisticProps>(initValue);
     const [loading, setLoading] = useState<boolean>(true);
-    const idRole = credential.storage.get("user")?.idRole;
+    const {
+        idRole,
+        idUser
+    } = credential.storage.get("user") || {};
 
     useEffect(() => {
         setLoading(true)
-        DashboardHelper.jumlahTransaksi(({ status, data }) => {
-            setLoading(false)
-            setStatistic(status ? data : initValue)
-        })
+        DashboardHelper.jumlahTransaksi({
+            idRole,
+            idUser
+        }, ({ status, data }) => {
+                setLoading(false)
+                setStatistic(status ? data : initValue)
+            })
     }, [])
 
     return <Paper >
@@ -61,8 +68,17 @@ const jumlahTransaksiComponent = ({}:TransaksiProps) => {
                             <ReceiptLongIcon className="fs-18" />
                         </Box>
                         <Box>
-                            <BgsTypography className="fs-14">Jumlah Transaksi</BgsTypography>
-                            <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.jumlahTransaksi}</BgsTypography>
+                            {idRole == "1" || idRole == "2" ? <Link to="/transaksi/all/semua-transaksi">
+                                <BgsTypography className="fs-14">Jumlah Transaksi</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.jumlahTransaksi}</BgsTypography>
+                            </Link> : idRole == "3" ? < Link to="/transaksi/nelayan/belum-diproses-nelayan">
+                                <BgsTypography className="fs-14">Jumlah Transaksi</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.jumlahTransaksi}</BgsTypography>
+                            </Link> : <Link to="/transaksi/pembeli/belum-diproses-pembeli">
+                                <BgsTypography className="fs-14">Jumlah Transaksi</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.jumlahTransaksi}</BgsTypography>
+                            </Link>}
+
                         </Box>
                     </Grid>
                 </Grid>
@@ -162,15 +178,15 @@ const jumlahTransaksiComponent = ({}:TransaksiProps) => {
                                     <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.transaksiDiproses}</BgsTypography>
                                 </Box>
                             </Grid>
-                        <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" >
-                            <Box className="icon-dashboard">
-                                <DoneAllIcon className="fs-18" />
-                            </Box>
-                            <Box>
-                                <BgsTypography className="fs-14">Selesai</BgsTypography>
-                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.transaksiSelesai}</BgsTypography>
-                            </Box>
-                        </Grid>
+                            <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" >
+                                <Box className="icon-dashboard">
+                                    <DoneAllIcon className="fs-18" />
+                                </Box>
+                                <Box>
+                                    <BgsTypography className="fs-14">Selesai</BgsTypography>
+                                    <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.transaksiSelesai}</BgsTypography>
+                                </Box>
+                            </Grid>
                         </Grid>}
             </Grid>
         </Grid>

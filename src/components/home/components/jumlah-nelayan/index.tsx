@@ -8,6 +8,7 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 // import ToggleOffIcon from '@mui/icons-material/ToggleOff';
 import ToggleOnIcon from '@mui/icons-material/ToggleOn';
 import ToggleOffOutlinedIcon from '@mui/icons-material/ToggleOffOutlined';
+import { Link } from "react-router-dom";
 interface StatisticProps {
     jumlahNelayan: number;
     nelayanActive: number;
@@ -46,8 +47,10 @@ const JumlahNelayanComponent = () => {
                             <ContactsIcon className="fs-18" />
                         </Box>
                         <Box>
+                        <Link to="/nelayan">
                             <BgsTypography className="fs-14">Jumlah Nelayan</BgsTypography>
                             <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.jumlahNelayan}</BgsTypography>
+                        </Link>
                         </Box>
                     </Grid>
                 </Grid>

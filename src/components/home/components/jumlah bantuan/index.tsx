@@ -10,31 +10,39 @@ import CheckIcon from '@mui/icons-material/Check';
 import { credential } from "lib";
 import CachedIcon from '@mui/icons-material/Cached';
 import TaskAltOutlinedIcon from '@mui/icons-material/TaskAltOutlined';
+import { Link } from "react-router-dom";
 
 interface StatisticProps {
-    jumlahBantuan: number;
-    bantuanDiterima: number;
+    bantuanTersedia: number;
+    bantuanDisetujui: number;
     bantuanDitolak: number;
     bantuanDiajukan: number;
-    bantuanDiproses: number;
+    bantuanTerproses: number;
 }
 
 const initValue = {
-    jumlahBantuan: 0,
-    bantuanDiterima: 0,
+    bantuanTersedia: 0,
+    bantuanDisetujui: 0,
     bantuanDitolak: 0,
     bantuanDiajukan: 0,
-    bantuanDiproses: 0,
+    bantuanTerproses: 0,
 }
 
-const jumlahBantuanComponent = () => {
+const bantuanTersediaComponent = () => {
     const [statistic, setStatistic] = useState<StatisticProps>(initValue);
     const [loading, setLoading] = useState<boolean>(true);
     const roleId = credential.storage.get("user")?.idRole;
+    const {
+        idRole,
+        idUser
+    } = credential.storage.get("user") || {};
 
     useEffect(() => {
         setLoading(true)
-        DashboardHelper.jumlahBantuan(({ status, data }) => {
+        DashboardHelper.jumlahBantuan({
+            idRole,
+            idUser
+        }, ({ status, data }) => {
             setLoading(false)
             setStatistic(status ? data : initValue)
         })
@@ -53,8 +61,17 @@ const jumlahBantuanComponent = () => {
                             <HandshakeIcon className="fs-18" />
                         </Box>
                         <Box>
-                            <BgsTypography className="fs-14">Bantuan Tersedia</BgsTypography>
-                            <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.jumlahBantuan}</BgsTypography>
+                            {roleId == "1" ? <Link to="/bantuan/admin/tersedia">
+                                <BgsTypography className="fs-14">Bantuan Tersedia</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.bantuanTersedia}</BgsTypography>
+                            </Link> : roleId == "2" ? <Link to="/bantuan/gov/tersedia">
+                                <BgsTypography className="fs-14">Bantuan Tersedia</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.bantuanTersedia}</BgsTypography>
+                            </Link> : <Link to="/bantuan/nelayan/tersedia">
+                                <BgsTypography className="fs-14">Bantuan Tersedia</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-25">{statistic.bantuanTersedia}</BgsTypography>
+                            </Link>}
+
                         </Box>
                     </Grid>
                 </Grid>
@@ -65,7 +82,7 @@ const jumlahBantuanComponent = () => {
                         </Box>
                         <Box>
                             <BgsTypography className="fs-14">Bantuan Diterima</BgsTypography>
-                            <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.bantuanDiterima}</BgsTypography>
+                            <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.bantuanDisetujui}</BgsTypography>
                         </Box>
                     </Grid>
                     <Grid item md={1} xs={3} className="d-flex align-items-center pd-10" >
@@ -94,7 +111,7 @@ const jumlahBantuanComponent = () => {
                             </Box>
                             <Box>
                                 <BgsTypography className="fs-14">Bantuan Terproses</BgsTypography>
-                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.bantuanDiproses}</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.bantuanTerproses}</BgsTypography>
                             </Box>
                         </Grid>
                     </Grid>}
@@ -103,4 +120,4 @@ const jumlahBantuanComponent = () => {
     </Paper >
 }
 
-export default jumlahBantuanComponent;
+export default bantuanTersediaComponent;
