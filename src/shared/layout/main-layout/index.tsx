@@ -37,6 +37,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 function MainLayout({ children, title, menuCode, actionCode, usingContainer = true }: PropsWithChildren<MainLayoutProps>) {
     const router = useRouter();
+    const { nama } = credential.storage.get("user") || {};
     const { sidebarOpen = true } = store.getState();
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
@@ -81,6 +82,9 @@ function MainLayout({ children, title, menuCode, actionCode, usingContainer = tr
                 <Box component="main" sx={{ flexGrow: 1, height: "100vh" }}>
                     {false && <DrawerHeader />}
                     <Box className="scroll" sx={{ padding: usingContainer ? "30px" : 0, minHeight: "100vh", height: "100vh", overflowY: "auto", bgcolor: "#f8f9fa", position: "relative" }}>
+                        <Box sx={{ textAlign: "right", fontSize: 18, padding: "10px 30px 0px 0px" }}>
+                            Halo, {nama}!
+                        </Box>
                         <Suspense fallback={<LoadingPage />}>
                             <div key={key}>
                                 {isAuthorize ? children : <Error403 />}
@@ -98,8 +102,8 @@ function MainLayout({ children, title, menuCode, actionCode, usingContainer = tr
                         vertical: 'bottom',
                         horizontal: 'right',
                     }}
-                    sx={{p: 20}}
-                >   
+                    sx={{ p: 20 }}
+                >
                     <TextField fullWidth />
                 </Popover>
                 <Fab sx={{ position: "fixed", bottom: 10, right: 10 }} onClick={handleClick}>
