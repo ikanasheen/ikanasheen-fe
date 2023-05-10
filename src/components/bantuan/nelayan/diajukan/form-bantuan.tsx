@@ -5,7 +5,7 @@ import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import ProposalHelper from "helper/bantuan/ProposalHelper";
 import UploadHelper from "helper/bantuan/UploadHelper";
 import { ServiceNameUploadConst } from "consts";
-import Image from "components/file/components/image";
+import AttachFileIcon from '@mui/icons-material/AttachFile';
 import BantuanHelper from "helper/bantuan/BantuanHelper";
 
 export default function ProposalForm({ id, hide, onSuccess = () => { } }: DrawerRenderProps) {
@@ -67,7 +67,7 @@ export default function ProposalForm({ id, hide, onSuccess = () => { } }: Drawer
                                     namaService: ServiceNameUploadConst.PROPOSAL
                                 }
                             },
-                            iconUpload: (data) => <Image showFull {...data} size="lg" />,
+                            iconUpload: () => <AttachFileIcon sx={{ transform: "rotate(50deg)" }} />,
                             iconRemoveUpload: () => <i className="ri-delete-bin-line fs-16 mgl-2 mgr-2"></i>
                         },
                         editorType: "upload",

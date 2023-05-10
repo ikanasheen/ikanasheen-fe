@@ -6,7 +6,7 @@ import BantuanHelper from "helper/bantuan/BantuanHelper";
 import StatusBantuanConst from "consts/statusBantuan.const";
 import { ServiceNameUploadConst } from "consts/serviceNameUpload.const";
 import UploadHelper from "helper/bantuan/UploadHelper";
-import Image from "components/file/components/image";
+import AttachFileIcon from '@mui/icons-material/AttachFile';
 
 export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
@@ -30,7 +30,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                     formRef.current?.itemOption("kuotaTersisa").option("visible", true);
                     formRef.current?.itemOption("statusBantuan").option("visible", true);
                 }
-                               
+
                 if (data.statusBantuan === "UNAVAILABLE") {
                     formRef.current?.disabled(true)
                     formRef.current?.itemOption("statusBantuan").option("visible", false);
@@ -94,7 +94,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                                     namaService: ServiceNameUploadConst.BANTUAN
                                 }
                             },
-                            iconUpload: (data) => <Image showFull {...data} size="lg" />,
+                            iconUpload: () => <AttachFileIcon sx={{ transform: "rotate(50deg)" }} />,
                             iconRemoveUpload: () => <i className="ri-delete-bin-line fs-16 mgl-2 mgr-2"></i>
                         },
                         editorType: "upload",
