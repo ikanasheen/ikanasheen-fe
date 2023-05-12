@@ -126,7 +126,7 @@ const jumlahTransaksiComponent = ({ }: TransaksiProps) => {
                             </Box>
                             <Box>
                                 <BgsTypography className="fs-14">Selesai</BgsTypography>
-                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.transaksiDibatalkan}</BgsTypography>
+                                <BgsTypography loading={loading} className="fs-24 text-base-alt1-color lh-45">{statistic.transaksiSelesai}</BgsTypography>
                             </Box>
                         </Grid>
                     </Grid>
