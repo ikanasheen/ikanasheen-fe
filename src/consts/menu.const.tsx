@@ -302,6 +302,69 @@ export const MenuConst: MenuPermissionWrapper[] = [
         idRole: [2]
     },
 
+    //FAQ
+    {
+        menuCode: "faq",
+        menuName: "FAQ & Pengaduan",
+        details: [""],
+        menuIcon: "material-icons-round|chat",
+        idRole: [1,2,3]
+    },
+    {//admin gov
+        menuCode: "list-faq-admin",
+        menuName: "FAQ",
+        menuParent:"faq",
+        details: ["list", "create"],
+        menuIcon: "material-icons-round|folder_open",
+        menuPath: "/faq/all/list-faq",
+        idRole: [1,2]
+    },
+    {
+        menuCode: "list-pengaduan-admin",
+        menuName: "Pengaduan",
+        menuParent:"faq",
+        details: ["list", "create"],
+        menuIcon: "material-icons-round|folder_open",
+        menuPath: "/faq/all/list-pengaduan",
+        idRole: [1,2]
+    },
+    {
+        menuCode: "list-pengaduan-terjawab-admin",
+        menuName: "Pengaduan Terjawab",
+        menuParent:"faq",
+        details: ["list", "create"],
+        menuIcon: "material-icons-round|folder_open",
+        menuPath: "/faq/all/list-pengaduan-terjawab",
+        idRole: [1,2]
+    },
+    {//nelayan
+        menuCode: "list-faq-nelayan",
+        menuName: "FAQ",
+        menuParent:"faq",
+        details: ["list", "create"],
+        menuIcon: "material-icons-round|folder_open",
+        menuPath: "/faq/nelayan/list-faq",
+        idRole: [3]
+    },
+    {
+        menuCode: "list-pengaduan-nelayan", 
+        menuName: "Pengaduan",
+        menuParent:"faq",
+        details: ["list", "create"],
+        menuIcon: "material-icons-round|folder_open",
+        menuPath: "/faq/nelayan/list-pengaduan",
+        idRole: [3]
+    },
+    
+    {
+        menuCode: "list-pengaduan-terjawab-nelayan", 
+        menuName: "Pengaduan Terjawab",
+        menuParent:"faq",
+        details: ["list", "create"],
+        menuIcon: "material-icons-round|folder_open",
+        menuPath: "/faq/nelayan/list-pengaduan-terjawab",
+        idRole: [3]
+    },
     //USER MANAGEMENT
     {
         menuCode: "user-management",

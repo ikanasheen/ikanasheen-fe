@@ -20,6 +20,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChildSidebar from "shared/sidebar/child-sidebar";
 import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import Footer from "shared/footer";
+// import Header from "shared/header";
 
 export interface MainLayoutProps extends BgsLayoutProps {
     onScroll?: (event: React.SyntheticEvent) => any;
@@ -81,10 +82,12 @@ function MainLayout({ children, title, menuCode, actionCode, usingContainer = tr
                 <ChildSidebar menuCode={menuCode} />
                 <Box component="main" sx={{ flexGrow: 1, height: "100vh" }}>
                     {false && <DrawerHeader />}
-                    <Box className="scroll" sx={{ padding: usingContainer ? "30px" : 0, minHeight: "100vh", height: "100vh", overflowY: "auto", bgcolor: "#f8f9fa", position: "relative" }}>
-                        <Box sx={{ textAlign: "right", fontSize: 18, padding: "10px 30px 0px 0px" }}>
-                            Halo, {nama}!
-                        </Box>
+                    <Box className="scroll" sx={{ padding: usingContainer ? "30px" : 0, minHeight: "100vh", height: "100vh", overflowY: "auto", bgcolor: "#ebeced", position: "relative" }}>
+                        {/* <Header title={""}> */}
+                            <Box position="sticky" sx={{ textAlign: "right", background_color: "#fcfcfc", fontSize: 18, padding: "10px 30px 20px 0px" }}>
+                                Halo, {nama}!
+                            </Box>
+                        {/* </Header> */}
                         <Suspense fallback={<LoadingPage />}>
                             <div key={key}>
                                 {isAuthorize ? children : <Error403 />}

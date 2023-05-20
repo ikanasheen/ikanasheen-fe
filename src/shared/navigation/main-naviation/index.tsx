@@ -110,7 +110,7 @@ function MainNavigation() {
                         </Tooltip>
                         <Tooltip title="Open settings">
                             <Button onClick={handleOpenUserMenu} sx={{ p: 0, m: 0, minWidth: 0 }} size="small">
-                                <Avatar sx={{ width: 34, height: 34 }} alt="Oceanare" className="me-2" /> Halo, {nama}!
+                                <Avatar sx={{ width: 34, height: 34 }} alt="Oceanare" className="me-2" /> Hai, {nama}!
                             </Button>
                         </Tooltip>
                         <Menu
