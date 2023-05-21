@@ -28,8 +28,9 @@ export default function PengaduanList(props: MainLayoutProps) {
         showIndexing: {
             sticky: "left"
         },
-        allowSearching: true,
-        allowSearchingOptions: true,
+        allowSearching: {
+            fullWidth: true
+        },
         onRowClick: ({ rowData }) => form(rowData.idPengaduan),
         columns: [
             {

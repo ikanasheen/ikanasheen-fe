@@ -310,32 +310,59 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuIcon: "material-icons-round|chat",
         idRole: [1,2,3]
     },
-    {//admin gov
+    {//admin
         menuCode: "list-faq-admin",
         menuName: "FAQ",
         menuParent:"faq",
-        details: ["list", "create"],
+        details: ["list", "create", "update"],
         menuIcon: "material-icons-round|folder_open",
         menuPath: "/faq/all/list-faq",
-        idRole: [1,2]
+        idRole: [1]
     },
     {
         menuCode: "list-pengaduan-admin",
         menuName: "Pengaduan",
         menuParent:"faq",
-        details: ["list", "create"],
+        details: ["list", "create","update"],
         menuIcon: "material-icons-round|folder_open",
         menuPath: "/faq/all/list-pengaduan",
-        idRole: [1,2]
+        idRole: [1]
     },
     {
         menuCode: "list-pengaduan-terjawab-admin",
         menuName: "Pengaduan Terjawab",
         menuParent:"faq",
-        details: ["list", "create"],
+        details: ["list", "detail"],
         menuIcon: "material-icons-round|folder_open",
         menuPath: "/faq/all/list-pengaduan-terjawab",
-        idRole: [1,2]
+        idRole: [1]
+    },
+    {//gov
+        menuCode: "list-faq-gov",
+        menuName: "FAQ",
+        menuParent:"faq",
+        details: ["list","detail"],
+        menuIcon: "material-icons-round|folder_open",
+        menuPath: "/faq/gov/list-faq",
+        idRole: [2]
+    },
+    {
+        menuCode: "list-pengaduan-gov",
+        menuName: "Pengaduan",
+        menuParent:"faq",
+        details: ["list","detail"],
+        menuIcon: "material-icons-round|folder_open",
+        menuPath: "/faq/gov/list-pengaduan",
+        idRole: [2]
+    },
+    {
+        menuCode: "list-pengaduan-terjawab-gov",
+        menuName: "Pengaduan Terjawab",
+        menuParent:"faq",
+        details: ["list","detail"],
+        menuIcon: "material-icons-round|folder_open",
+        menuPath: "/faq/gov/list-pengaduan-terjawab",
+        idRole: [2]
     },
     {//nelayan
         menuCode: "list-faq-nelayan",
@@ -355,7 +382,6 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuPath: "/faq/nelayan/list-pengaduan",
         idRole: [3]
     },
-    
     {
         menuCode: "list-pengaduan-terjawab-nelayan", 
         menuName: "Pengaduan Terjawab",

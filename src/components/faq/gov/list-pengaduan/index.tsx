@@ -14,7 +14,7 @@ export default function PengaduanList(props: MainLayoutProps) {
     const form = (id?: string) => {
         drawerLayout({
             render: (props) => <Form
-                title="Penanganan Pengaduan"
+                title="Daftar Penanganan Pengaduan"
                 id={id}
                 {...props}
             />,
@@ -30,7 +30,7 @@ export default function PengaduanList(props: MainLayoutProps) {
         },
         allowSearching: {
             fullWidth: true
-        },       
+        },
         onRowClick: ({ rowData }) => form(rowData.idPengaduan),
         columns: [
             {
@@ -76,8 +76,6 @@ export default function PengaduanList(props: MainLayoutProps) {
                 },
             },
             `tanggalPengaduan|caption=Tanggal Pengaduan|width=190|dataType=datetime|allowFiltering`,
-            `tanggalPenanganan|caption=Tanggal Penanganan|width=190|dataType=datetime|allowFiltering`,
-            `feedback|caption=Feedback|width=150|allowFiltering`,
             {
                 sticky: "right",
                 icon: false,

@@ -30,7 +30,7 @@ export default function PengaduanList(props: MainLayoutProps) {
         },
         allowSearching: {
             fullWidth: true
-        },       
+        },
         onRowClick: ({ rowData }) => form(rowData.idPengaduan),
         columns: [
             {

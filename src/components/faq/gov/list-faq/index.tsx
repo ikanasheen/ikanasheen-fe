@@ -7,8 +7,6 @@ import { drawerLayout } from "shared/layout/drawer-layout";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import FaqHelper from "helper/faq/FaqHelper";
 const Form = lazy(() => import("./form"));
-const FormTopik = lazy(() => import("./form-topik"));
-
 
 export default function DaftarFaqList(props: MainLayoutProps) {
     const tableRef = useRef<TableRef>(null);
@@ -18,15 +16,6 @@ export default function DaftarFaqList(props: MainLayoutProps) {
             render: (props) => <Form
                 title="Daftar FAQ"
                 id={id}
-                {...props}
-            />,
-            onSuccess: () => tableRef.current?.refresh()
-        })
-    }
-    const formKategori = () => {
-        drawerLayout({
-            render: (props) => <FormTopik
-                title="Daftar Topik"
                 {...props}
             />,
             onSuccess: () => tableRef.current?.refresh()
@@ -123,7 +112,6 @@ export default function DaftarFaqList(props: MainLayoutProps) {
                 },
             },
             `tanggalPenambahan|caption=Tanggal Penambahan|width=190|dataType=datetime|allowFiltering`,
-
             {
                 sticky: "right",
                 icon: false,
@@ -143,7 +131,6 @@ export default function DaftarFaqList(props: MainLayoutProps) {
                 {...props}
 
             >
-                <BgsButton className="hg-40 br-3 min-wt-140 bg-black" onClick={() => formKategori()} actionCode="create"><AddIcon /> Tambah Kategori</BgsButton>
                 <BgsTable ref={tableRef} {...table} />
             </BreadcrumbLayout>
         </div>
