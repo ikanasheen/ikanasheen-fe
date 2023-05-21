@@ -1,8 +1,8 @@
 import BaseHelper from "helper/BaseHelper";
 import { api } from "config/index";
 
-class IkanHelper extends BaseHelper {
+class BantuanHelper extends BaseHelper {
     static url = api.bantuan.bantuan;
 }
 
-export default IkanHelper;
+export default BantuanHelper;

@@ -21,7 +21,6 @@ export const api = {
 
     },
 
-
     register :{
         registerNelayan             : `${baseUrl}fishery/register/nelayan/`,
         registerPembeli             : `${baseUrl}fishery/register/pembeli/`,
@@ -43,7 +42,11 @@ export const api = {
         proposal                   : `${baseUrl}fishery/proposal/`,
         upload                     : `${baseUrl}fishery/dokumen/upload/`,
         download                   : `${baseUrl}fishery/dokumen/download/`,
-    }
+    },
+    faq:{
+        faq                  : `${baseUrl}fishery/faq/`,
+        pengaduan            : `${baseUrl}fishery/pengaduan/`,
+    },
 
     
 }

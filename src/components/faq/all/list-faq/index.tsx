@@ -5,11 +5,12 @@ import BreadcrumbLayout from "shared/layout/breadcrumb-layout";
 import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ProposalHelper from "helper/bantuan/ProposalHelper";
-import CardFile from "components/file/components/card-file/card-file";
+import FaqHelper from "helper/faq/FaqHelper";
 const Form = lazy(() => import("./form"));
+const FormTopik = lazy(() => import("./form-topik"));
 
-export default function DaftarProposalList(props: MainLayoutProps) {
+
+export default function DaftarFaqList(props: MainLayoutProps) {
     const tableRef = useRef<TableRef>(null);
 
     const form = (id?: string) => {
@@ -22,92 +23,65 @@ export default function DaftarProposalList(props: MainLayoutProps) {
             onSuccess: () => tableRef.current?.refresh()
         })
     }
+    const formKategori = () => {
+        drawerLayout({
+            render: (props) => <FormTopik
+                title="Daftar Topik"
+                {...props}
+            />,
+            onSuccess: () => tableRef.current?.refresh()
+        })
+    }
 
     const table: TableModel = {
-        helper: (data) => ProposalHelper.retrieve(data),
+        helper: (data) => FaqHelper.retrieve(data),
         allowFiltering: true,
         showIndexing: {
             sticky: "left"
         },
-        onRowClick: ({ rowData }) => form(rowData.idProposalBantuan),
+        allowSearching: true,
+        allowSearchingOptions: true,
+        onRowClick: ({ rowData }) => form(rowData.idFaq),
         columns: [
             {
-                dataField: "idNelayan",
-                caption: "ID Nelayan",
-                width: 180,
+                dataField: "idFaq",
+                caption: "ID FAQ",
+                width: 100,
                 allowSorting: true,
                 allowFiltering: {
-                    helper: (data) => ProposalHelper.retrieve(data),
-                    displayExpr: "idNelayan",
-                    valueExpr: "idNelayan",
+                    helper: (data) => FaqHelper.retrieve(data),
+                    displayExpr: "idFaq",
+                    valueExpr: "idFaq",
                     allowSorting: false,
                     allowSearching: false,
-                    
-                },
-            },{
-                dataField: "namaNelayan",
-                caption: "Nama Nelayan",
-                width: 180,
-                allowSorting: true,
-                allowFiltering: {
-                    helper: (data) => ProposalHelper.retrieve(data),
-                    displayExpr: "namaNelayan",
-                    valueExpr: "namaNelayan",
-                    allowSorting: false,
-                    allowSearching: false,
-                    
+
                 },
             },
             {
-                dataField: "namaBantuan",
-                caption: "Nama Bantuan",
-                width: 180,
+                dataField: "topik",
+                caption: "Kategori",
+                width: 150,
                 allowSorting: true,
                 allowFiltering: {
-                    helper: (data) => ProposalHelper.retrieve(data),
-                    displayExpr: "namaBantuan",
-                    valueExpr: "namaBantuan",
+                    helper: (data) => FaqHelper.retrieve(data),
+                    displayExpr: "topik",
+                    valueExpr: "topik",
                     allowSorting: false,
                     allowSearching: false,
-                    
+
                 },
             },
-            {
-                dataField: "jenisBantuan",
-                caption: "Jenis Bantuan",
-                width: 180,
-                allowSorting: true,
-                allowFiltering: {
-                    helper: (data) => ProposalHelper.retrieve(data),
-                    displayExpr: "jenisBantuan",
-                    valueExpr: "jenisBantuan",
-                    allowSorting: false,
-                    allowSearching: false,
-                    
-                },
-            },
-            `tanggalDiajukan|caption=Tanggal Diajukan|width=190|dataType=date|allowFiltering`,
-            // `tanggalDisetujui|caption=Tanggal Disetujui|width=190|dataType=datetime|allowFiltering`,
-            // `tanggalDitolak|caption=Tanggal Ditolak|width=190|dataType=date|allowFiltering`,
-            
-            {
-                dataField: "dokumen",
-                caption: "File Proposal",
-                width: 230,
-                className: "img-container",
-                template: (data: any) => <CardFile attachment={data.dokumen}/>
-            },
-            {
-                dataField: "statusProposal",
+            /*{
+                dataField: "topik",
                 caption: "Status",
                 width: 160,
                 template: (data) => {
-                    if (data.statusProposal == "DIAJUKAN") {
-                        return "Diajukan"
-                    } else if (data.statusProposal == "DISETUJUI") {
-                        return "Disetujui"
-                    } else if (data.statusProposal == "DITOLAK") {
-                        return "Ditolak"
+                    if (data.topik == "LOGIN") {
+                        return "Login"
+                    } else if (data.topik == "TRANSAKSI") {
+                        return "Transaksi"
+                    } else if (data.topik == "BANTUAN") {
+                        return "Bantuan"
                     } else {
                         return ""
                     }
@@ -115,24 +89,40 @@ export default function DaftarProposalList(props: MainLayoutProps) {
                 },
                 allowSorting: true,
                 allowFiltering: {
-                    helper: (data) => ProposalHelper.retrieve(data),
+                    helper: (data) => FaqHelper.retrieve(data),
                     displayExpr: (data: any) => {
-                        if (data.statusProposal == "DIAJUKAN") {
-                            return "Diajukan"
-                        } else if (data.statusProposal == "DISETUJUI") {
-                            return "Disetujui"
-                        } else if (data.statusProposal == "DITOLAK") {
-                            return "Ditolak"
+                        if (data.topik == "LOGIN") {
+                            return "Login"
+                        } else if (data.topik == "TRANSAKSI") {
+                            return "Transaksi"
+                        } else if (data.topik == "BANTUAN") {
+                            return "Bantuan"
                         } else {
                             return ""
                         }
                     }, 
-                    valueExpr: "statusProposal",
+                    valueExpr: "topik",
                     allowSorting: false,
                     allowSearching: false,
                     
                 }
+            },*/
+            {
+                dataField: "pertanyaan",
+                caption: "Pertanyaan",
+                width: 300,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => FaqHelper.retrieve(data),
+                    displayExpr: "pertanyaan",
+                    valueExpr: "pertanyaan",
+                    allowSorting: false,
+                    allowSearching: false,
+
+                },
             },
+            `tanggalPenambahan|caption=Tanggal Penambahan|width=190|dataType=datetime|allowFiltering`,
+
             {
                 sticky: "right",
                 icon: false,
@@ -146,9 +136,13 @@ export default function DaftarProposalList(props: MainLayoutProps) {
     return <>
         <div className="mb-3 ms-3 me-3">
             <BreadcrumbLayout
-                action={<BgsButton className="hg-40 br-3 min-wt-140 bg-black" onClick={() => form()} actionCode="create"><AddIcon /> Tambah Baru</BgsButton>}
+                action={
+                    <BgsButton className="hg-40 br-3 min-wt-140 bg-black" onClick={() => form()} actionCode="create"><AddIcon /> Tambah FAQ</BgsButton>
+                }
                 {...props}
+
             >
+                <BgsButton className="hg-40 br-3 min-wt-140 bg-black" onClick={() => formKategori()} actionCode="create"><AddIcon /> Tambah Kategori</BgsButton>
                 <BgsTable ref={tableRef} {...table} />
             </BreadcrumbLayout>
         </div>

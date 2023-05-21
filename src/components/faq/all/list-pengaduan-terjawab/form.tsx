@@ -2,38 +2,21 @@ import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
 import { credential, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
-import BantuanHelper from "helper/bantuan/BantuanHelper";
-import StatusBantuanConst from "consts/statusBantuan.const";
-import { ServiceNameUploadConst } from "consts/serviceNameUpload.const";
-import UploadHelper from "helper/bantuan/UploadHelper";
-import AttachFileIcon from '@mui/icons-material/AttachFile';
+import PengaduanHelper from "helper/faq/PengaduanHelper";
 
 export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const roleId = credential.storage.get("user")?.idRole;
-    const [kuotaTersisa, setKuotaTersisa] = useState();
-    const [statusBantuan, setStatusBantuan] = useState();
 
     mounted(() => {
         if (id) {
             setLoading(true)
-            BantuanHelper.detail(id, ({ status, data }) => {
+            PengaduanHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
                 if (roleId !== 1) formRef.current?.disabled(true)
                 if (status) {
-                    setKuotaTersisa(data.kuotaTersisa)
-                    setStatusBantuan(data.statusBantuan)
                     formRef.current?.updateData(data);
-                }
-                if (id) {
-                    formRef.current?.itemOption("kuotaTersisa").option("visible", true);
-                    formRef.current?.itemOption("statusBantuan").option("visible", true);
-                }
-
-                if (data.statusBantuan === "UNAVAILABLE") {
-                    formRef.current?.disabled(true)
-                    formRef.current?.itemOption("statusBantuan").option("visible", false);
                 }
             })
         }
@@ -45,86 +28,47 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
         showLabelShrink: true,
         onSubmit: (values) => {
             setLoading(true);
-            BantuanHelper.createupdate(values, values.idBantuan, ({ status }) => {
+            PengaduanHelper.createupdate(values, values.idPengaduan, ({ status }) => {
                 setLoading(false);
                 if (status) onSuccess();
             })
-        },
-        formData: {
-            statusBantuan: StatusBantuanConst[0].value,
-            kuotaTersisa: kuotaTersisa
         },
         item: {
             main: {
                 spacing: 3,
                 items: [
-                    `namaBantuan|label.text=Nama Bantuan|validationRules=required,maxLength.255`,
-                    `jenisBantuan|label.text=Jenis Bantuan|validationRules=required,maxLength.255`,
-                    // `kuota|label.text=Kuota|editorType=number|validationRules=required,maxLength.255,pattern.number,min.1`,
+                    `idPengaduan|label.text=ID Pengaduan|editorOptions.disabled=true`,
+                    `idNelayan|label.text=ID Nelayan|editorOptions.disabled=true`,
+                    `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
+                    `email|label.text=Email|editorOptions.disabled=true`,
+                    `noTelepon|label.text=No. Telepon|editorOptions.disabled=true`,
                     {
-                        dataField: "kuota",
+                        dataField: "pengaduan",
                         label: {
-                            text: "Kuota Tersedia"
+                            text: "Pengaduan"
                         },
-                        editorType: "number",
-                        validationRules: ["required", "min.1", "pattern.number"]
+                        editorType: "textarea",
+                        editorOptions:{
+                            disabled:true
+                        }
                     },
                     {
-                        dataField: "kuotaTersisa",
+                        dataField: "jawaban",
                         label: {
-                            text: "Kuota Tersisa"
+                            text: "Penanganan Pengaduan"
                         },
-                        editorType: "number",
-                        editorOptions: { disabled: true },
-                        visible: false
+                        editorType: "textarea",
+                        editorOptions:{
+                            rows:5,
+                            disabled:true
+                        }
                     },
-                    {
-                        dataField: "dokumen",
-                        label: {
-                            text: "Format Proposal"
-                        },
-                        editorOptions: {
-                            maxFile: 1,
-                            accept: ".docx",
-                            maxSize: 2,
-                            helper: (data) => UploadHelper.upload(data),
-                            beforeUpload: (file) => {
-                                console.log(file, "filee before")
-                                return {
-                                    namaService: ServiceNameUploadConst.BANTUAN
-                                }
-                            },
-                            iconUpload: () => <AttachFileIcon sx={{ transform: "rotate(50deg)" }} />,
-                            iconRemoveUpload: () => <i className="ri-delete-bin-line fs-16 mgl-2 mgr-2"></i>
-                        },
-                        editorType: "upload",
-                        validationRules: ["required"]
-                    },
-                    {
-                        dataField: "statusBantuan",
-                        label: {
-                            text: "Status"
-                        },
-                        editorType: "select",
-                        editorOptions: {
-                            dataSource: StatusBantuanConst,
-                            displayExpr: "display",
-                            valueExpr: "value",
-                            // onChange: ({ data }) => {
-                            //     if (data.value === StatusBantuanConst[2].value) {
-                            //         formRef.current?.updateData({ "kuota": "0" })
-                            //         formRef.current?.itemOption("kuota").option("editorOptions.disabled", true);
-                            //     }
-                            // }
-                        },
-                        visible: false
-                    }
+                    `namaAdmin|label.text=Nama Admin|editorOptions.disabled=true`,
+                    `feedback|label.text=Feedback|editorOptions.disabled=true`,
                 ],
             },
         }
     }
-
-
 
     return <BgsGroupForm
         {...form}
@@ -147,7 +91,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                         actionType: "modal",
                         onClick: ({ loading, modalRef }) => {
                             loading(true)
-                            BantuanHelper.delete(id, ({ status }) => {
+                            PengaduanHelper.delete(id, ({ status }) => {
                                 loading(false)
                                 status && (modalRef.hide(), onSuccess())
                             })
@@ -155,12 +99,11 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                     }]
                 }}
             >
-                {/* {roleId === 1 ? <MoreHorizRoundedIcon /> : null} */}
             </BgsButton>}</>}
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
                 {
-                    roleId === 1 && statusBantuan !== "UNAVAILABLE" ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Simpan {id && " Perubahan"}</BgsButton>
+                    roleId !== 1 ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Simpan {id && " Perubahan"}</BgsButton>
                         : null
                 }
 

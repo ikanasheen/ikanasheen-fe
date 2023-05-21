@@ -2,9 +2,9 @@ import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
 import { credential, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
-import PengaduanHelper from "helper/faq/PengaduanHelper";
+import FaqHelper from "helper/faq/FaqHelper";
 
-export default function PengaduanForm({ title, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
+export default function FaqForm({ title, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const roleId = credential.storage.get("user")?.idRole;
@@ -12,9 +12,9 @@ export default function PengaduanForm({ title, id, hide, onSuccess = () => { } }
     mounted(() => {
         if (id) {
             setLoading(true)
-            PengaduanHelper.detail(id, ({ status, data }) => {
+            FaqHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
-                if (roleId !== 1) formRef.current?.disabled(true)
+                if (roleId === 1) formRef.current?.disabled(true)
                 if (status) {
                     formRef.current?.updateData(data);
                 }
@@ -28,7 +28,7 @@ export default function PengaduanForm({ title, id, hide, onSuccess = () => { } }
         showLabelShrink: true,
         onSubmit: (values) => {
             setLoading(true);
-            PengaduanHelper.createupdate(values, values.idPengaduan, ({ status }) => {
+            FaqHelper.createupdate(values, values.idKategori, ({ status }) => {
                 setLoading(false);
                 if (status) onSuccess();
             })
@@ -37,45 +37,19 @@ export default function PengaduanForm({ title, id, hide, onSuccess = () => { } }
             main: {
                 spacing: 3,
                 items: [
-                    `idPengaduan|label.text=ID Pengaduan|editorOptions.disabled=true`,
-                    `idNelayan|label.text=ID Nelayan|editorOptions.disabled=true`,
-                    `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
-                    `email|label.text=Email|editorOptions.disabled=true`,
-                    `noTelepon|label.text=No. Telepon|editorOptions.disabled=true`,
-                    {
-                        dataField: "pengaduan",
-                        label: {
-                            text: "Pengaduan"
-                        },
-                        editorType: "textarea",
-                        editorOptions:{
-                            disabled:true
-                        }
-                    },
-                    {
-                        dataField: "jawaban",
-                        label: {
-                            text: "Penanganan Pengaduan"
-                        },
-                        editorType: "textarea",
-                        editorOptions:{
-                            rows:5
-                        }
-                    },
-                ],
+                    `kategori|label.text=Kategori`,
+                    
+                ]
             },
         }
     }
-
 
 
     return <BgsGroupForm
         {...form}
         ref={formRef}
         render={group => <DrawerLayout
-            title={<>{roleId == 1 ?
-                id ? "Ubah" : "Tambah"
-                : "Detail"
+            title={<>{id ? "Ubah" : "Tambah"
             } <b>{title}</b></>}
             action={<>{id && <BgsButton
                 actionType="menu"
@@ -90,7 +64,7 @@ export default function PengaduanForm({ title, id, hide, onSuccess = () => { } }
                         actionType: "modal",
                         onClick: ({ loading, modalRef }) => {
                             loading(true)
-                            PengaduanHelper.delete(id, ({ status }) => {
+                            FaqHelper.delete(id, ({ status }) => {
                                 loading(false)
                                 status && (modalRef.hide(), onSuccess())
                             })
@@ -102,7 +76,7 @@ export default function PengaduanForm({ title, id, hide, onSuccess = () => { } }
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
                 {
-                    roleId === 1 && id ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Balas</BgsButton>
+                    roleId === 1 ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Simpan {id && " Perubahan"}</BgsButton>
                         : null
                 }
 
