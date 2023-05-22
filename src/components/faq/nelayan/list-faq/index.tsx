@@ -5,14 +5,11 @@ import BreadcrumbLayout from "shared/layout/breadcrumb-layout";
 import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ProposalHelper from "helper/bantuan/ProposalHelper";
-import { credential } from "lib";
-import CardFile from "components/file/components/card-file/card-file";
+import FaqHelper from "helper/faq/FaqHelper";
 const Form = lazy(() => import("./form"));
 
-export default function DaftarProposalList(props: MainLayoutProps) {
+export default function FaqlList(props: MainLayoutProps) {
     const tableRef = useRef<TableRef>(null);
-    const userId = credential.storage.get("user")?.idUser;
 
     const form = (id?: string) => {
         drawerLayout({
@@ -26,113 +23,59 @@ export default function DaftarProposalList(props: MainLayoutProps) {
     }
 
     const table: TableModel = {
-        helper: (data) => ProposalHelper.retrieve(data),
+        helper: (data) => FaqHelper.retrieve(data),
         allowFiltering: true,
         showIndexing: {
             sticky: "left"
         },
-        temporaryParameter: [{
-            propReq: "idUserNelayan",
-            value: [userId],
-            opt: "filter"
-        }],
-        onRowClick: ({ rowData }) => form(rowData.idProposalBantuan),
+        allowSearching: {
+            fullWidth: true
+        },
+        onRowClick: ({ rowData }) => form(rowData.idFaq),
         columns: [
             {
-                dataField: "namaBantuan",
-                caption: "Nama Bantuan",
-                width: 180,
+                dataField: "idFaq",
+                caption: "ID FAQ",
+                width: 100,
                 allowSorting: true,
                 allowFiltering: {
-                    helper: (data) => ProposalHelper.retrieve(data),
-                    displayExpr: "namaBantuan",
-                    valueExpr: "namaBantuan",
+                    helper: (data) => FaqHelper.retrieve(data),
+                    displayExpr: "idFaq",
+                    valueExpr: "idFaq",
                     allowSorting: false,
                     allowSearching: false,
-                    parameter: () => {
-                        return {
-                            parameter: {
-                                filter: {
-                                    idUserNelayan: [userId]
-                                }
-                            }
-                        }
-                    }
+
                 },
             },
             {
-                dataField: "jenisBantuan",
-                caption: "Jenis Bantuan",
-                width: 180,
+                dataField: "topik",
+                caption: "Topik",
+                width: 150,
                 allowSorting: true,
                 allowFiltering: {
-                    helper: (data) => ProposalHelper.retrieve(data),
-                    displayExpr: "jenisBantuan",
-                    valueExpr: "jenisBantuan",
-                    parameter: () => {
-                        return {
-                            parameter: {
-                                filter: {
-                                    idUserNelayan: [userId]
-                                }
-                            }
-                        }
-                    }
-                },
-            },
-            `tanggalDiajukan|caption=Tanggal Diajukan|width=190|dataType=date|allowFiltering`,
-            // `tanggalDisetujui|caption=Tanggal Disetujui|width=190|dataType=date|allowFiltering`,
-            // `tanggalDitolak|caption=Tanggal Ditolak|width=190|dataType=date|allowFiltering`,
-            {
-                dataField: "dokumen",
-                caption: "File Proposal",
-                width: 230,
-                className: "img-container",
-                template: (data: any) => <CardFile attachment={data.dokumen}/>
-            },
-            {
-                dataField: "statusProposal",
-                caption: "Status",
-                width: 160,
-                template: (data) => {
-                    if (data.statusProposal == "DIAJUKAN") {
-                        return "Diajukan"
-                    } else if (data.statusProposal == "DISETUJUI") {
-                        return "Disetujui"
-                    } else if (data.statusProposal == "DITOLAK") {
-                        return "Ditolak"
-                    } else {
-                        return ""
-                    }
-                },
-                allowSorting: true,
-                allowFiltering: {
-                    helper: (data) => ProposalHelper.retrieve(data),
-                    displayExpr: (data: any) => {
-                        if (data.statusProposal == "DIAJUKAN") {
-                            return "Diajukan"
-                        } else if (data.statusProposal == "DISETUJUI") {
-                            return "Disetujui"
-                        } else if (data.statusProposal == "DITOLAK") {
-                            return "Ditolak"
-                        } else {
-                            return ""
-                        }
-                    }, 
-                    valueExpr: "statusProposal",
+                    helper: (data) => FaqHelper.retrieve(data),
+                    displayExpr: "topik",
+                    valueExpr: "topik",
                     allowSorting: false,
                     allowSearching: false,
-                    parameter: () => {
-                        return {
-                            parameter: {
-                                filter: {
-                                    idUserNelayan: [userId]
-                                }
-                            }
-                        }
-                    },
-                }
+
+                },
             },
+            {
+                dataField: "pertanyaan",
+                caption: "Pertanyaan",
+                width: 300,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => FaqHelper.retrieve(data),
+                    displayExpr: "pertanyaan",
+                    valueExpr: "pertanyaan",
+                    allowSorting: false,
+                    allowSearching: false,
+
+                },
+            },
+            `tanggalPenambahan|caption=Tanggal Penambahan|width=190|dataType=datetime|allowFiltering`,
             {
                 sticky: "right",
                 icon: false,

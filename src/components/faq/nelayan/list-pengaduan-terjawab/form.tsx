@@ -2,29 +2,20 @@ import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
 import { credential, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
-import BantuanHelper from "helper/bantuan/BantuanHelper";
-import ProposalHelper from "helper/bantuan/ProposalHelper";
-import { ServiceNameUploadConst } from "consts/serviceNameUpload.const";
-import AttachFileIcon from '@mui/icons-material/AttachFile';
-import UploadHelper from "helper/bantuan/UploadHelper";
+import PengaduanHelper from "helper/faq/PengaduanHelper";
 
-export default function HargaIkanForm({ id, hide, onSuccess = () => { } }: DrawerRenderProps) {
+export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const roleId = credential.storage.get("user")?.idRole;
-    const userId = credential.storage.get("user")?.idUser;
-    const [namaBantuan, setNamaBantuan] = useState();
-    const [idBantuan, setIdBantuan] = useState();
 
     mounted(() => {
         if (id) {
             setLoading(true)
-            BantuanHelper.detail(id, ({ status, data }) => {
+            PengaduanHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
-                // if (roleId !== 1) formRef.current?.disabled(true)
+                if (roleId === 3) formRef.current?.disabled(true)
                 if (status) {
-                    setNamaBantuan(data.namaBantuan)
-                    setIdBantuan(data.idBantuan)
                     formRef.current?.updateData(data);
                 }
             })
@@ -37,41 +28,43 @@ export default function HargaIkanForm({ id, hide, onSuccess = () => { } }: Drawe
         showLabelShrink: true,
         onSubmit: (values) => {
             setLoading(true);
-            ProposalHelper.createupdate(values, values.idProposalBantuan, ({ status }) => {
+            PengaduanHelper.createupdate(values, values.idPengaduan, ({ status }) => {
                 setLoading(false);
                 if (status) onSuccess();
             })
-        },
-        formData: {
-            idUserNelayan: userId,
-            idBantuan: idBantuan
         },
         item: {
             main: {
                 spacing: 3,
                 items: [
+                    `idPengaduan|label.text=ID Pengaduan|editorOptions.disabled=true`,
+                    `idNelayan|label.text=ID Nelayan|editorOptions.disabled=true`,
+                    `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
+                    `email|label.text=Email|editorOptions.disabled=true`,
+                    `noTelepon|label.text=No. Telepon|editorOptions.disabled=true`,
                     {
-                        dataField: "dokumen",
+                        dataField: "pengaduan",
                         label: {
-                            text: "File Proposal"
+                            text: "Pengaduan"
                         },
-                        editorOptions: {
-                            maxFile: 1,
-                            accept: ".docx",
-                            maxSize: 2,
-                            helper: (data) => UploadHelper.upload(data),
-                            beforeUpload: (file) => {
-                                console.log(file, "filee before")
-                                return {
-                                    namaService: ServiceNameUploadConst.PROPOSAL
-                                }
-                            },
-                            iconUpload: () => <AttachFileIcon sx={{ transform: "rotate(50deg)" }} />,
-                            iconRemoveUpload: () => <i className="ri-delete-bin-line fs-16 mgl-2 mgr-2"></i>
-                        },
-                        editorType: "upload",
-                        validationRules: ["required"]
+                        editorType: "textarea",
+                        editorOptions:{
+                            disabled:true
+                        }
                     },
+                    {
+                        dataField: "jawaban",
+                        label: {
+                            text: "Penanganan Pengaduan"
+                        },
+                        editorType: "textarea",
+                        editorOptions:{
+                            rows:5,
+                            disabled:true
+                        }
+                    },
+                    `namaAdmin|label.text=Nama Admin|editorOptions.disabled=true`,
+                    `feedback|label.text=Feedback|editorOptions.disabled=true`,
                 ],
             },
         }
@@ -84,7 +77,7 @@ export default function HargaIkanForm({ id, hide, onSuccess = () => { } }: Drawe
             title={<>{roleId == 3 ?
                 id ? "Ajukan" : "Tambah"
                 : "Detail"
-            } <b>Bantuan {namaBantuan}</b></>}
+            } <b>{title}</b></>}
             action={<>{id && <BgsButton
                 actionType="menu"
                 variant="icon"
@@ -98,7 +91,7 @@ export default function HargaIkanForm({ id, hide, onSuccess = () => { } }: Drawe
                         actionType: "modal",
                         onClick: ({ loading, modalRef }) => {
                             loading(true)
-                            BantuanHelper.delete(id, ({ status }) => {
+                            PengaduanHelper.delete(id, ({ status }) => {
                                 loading(false)
                                 status && (modalRef.hide(), onSuccess())
                             })
@@ -110,7 +103,7 @@ export default function HargaIkanForm({ id, hide, onSuccess = () => { } }: Drawe
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
                 {
-                    roleId === 3 ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">{id && " Ajukan"}</BgsButton>
+                    roleId !== 3 ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Ajukan</BgsButton>
                         : null
                 }
 

@@ -368,7 +368,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuCode: "list-faq-nelayan",
         menuName: "FAQ",
         menuParent:"faq",
-        details: ["list", "create"],
+        details: ["list", "update", "detail"],
         menuIcon: "material-icons-round|folder_open",
         menuPath: "/faq/nelayan/list-faq",
         idRole: [3]
@@ -377,7 +377,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuCode: "list-pengaduan-nelayan", 
         menuName: "Pengaduan",
         menuParent:"faq",
-        details: ["list", "create"],
+        details: ["list", "create","detail"],
         menuIcon: "material-icons-round|folder_open",
         menuPath: "/faq/nelayan/list-pengaduan",
         idRole: [3]
@@ -386,7 +386,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuCode: "list-pengaduan-terjawab-nelayan", 
         menuName: "Pengaduan Terjawab",
         menuParent:"faq",
-        details: ["list", "create"],
+        details: ["list", "detail"],
         menuIcon: "material-icons-round|folder_open",
         menuPath: "/faq/nelayan/list-pengaduan-terjawab",
         idRole: [3]

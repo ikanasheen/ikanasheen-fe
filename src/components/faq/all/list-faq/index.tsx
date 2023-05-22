@@ -61,7 +61,7 @@ export default function DaftarFaqList(props: MainLayoutProps) {
             },
             {
                 dataField: "topik",
-                caption: "Kategori",
+                caption: "Topik",
                 width: 150,
                 allowSorting: true,
                 allowFiltering: {

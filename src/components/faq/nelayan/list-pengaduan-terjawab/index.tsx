@@ -4,9 +4,8 @@ import { MainLayoutProps } from "shared/layout/main-layout";
 import BreadcrumbLayout from "shared/layout/breadcrumb-layout";
 import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
-import BantuanHelper from "helper/bantuan/BantuanHelper";
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import CardFile from "components/file/components/card-file/card-file";
+import PengaduanHelper from "helper/faq/PengaduanHelper";
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 const Form = lazy(() => import("../list-faq/form"));
 
 export default function DaftarBantuanList(props: MainLayoutProps) {
@@ -24,158 +23,53 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
     }
 
     const table: TableModel = {
-        helper: (data) => BantuanHelper.retrieve(data),
+        helper: (data) => PengaduanHelper.retrieve(data),
         allowFiltering: true,
         showIndexing: {
             sticky: "left"
         },
-        temporaryParameter: [{
-            propReq: "statusBantuan",
-            value: ['ACTIVE','UNAVAILABLE'],
-            opt: "filter"
-        }],
-        onRowClick: ({ rowData }) => form(rowData.idBantuan),
+        // temporaryParameter: [{
+        //     propReq: "statusBantuan",
+        //     value: ['ACTIVE','UNAVAILABLE'],
+        //     opt: "filter"
+        // }],
+        onRowClick: ({ rowData }) => form(rowData.idPengaduan),
         columns: [
             {
-                dataField: "idBantuan",
-                caption: "Kode Bantuan",
-                width: 180,
+                dataField: "idPengaduan",
+                caption: "ID Pengaduan",
+                width: 150,
                 allowSorting: true,
                 allowFiltering: {
-                    helper: (data) => BantuanHelper.retrieve(data),
-                    displayExpr: "idBantuan",
-                    valueExpr: "idBantuan",
+                    helper: (data) => PengaduanHelper.retrieve(data),
+                    displayExpr: "idPengaduan",
+                    valueExpr: "idPengaduan",
                     allowSorting: false,
                     allowSearching: false,
-                    parameter: () => {
-                        return {
-                            parameter: {
-                                filter: {
-                                    statusBantuan: ['ACTIVE','UNAVAILABLE']
-                                }
-                            }
-                        }
-                    }
-                },
-            },
-            {
-                dataField: "namaBantuan",
-                caption: "Nama Bantuan",
-                width: 180,
-                allowSorting: true,
-                allowFiltering: {
-                    helper: (data) => BantuanHelper.retrieve(data),
-                    displayExpr: "namaBantuan",
-                    valueExpr: "namaBantuan",
-                    allowSorting: false,
-                    allowSearching: false,
-                    parameter: () => {
-                        return {
-                            parameter: {
-                                filter: {
-                                    statusBantuan: ['ACTIVE','UNAVAILABLE']
-                                }
-                            }
-                        }
-                    }
-                },
-            },
-            {
-                dataField: "jenisBantuan",
-                caption: "Jenis Bantuan",
-                width: 180,
-                allowSorting: true,
-                allowFiltering: {
-                    helper: (data) => BantuanHelper.retrieve(data),
-                    displayExpr: "jenisBantuan",
-                    valueExpr: "jenisBantuan",
-                    allowSorting: false,
-                    allowSearching: false,
-                    parameter: () => {
-                        return {
-                            parameter: {
-                                filter: {
-                                    statusBantuan: ['ACTIVE','UNAVAILABLE']
-                                }
-                            }
-                        }
-                    }
-                },
-            },
-            
-            {
-                dataField: "kuotaTersisa",
-                caption: "Kuota Tersisa",
-                width: 180,
-                allowSorting: true,
-                allowFiltering: {
-                    helper: (data) => BantuanHelper.retrieve(data),
-                    displayExpr: "kuotaTersisa",
-                    valueExpr: "kuotaTersisa",
-                    allowSorting: false,
-                    allowSearching: false,
-                    parameter: () => {
-                        return {
-                            parameter: {
-                                filter: {
-                                    statusBantuan: ['ACTIVE','UNAVAILABLE']
-                                }
-                            }
-                        }
-                    }
-                },
-            },
-            {
-                dataField: "dokumen",
-                caption: "Format Proposal",
-                width: 230,
-                className: "img-container",
-                template: (data: any) => <CardFile attachment={data.dokumen}/>
-            },
-            {
-                dataField: "statusBantuan",
-                caption: "Status",
-                width: 160,
-                template: (data) => {
-                    if (data.statusBantuan == "ACTIVE") {
-                        return "Aktif"
-                    } else if (data.statusBantuan == "INACTIVE") {
-                        return "Tidak Aktif"
-                    } else {
-                        return "Kuota Habis"
-                    }
 
                 },
+            },
+            {
+                dataField: "pengaduan",
+                caption: "Pengaduan",
+                width: 300,
                 allowSorting: true,
                 allowFiltering: {
-                    helper: (data) => BantuanHelper.retrieve(data),
-                    displayExpr: (data: any) => {
-                        if (data.statusBantuan == "ACTIVE") {
-                            return "Aktif"
-                        } else if (data.statusBantuan == "INACTIVE") {
-                            return "Tidak Aktif"
-                        } else {
-                            return "Kuota Habis"
-                        }
-                    },
-                    valueExpr: "statusBantuan",
+                    helper: (data) => PengaduanHelper.retrieve(data),
+                    displayExpr: "pengaduan",
+                    valueExpr: "pengaduan",
                     allowSorting: false,
                     allowSearching: false,
-                    parameter: () => {
-                        return {
-                            parameter: {
-                                filter: {
-                                    statusBantuan: ['ACTIVE','UNAVAILABLE']
-                                }
-                            }
-                        }
-                    },
-                }
-            },{
+
+                },
+            },
+            `tanggalPengaduan|caption=Tanggal Pengaduan|width=190|dataType=datetime|allowFiltering`,
+            `tanggalPenanganan|caption=Tanggal Penanganan|width=190|dataType=datetime|allowFiltering`,
+            {
                 sticky: "right",
                 icon: false,
                 width: 60,
-                template: () => <AddCircleIcon className="fs-18" />
+                template: () => <ArrowForwardIcon className="fs-18" />
 
             }
         ],
