@@ -6,6 +6,7 @@ import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import FaqHelper from "helper/faq/FaqHelper";
+import { Grid } from "@mui/material";
 const Form = lazy(() => import("./form"));
 const FormTopik = lazy(() => import("./form-topik"));
 
@@ -23,7 +24,7 @@ export default function DaftarFaqList(props: MainLayoutProps) {
             onSuccess: () => tableRef.current?.refresh()
         })
     }
-    const formKategori = () => {
+    const formTopik = () => {
         drawerLayout({
             render: (props) => <FormTopik
                 title="Daftar Topik"
@@ -137,13 +138,15 @@ export default function DaftarFaqList(props: MainLayoutProps) {
     return <>
         <div className="mb-3 ms-3 me-3">
             <BreadcrumbLayout
-                action={
-                    <BgsButton className="hg-40 br-3 min-wt-140 bg-black" onClick={() => form()} actionCode="create"><AddIcon /> Tambah FAQ</BgsButton>
-                }
+                action={<>
+                    <Grid item xs={2.5} className="text-right d-flex justify-content-between">
+                        <BgsButton className="hg-40 br-3 min-wt-140 bg-black me-3" onClick={() => formTopik()} actionCode="create"><AddIcon /> Tambah Topik</BgsButton>
+                        <BgsButton className="hg-40 br-3 min-wt-140 bg-black" onClick={() => form()} actionCode="create"><AddIcon /> Tambah FAQ</BgsButton>
+                    </Grid>
+                </>}
                 {...props}
 
             >
-                <BgsButton className="hg-40 br-3 min-wt-140 bg-black" onClick={() => formKategori()} actionCode="create"><AddIcon /> Tambah Kategori</BgsButton>
                 <BgsTable ref={tableRef} {...table} />
             </BreadcrumbLayout>
         </div>

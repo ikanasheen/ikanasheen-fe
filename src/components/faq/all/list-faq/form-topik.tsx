@@ -37,7 +37,7 @@ export default function FaqForm({ title, id, hide, onSuccess = () => { } }: Draw
             main: {
                 spacing: 3,
                 items: [
-                    `kategori|label.text=Kategori`,
+                    `topik|label.text=Topik`,
                     
                 ]
             },
