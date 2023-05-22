@@ -52,9 +52,9 @@ export default function FaqForm({ title, id, hide, onSuccess = () => { } }: Draw
                             tableOptions: {
                                 mode: "popup",
                                 showIndexing: true,
-                                allowSearching: {
-                                    fullWidth: true
-                                },
+                                // allowSearching: {
+                                //     fullWidth: true
+                                // },
                                 columns: [
                                     "idTopik|caption=Id Topik|width=130",
                                     "namaTopik|caption=Nama Topik|width=180",

@@ -86,9 +86,9 @@ export default function TransaksiForm({ title, id, hide, onSuccess = () => { } }
                             tableOptions: {
                                 mode: "popup",
                                 showIndexing: true,
-                                allowSearching: {
-                                    fullWidth: true
-                                },
+                                // allowSearching: {
+                                //     fullWidth: true
+                                // },
                                 columns: [
                                     "idIkan|caption=Id Ikan|width=160",
                                     "namaIkan|caption=Nama Ikan|width=180|className=text-break",
