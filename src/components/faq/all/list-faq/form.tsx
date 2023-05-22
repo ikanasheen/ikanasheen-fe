@@ -3,7 +3,7 @@ import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andr
 import { credential, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import FaqHelper from "helper/faq/FaqHelper";
-import StatusProposalConst from "consts/statusProposal.const";
+import TopikHelper from "helper/faq/TopikHelper";
 
 export default function FaqForm({ title, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
@@ -39,16 +39,29 @@ export default function FaqForm({ title, id, hide, onSuccess = () => { } }: Draw
                 spacing: 3,
                 items: [
                     {
-                        dataField: "topik",
+                        dataField: "namaTopik",
                         label: {
                             text: "Topik"
                         },
                         editorType: "select",
                         editorOptions: {
-                            dataSource: StatusProposalConst,
-                            displayExpr: "display",
-                            valueExpr: "value",
-                        },
+                            mode: "popup",
+                            helper: data => TopikHelper.retrieve(data),
+                            displayExpr: ({ namaTopik}) => ` ${namaTopik} `,
+                            valueExpr: "idTopik",
+                            tableOptions: {
+                                mode: "popup",
+                                showIndexing: true,
+                                allowSearching: {
+                                    fullWidth: true
+                                },
+                                columns: [
+                                    "idTopik|caption=Id Topik|width=130",
+                                    "namaTopik|caption=Nama Topik|width=180",
+                                    `deskripsi|caption=Deskripsi|width=200|className=text-break`,
+                                ]
+                            },
+                        }
                     },
                     `pertanyaan|label.text=Pertanyaan`,
                     `jawaban|label.text=Jawaban|editorType=textarea|editorOptions.rows=5`,

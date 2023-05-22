@@ -45,6 +45,7 @@ export const api = {
     },
     faq:{
         faq                  : `${baseUrl}fishery/faq/`,
+        topik                : `${baseUrl}fishery/topik/`,
         pengaduan            : `${baseUrl}fishery/pengaduan/`,
     },
 

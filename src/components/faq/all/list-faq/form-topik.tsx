@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { FormGroupModel, FormRef, BgsForm, BgsGroupForm, BgsButton } from "@andrydharmawan/bgs-component";
 import { credential, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
-import FaqHelper from "helper/faq/FaqHelper";
+import TopikHelper from "helper/faq/TopikHelper";
 
 export default function FaqForm({ title, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
@@ -12,7 +12,7 @@ export default function FaqForm({ title, id, hide, onSuccess = () => { } }: Draw
     mounted(() => {
         if (id) {
             setLoading(true)
-            FaqHelper.detail(id, ({ status, data }) => {
+            TopikHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
                 if (roleId === 1) formRef.current?.disabled(true)
                 if (status) {
@@ -28,7 +28,7 @@ export default function FaqForm({ title, id, hide, onSuccess = () => { } }: Draw
         showLabelShrink: true,
         onSubmit: (values) => {
             setLoading(true);
-            FaqHelper.createupdate(values, values.idKategori, ({ status }) => {
+            TopikHelper.createupdate(values, values.idTopik, ({ status }) => {
                 setLoading(false);
                 if (status) onSuccess();
             })
@@ -37,8 +37,8 @@ export default function FaqForm({ title, id, hide, onSuccess = () => { } }: Draw
             main: {
                 spacing: 3,
                 items: [
-                    `topik|label.text=Topik`,
-                    
+                    `namaTopik|label.text=Topik`,
+                    `deskripsi|label.text=Deskripsi`,
                 ]
             },
         }
@@ -64,7 +64,7 @@ export default function FaqForm({ title, id, hide, onSuccess = () => { } }: Draw
                         actionType: "modal",
                         onClick: ({ loading, modalRef }) => {
                             loading(true)
-                            FaqHelper.delete(id, ({ status }) => {
+                            TopikHelper.delete(id, ({ status }) => {
                                 loading(false)
                                 status && (modalRef.hide(), onSuccess())
                             })

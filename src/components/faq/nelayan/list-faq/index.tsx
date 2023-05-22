@@ -48,14 +48,14 @@ export default function FaqlList(props: MainLayoutProps) {
                 },
             },
             {
-                dataField: "topik",
+                dataField: "namaTopik",
                 caption: "Topik",
                 width: 150,
                 allowSorting: true,
                 allowFiltering: {
                     helper: (data) => FaqHelper.retrieve(data),
-                    displayExpr: "topik",
-                    valueExpr: "topik",
+                    displayExpr: "namaTopik",
+                    valueExpr: "namaTopik",
                     allowSorting: false,
                     allowSearching: false,
 

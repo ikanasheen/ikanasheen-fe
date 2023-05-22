@@ -48,21 +48,21 @@ export default function DaftarFaqList(props: MainLayoutProps) {
                 },
             },
             {
-                dataField: "topik",
+                dataField: "namaTopik",
                 caption: "Kategori",
                 width: 150,
                 allowSorting: true,
                 allowFiltering: {
                     helper: (data) => FaqHelper.retrieve(data),
-                    displayExpr: "topik",
-                    valueExpr: "topik",
+                    displayExpr: "namaTopik",
+                    valueExpr: "namaTopik",
                     allowSorting: false,
                     allowSearching: false,
 
                 },
             },
             /*{
-                dataField: "topik",
+                dataField: "namaTopik",
                 caption: "Status",
                 width: 160,
                 template: (data) => {
@@ -91,7 +91,7 @@ export default function DaftarFaqList(props: MainLayoutProps) {
                             return ""
                         }
                     }, 
-                    valueExpr: "topik",
+                    valueExpr: "namaTopik",
                     allowSorting: false,
                     allowSearching: false,
                     
