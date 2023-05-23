@@ -18,6 +18,11 @@ export default function FaqForm({ title, id, hide, onSuccess = () => { } }: Draw
                 if (roleId === 2) formRef.current?.disabled(true)
                 if (status) {
                     formRef.current?.updateData(data);
+                    if (id) {
+                        formRef.current?.itemOption("namaTopik").option("visible", true);
+                        formRef.current?.itemOption("idTopik").option("visible", false);
+                    }
+
                 }
             })
         }
@@ -39,7 +44,7 @@ export default function FaqForm({ title, id, hide, onSuccess = () => { } }: Draw
                 spacing: 3,
                 items: [
                     {
-                        dataField: "namaTopik",
+                        dataField: "idTopik",
                         label: {
                             text: "Topik"
                         },
@@ -47,24 +52,28 @@ export default function FaqForm({ title, id, hide, onSuccess = () => { } }: Draw
                         editorOptions: {
                             mode: "popup",
                             helper: data => TopikHelper.retrieve(data),
-                            displayExpr: ({ namaTopik}) => ` ${namaTopik} `,
+                            displayExpr: ({ namaTopik }) => ` ${namaTopik} `,
                             valueExpr: "idTopik",
                             tableOptions: {
                                 mode: "popup",
                                 showIndexing: true,
-                                allowSearching: {
-                                    fullWidth: true
-                                },
                                 columns: [
                                     "idTopik|caption=Id Topik|width=130",
                                     "namaTopik|caption=Nama Topik|width=180",
                                     `deskripsi|caption=Deskripsi|width=200|className=text-break`,
                                 ]
                             },
-                        }
+                        },
+                        visible: true
+                    },
+                    {
+                        dataField: "namaTopik",
+                        caption: "Nama Topik",
+                        visible: false
                     },
                     `pertanyaan|label.text=Pertanyaan`,
                     `jawaban|label.text=Jawaban|editorType=textarea|editorOptions.rows=5`,
+
                 ]
             },
         }

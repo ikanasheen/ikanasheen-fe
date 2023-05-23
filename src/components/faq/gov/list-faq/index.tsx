@@ -48,55 +48,24 @@ export default function DaftarFaqList(props: MainLayoutProps) {
                 },
             },
             {
-                dataField: "namaTopik",
-                caption: "Kategori",
+                dataField: "idTopik",
+                caption: "Topik",
                 width: 150,
                 allowSorting: true,
+                template: (data) => {
+                    return data.topik.namaTopik
+                },
                 allowFiltering: {
                     helper: (data) => FaqHelper.retrieve(data),
-                    displayExpr: "namaTopik",
-                    valueExpr: "namaTopik",
+                    displayExpr: (data: any) => {
+                        return data.topik.namaTopik
+                    },
+                    valueExpr: "idTopik",
                     allowSorting: false,
                     allowSearching: false,
 
                 },
             },
-            /*{
-                dataField: "namaTopik",
-                caption: "Status",
-                width: 160,
-                template: (data) => {
-                    if (data.topik == "LOGIN") {
-                        return "Login"
-                    } else if (data.topik == "TRANSAKSI") {
-                        return "Transaksi"
-                    } else if (data.topik == "BANTUAN") {
-                        return "Bantuan"
-                    } else {
-                        return ""
-                    }
-
-                },
-                allowSorting: true,
-                allowFiltering: {
-                    helper: (data) => FaqHelper.retrieve(data),
-                    displayExpr: (data: any) => {
-                        if (data.topik == "LOGIN") {
-                            return "Login"
-                        } else if (data.topik == "TRANSAKSI") {
-                            return "Transaksi"
-                        } else if (data.topik == "BANTUAN") {
-                            return "Bantuan"
-                        } else {
-                            return ""
-                        }
-                    }, 
-                    valueExpr: "namaTopik",
-                    allowSorting: false,
-                    allowSearching: false,
-                    
-                }
-            },*/
             {
                 dataField: "pertanyaan",
                 caption: "Pertanyaan",
@@ -111,7 +80,7 @@ export default function DaftarFaqList(props: MainLayoutProps) {
 
                 },
             },
-            `tanggalPenambahan|caption=Tanggal Penambahan|width=190|dataType=datetime|allowFiltering`,
+            `tanggalDibuat|caption=Tanggal Penambahan|width=190|dataType=datetime|allowFiltering`,
             {
                 sticky: "right",
                 icon: false,

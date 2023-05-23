@@ -9,7 +9,6 @@ export default function FaqForm({ title, id, hide, onSuccess = () => { } }: Draw
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const roleId = credential.storage.get("user")?.idRole;
-    // const [idTopik, setIdTopik] = useState();
 
     mounted(() => {
         if (id) {
@@ -18,7 +17,6 @@ export default function FaqForm({ title, id, hide, onSuccess = () => { } }: Draw
                 setLoading(false)
                 if (roleId !== 1) formRef.current?.disabled(true)
                 if (status) {
-                    // setIdTopik(data.idTopik)
                     formRef.current?.updateData(data);
                     if (id) {
                         formRef.current?.itemOption("namaTopik").option("visible", true);
@@ -41,9 +39,6 @@ export default function FaqForm({ title, id, hide, onSuccess = () => { } }: Draw
                 if (status) onSuccess();
             })
         },
-        // formData:{
-        //     idTopik:idTopik
-        // },
         item: {
             main: {
                 spacing: 3,
