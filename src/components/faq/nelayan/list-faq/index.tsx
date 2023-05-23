@@ -48,14 +48,19 @@ export default function FaqlList(props: MainLayoutProps) {
                 },
             },
             {
-                dataField: "namaTopik",
+                dataField: "idTopik",
                 caption: "Topik",
                 width: 150,
                 allowSorting: true,
+                template: (data) => {
+                    return data.topik.namaTopik
+                },
                 allowFiltering: {
                     helper: (data) => FaqHelper.retrieve(data),
-                    displayExpr: "namaTopik",
-                    valueExpr: "namaTopik",
+                    displayExpr: (data: any) => {
+                        return data.topik.namaTopik
+                    },
+                    valueExpr: "idTopik",
                     allowSorting: false,
                     allowSearching: false,
 
@@ -75,7 +80,7 @@ export default function FaqlList(props: MainLayoutProps) {
 
                 },
             },
-            `tanggalPenambahan|caption=Tanggal Penambahan|width=190|dataType=datetime|allowFiltering`,
+            `tanggalDibuat|caption=Tanggal Penambahan|width=190|dataType=datetime|allowFiltering`,
             {
                 sticky: "right",
                 icon: false,
