@@ -26,12 +26,9 @@ export default function PengaduanForm({ title, id, hide, onSuccess = () => { } }
         apperance: "filled",
         showIcon: true,
         showLabelShrink: true,
-        onSubmit: (values) => {
-            setLoading(true);
-            PengaduanHelper.createupdate(values, values.idPengaduan, ({ status }) => {
-                setLoading(false);
-                if (status) onSuccess();
-            })
+        onSubmit: ({idPengaduan, penanganan}, {loading}) => {
+            loading(true);
+            PengaduanHelper.createupdate({idPengaduan, penanganan},id)
         },
         item: {
             main: {
@@ -39,11 +36,11 @@ export default function PengaduanForm({ title, id, hide, onSuccess = () => { } }
                 items: [
                     `idPengaduan|label.text=ID Pengaduan|editorOptions.disabled=true`,
                     `idNelayan|label.text=ID Nelayan|editorOptions.disabled=true`,
-                    `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
+                    `nelayan.namaLengkap|label.text=Nama Nelayan|editorOptions.disabled=true`,
                     `email|label.text=Email|editorOptions.disabled=true`,
                     `noTelepon|label.text=No. Telepon|editorOptions.disabled=true`,
                     {
-                        dataField: "pengaduan",
+                        dataField: "aduan",
                         label: {
                             text: "Pengaduan"
                         },
@@ -53,7 +50,7 @@ export default function PengaduanForm({ title, id, hide, onSuccess = () => { } }
                         }
                     },
                     {
-                        dataField: "jawaban",
+                        dataField: "penanganan",
                         label: {
                             text: "Penanganan Pengaduan"
                         },

@@ -323,7 +323,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuCode: "list-pengaduan-admin",
         menuName: "Pengaduan",
         menuParent:"faq",
-        details: ["list", "create","update"],
+        details: ["list", "update"],
         menuIcon: "material-icons-round|folder_open",
         menuPath: "/faq/all/list-pengaduan",
         idRole: [1]

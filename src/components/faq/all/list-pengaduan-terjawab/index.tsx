@@ -31,6 +31,11 @@ export default function PengaduanList(props: MainLayoutProps) {
         allowSearching: {
             fullWidth: true
         },       
+        temporaryParameter: [{
+            propReq: "status",
+            value: ['TERJAWAB'],
+            opt: "filter"
+        }],
         onRowClick: ({ rowData }) => form(rowData.idPengaduan),
         columns: [
             {
@@ -48,21 +53,26 @@ export default function PengaduanList(props: MainLayoutProps) {
                 },
             },
             {
-                dataField: "namaNelayan",
-                caption: "Nama Nelayan",
+                dataField: "idNelayan",
+                caption: "Nelayan",
                 width: 150,
                 allowSorting: true,
+                template: (data) => {
+                    return data.nelayan.namaLengkap
+                },
                 allowFiltering: {
                     helper: (data) => PengaduanHelper.retrieve(data),
-                    displayExpr: "namaNelayan",
-                    valueExpr: "namaNelayan",
+                    displayExpr: (data: any) => {
+                        return data.nelayan.namaLengkap
+                    },
+                    valueExpr: "idNelayan",
                     allowSorting: false,
                     allowSearching: false,
 
                 },
             },
             {
-                dataField: "pengaduan",
+                dataField: "aduan",
                 caption: "Pengaduan",
                 width: 300,
                 allowSorting: true,
@@ -77,7 +87,6 @@ export default function PengaduanList(props: MainLayoutProps) {
             },
             `tanggalPengaduan|caption=Tanggal Pengaduan|width=190|dataType=datetime|allowFiltering`,
             `tanggalPenanganan|caption=Tanggal Penanganan|width=190|dataType=datetime|allowFiltering`,
-            `feedback|caption=Feedback|width=150|allowFiltering`,
             {
                 sticky: "right",
                 icon: false,
