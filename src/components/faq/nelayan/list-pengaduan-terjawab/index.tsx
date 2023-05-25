@@ -28,9 +28,6 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
         showIndexing: {
             sticky: "left"
         },
-        allowSearching: {
-            fullWidth: true
-        },
         temporaryParameter: [{
             propReq: "status",
             value: ['TERJAWAB'],

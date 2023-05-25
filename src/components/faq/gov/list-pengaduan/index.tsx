@@ -28,9 +28,6 @@ export default function PengaduanList(props: MainLayoutProps) {
         showIndexing: {
             sticky: "left"
         },
-        allowSearching: {
-            fullWidth: true
-        },
         temporaryParameter: [{
             propReq: "status",
             value: ['BELUM_TERJAWAB'],

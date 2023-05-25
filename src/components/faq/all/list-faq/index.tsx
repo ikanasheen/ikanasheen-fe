@@ -41,9 +41,6 @@ export default function DaftarFaqList(props: MainLayoutProps) {
         showIndexing: {
             sticky: "left"
         },
-        allowSearching: {
-            fullWidth: true
-        },
         onRowClick: ({ rowData }) => form(rowData.idFaq),
         columns: [
             {
