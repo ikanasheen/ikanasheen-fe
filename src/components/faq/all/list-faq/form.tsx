@@ -4,6 +4,7 @@ import { credential, mounted } from "lib";
 import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import FaqHelper from "helper/faq/FaqHelper";
 import TopikHelper from "helper/faq/TopikHelper";
+import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 
 export default function FaqForm({ title, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
@@ -64,15 +65,18 @@ export default function FaqForm({ title, id, hide, onSuccess = () => { } }: Draw
                                 ]
                             },
                         },
-                        visible: true
+                        visible: true,
+                        validationRules: ["required"]
                     },
                     {
                         dataField: "namaTopik",
                         caption: "Nama Topik",
-                        visible: false
+                        visible: false,
+                        validationRules: ["required"],
+                        editorOptions: { disabled: true }
                     },
-                    `pertanyaan|label.text=Pertanyaan`,
-                    `jawaban|label.text=Jawaban|editorType=textarea|editorOptions.rows=5`,
+                    `pertanyaan|label.text=Pertanyaan|validationRules`,
+                    `jawaban|label.text=Jawaban|editorType=textarea|editorOptions.rows=5|validationRules`,
 
                 ]
             },
@@ -109,6 +113,7 @@ export default function FaqForm({ title, id, hide, onSuccess = () => { } }: Draw
                     }]
                 }}
             >
+                <MoreHorizRoundedIcon />
             </BgsButton>}</>}
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>

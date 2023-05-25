@@ -77,7 +77,20 @@ export default function FaqlList(props: MainLayoutProps) {
 
                 },
             },
-            `tanggalDibuat|caption=Tanggal Penambahan|width=190|dataType=datetime|allowFiltering`,
+            {
+                dataField: "jawaban",
+                caption: "Jawaban",
+                width: 300,
+                allowSorting: true,
+                allowFiltering: {
+                    helper: (data) => FaqHelper.retrieve(data),
+                    displayExpr: "jawaban",
+                    valueExpr: "jawaban",
+                    allowSorting: false,
+                    allowSearching: false,
+
+                },
+            },
             {
                 sticky: "right",
                 icon: false,

@@ -58,6 +58,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                             text: "Pengaduan"
                         },
                         editorType: "textarea",
+                        validationRules:["required"]
                     },
                 ],
             },

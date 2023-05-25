@@ -37,7 +37,7 @@ export default function FaqForm({ title, id, hide, onSuccess = () => { } }: Draw
             main: {
                 spacing: 3,
                 items: [
-                    `namaTopik|label.text=Topik`,
+                    `namaTopik|label.text=Topik|validationRules`,
                     `deskripsi|label.text=Deskripsi`,
                 ]
             },

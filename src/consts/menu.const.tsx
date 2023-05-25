@@ -314,7 +314,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuCode: "list-faq-admin",
         menuName: "FAQ",
         menuParent:"faq",
-        details: ["list", "create", "update"],
+        details: ["list", "create", "update", "delete"],
         menuIcon: "material-icons-round|folder_open",
         menuPath: "/faq/all/list-faq",
         idRole: [1]
