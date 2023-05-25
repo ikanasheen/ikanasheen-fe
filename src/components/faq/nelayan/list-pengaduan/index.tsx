@@ -31,11 +31,11 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
         allowSearching: {
             fullWidth: true
         },
-        // temporaryParameter: [{
-        //     propReq: "statusBantuan",
-        //     value: ['ACTIVE','UNAVAILABLE'],
-        //     opt: "filter"
-        // }],
+        temporaryParameter: [{
+            propReq: "status",
+            value: ['BELUM_TERJAWAB'],
+            opt: "filter"
+        }],
         onRowClick: ({ rowData }) => form(rowData.idPengaduan),
         columns: [
             {
@@ -53,7 +53,7 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
                 },
             },
             {
-                dataField: "pengaduan",
+                dataField: "aduan",
                 caption: "Pengaduan",
                 width: 300,
                 allowSorting: true,

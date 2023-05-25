@@ -39,11 +39,11 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                 items: [
                     `idPengaduan|label.text=ID Pengaduan|editorOptions.disabled=true`,
                     `idNelayan|label.text=ID Nelayan|editorOptions.disabled=true`,
-                    `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
+                    `nelayan.namaLengkap|label.text=Nama Nelayan|editorOptions.disabled=true`,
                     `email|label.text=Email|editorOptions.disabled=true`,
                     `noTelepon|label.text=No. Telepon|editorOptions.disabled=true`,
                     {
-                        dataField: "pengaduan",
+                        dataField: "aduan",
                         label: {
                             text: "Pengaduan"
                         },
@@ -53,7 +53,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                         }
                     },
                     {
-                        dataField: "jawaban",
+                        dataField: "penanganan",
                         label: {
                             text: "Penanganan Pengaduan"
                         },
@@ -63,8 +63,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                             disabled:true
                         }
                     },
-                    `namaAdmin|label.text=Nama Admin|editorOptions.disabled=true`,
-                    `feedback|label.text=Feedback|editorOptions.disabled=true`,
+                    // `namaAdmin|label.text=Nama Admin|editorOptions.disabled=true`,
                 ],
             },
         }

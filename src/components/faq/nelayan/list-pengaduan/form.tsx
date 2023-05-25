@@ -15,7 +15,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
             setLoading(true)
             PengaduanHelper.detail(id, ({ status, data }) => {
                 setLoading(false)
-                // if (roleId !== 1) formRef.current?.disabled(true)
+                if (roleId === 3) formRef.current?.disabled(true)
                 if (status) {
                     formRef.current?.updateData(data);
                 }
@@ -44,7 +44,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
                     `email|label.text=Email`,
                     `noTelepon|label.text=No. Telepon`,
                     {
-                        dataField: "pengaduan",
+                        dataField: "aduan",
                         label: {
                             text: "Pengaduan"
                         },
@@ -86,7 +86,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
                 {
-                    roleId === 3 ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Ajukan Pengaduan</BgsButton>
+                    roleId !== 3 ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Ajukan Pengaduan</BgsButton>
                         : null
                 }
 

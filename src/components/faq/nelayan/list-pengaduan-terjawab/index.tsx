@@ -6,7 +6,7 @@ import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
 import PengaduanHelper from "helper/faq/PengaduanHelper";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-const Form = lazy(() => import("../list-faq/form"));
+const Form = lazy(() => import("./form"));
 
 export default function DaftarBantuanList(props: MainLayoutProps) {
     const tableRef = useRef<TableRef>(null);
@@ -31,11 +31,11 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
         allowSearching: {
             fullWidth: true
         },
-        // temporaryParameter: [{
-        //     propReq: "statusBantuan",
-        //     value: ['ACTIVE','UNAVAILABLE'],
-        //     opt: "filter"
-        // }],
+        temporaryParameter: [{
+            propReq: "status",
+            value: ['TERJAWAB'],
+            opt: "filter"
+        }],
         onRowClick: ({ rowData }) => form(rowData.idPengaduan),
         columns: [
             {
@@ -53,7 +53,7 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
                 },
             },
             {
-                dataField: "pengaduan",
+                dataField: "aduan",
                 caption: "Pengaduan",
                 width: 300,
                 allowSorting: true,

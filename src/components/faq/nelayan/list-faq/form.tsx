@@ -5,7 +5,7 @@ import DrawerLayout, { DrawerRenderProps } from "shared/layout/drawer-layout";
 import FaqHelper from "helper/faq/FaqHelper";
 import TopikHelper from "helper/faq/TopikHelper";
 
-export default function FaqForm({ id, hide, onSuccess = () => { } }: DrawerRenderProps) {
+export default function FaqForm({ title, id, hide, onSuccess = () => { } }: DrawerRenderProps) {
     const formRef = useRef<FormRef>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const roleId = credential.storage.get("user")?.idRole;
@@ -86,9 +86,9 @@ export default function FaqForm({ id, hide, onSuccess = () => { } }: DrawerRende
         ref={formRef}
         render={group => <DrawerLayout
             title={<>{roleId == 3 ?
-                id ? "Detail" : "Tambah"
-                : "Detail"
-            }</>}
+                id ? "Detail " : "Tambah"
+                : "Detail "
+            }<b>{title}</b></>}
             action={<>{id && <BgsButton
                 actionType="menu"
                 variant="icon"
