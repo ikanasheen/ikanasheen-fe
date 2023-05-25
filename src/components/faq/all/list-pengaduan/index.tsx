@@ -35,6 +35,10 @@ export default function PengaduanList(props: MainLayoutProps) {
             propReq: "status",
             value: ['BELUM_TERJAWAB'],
             opt: "filter"
+        },{
+            propReq: "tanggalPengaduan",
+            value: "desc",
+            opt: "sort"  
         }],
         onRowClick: ({ rowData }) => form(rowData.idPengaduan),
         columns: [
