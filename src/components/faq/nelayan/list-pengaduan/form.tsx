@@ -29,7 +29,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
         showLabelShrink: true,
         onSubmit: (values) => {
             setLoading(true);
-            PengaduanHelper.createupdate(values, values.idProposalBantuan, ({ status }) => {
+            PengaduanHelper.createupdate(values, values.idPengaduan, ({ status }) => {
                 setLoading(false);
                 if (status) onSuccess();
             })
