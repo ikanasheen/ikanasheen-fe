@@ -39,27 +39,28 @@ export default function PengaduanForm({ title, id, hide, onSuccess = () => { } }
                 items: [
                     `idPengaduan|label.text=ID Pengaduan|editorOptions.disabled=true`,
                     `idNelayan|label.text=ID Nelayan|editorOptions.disabled=true`,
-                    `namaNelayan|label.text=Nama Nelayan|editorOptions.disabled=true`,
+                    `nelayan.namaLengkap|label.text=Nama Nelayan|editorOptions.disabled=true`,
+                    // {
+                    //     dataField: "nelayan.namaLengkap",
+                    //     label: {
+                    //         text: "Nama Nelayan",
+                    //     },
+                    //     editorOptions: {
+                    //         helper: data => NelayanHelper.retrieve(data),
+                    //         displayExpr: "namaLengkap",
+                    //         valueExpr: "idNelayan",
+                    //     }
+                    // },
                     `email|label.text=Email|editorOptions.disabled=true`,
                     `noTelepon|label.text=No. Telepon|editorOptions.disabled=true`,
                     {
-                        dataField: "pengaduan",
+                        dataField: "aduan",
                         label: {
                             text: "Pengaduan"
                         },
                         editorType: "textarea",
                         editorOptions:{
                             disabled:true
-                        }
-                    },
-                    {
-                        dataField: "jawaban",
-                        label: {
-                            text: "Penanganan Pengaduan"
-                        },
-                        editorType: "textarea",
-                        editorOptions:{
-                            rows:5
                         }
                     },
                 ],
