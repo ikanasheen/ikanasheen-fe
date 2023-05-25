@@ -35,6 +35,10 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
             propReq: "status",
             value: ['BELUM_TERJAWAB'],
             opt: "filter"
+        },{
+            propReq: "tanggalPengaduan",
+            value: "desc",
+            opt: "sort"  
         }],
         onRowClick: ({ rowData }) => form(rowData.idPengaduan),
         columns: [

@@ -41,8 +41,17 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
             main: {
                 spacing: 3,
                 items: [
-                    `email|label.text=Email`,
-                    `noTelepon|label.text=No. Telepon`,
+                    `email|label.text=Email|validationRules=email`,
+                    {
+                        dataField: "noTelepon",
+                        label: {
+                            text: "No Telepon"
+                        },
+                        validationRules: ["maxLength.15","pattern.phonenumber"],
+                        editorOptions:{
+                            placeholder: "08...",
+                        }
+                    },
                     {
                         dataField: "aduan",
                         label: {
@@ -86,7 +95,7 @@ export default function HargaIkanForm({ title, id, hide, onSuccess = () => { } }
             footer={<>
                 <BgsButton variant="text" className="btn-cancel" onClick={() => hide()}>Kembali</BgsButton>
                 {
-                    roleId !== 3 ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Ajukan Pengaduan</BgsButton>
+                    !id ? <BgsButton className="btn-save" loading={loading} visibleLoading={false} type="submit">Ajukan Pengaduan</BgsButton>
                         : null
                 }
 
