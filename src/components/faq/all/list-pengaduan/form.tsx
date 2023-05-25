@@ -27,8 +27,10 @@ export default function PengaduanForm({ title, id, hide, onSuccess = () => { } }
         showIcon: true,
         showLabelShrink: true,
         onSubmit: ({idPengaduan, penanganan}, {loading}) => {
-            loading(true);
-            PengaduanHelper.createupdate({idPengaduan, penanganan},id)
+            loading(false);
+            setLoading(false)
+            PengaduanHelper.penanganan({idPengaduan, penanganan},id)
+            onSuccess();
         },
         item: {
             main: {
