@@ -98,10 +98,14 @@ const HomeComponent = ({ }: MainLayoutProps) => {
                     {idRole == "3" || idRole == "4" ?
                         <>
                             <Grid item xs={1}>
-                                <TransaksiStatusComponent />
-                            </Grid>
-                            <Grid item xs={1}>
-                                <TransaksiTanggalComponent />
+                                <Grid container columns={2} spacing={1}>
+                                    <Grid item xs={1}>
+                                        <TransaksiStatusComponent />
+                                    </Grid>
+                                    <Grid item xs={1}>
+                                        <TransaksiTanggalComponent />
+                                    </Grid>
+                                </Grid>
                             </Grid>
                         </>
                         : <>
