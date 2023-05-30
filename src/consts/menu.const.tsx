@@ -5,39 +5,67 @@ export const MenuConst: MenuPermissionWrapper[] = [
     // ...menuAdmin,
     //DASHBOARD
     {
+        //admin, gov
+        menuCode: "main-dashboard",
+        menuName: "Dashboard",
+        details: [],
+        menuIcon: "material-icons-round|dashboard",
+        idRole: [1,2,3,4]
+    },
+    {
         menuCode: "dashboard",
         menuName: "Dashboard",
         menuPath: "/",
         details: ["list"],
-        menuIcon: "material-icons-round|dashboard",
+        menuParent: "main-dashboard",       
+        menuIcon: "material-icons-round|folder_open",
         idRole: [1, 2, 3, 4]
     },
 
     //DAFTAR KOMODITI
     {
+        //admin, gov
+        menuCode: "main-komoditi",
+        menuName: "Daftar Komoditi",
+        details: [],
+        menuIcon: "material-icons-round|price_change",
+        idRole: [1,3]
+    },
+    {
         menuCode: "daftar-komoditi",
         menuName: "Daftar Komoditi",
         details: ["list", "create", "update", "delete"],
+        menuParent: "main-komoditi",       
         menuPath: "/daftar-komoditi",
-        menuIcon: "material-icons-round|price_change",
+        menuIcon: "material-icons-round|folder_open",
         idRole: [1]
     },
     {
         menuCode: "daftar-komoditi",
         menuName: "Daftar Komoditi",
         details: ["list"], //list aja
+        menuParent: "main-komoditi",       
         menuPath: "/daftar-komoditi",
-        menuIcon: "material-icons-round|price_change",
+        menuIcon: "material-icons-round|folder_open",
         idRole: [3]
     },
 
     //DAFTAR NELAYAN
     {
+        //admin, gov
+        menuCode: "main-nelayan",
+        menuName: "Daftar Nelayan",
+        details: [],
+        menuIcon: "material-icons-round|contacts",
+        idRole: [1,2]
+    },
+    {
         menuCode: "nelayan",
         menuName: "Daftar Nelayan",
-        details: ["list"],
+        details: ["list"],        
+        menuParent: "main-nelayan",       
         menuPath: "/nelayan",
-        menuIcon: "material-icons-round|contacts",
+        menuIcon: "material-icons-round|folder_open",
         idRole: [1, 2]
     },
 
