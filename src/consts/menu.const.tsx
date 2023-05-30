@@ -213,26 +213,35 @@ export const MenuConst: MenuPermissionWrapper[] = [
     
     //SOSIALISASI
     {
+        //admin, gov
+        menuCode: "main-sosialisasi",
+        menuName: "Sosialisasi",
+        details: [],
+        menuIcon: "material-icons-round|tips_and_updates",
+        idRole: [1,2,3]
+    },
+    {
         menuCode: "sosialisasi-all",
         menuName: "Sosialisasi",
+        menuParent:"main-sosialisasi",
         details: ["list", "create", "update"],
-        menuIcon: "material-icons-round|tips_and_updates",
+        menuIcon: "material-icons-round|folder_open",
         menuPath: "/sosialisasi",
         idRole: [1]
     },
     //children sosialisasi
-    {
-        menuCode: "sosialisasi",
-        menuName: "Sosialisasi",
-        details: [],
-        menuIcon: "material-icons-round|tips_and_updates",
-        // menuPath: "/sosialisasi/berita",
-        idRole: [3, 2]
-    },
+    // {
+    //     menuCode: "sosialisasi",
+    //     menuName: "Sosialisasi",
+    //     details: [],
+    //     menuIcon: "material-icons-round|tips_and_updates",
+    //     // menuPath: "/sosialisasi/berita",
+    //     idRole: [3, 2]
+    // },
     {
         menuCode: "sosialisasi-berita",
         menuName: "Berita",
-        menuParent:"sosialisasi",
+        menuParent:"main-sosialisasi",
         details: ["list", "detail"],
         menuIcon: "material-icons-round|folder_open",
         menuPath: "/sosialisasi/berita",
@@ -241,7 +250,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
     {
         menuCode: "sosialisasi-informasi",
         menuName: "Informasi",
-        menuParent:"sosialisasi",
+        menuParent:"main-sosialisasi",
         details: ["list", "detail"],
         menuIcon: "material-icons-round|folder_open",
         menuPath: "/sosialisasi/informasi",
@@ -250,7 +259,7 @@ export const MenuConst: MenuPermissionWrapper[] = [
     {
         menuCode: "sosialisasi-pengembangan-diri",
         menuName: "Pengembangan Diri",
-        menuParent:"sosialisasi",
+        menuParent:"main-sosialisasi",
         details: ["list", "detail"],
         menuIcon: "material-icons-round|folder_open",
         menuPath: "/sosialisasi/pengembangan-diri",
