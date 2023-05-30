@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Fab from '@mui/material/Fab';
+// import Fab from '@mui/material/Fab';
 import Popover from '@mui/material/Popover';
 import TextField from '@mui/material/TextField';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -18,7 +18,7 @@ import store, { storeDispatch } from "store";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChildSidebar from "shared/sidebar/child-sidebar";
-import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
+// import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import Footer from "shared/footer";
 // import Header from "shared/header";
 
@@ -52,9 +52,9 @@ function MainLayout({ children, title, menuCode, actionCode, usingContainer = tr
         }))
     };
 
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
+    // const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    //     setAnchorEl(event.currentTarget);
+    // };
 
     const handleClose = () => {
         setAnchorEl(null);
@@ -109,9 +109,9 @@ function MainLayout({ children, title, menuCode, actionCode, usingContainer = tr
                 >
                     <TextField fullWidth />
                 </Popover>
-                <Fab sx={{ position: "fixed", bottom: 10, right: 10 }} onClick={handleClick}>
+                {/* <Fab sx={{ position: "fixed", bottom: 10, right: 10 }} onClick={handleClick}>
                     <ForumRoundedIcon />
-                </Fab>
+                </Fab> */}
             </Box>
         </>}
     />
