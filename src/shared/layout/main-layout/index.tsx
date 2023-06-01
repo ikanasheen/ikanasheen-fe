@@ -81,12 +81,10 @@ function MainLayout({ children, title, menuCode, actionCode, usingContainer = tr
                 <ChildSidebar menuCode={menuCode} />
                 <Box component="main" sx={{ flexGrow: 1, height: "100vh" }}>
                     {false && <DrawerHeader />}
-                    <Box className="scroll" sx={{ padding: usingContainer ? "30px" : 0, minHeight: "100vh", height: "100vh", overflowY: "auto", bgcolor: "#ebf0f2", position: "relative" }}>
-                        {/* <Header title={""}> */}
-                            <Box position="sticky" sx={{ textAlign: "right", background_color: "#fcfcfc", fontSize: 18, padding: "10px 30px 20px 0px" }}>
+                    <Box className="scroll" sx={{padding: usingContainer ? "30px" : 0, minHeight: "100vh", height: "100vh", overflowY: "auto", bgcolor: "#ebf0f2", position: "relative" }}>
+                            <Box position="sticky" top={0} zIndex={9} sx={{ textAlign: "right", backgroundColor: "#fcfcfc", fontSize: 18, padding: "10px 30px 20px 0px" }}>
                                 Halo, {nama}!
                             </Box>
-                        {/* </Header> */}
                         <Suspense fallback={<LoadingPage />}>
                             <div key={key}>
                                 {isAuthorize ? children : <Error403 />}

@@ -33,8 +33,10 @@ export default function BreadcrumbLayout({
 
     const findBreadcrumb = (x: MenuModel): any => {
         if (x.menuPath) {
+            console.log(router.pathname, "pathname")
+            console.log(x, "x aja")
             if (x.menuPath === "/" || x.menuPath === "/") return null;
-            else return router.pathname.includes(x.menuPath);
+            else return router.pathname===x.menuPath;
         }
         else if (x.children?.length) return x.children.find(findBreadcrumb);
         return null
@@ -45,6 +47,7 @@ export default function BreadcrumbLayout({
 
         let breadcrumbTemp: MenuModel[] = [];
         let menuTemp: MenuModel[] = [];
+        console.log(menuCode, "menucodeee")
         const menuStorage: MenuPermissionWrapper[] = MenuConst.filter(x => x.idRole.includes(idRole)) || [];
         if (isArray(menuStorage, 0) && menuStorage) {
             const recursiveMenu = (menuCode: string): MenuModel[] => {
@@ -52,13 +55,13 @@ export default function BreadcrumbLayout({
             }
 
             menuStorage.filter(x => !x.menuParent).forEach(({ menuCode, menuName, menuPath, menuIcon, ...others }) => menuTemp.push({ ...others, menuCode, menuName, menuPath, menuIcon, children: recursiveMenu(menuCode) }))
-
             const find = menuTemp.find(findBreadcrumb)
             if (find) {
                 breadcrumbTemp.push(find)
                 if (find.children?.length) {
                     const findChild = find.children.find(findBreadcrumb);
                     if (findChild) breadcrumbTemp.push(findChild)
+                    console.log(findChild, "FIndd Child")
                 }
             }
 
