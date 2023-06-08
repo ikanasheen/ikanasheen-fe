@@ -57,7 +57,7 @@ export default function PengaduanList(props: MainLayoutProps) {
                 },
             },
             {
-                dataField: "idNelayan",
+                dataField: "namaNelayan",
                 caption: "Nelayan",
                 width: 150,
                 allowSorting: true,
@@ -69,7 +69,7 @@ export default function PengaduanList(props: MainLayoutProps) {
                     displayExpr: (data: any) => {
                         return data.nelayan.namaLengkap
                     },
-                    valueExpr: "idNelayan",
+                    valueExpr: "namaNelayan",
                     allowSorting: false,
                     allowSearching: true,
 
