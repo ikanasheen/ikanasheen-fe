@@ -92,7 +92,16 @@ export default function DaftarFaqList(props: MainLayoutProps) {
 
                 },
             },
-            `tanggalDibuat|caption=Tanggal Penambahan|width=190|dataType=datetime|allowFiltering`,
+            // `tanggalDibuat|caption=Tanggal Penambahan|width=190|dataType=datetime|allowFiltering`,
+            {
+                dataField: "tanggalDibuat",
+                caption: "Tanggal Penambahan",
+                width: 190,
+                dataType:"datetime",
+                format: "YYYY-MM-DD HH:mm",
+                allowSorting: true,
+                allowFiltering: true
+            },
             {
                 sticky: "right",
                 icon: false,
