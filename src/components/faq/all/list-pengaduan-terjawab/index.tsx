@@ -37,6 +37,9 @@ export default function PengaduanList(props: MainLayoutProps) {
             value: "desc",
             opt: "sort"  
         }],
+        
+        allowSearching:true,
+        allowSearchingOptions:true,
         onRowClick: ({ rowData }) => form(rowData.idPengaduan),
         columns: [
             {
@@ -49,7 +52,7 @@ export default function PengaduanList(props: MainLayoutProps) {
                     displayExpr: "idPengaduan",
                     valueExpr: "idPengaduan",
                     allowSorting: false,
-                    allowSearching: false,
+                    allowSearching: true,
 
                 },
             },
@@ -68,7 +71,7 @@ export default function PengaduanList(props: MainLayoutProps) {
                     },
                     valueExpr: "idNelayan",
                     allowSorting: false,
-                    allowSearching: false,
+                    allowSearching: true,
 
                 },
             },
@@ -79,10 +82,10 @@ export default function PengaduanList(props: MainLayoutProps) {
                 allowSorting: true,
                 allowFiltering: {
                     helper: (data) => PengaduanHelper.retrieve(data),
-                    displayExpr: "pengaduan",
-                    valueExpr: "pengaduan",
+                    displayExpr: "aduan",
+                    valueExpr: "aduan",
                     allowSorting: false,
-                    allowSearching: false,
+                    allowSearching: true,
 
                 },
             },

@@ -27,13 +27,6 @@ const TransaksiComponent = () => {
         idRole,
         idUser
     } = credential.storage.get("user") || {};
-    
-    // const [endDate, setEndDate] = useState<string>(moment().format("DD MMM YYYY"));
-    // const [startDate, setStartDate] = useState(() => {
-    //     const date = new Date();
-    //     date.setDate(date.getDate() - 6); // Set start date to 7 days ago
-    //     return date;
-    // });
 
     useEffect(() => {
         setLoading(true)

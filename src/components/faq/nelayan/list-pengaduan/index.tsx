@@ -37,6 +37,8 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
             value: "desc",
             opt: "sort"  
         }],
+        allowSearching:true,
+        allowSearchingOptions:true,
         onRowClick: ({ rowData }) => form(rowData.idPengaduan),
         columns: [
             {
@@ -49,7 +51,7 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
                     displayExpr: "idPengaduan",
                     valueExpr: "idPengaduan",
                     allowSorting: false,
-                    allowSearching: false,
+                    allowSearching: true,
 
                 },
             },
@@ -60,10 +62,10 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
                 allowSorting: true,
                 allowFiltering: {
                     helper: (data) => PengaduanHelper.retrieve(data),
-                    displayExpr: "pengaduan",
-                    valueExpr: "pengaduan",
+                    displayExpr: "aduan",
+                    valueExpr: "aduan",
                     allowSorting: false,
-                    allowSearching: false,
+                    allowSearching: true,
 
                 },
             },

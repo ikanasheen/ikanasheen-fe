@@ -229,15 +229,6 @@ export const MenuConst: MenuPermissionWrapper[] = [
         menuPath: "/sosialisasi",
         idRole: [1]
     },
-    //children sosialisasi
-    // {
-    //     menuCode: "sosialisasi",
-    //     menuName: "Sosialisasi",
-    //     details: [],
-    //     menuIcon: "material-icons-round|tips_and_updates",
-    //     // menuPath: "/sosialisasi/berita",
-    //     idRole: [3, 2]
-    // },
     {
         menuCode: "sosialisasi-berita",
         menuName: "Berita",

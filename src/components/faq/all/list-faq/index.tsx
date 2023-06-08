@@ -41,6 +41,8 @@ export default function DaftarFaqList(props: MainLayoutProps) {
         showIndexing: {
             sticky: "left"
         },
+        allowSearching:true,
+        allowSearchingOptions:true,
         onRowClick: ({ rowData }) => form(rowData.idFaq),
         columns: [
             {
@@ -53,12 +55,12 @@ export default function DaftarFaqList(props: MainLayoutProps) {
                     displayExpr: "idFaq",
                     valueExpr: "idFaq",
                     allowSorting: false,
-                    allowSearching: false,
+                    allowSearching: true,
 
                 },
             },
             {
-                dataField: "idTopik",
+                dataField: "namaTopik",
                 caption: "Topik",
                 width: 150,
                 allowSorting: true,
@@ -70,9 +72,9 @@ export default function DaftarFaqList(props: MainLayoutProps) {
                     displayExpr: (data: any) => {
                         return data.topik.namaTopik
                     },
-                    valueExpr: "idTopik",
+                    valueExpr: "namaTopik",
                     allowSorting: false,
-                    allowSearching: false,
+                    allowSearching: true,
 
                 },
             },
@@ -86,7 +88,7 @@ export default function DaftarFaqList(props: MainLayoutProps) {
                     displayExpr: "pertanyaan",
                     valueExpr: "pertanyaan",
                     allowSorting: false,
-                    allowSearching: false,
+                    allowSearching: true,
 
                 },
             },
