@@ -6,10 +6,12 @@ import { lazy, useRef } from "react";
 import { drawerLayout } from "shared/layout/drawer-layout";
 import PengaduanHelper from "helper/faq/PengaduanHelper";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { credential } from "lib";
 const Form = lazy(() => import("./form"));
 
 export default function DaftarBantuanList(props: MainLayoutProps) {
     const tableRef = useRef<TableRef>(null);
+    const userId = credential.storage.get("user")?.idUser;
 
     const form = (id?: string) => {
         drawerLayout({
@@ -31,6 +33,10 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
         temporaryParameter: [{
             propReq: "status",
             value: ['BELUM_TERJAWAB'],
+            opt: "filter"
+        },{
+            propReq: "idUserNelayan",
+            value: userId,
             opt: "filter"
         },{
             propReq: "tanggalPengaduan",
