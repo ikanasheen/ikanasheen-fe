@@ -60,6 +60,17 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
                     allowSearching: true,
 
                 },
+                parameter: () => {
+                    return {
+                        parameter: {
+                            filter: {
+                                status: ['TERJAWAB'],
+                                idUserNelayan: [userId]
+                            }
+                        }
+
+                    }
+                }
             },
             {
                 dataField: "aduan",
@@ -74,6 +85,17 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
                     allowSearching: true,
 
                 },
+                parameter: () => {
+                    return {
+                        parameter: {
+                            filter: {
+                                status: ['TERJAWAB'],
+                                idUserNelayan: [userId]
+                            }
+                        }
+
+                    }
+                }
             },
             {
                 dataField: "tanggalPengaduan",

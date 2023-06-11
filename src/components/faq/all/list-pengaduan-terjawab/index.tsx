@@ -55,6 +55,16 @@ export default function PengaduanList(props: MainLayoutProps) {
                     allowSearching: true,
 
                 },
+                parameter: () => {
+                    return {
+                        parameter: {
+                            filter: {
+                                status: ['TERJAWAB'],
+                            }
+                        }
+
+                    }
+                }
             },
             {
                 dataField: "namaNelayan",
@@ -74,6 +84,16 @@ export default function PengaduanList(props: MainLayoutProps) {
                     allowSearching: true,
 
                 },
+                parameter: () => {
+                    return {
+                        parameter: {
+                            filter: {
+                                status: ['TERJAWAB'],
+                            }
+                        }
+
+                    }
+                }
             },
             {
                 dataField: "aduan",
@@ -88,6 +108,16 @@ export default function PengaduanList(props: MainLayoutProps) {
                     allowSearching: true,
 
                 },
+                parameter: () => {
+                    return {
+                        parameter: {
+                            filter: {
+                                status: ['TERJAWAB'],
+                            }
+                        }
+
+                    }
+                }
             },
             {
                 dataField: "tanggalPengaduan",
