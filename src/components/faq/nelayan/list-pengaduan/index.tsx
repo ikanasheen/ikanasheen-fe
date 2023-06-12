@@ -36,7 +36,7 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
             opt: "filter"
         },{
             propReq: "idUserNelayan",
-            value: userId,
+            value: [userId],
             opt: "filter"
         },{
             propReq: "tanggalPengaduan",
