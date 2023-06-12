@@ -34,17 +34,17 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
             propReq: "status",
             value: ['TERJAWAB'],
             opt: "filter"
-        },{
+        }, {
             propReq: "idUserNelayan",
             value: [userId],
             opt: "filter"
-        },{
+        }, {
             propReq: "tanggalPenanganan",
             value: "desc",
-            opt: "sort"  
+            opt: "sort"
         }],
-        allowSearching:true,
-        allowSearchingOptions:true,
+        allowSearching: true,
+        allowSearchingOptions: true,
         onRowClick: ({ rowData }) => form(rowData.idPengaduan),
         columns: [
             {
@@ -58,19 +58,19 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
                     valueExpr: "idPengaduan",
                     allowSorting: false,
                     allowSearching: true,
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    status: ['TERJAWAB'],
+                                    idUserNelayan: [userId]
+                                }
+                            }
+
+                        }
+                    }
 
                 },
-                parameter: () => {
-                    return {
-                        parameter: {
-                            filter: {
-                                status: ['TERJAWAB'],
-                                idUserNelayan: [userId]
-                            }
-                        }
-
-                    }
-                }
             },
             {
                 dataField: "aduan",
@@ -83,25 +83,25 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
                     valueExpr: "aduan",
                     allowSorting: false,
                     allowSearching: true,
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    status: ['TERJAWAB'],
+                                    idUserNelayan: [userId]
+                                }
+                            }
+
+                        }
+                    }
 
                 },
-                parameter: () => {
-                    return {
-                        parameter: {
-                            filter: {
-                                status: ['TERJAWAB'],
-                                idUserNelayan: [userId]
-                            }
-                        }
-
-                    }
-                }
             },
             {
                 dataField: "tanggalPengaduan",
                 caption: "Tanggal Pengaduan",
                 width: 190,
-                dataType:"datetime",
+                dataType: "datetime",
                 format: "YYYY-MM-DD HH:mm",
                 allowSorting: true,
                 allowFiltering: true
@@ -110,7 +110,7 @@ export default function DaftarBantuanList(props: MainLayoutProps) {
                 dataField: "tanggalPenanganan",
                 caption: "Tanggal Penanganan",
                 width: 190,
-                dataType:"datetime",
+                dataType: "datetime",
                 format: "YYYY-MM-DD HH:mm",
                 allowSorting: true,
                 allowFiltering: true

@@ -27,18 +27,18 @@ export default function PengaduanList(props: MainLayoutProps) {
         allowFiltering: true,
         showIndexing: {
             sticky: "left"
-        },     
+        },
         temporaryParameter: [{
             propReq: "status",
             value: ['TERJAWAB'],
             opt: "filter"
-        },{
+        }, {
             propReq: "tanggalPenanganan",
             value: "desc",
-            opt: "sort"  
+            opt: "sort"
         }],
-        allowSearching:true,
-        allowSearchingOptions:true,
+        allowSearching: true,
+        allowSearchingOptions: true,
         onRowClick: ({ rowData }) => form(rowData.idPengaduan),
         columns: [
             {
@@ -52,18 +52,16 @@ export default function PengaduanList(props: MainLayoutProps) {
                     valueExpr: "idPengaduan",
                     allowSorting: false,
                     allowSearching: true,
-
-                },
-                parameter: () => {
-                    return {
-                        parameter: {
-                            filter: {
-                                status: ['BELUM_TERJAWAB'],
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    status: ['BELUM_TERJAWAB'],
+                                }
                             }
                         }
-
                     }
-                }
+                },
             },
             {
                 dataField: "namaNelayan",
@@ -81,18 +79,16 @@ export default function PengaduanList(props: MainLayoutProps) {
                     valueExpr: "namaNelayan",
                     allowSorting: false,
                     allowSearching: true,
-
-                },
-                parameter: () => {
-                    return {
-                        parameter: {
-                            filter: {
-                                status: ['BELUM_TERJAWAB'],
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    status: ['BELUM_TERJAWAB'],
+                                }
                             }
                         }
-
                     }
-                }
+                },
             },
             {
                 dataField: "aduan",
@@ -105,24 +101,22 @@ export default function PengaduanList(props: MainLayoutProps) {
                     valueExpr: "aduan",
                     allowSorting: false,
                     allowSearching: true,
-
-                },
-                parameter: () => {
-                    return {
-                        parameter: {
-                            filter: {
-                                status: ['BELUM_TERJAWAB'],
+                    parameter: () => {
+                        return {
+                            parameter: {
+                                filter: {
+                                    status: ['BELUM_TERJAWAB'],
+                                }
                             }
                         }
-
                     }
-                }
+                },
             },
             {
                 dataField: "tanggalPengaduan",
                 caption: "Tanggal Pengaduan",
                 width: 190,
-                dataType:"datetime",
+                dataType: "datetime",
                 format: "YYYY-MM-DD HH:mm",
                 allowSorting: true,
                 allowFiltering: true
@@ -131,7 +125,7 @@ export default function PengaduanList(props: MainLayoutProps) {
                 dataField: "tanggalPenanganan",
                 caption: "Tanggal Penanganan",
                 width: 190,
-                dataType:"datetime",
+                dataType: "datetime",
                 format: "YYYY-MM-DD HH:mm",
                 allowSorting: true,
                 allowFiltering: true
