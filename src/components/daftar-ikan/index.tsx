@@ -67,10 +67,23 @@ export default function DaftarIkanList(props: MainLayoutProps) {
                 allowSorting: true,
                 allowFiltering: {
                     helper: (data) => IkanHelper.retrieve(data),
-                    displayExpr: "ukuran",
+                    displayExpr: (data: any) => {
+                        if (data.ukuran == "-") {
+                            return ""
+                        } else if (data.ukuran != null) {
+                            return data.ukuran
+                        }
+                    },
                     valueExpr: "ukuran",
                     allowSorting: false,
-                    allowSearching: false
+                    allowSearching: false,
+                },
+                template: (data) => {
+                    if (data.ukuran == "-") {
+                        return ""
+                    } else if (data.ukuran != null) {
+                        return data.ukuran
+                    }
                 },
             },
             {
