@@ -62,6 +62,7 @@ export default function PengaduanForm({ title, id, hide, onSuccess = () => { } }
                         label: {
                             text: "Penanganan Pengaduan"
                         },
+                        validationRules:["required"],
                         editorType: "textarea",
                         editorOptions:{
                             rows:5

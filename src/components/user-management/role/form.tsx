@@ -53,7 +53,7 @@ export default function UserManagementMenuForm({ title, id, hide, onSuccess = ()
         {...form}
         ref={formRef}
         render={group => <DrawerLayout
-            title={<>{id ? "Detail" : "Tambah"} <b>{title}</b></>}
+            title={<>{id ? "Edit" : "Tambah"} <b>{title}</b></>}
             action={<>{id && <BgsButton
                 actionType="menu"
                 variant="icon"
